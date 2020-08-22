@@ -1,13 +1,6 @@
-import React, { useState } from "./node_modules/react";
-import "./node_modules/react-day-picker/lib/style.css";
-import { CirclePicker } from "./node_modules/react-color";
+import React, { useState } from "react";
+import { CirclePicker } from "react-color";
 import '../styles/lower-footer.css';
-import { FontAwesomeIcon } from "./node_modules/@fortawesome/react-fontawesome";
-import {
-  faVolumeUp,
-  faVolumeMute,
-  faHandPointRight,
-} from "./node_modules/@fortawesome/free-solid-svg-icons";
 
 const pickableColors = [
     "#5ebaf8",
@@ -19,6 +12,8 @@ const pickableColors = [
     "#43d6c8",
     "#bd8470",
   ];
+
+const rightHandIcon = require('../images/right-hand.png');
 
 export const LowerFooter = (props) => {
 
@@ -33,7 +28,6 @@ export const LowerFooter = (props) => {
         setShowColorPicker);
 
 
-    const icon = muted ? faVolumeMute : faVolumeUp;
     const mutedStyle = muted ? { color: "grey" } : {};
   
 
@@ -67,8 +61,9 @@ export const LowerFooter = (props) => {
 
         {showColorPicker && (
             <div className="color-picker" onClick={toggleColorPicker}>
-                <FontAwesomeIcon
-                    icon={faHandPointRight}
+                <img
+                    alt=""
+                    src={rightHandIcon}
                     className="hand-right"
                 />
                 <CirclePicker
@@ -80,13 +75,6 @@ export const LowerFooter = (props) => {
                 />
             </div>
         )}
-
-        <FontAwesomeIcon
-            icon={icon}
-            onClick={toggleMute}
-            className="mute-icon"
-            style={mutedStyle}
-        />
     </div>
     );
 }

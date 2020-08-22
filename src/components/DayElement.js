@@ -1,4 +1,4 @@
-import React, { useState } from "./node_modules/react";
+import React, { useState } from "react";
 import '../styles/day.css';
 
 
@@ -70,3 +70,11 @@ export const DayElement = (props) => {
         </div>
     </div>)
 }
+
+            // ${selectedDays === 2 ? 
+            //     (date.toLocaleDateString() === selectedDays[0].toLocaleDateString()) && selectedDays[0] > selectedDays[1] ? "last-selected" : 
+            //     (date.toLocaleDateString() === selectedDays[0].toLocaleDateString()) && selectedDays[0] < selectedDays[1] ? "first-selected" :
+            //     (date.toLocaleDateString() === selectedDays[1].toLocaleDateString()) && selectedDays[0] > selectedDays[1] ? "first-selected" :
+            //     (date.toLocaleDateString() === selectedDays[1].toLocaleDateString()) && selectedDays[0] < selectedDays[1] && "last-selected" :
+            // (selectedDays === 1 && (date.toLocaleDateString() === selectedDays[0].toLocaleDateString()) && 
+            //     selectedDays[0] > hoveredDay) ? "last-selected" : "first-selected"

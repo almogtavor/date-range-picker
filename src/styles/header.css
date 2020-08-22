@@ -1,0 +1,32 @@
+  
+  .header {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 15px;
+  }
+  
+  .header--info {
+    flex: 1;
+    font-size: 1.5em;
+  }
+  
+  .header--month {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .header--year {
+    /* cursor: pointer; */
+  }
+  
+  .header-icons span {
+    cursor: pointer;
+    display: inline-block;
+    padding: 2px 5px;
+  }
+  
+  .header-icons span:hover {
+    background: #ffffff3b;
+  }

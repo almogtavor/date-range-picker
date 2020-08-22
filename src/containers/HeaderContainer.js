@@ -1,5 +1,5 @@
 import { setSelectedColor, setMuted, setShowColorPicker } from '../actions';
-import { LowerFooter } from '../components/Header';
+import { Header } from '../components/Header';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => ({

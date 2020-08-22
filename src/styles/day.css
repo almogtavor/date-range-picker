@@ -18,6 +18,16 @@
     border-radius: 20px;
 }
 
+/* .first-selected {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.last-selected {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+} */
+
 .last-day-of-week {
     background-color: rgb(236, 217, 218);
 }

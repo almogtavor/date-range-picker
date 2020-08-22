@@ -43,6 +43,7 @@
 
 .hand-right {
   margin-right: 5px;
+  height: 30px;
 }
 
 .color-picker {
@@ -51,5 +52,6 @@
 }
 
 .circle-picker {
+  padding-top: 10px !important;
   margin-right: 0 !important;
 }
