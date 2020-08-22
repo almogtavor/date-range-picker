@@ -1,0 +1,32 @@
+.day-element {
+    height: 70%;
+    width: 100.5%;
+    background-clip: content-box;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.not-in-range:hover {
+    background-color: rgb(198, 203, 211);
+}
+
+.in-range:hover {
+    background-color: none;
+}
+
+.hover-div {
+    border-radius: 20px;
+}
+
+.last-day-of-week {
+    background-color: rgb(236, 217, 218);
+}
+
+.first-day-of-week {
+    background-color: rgb(236, 229, 229);
+}
+
+.today {
+    font-weight: bold;
+}
+

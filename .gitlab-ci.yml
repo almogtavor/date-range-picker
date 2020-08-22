@@ -1,0 +1,14 @@
+pages:
+  stage: deploy
+  image: node:10-alpine
+  script:
+    - yarn install
+    - yarn build
+    - rm -rf public/*
+    - mv build/* public
+  environment:
+    name: production
+    url: https://kissgyorgy.me/every-day-calendar/
+  artifacts:
+    paths:
+      - public

@@ -1,0 +1,55 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+}
+
+.calendar-component {
+  text-align: center;
+  position: absolute;
+  height: 280px;
+  width: 255px;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  border-radius: 10px;
+  box-shadow: 0 3px 6px #ddd;
+  padding: 5px;
+  background-color: rgb(244, 246, 248);
+}
+
+.mute-icon {
+  float: right;
+  cursor: pointer;
+  margin-right: 2em;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.picker-toggler,
+.hand-right {
+  float: left;
+  margin-left: 2em;
+}
+
+.picker-toggler {
+  width: 1.5rem;
+  height: 1.5rem;
+
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+}
+
+.hand-right {
+  margin-right: 5px;
+}
+
+.color-picker {
+  float: left;
+  height: 1.5rem;
+}
+
+.circle-picker {
+  margin-right: 0 !important;
+}

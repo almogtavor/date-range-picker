@@ -1,0 +1,23 @@
+/* .week-days-names {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: #9facb4;
+    margin: 10px 0 1px;
+    border-radius: 5px;
+  } */
+  
+.weekday {
+    height: 25px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #c8cbcc;
+    margin: 10px 1.5px 20px;
+    border-radius: 8px;
+    
+    /* background: lightgray;
+    padding: 1px; */
+    /* background-clip: content-box; */
+}
