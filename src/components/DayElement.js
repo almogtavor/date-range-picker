@@ -26,14 +26,16 @@ export const DayElement = (props) => {
         }
     });
 
-    if ((hoveredDay && selectedDays.length > 0) && !isInRange) {
-        if (selectedDays.length === 1) {
+    if ((selectedDays.length > 0) && !isInRange) {
+        if (hoveredDay && selectedDays.length === 1) {
             if ((date >= selectedDays[0] && date <= hoveredDay) || (date <= selectedDays[0] && date >= hoveredDay)) {
                 setIsInRange(true);
             }
         } else {
-            if ((date >= selectedDays[0] && date <= selectedDays[1]) || (date <= selectedDays[0] && date >= selectedDays[1])) {
-                setIsInRange(true);
+            if (selectedDays.length === 2) {
+                if ((date >= selectedDays[0] && date <= selectedDays[1]) || (date <= selectedDays[0] && date >= selectedDays[1])) {
+                    setIsInRange(true);
+                }
             }
         }
     }
@@ -47,8 +49,12 @@ export const DayElement = (props) => {
         setIsSelected(!isSelected);
     };
 
-    const handleHover = () => {
+    const handleEnterHover = () => {
         setHoveredDay(date);
+    };
+
+    const handleOutHover = () => {
+        setHoveredDay(null);
     };
 
     return (
@@ -60,12 +66,16 @@ export const DayElement = (props) => {
             ${(dayOfWeek === 6 && !isInRange) && "last-day-of-week"}`}
         style={isSelected ? {...genericStyle, "background": selectedColor} : genericStyle}
         onClick={handleClick}
-        onMouseEnter={handleHover}
+        onMouseEnter={handleEnterHover}
+        onMouseOut={handleOutHover} 
     >
         <div 
             className={`${isInRange && "hover-div"}`} 
-            style={isInRange && (date.toLocaleDateString() !== hoveredDay.toLocaleDateString() || selectedDays.length !== 2) ?
-                {"background": selectedColor + "60"} : {}}>
+            style={hoveredDay !== null ? (isInRange && (date.toLocaleDateString() !== hoveredDay.toLocaleDateString() || selectedDays.length !== 2) ?
+                {"background": selectedColor + "60"} : {}) :
+                isInRange && selectedDays.length === 2 ?
+                {"background": selectedColor + "60"} : {}
+            }>
                 {dayNum}
         </div>
     </div>)

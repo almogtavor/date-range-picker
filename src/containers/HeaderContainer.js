@@ -1,17 +1,17 @@
-import { setSelectedColor, setMuted, setShowColorPicker } from '../actions';
+import { setSelectedColor, setViewedMonth, setViewedYear } from '../actions';
 import { Header } from '../components/Header';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => ({
     selectedColor: state.selectedColor,
-    muted: state.muted, 
-    showColorPicker: state.showColorPicker,
+    viewedYear: state.viewedYear,
+    viewedMonth: state.viewedMonth,
 });
 
 const mapDispatchToProps = (dispatch) => ({
     setSelectedColor: (selectedColor) => dispatch(setSelectedColor(selectedColor)),
-    setMuted: (muted) => dispatch(setMuted(muted)),
-    setShowColorPicker: (showColorPicker) => dispatch(setShowColorPicker(showColorPicker)),
+    setViewedMonth: (viewedMonth) => dispatch(setViewedMonth(viewedMonth)),
+    setViewedYear: (viewedYear) => dispatch(setViewedYear(viewedYear)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

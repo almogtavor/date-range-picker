@@ -1,17 +1,7 @@
 import React, { useState } from "react";
 import { CirclePicker } from "react-color";
+import {calendarConfig} from '../configuration/config';
 import '../styles/lower-footer.css';
-
-const pickableColors = [
-    "#5ebaf8",
-    "#ec467d",
-    "#fdb241",
-    "#c559d8",
-    "#673ab7",
-    "#6d99e0",
-    "#43d6c8",
-    "#bd8470",
-  ];
 
 const rightHandIcon = require('../images/right-hand.png');
 
@@ -67,7 +57,7 @@ export const LowerFooter = (props) => {
                     className="hand-right"
                 />
                 <CirclePicker
-                    colors={pickableColors}
+                    colors={calendarConfig.pickableColors}
                     circleSize={15}
                     circleSpacing={3}
                     onChangeComplete={changeColor}

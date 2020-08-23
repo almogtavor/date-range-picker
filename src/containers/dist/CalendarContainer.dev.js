@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _actions = require("../actions");
 
-var _Header = require("../components/Header");
+var _Calendar = require("../components/Calendar");
 
 var _reactRedux = require("react-redux");
 
@@ -33,6 +33,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Header.Header);
+var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Calendar.Calendar);
 
 exports["default"] = _default;

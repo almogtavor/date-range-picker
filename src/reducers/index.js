@@ -2,6 +2,8 @@ const initialState = {
     muted: false,
     showColorPicker: false,
     selectedColor: "#2196f3",
+    viewedMonth: new Date().getMonth(),
+    viewedYear: new Date().getFullYear(),
 };
 
 function rootReducer (state = initialState, payload) {
@@ -16,6 +18,14 @@ function rootReducer (state = initialState, payload) {
   } else if (payload.type === 'SET_SHOW_COLOR_PICKER') {
       return Object.assign({}, state, {
         showColorPicker: payload.showColorPicker
+      });
+  } else if (payload.type === 'SET_VIEWED_MONTH') {
+      return Object.assign({}, state, {
+        viewedMonth: payload.viewedMonth
+      });
+  } else if (payload.type === 'SET_VIEWED_YEAR') {
+      return Object.assign({}, state, {
+        viewedYear: payload.viewedYear
       });
   } else {
       return state;

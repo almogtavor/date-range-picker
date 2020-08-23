@@ -9,17 +9,16 @@ const firstDayOfWeekIndex = 0;
 const language = "Hebrew";
 
 
-export const Calendar = (selectedColor) => {
-    const [month, setMonth] = useState(new Date().getMonth());
-    const [year, setYear] = useState(new Date().getFullYear());
+export const Calendar = (props) => {
+    const {selectedColor, viewedMonth, viewedYear} = props;
+    console.log(props);
 
     return (
     <div className="calendar">
         <WeekDaysNames firstDayOfWeekIndex={firstDayOfWeekIndex} language={language}/>
         <MonthDaysElements 
-          year={year} 
-          month={month} 
-
+          viewedYear={viewedYear} 
+          viewedMonth={viewedMonth} 
           language={language}
           selectedColor={selectedColor}
         />
