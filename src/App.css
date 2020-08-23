@@ -9,13 +9,24 @@
   height: 280px;
   width: 255px;
   top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 10%;
+
+  /* transform: translate(-50%, -50%); */
 
   border-radius: 10px;
   box-shadow: 0 3px 6px #ddd;
   padding: 5px;
   background-color: rgb(244, 246, 248);
+}
+
+.date-range-picker {
+ 
+  width: 520px;
+  height: 280px;
+}
+
+.right {
+  margin-left: 265px;
 }
 
 .mute-icon {

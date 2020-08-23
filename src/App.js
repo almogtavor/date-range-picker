@@ -7,10 +7,17 @@ import HeaderContainer from './containers/HeaderContainer';
 function App() {
   return (
     <div className="App">
-      <div className="calendar-component">
-          <HeaderContainer/>
-          <CalendarConatiner/>
-          <LowerFooterContainer/>
+      <div className="date-range-picker">
+        <div className="calendar-component right">
+            <HeaderContainer/>
+            <CalendarConatiner/>
+            <LowerFooterContainer/>
+        </div>
+        <div className="calendar-component left">
+            <HeaderContainer/>
+            <CalendarConatiner/>
+            <LowerFooterContainer/>
+        </div>
       </div>
     </div>
   );
