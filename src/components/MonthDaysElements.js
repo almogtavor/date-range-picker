@@ -3,20 +3,21 @@ import {DayElement} from "./DayElement";
 
 export const MonthDaysElements = (props) => { 
     const {viewedYear, viewedMonth, language, selectedColor} = props;
-    const numOfDaysInMonth = new Date(viewedYear, viewedMonth + 1, 0).getDate();
-    console.log(numOfDaysInMonth);
+    const numOfDaysInMonth = new Date(viewedYear, viewedMonth, 0).getDate();
     const dayToBeginTheMonthFrom = new Date(viewedYear, viewedMonth, 1).getDay();
     const selectedDaysState = useState([]);
     const hoveredDayState = useState(null);
     const [monthDays, setMonthDays] = useState({"year": viewedYear, "month": viewedMonth, "array": []});
     let tempMonthDaysArray = [];
 
-    for(var i = 0; i < numOfDaysInMonth; i++) {
+    for (let i = 0; i < numOfDaysInMonth; i++) {
         tempMonthDaysArray.push(i + 1);
     }
     if ((monthDays.year !== viewedYear && monthDays.month !== viewedMonth) || monthDays.array.length === 0) {
         setMonthDays({"year": viewedYear, "month": viewedMonth, "array": tempMonthDaysArray});
     }
+
+    console.log(monthDays)
 
     return monthDays.array.map((day) => {
         const date = new Date(viewedYear, viewedMonth, day);

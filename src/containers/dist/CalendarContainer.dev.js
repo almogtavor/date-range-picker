@@ -15,7 +15,8 @@ var mapStateToProps = function mapStateToProps(state) {
   return {
     selectedColor: state.selectedColor,
     viewedYear: state.viewedYear,
-    viewedMonth: state.viewedMonth
+    viewedMonth: state.viewedMonth,
+    displaySelector: state.displaySelector
   };
 };
 
@@ -29,6 +30,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     setViewedYear: function setViewedYear(viewedYear) {
       return dispatch((0, _actions.setViewedYear)(viewedYear));
+    },
+    setDisplaySelector: function setDisplaySelector(displayMonthSelector) {
+      return dispatch((0, _actions.setDisplaySelector)(displayMonthSelector));
     }
   };
 };

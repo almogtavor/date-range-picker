@@ -1,0 +1,56 @@
+  
+  .year-selector {
+    width: 100%;
+    height: 88%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgb(244, 246, 248);
+    border-radius: 10px;
+    display: grid;
+    /* grid-template-areas: "1 2 3" "4 5 6" "7 8 9" "10 11 12"; */
+    grid-template-columns: repeat(3, 1fr);
+    overflow-y: auto;
+  }
+
+  .year-selector::-webkit-scrollbar {
+    width: 3%;
+    border-radius: 4px;
+    background-color: rgb(228, 228, 228);
+
+  }
+   
+  .year-selector::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgb(190, 187, 187);
+  }
+  
+  .selectable-year {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 2px;
+    background-clip: content-box;
+  }
+  
+  .selectable-year:hover {
+    background: rgb(198, 203, 211);
+    background-clip: content-box;
+  }
+    
+  .year-selector span:nth-child(1) {
+    border-top-left-radius: 10px;
+  }
+  
+  .year-selector span:nth-child(3) {
+    border-top-right-radius: 10px;
+  }
+  
+  .year-selector span:nth-child(10) {
+    border-bottom-left-radius: 10px;
+  }
+  
+  .year-selector span:nth-child(12) {
+    border-bottom-right-radius: 10px;
+  }

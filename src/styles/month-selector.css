@@ -1,0 +1,43 @@
+  
+  .month-selector {
+    width: 100%;
+    height: 88%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgb(244, 246, 248);
+    border-radius: 10px;
+    display: grid;
+    /* grid-template-areas: "1 2 3" "4 5 6" "7 8 9" "10 11 12"; */
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .selectable-month {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 2px;
+    background-clip: content-box;
+  }
+  
+  .selectable-month:hover {
+    background: rgb(198, 203, 211);
+    background-clip: content-box;
+  }
+    
+  .month-selector span:nth-child(1) {
+    border-top-left-radius: 10px;
+  }
+  
+  .month-selector span:nth-child(3) {
+    border-top-right-radius: 10px;
+  }
+  
+  .month-selector span:nth-child(10) {
+    border-bottom-left-radius: 10px;
+  }
+  
+  .month-selector span:nth-child(12) {
+    border-bottom-right-radius: 10px;
+  }

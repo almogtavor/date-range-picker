@@ -22,3 +22,8 @@ export const setViewedYear = viewedYear => ({
     type: 'SET_VIEWED_YEAR',
     viewedYear
 })
+
+export const setDisplaySelector = displaySelector => ({
+    type: 'SET_DISPLAY_SELECTOR',
+    displaySelector
+})

@@ -3,17 +3,18 @@
     grid-column: 1 / -1;
     display: flex;
     justify-content: space-between;
+    
     align-items: center;
     margin: 10px 15px;
   }
   
-  .header--info {
+  .info {
     display: flex;
     flex: 1;
     font-size: 1.5em;
   }
   
-  .header--month {
+  .month {
     margin-left: 5px;
     margin-right: 10px;
     cursor: pointer;
@@ -21,12 +22,12 @@
     border-radius: 10px;
   }
   
-  .header--year {
+  .year {
     cursor: pointer;
     height: 35px;
     border-radius: 10px;
   }
-  .header--year:hover {
+  .year:hover {
     background-color: rgb(198, 203, 211);
   }
   
@@ -38,4 +39,9 @@
   
   .header-icons:hover {
     background: #ffffff3b;
+  }
+
+  .arrow {
+    border-radius: 20px;
+    margin: 10%;
   }

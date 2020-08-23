@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setViewedYear = exports.setViewedMonth = exports.setShowColorPicker = exports.setMuted = exports.setSelectedColor = void 0;
+exports.setDisplaySelector = exports.setViewedYear = exports.setViewedMonth = exports.setShowColorPicker = exports.setMuted = exports.setSelectedColor = void 0;
 
 var setSelectedColor = function setSelectedColor(selectedColor) {
   return {
@@ -49,3 +49,12 @@ var setViewedYear = function setViewedYear(viewedYear) {
 };
 
 exports.setViewedYear = setViewedYear;
+
+var setDisplaySelector = function setDisplaySelector(displaySelector) {
+  return {
+    type: 'SET_DISPLAY_SELECTOR',
+    displaySelector: displaySelector
+  };
+};
+
+exports.setDisplaySelector = setDisplaySelector;

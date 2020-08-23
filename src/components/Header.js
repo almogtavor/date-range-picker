@@ -7,11 +7,20 @@ const leftArrow = require('../images/arrow-left.png');
 const rightArrow = require('../images/arrow-right.png');
 
 export const Header = (props) => {
-    const {selectedColor, viewedMonth, viewedYear, setViewedMonth} = props;
-    const [isHover, setIsHover] = useState({"month": false, "year": false});
+    const {selectedColor, viewedMonth, viewedYear, setViewedMonth, setDisplaySelector} = props;
+    const [isHover, setIsHover] = useState({
+        "month": false, 
+        "year": false,
+        "leftArrow": false,
+        "rightArrow": false,
+    });
 
     const monthHandler = () => {
-        setViewedMonth(month => ({ displayMonthSelector: true }));
+        setDisplaySelector("Months");
+    };
+
+    const yearHandler = () => {
+        setDisplaySelector("Years");
     };
 
     const decreaseMonth = () => {
@@ -22,45 +31,62 @@ export const Header = (props) => {
         setViewedMonth(Math.abs((viewedMonth + 1) % 12));
     };
 
-    const yearHoverEnterHandle = () => {
-        setIsHover({"month": false, "year": true});
-    }
-
-    const monthHoverEnterHandle = () => {
-        setIsHover({"month": true, "year": false});
-    }
-    
-    const hoverOutHandle = () => {
-        setIsHover({"month": false, "year": false});
+    const hoverHandle = (param, hasEntered) => {
+        if (hasEntered) {
+            let allFalse = true;
+            for (let key in isHover){
+                if (isHover[key]) {
+                    allFalse = false;
+                }
+            }
+            if (allFalse) {
+                setIsHover({...isHover, [param]: hasEntered});
+            }
+        } else {
+            setIsHover({...isHover, [param]: hasEntered});
+        }
+        // TODO: check if this is really needed.
     }
 
     return (
     <div className="header">
-        <div className="header--info">
+        <div className="info" style={language === "Hebrew" ? { "flexDirection": "row-reverse"}: {}}>
             <div 
-                className="header--month" 
-                onMouseEnter={monthHoverEnterHandle} 
-                onMouseOut={hoverOutHandle} 
+                className="month" 
+                onMouseEnter={() => hoverHandle("month", true)} 
+                onMouseOut={() => hoverHandle("month", false)} 
                 onClick={monthHandler} 
                 style={isHover.month ? {"backgroundColor": selectedColor + "60"} : {}}
             >
-                {calendarConfig.months.English[viewedMonth]}
+                {calendarConfig.months[language][viewedMonth]}
             </div>
             <div 
-                className="header--year" 
-                onMouseEnter={yearHoverEnterHandle} 
-                onMouseOut={hoverOutHandle} 
-                onClick={monthHandler} 
+                className="year" 
+                onMouseEnter={() => hoverHandle("year", true)} 
+                onMouseOut={() => hoverHandle("year", false)} 
+                onClick={yearHandler} 
                 style={isHover.year ? {"backgroundColor": selectedColor + "60"} : {}}
             >
                 {viewedYear}
             </div>
             </div>
             <div className="header-icons">
-            <div onClick={decreaseMonth}>
+            <div 
+                onClick={decreaseMonth} 
+                className="arrow"
+                onMouseEnter={() => hoverHandle("leftArrow", true)} 
+                onMouseOut={() => hoverHandle("leftArrow", false)}
+                style={isHover.leftArrow ? {"backgroundColor": selectedColor + "60"} : {}}
+            >
                 <img alt="" src={leftArrow} height="15px"/>
             </div>
-            <div onClick={increaseMonth}>
+            <div 
+                onClick={increaseMonth} 
+                className="arrow"
+                onMouseEnter={() => hoverHandle("rightArrow", true)} 
+                onMouseOut={() => hoverHandle("rightArrow", false)}
+                style={isHover.rightArrow ? {"backgroundColor": selectedColor + "60"} : {}}
+            >
                 <img alt="" src={rightArrow}  height="15px"/>
             </div>
         </div>

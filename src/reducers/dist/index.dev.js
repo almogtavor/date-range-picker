@@ -9,7 +9,8 @@ var initialState = {
   showColorPicker: false,
   selectedColor: "#2196f3",
   viewedMonth: new Date().getMonth(),
-  viewedYear: new Date().getFullYear()
+  viewedYear: new Date().getFullYear(),
+  displaySelector: "Days"
 };
 
 function rootReducer() {
@@ -35,6 +36,10 @@ function rootReducer() {
   } else if (payload.type === 'SET_VIEWED_YEAR') {
     return Object.assign({}, state, {
       viewedYear: payload.viewedYear
+    });
+  } else if (payload.type === 'SET_DISPLAY_SELECTOR') {
+    return Object.assign({}, state, {
+      displaySelector: payload.displaySelector
     });
   } else {
     return state;

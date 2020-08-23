@@ -29,6 +29,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     setViewedYear: function setViewedYear(viewedYear) {
       return dispatch((0, _actions.setViewedYear)(viewedYear));
+    },
+    setDisplaySelector: function setDisplaySelector(displaySelector) {
+      return dispatch((0, _actions.setDisplaySelector)(displaySelector));
     }
   };
 };
