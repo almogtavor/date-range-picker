@@ -14,7 +14,7 @@ const endYear = 2020;
 
 
 export const Calendar = (props) => {
-    const {selectedColor, viewedMonth, setViewedMonth, viewedYear, setViewedYear, displaySelector, setDisplaySelector} = props;
+    const {selectedColor, viewedMonth, setViewedMonth, viewedYear, setViewedYear, mode, setMode} = props;
     console.log(props);
 
     return (
@@ -26,23 +26,23 @@ export const Calendar = (props) => {
           language={language}
           selectedColor={selectedColor}
         />
-        {displaySelector === "Months" ? (
+        {mode === "Months" ? (
           <MonthSelector
             selectedColor={selectedColor}
             viewedYear={viewedYear} 
             viewedMonth={viewedMonth}
             setViewedMonth={setViewedMonth}
-            displaySelector={displaySelector}
-            setDisplaySelector={setDisplaySelector}
+            mode={mode}
+            setMode={setMode}
             language={language}
           />
-        ) : displaySelector === "Years" && 
+        ) : mode === "Years" && 
           <YearSelector
             selectedColor={selectedColor}
             viewedYear={viewedYear} 
             setViewedYear={setViewedYear}
-            displaySelector={displaySelector}
-            setDisplaySelector={setDisplaySelector}
+            mode={mode}
+            setMode={setMode}
             startYear={startYear}
             endYear={endYear}
           />

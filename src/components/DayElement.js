@@ -54,7 +54,9 @@ export const DayElement = (props) => {
     };
 
     const handleOutHover = () => {
-        setHoveredDay(null);
+        if (selectedDays.length === 2) {
+            setHoveredDay(null);
+        }
     };
 
     return (

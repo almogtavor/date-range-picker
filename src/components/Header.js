@@ -7,7 +7,7 @@ const leftArrow = require('../images/arrow-left.png');
 const rightArrow = require('../images/arrow-right.png');
 
 export const Header = (props) => {
-    const {selectedColor, viewedMonth, viewedYear, setViewedMonth, setDisplaySelector} = props;
+    const {selectedColor, viewedMonth, viewedYear, setViewedMonth, setMode} = props;
     const [isHover, setIsHover] = useState({
         "month": false, 
         "year": false,
@@ -16,11 +16,11 @@ export const Header = (props) => {
     });
 
     const monthHandler = () => {
-        setDisplaySelector("Months");
+        setMode("Months");
     };
 
     const yearHandler = () => {
-        setDisplaySelector("Years");
+        setMode("Years");
     };
 
     const decreaseMonth = () => {

@@ -8,8 +8,7 @@ export const YearSelector = (props) => {
         selectedColor, 
         setViewedYear, 
         viewedYear, 
-        displaySelector, 
-        setDisplaySelector,
+        setMode,
         startYear, 
         endYear
     } = props;
@@ -20,7 +19,7 @@ export const YearSelector = (props) => {
     }
 
     const selectYearHandler = year => {
-      setDisplaySelector("Months");
+      setMode("Months");
       setViewedYear(year);
     };
 

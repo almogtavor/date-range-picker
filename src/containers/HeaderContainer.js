@@ -1,4 +1,4 @@
-import { setSelectedColor, setViewedMonth, setViewedYear, setDisplaySelector } from '../actions';
+import { setSelectedColor, setViewedMonth, setViewedYear, setMode } from '../actions';
 import { Header } from '../components/Header';
 import { connect } from 'react-redux';
 
@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => ({
     setSelectedColor: (selectedColor) => dispatch(setSelectedColor(selectedColor)),
     setViewedMonth: (viewedMonth) => dispatch(setViewedMonth(viewedMonth)),
     setViewedYear: (viewedYear) => dispatch(setViewedYear(viewedYear)),
-    setDisplaySelector: (displaySelector) => dispatch(setDisplaySelector(displaySelector)),
+    setMode: (mode) => dispatch(setMode(mode)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

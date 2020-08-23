@@ -9,14 +9,13 @@ export const MonthSelector = (props) => {
         viewedMonth, 
         setViewedMonth, 
         viewedYear, 
-        displaySelector, 
-        setDisplaySelector,
+        setMode,
         language
     } = props;
     console.log(props);
 
     const selectMonthHandler = month => {
-      setDisplaySelector("Days");
+      setMode("Days");
       setViewedMonth(month);
     };
 
