@@ -26,17 +26,17 @@
   }
     
   .month-selector div:nth-child(1) {
-    border-top-left-radius: 10px;
+    border-top-left-radius: 12px;
   }
   
   .month-selector div:nth-child(3) {
-    border-top-right-radius: 10px;
+    border-top-right-radius: 12px;
   }
   
-  .month-selector div:nth-child(10) {
-    border-bottom-left-radius: 10px;
+  .month-selector div:nth-last-child(3) {
+    border-bottom-left-radius: 12px;
   }
   
-  .month-selector div:nth-child(12) {
-    border-bottom-right-radius: 10px;
+  .month-selector div:nth-last-child(1) {
+    border-bottom-right-radius: 12px;
   }
