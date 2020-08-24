@@ -39,18 +39,18 @@
     background-clip: content-box;
   }
     
-  .year-selector span:nth-child(1) {
+  .year-selector div:nth-child(1) {
     border-top-left-radius: 10px;
   }
   
-  .year-selector span:nth-child(3) {
+  .year-selector div:nth-child(3) {
     border-top-right-radius: 10px;
   }
   
-  .year-selector span:nth-child(10) {
+  .year-selector div:nth-child(10) {
     border-bottom-left-radius: 10px;
   }
   
-  .year-selector span:nth-child(12) {
+  .year-selector div:nth-child(12) {
     border-bottom-right-radius: 10px;
   }

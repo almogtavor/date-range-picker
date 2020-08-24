@@ -8,7 +8,6 @@
     background: rgb(244, 246, 248);
     border-radius: 10px;
     display: grid;
-    /* grid-template-areas: "1 2 3" "4 5 6" "7 8 9" "10 11 12"; */
     grid-template-columns: repeat(3, 1fr);
   }
   
@@ -26,18 +25,18 @@
     background-clip: content-box;
   }
     
-  .month-selector span:nth-child(1) {
+  .month-selector div:nth-child(1) {
     border-top-left-radius: 10px;
   }
   
-  .month-selector span:nth-child(3) {
+  .month-selector div:nth-child(3) {
     border-top-right-radius: 10px;
   }
   
-  .month-selector span:nth-child(10) {
+  .month-selector div:nth-child(10) {
     border-bottom-left-radius: 10px;
   }
   
-  .month-selector span:nth-child(12) {
+  .month-selector div:nth-child(12) {
     border-bottom-right-radius: 10px;
   }

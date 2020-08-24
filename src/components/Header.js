@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import {calendarConfig} from '../configuration/config';
 import '../styles/header.css';
 
-const language = "Hebrew";
 const leftArrow = require('../images/arrow-left.png');
 const rightArrow = require('../images/arrow-right.png');
 
 export const Header = (props) => {
-    const {selectedColor, viewedMonth, viewedYear, setViewedMonth, setMode} = props;
+    const {selectedColor, viewedMonth, viewedYear, setViewedMonth, setMode, language} = props;
     const [isHover, setIsHover] = useState({
         "month": false, 
         "year": false,

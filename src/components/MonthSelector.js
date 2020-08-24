@@ -24,14 +24,14 @@ export const MonthSelector = (props) => {
             {calendarConfig.months[language].map((month, i) => {
                 console.log(i);
             return (
-                <span
+                <div
                     key={month}
                     onClick={() => selectMonthHandler(i)}
                     className={"selectable-month"}
                     style={i === viewedMonth ? {"backgroundColor": selectedColor + "60"} : {}}
                 >
                     {month}
-                </span>
+                </div>
             );
             })}
       </div>

@@ -7,19 +7,25 @@ import '../styles/month.css';
 import { YearSelector } from "./YearSelector";
 
 
-const firstDayOfWeekIndex = 0;
-const language = "Hebrew";
-const startYear = 1900;
-const endYear = 2020;
-
-
 export const Calendar = (props) => {
-    const {selectedColor, viewedMonth, setViewedMonth, viewedYear, setViewedYear, mode, setMode} = props;
+    const {
+      selectedColor, 
+      viewedMonth, 
+      setViewedMonth, 
+      viewedYear, 
+      setViewedYear, 
+      mode, 
+      setMode, 
+      language, 
+      startYear, 
+      endYear, 
+      firstDayOfWeekIndex
+    } = props;
     console.log(props);
 
     return (
     <div className="calendar">
-        <WeekDaysNames firstDayOfWeekIndex={firstDayOfWeekIndex} language={language}/>
+        <WeekDaysNames firstDayOfWeekIndex={ language === "Hebrew" ? 7 - firstDayOfWeekIndex : firstDayOfWeekIndex } language={language}/>
         <MonthDaysElements 
           viewedYear={viewedYear} 
           viewedMonth={viewedMonth} 

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import DateRangePicker from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -11,7 +11,12 @@ const store = createStore(rootReducer)
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <DateRangePicker 
+            language="Hebrew" 
+            startYear={1970} 
+            endYear={2030}
+            firstDayOfWeekIndex={0}
+        />
     </Provider>,
     document.getElementById('root')
 );

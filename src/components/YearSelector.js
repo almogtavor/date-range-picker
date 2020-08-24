@@ -27,14 +27,14 @@ export const YearSelector = (props) => {
         <div className="year-selector">
             {yearsArray.map((year) => {
             return (
-                <span
+                <div
                     key={year}
                     onClick={() => selectYearHandler(year)}
                     className={"selectable-year"}
                     style={year === viewedYear ? {"backgroundColor": selectedColor + "60"} : {}}
                 >
                     {year}
-                </span>
+                </div>
             );
             })}
       </div>

@@ -4,13 +4,19 @@ import CalendarConatiner from './containers/CalendarContainer';
 import LowerFooterContainer from './containers/LowerFooterContainer';
 import HeaderContainer from './containers/HeaderContainer';
 
-function App() {
+function DateRangePicker(props) {
   return (
     <div className="App">
       <div className="date-range-picker">
         <div className="calendar-component right">
-            <HeaderContainer/>
-            <CalendarConatiner/>
+            <HeaderContainer 
+              language={props.language}
+            />
+            <CalendarConatiner
+              firstDayOfWeekIndex={props.firstDayOfWeekIndex}
+              startYear={props.startYear}
+              endYear={props.endYear}
+            />
             <LowerFooterContainer/>
         </div>
         <div className="calendar-component left">
@@ -23,4 +29,4 @@ function App() {
   );
 }
 
-export default App;
+export default DateRangePicker;

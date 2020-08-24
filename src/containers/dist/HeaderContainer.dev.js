@@ -15,11 +15,16 @@ var mapStateToProps = function mapStateToProps(state) {
   return {
     selectedColor: state.selectedColor,
     viewedYear: state.viewedYear,
-    viewedMonth: state.viewedMonth
+    viewedMonth: state.viewedMonth,
+    language: state.language
   };
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+  if (ownProps.language) {
+    dispatch((0, _actions.setLanguage)(ownProps.language));
+  }
+
   return {
     setSelectedColor: function setSelectedColor(selectedColor) {
       return dispatch((0, _actions.setSelectedColor)(selectedColor));

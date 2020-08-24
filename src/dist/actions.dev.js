@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setMode = exports.setViewedYear = exports.setViewedMonth = exports.setShowColorPicker = exports.setMuted = exports.setSelectedColor = void 0;
+exports.setFirstDayOfWeekIndex = exports.setEndYear = exports.setStartYear = exports.setLanguage = exports.setMode = exports.setViewedYear = exports.setViewedMonth = exports.setShowColorPicker = exports.setMuted = exports.setSelectedColor = void 0;
 
 var setSelectedColor = function setSelectedColor(selectedColor) {
   return {
@@ -58,3 +58,39 @@ var setMode = function setMode(mode) {
 };
 
 exports.setMode = setMode;
+
+var setLanguage = function setLanguage(language) {
+  return {
+    type: 'SET_LANGUAGE',
+    language: language
+  };
+};
+
+exports.setLanguage = setLanguage;
+
+var setStartYear = function setStartYear(startYear) {
+  return {
+    type: 'SET_START_YEAR',
+    startYear: startYear
+  };
+};
+
+exports.setStartYear = setStartYear;
+
+var setEndYear = function setEndYear(endYear) {
+  return {
+    type: 'SET_END_YEAR',
+    endYear: endYear
+  };
+};
+
+exports.setEndYear = setEndYear;
+
+var setFirstDayOfWeekIndex = function setFirstDayOfWeekIndex(firstDayOfWeekIndex) {
+  return {
+    type: 'SET_FIRST_DAY_OF_WEEK_INDEX',
+    firstDayOfWeekIndex: firstDayOfWeekIndex
+  };
+};
+
+exports.setFirstDayOfWeekIndex = setFirstDayOfWeekIndex;

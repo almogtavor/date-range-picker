@@ -10,7 +10,11 @@ var initialState = {
   selectedColor: "#2196f3",
   viewedMonth: new Date().getMonth(),
   viewedYear: new Date().getFullYear(),
-  mode: "Days"
+  mode: "Days",
+  language: "Hebrew",
+  startYear: 1900,
+  endYear: 2100,
+  firstDayOfWeekIndex: 0
 };
 
 function rootReducer() {
@@ -40,6 +44,22 @@ function rootReducer() {
   } else if (payload.type === 'SET_MODE') {
     return Object.assign({}, state, {
       mode: payload.mode
+    });
+  } else if (payload.type === 'SET_LANGUAGE') {
+    return Object.assign({}, state, {
+      language: payload.language
+    });
+  } else if (payload.type === 'SET_START_YEAR') {
+    return Object.assign({}, state, {
+      startYear: payload.startYear
+    });
+  } else if (payload.type === 'SET_END_YEAR') {
+    return Object.assign({}, state, {
+      endYear: payload.endYear
+    });
+  } else if (payload.type === 'SET_FIRST_DAY_OF_WEEK_INDEX') {
+    return Object.assign({}, state, {
+      firstDayOfWeekIndex: payload.firstDayOfWeekIndex
     });
   } else {
     return state;

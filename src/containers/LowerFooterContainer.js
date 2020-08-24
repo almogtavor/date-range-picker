@@ -6,6 +6,7 @@ const mapStateToProps = (state) => ({
     selectedColor: state.selectedColor,
     muted: state.muted, 
     showColorPicker: state.showColorPicker,
+    language: state.language,
 });
 
 const mapDispatchToProps = (dispatch) => ({

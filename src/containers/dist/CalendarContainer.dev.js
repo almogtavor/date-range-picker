@@ -16,11 +16,27 @@ var mapStateToProps = function mapStateToProps(state) {
     selectedColor: state.selectedColor,
     viewedYear: state.viewedYear,
     viewedMonth: state.viewedMonth,
-    mode: state.mode
+    mode: state.mode,
+    language: state.language,
+    startYear: state.startYear,
+    endYear: state.endYear,
+    firstDayOfWeekIndex: state.firstDayOfWeekIndex
   };
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+  if (ownProps.startYear) {
+    dispatch((0, _actions.setStartYear)(ownProps.startYear));
+  }
+
+  if (ownProps.endYear) {
+    dispatch((0, _actions.setEndYear)(ownProps.endYear));
+  }
+
+  if (ownProps.firstDayOfWeekIndex) {
+    dispatch((0, _actions.setFirstDayOfWeekIndex)(ownProps.firstDayOfWeekIndex));
+  }
+
   return {
     setSelectedColor: function setSelectedColor(selectedColor) {
       return dispatch((0, _actions.setSelectedColor)(selectedColor));

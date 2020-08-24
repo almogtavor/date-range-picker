@@ -28,7 +28,11 @@ export const calendarConfig = {
             "אוקטובר",
             "נובמבר",
             "דצמבר"
-        ]
+        ],
+    },
+    "weeks": {
+        "English": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+        "Hebrew": ["א", "ב", "ג", "ד", "ה", "ו", "ש"].reverse(),
     },
     "pickableColors": [
         "#5ebaf8",
