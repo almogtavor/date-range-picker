@@ -16,7 +16,7 @@ ReactDOM.render(
             startYear={1970} 
             endYear={2030}
             firstDayOfWeekIndex={0}
-            boardsNum={8}
+            boardsNum={2}
         />
     </Provider>,
     document.getElementById('root')

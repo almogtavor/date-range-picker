@@ -8,12 +8,11 @@ const DateRangePickerComponents = (props) => {
   return (
     <>
     {[...Array(props.boardsNum).keys()].map((i) => {
-      console.log(i);
       return (
         <div 
           key={i}
           className="calendar-component" 
-          style={{"gridColumn": i + 1, "gridRow": (i + 1) % 3}}
+          style={{"gridColumn": ((i + 1) % 3) === 0 ? 3 : (i + 1) % 3, "gridRow": Math.floor(i / 3) + 1 }}
         >
           <HeaderContainer 
             language={props.language}
@@ -35,7 +34,10 @@ function DateRangePicker(props) {
   console.log(props);
   return (
     <div className="App">
-      <div className="date-range-picker">
+      <div className="date-range-picker" style={{
+        "height": `${Math.floor(props.boardsNum / 3) * 292}px`,
+        "gridTemplateRows": `repeat(${Math.floor(props.boardsNum / 3)}, 1fr)`,
+      }}>
         <DateRangePickerComponents 
             language={props.language} 
             startYear={props.startYear} 
