@@ -5,6 +5,7 @@ const initialState = {
     viewedMonth: new Date().getMonth(),
     viewedYear: new Date().getFullYear(),
     mode: "Days",
+    language: "Hebrew",
 };
 
 function rootReducer (state = initialState, payload) {
@@ -31,6 +32,10 @@ function rootReducer (state = initialState, payload) {
   } else if (payload.type === 'SET_MODE') {
       return Object.assign({}, state, {
         mode: payload.mode
+      });
+  } else if (payload.type === 'SET_LANGUAGE') {
+      return Object.assign({}, state, {
+        language: payload.language
       });
   } else {
       return state;

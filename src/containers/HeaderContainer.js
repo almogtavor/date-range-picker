@@ -6,6 +6,7 @@ const mapStateToProps = (state) => ({
     selectedColor: state.selectedColor,
     viewedYear: state.viewedYear,
     viewedMonth: state.viewedMonth,
+    language: state.language
 });
 
 const mapDispatchToProps = (dispatch) => ({

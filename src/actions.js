@@ -27,3 +27,8 @@ export const setMode = mode => ({
     type: 'SET_MODE',
     mode
 })
+
+export const setLanguage = language => ({
+    type: 'SET_LANGUAGE',
+    language
+})
