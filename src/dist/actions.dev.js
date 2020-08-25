@@ -3,7 +3,47 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setBoardsNum = exports.setFirstDayOfWeekIndex = exports.setEndYear = exports.setStartYear = exports.setLanguage = exports.setSelectedColor = void 0;
+exports.setSelectedDays = exports.setBoardsNum = exports.setFirstDayOfWeekIndex = exports.setEndYear = exports.setStartYear = exports.setLanguage = exports.setSelectedColor = exports.setMode = exports.setViewedYear = exports.setViewedMonth = exports.setShowColorPicker = void 0;
+
+var setShowColorPicker = function setShowColorPicker(id, showColorPicker) {
+  return {
+    type: 'SET_SHOW_COLOR_PICKER',
+    id: id,
+    showColorPicker: showColorPicker
+  };
+};
+
+exports.setShowColorPicker = setShowColorPicker;
+
+var setViewedMonth = function setViewedMonth(id, viewedMonth) {
+  return {
+    type: 'SET_VIEWED_MONTH',
+    id: id,
+    viewedMonth: viewedMonth
+  };
+};
+
+exports.setViewedMonth = setViewedMonth;
+
+var setViewedYear = function setViewedYear(id, viewedYear) {
+  return {
+    type: 'SET_VIEWED_YEAR',
+    id: id,
+    viewedYear: viewedYear
+  };
+};
+
+exports.setViewedYear = setViewedYear;
+
+var setMode = function setMode(id, mode) {
+  return {
+    type: 'SET_MODE',
+    id: id,
+    mode: mode
+  };
+};
+
+exports.setMode = setMode;
 
 var setSelectedColor = function setSelectedColor(selectedColor) {
   return {
@@ -58,3 +98,12 @@ var setBoardsNum = function setBoardsNum(boardsNum) {
 };
 
 exports.setBoardsNum = setBoardsNum;
+
+var setSelectedDays = function setSelectedDays(selectedDays) {
+  return {
+    type: 'SET_SELECTED_DAYS',
+    selectedDays: selectedDays
+  };
+};
+
+exports.setSelectedDays = setSelectedDays;

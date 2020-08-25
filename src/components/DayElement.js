@@ -5,17 +5,18 @@ import '../styles/day.css';
 export const DayElement = (props) => {
     const {
         date,
-        selectedDaysState,
+        selectedDays, 
+        setSelectedDays,
         hoveredDayState,
         selectedColor,
         dayOfWeek,
         genericStyle,
     } = props;
 
+    console.log(selectedDays);
     const dayNum = date.getDate();
     const isOfCurrentViewedMonth = true;
     const isToday = date.toLocaleDateString() === new Date().toLocaleDateString() ?  true : false;
-    const [selectedDays, setSelectedDays] = selectedDaysState;
     const [hoveredDay, setHoveredDay] = hoveredDayState;
     const [isSelected, setIsSelected] = useState(false);
     const [isInRange, setIsInRange] = useState(false);

@@ -1,4 +1,4 @@
-import { setSelectedColor, setStartYear, setEndYear, setFirstDayOfWeekIndex, setViewedMonth, setViewedYear, setMode } from '../actions';
+import { setSelectedColor, setStartYear, setEndYear, setFirstDayOfWeekIndex, setViewedMonth, setViewedYear, setMode, setSelectedDays } from '../actions';
 import { Calendar } from '../components/Calendar';
 import { connect } from 'react-redux';
 
@@ -13,6 +13,7 @@ const mapStateToProps = (state, ownProps) => {
     startYear: state.startYear,
     endYear: state.endYear,
     firstDayOfWeekIndex: state.firstDayOfWeekIndex,
+    selectedDays: state.selectedDays,
 })}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -26,10 +27,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(setFirstDayOfWeekIndex(ownProps.firstDayOfWeekIndex));
     }
     return ({
-    setSelectedColor: (selectedColor) => dispatch(setSelectedColor(ownProps.id, selectedColor)),
-    setViewedMonth: (viewedMonth) => dispatch(setViewedMonth(ownProps.id, viewedMonth)),
-    setViewedYear: (viewedYear) => dispatch(setViewedYear(ownProps.id, viewedYear)),
-    setMode: (mode) => dispatch(setMode(ownProps.id, mode)),
+        setSelectedDays: (selectedDays) => dispatch(setSelectedDays(selectedDays)),
+        setSelectedColor: (selectedColor) => dispatch(setSelectedColor(ownProps.id, selectedColor)),
+        setViewedMonth: (viewedMonth) => dispatch(setViewedMonth(ownProps.id, viewedMonth)),
+        setViewedYear: (viewedYear) => dispatch(setViewedYear(ownProps.id, viewedYear)),
+        setMode: (mode) => dispatch(setMode(ownProps.id, mode)),
 })
 };
 

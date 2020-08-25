@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import {DayElement} from "./DayElement";
 
 export const MonthDaysElements = (props) => { 
-    const {viewedYear, viewedMonth, language, selectedColor} = props;
+    const {viewedYear, viewedMonth, language, selectedColor, selectedDays, setSelectedDays,} = props;
     const numOfDaysInMonth = new Date(viewedYear, viewedMonth+1, 0).getDate();
     const dayToBeginTheMonthFrom = new Date(viewedYear, viewedMonth, 1).getDay();
-    const selectedDaysState = useState([]);
     const hoveredDayState = useState(null);
     const [monthDays, setMonthDays] = useState({"year": viewedYear, "month": viewedMonth, "array": []});
     let tempMonthDaysArray = [];
@@ -35,7 +34,8 @@ export const MonthDaysElements = (props) => {
             <DayElement
                 key={Math.random()} // TODO: change
                 date={new Date(viewedYear, viewedMonth, day)}
-                selectedDaysState={selectedDaysState}
+                selectedDays={selectedDays}
+                setSelectedDays={setSelectedDays}
                 hoveredDayState={hoveredDayState}
                 selectedColor={selectedColor}
                 dayOfWeek={dayOfWeek}

@@ -18,7 +18,9 @@ export const Calendar = (props) => {
       language, 
       startYear, 
       endYear, 
-      firstDayOfWeekIndex
+      firstDayOfWeekIndex,
+      selectedDays,
+      setSelectedDays,
     } = props;
     console.log(props);
 
@@ -30,6 +32,8 @@ export const Calendar = (props) => {
           viewedMonth={viewedMonth} 
           language={language}
           selectedColor={selectedColor}
+          selectedDays={selectedDays}
+          setSelectedDays={setSelectedDays}
         />
         {mode === "Months" ? (
           <MonthSelector
