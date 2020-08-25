@@ -7,25 +7,13 @@ const rightHandIcon = require('../images/right-hand.png');
 
 export const LowerFooter = (props) => {
 
-    const {selectedColor, muted, showColorPicker, 
+    const {selectedColor, showColorPicker, 
         setSelectedColor, 
-        setMuted, 
         setShowColorPicker} = props;
 
-    console.log(selectedColor, muted, showColorPicker, 
+    console.log(selectedColor, showColorPicker, 
         setSelectedColor, 
-        setMuted, 
-        setShowColorPicker);
-
-
-    const mutedStyle = muted ? { color: "grey" } : {};
-  
-
-    const toggleMute = () => {
-        const toggled = !muted;
-        setMuted(toggled);
-        localStorage.setItem("muted", JSON.stringify(toggled))
-    };
+        setShowColorPicker);  
 
     const changeColor = (color) => {
         // this.setState({ selectedColor: color.hex, showColorPicker: false })

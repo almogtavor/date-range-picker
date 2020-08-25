@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Header } from "./Header"
 import { WeekDaysNames } from "./WeekDaysNames";
 import { MonthDaysElements } from "./MonthDaysElements";
 import { MonthSelector } from "./MonthSelector";

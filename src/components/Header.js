@@ -71,7 +71,7 @@ export const Header = (props) => {
             </div>
             <div className="header-icons">
             <div 
-                onClick={decreaseMonth} 
+                onClick={language === "Hebrew" ? increaseMonth : decreaseMonth} 
                 className="arrow"
                 onMouseEnter={() => hoverHandle("leftArrow", true)} 
                 onMouseOut={() => hoverHandle("leftArrow", false)}
@@ -80,7 +80,7 @@ export const Header = (props) => {
                 <img alt="" src={leftArrow} height="15px"/>
             </div>
             <div 
-                onClick={increaseMonth} 
+                onClick={language === "Hebrew" ? decreaseMonth : increaseMonth} 
                 className="arrow"
                 onMouseEnter={() => hoverHandle("rightArrow", true)} 
                 onMouseOut={() => hoverHandle("rightArrow", false)}

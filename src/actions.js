@@ -1,3 +1,27 @@
+export const setShowColorPicker = (id, showColorPicker) => ({
+    type: 'SET_SHOW_COLOR_PICKER',
+    // showColorPicker: {[id]: showColorPicker}
+    id, showColorPicker
+})
+
+export const setViewedMonth = (id, viewedMonth) => ({
+    type: 'SET_VIEWED_MONTH',
+    // viewedMonth: {[id]: viewedMonth}
+    id, viewedMonth
+})
+
+export const setViewedYear = (id, viewedYear) => ({
+    type: 'SET_VIEWED_YEAR',
+    // viewedYear: {[id]: viewedYear}
+    id, viewedYear
+})
+
+export const setMode = (id, mode) => ({
+    type: 'SET_MODE',
+    // mode: {[id]: mode}
+    id, mode
+})
+
 export const setSelectedColor = selectedColor => ({
     type: 'SET_SELECTED_COLOR',
     selectedColor
