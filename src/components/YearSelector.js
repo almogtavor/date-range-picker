@@ -14,7 +14,7 @@ export const YearSelector = (props) => {
     } = props;
     
     let yearsArray = [];
-    for (let i = startYear; i < endYear + 1; i++) {
+    for (let i = endYear; i > startYear  + 1; i--) {
         yearsArray.push(i);
     }
 
