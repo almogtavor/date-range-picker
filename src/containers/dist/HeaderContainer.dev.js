@@ -11,11 +11,11 @@ var _Header = require("../components/Header");
 
 var _reactRedux = require("react-redux");
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     selectedColor: state.selectedColor,
-    viewedYear: state.viewedYear,
-    viewedMonth: state.viewedMonth,
+    viewedYear: ownProps.viewedYear,
+    viewedMonth: ownProps.viewedMonth,
     language: state.language
   };
 };
@@ -30,13 +30,13 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
       return dispatch((0, _actions.setSelectedColor)(selectedColor));
     },
     setViewedMonth: function setViewedMonth(viewedMonth) {
-      return dispatch((0, _actions.setViewedMonth)(viewedMonth));
+      return ownProps.setViewedMonth(viewedMonth);
     },
     setViewedYear: function setViewedYear(viewedYear) {
-      return dispatch((0, _actions.setViewedYear)(viewedYear));
+      return ownProps.setViewedYear(viewedYear);
     },
     setMode: function setMode(mode) {
-      return dispatch((0, _actions.setMode)(mode));
+      return ownProps.setMode(mode);
     }
   };
 };

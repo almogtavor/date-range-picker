@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setFirstDayOfWeekIndex = exports.setEndYear = exports.setStartYear = exports.setLanguage = exports.setMode = exports.setViewedYear = exports.setViewedMonth = exports.setShowColorPicker = exports.setMuted = exports.setSelectedColor = void 0;
+exports.setBoardsNum = exports.setFirstDayOfWeekIndex = exports.setEndYear = exports.setStartYear = exports.setLanguage = exports.setSelectedColor = void 0;
 
 var setSelectedColor = function setSelectedColor(selectedColor) {
   return {
@@ -13,51 +13,6 @@ var setSelectedColor = function setSelectedColor(selectedColor) {
 };
 
 exports.setSelectedColor = setSelectedColor;
-
-var setMuted = function setMuted(muted) {
-  return {
-    type: 'SET_MUTED',
-    muted: muted
-  };
-};
-
-exports.setMuted = setMuted;
-
-var setShowColorPicker = function setShowColorPicker(showColorPicker) {
-  return {
-    type: 'SET_SHOW_COLOR_PICKER',
-    showColorPicker: showColorPicker
-  };
-};
-
-exports.setShowColorPicker = setShowColorPicker;
-
-var setViewedMonth = function setViewedMonth(viewedMonth) {
-  return {
-    type: 'SET_VIEWED_MONTH',
-    viewedMonth: viewedMonth
-  };
-};
-
-exports.setViewedMonth = setViewedMonth;
-
-var setViewedYear = function setViewedYear(viewedYear) {
-  return {
-    type: 'SET_VIEWED_YEAR',
-    viewedYear: viewedYear
-  };
-};
-
-exports.setViewedYear = setViewedYear;
-
-var setMode = function setMode(mode) {
-  return {
-    type: 'SET_MODE',
-    mode: mode
-  };
-};
-
-exports.setMode = setMode;
 
 var setLanguage = function setLanguage(language) {
   return {
@@ -94,3 +49,12 @@ var setFirstDayOfWeekIndex = function setFirstDayOfWeekIndex(firstDayOfWeekIndex
 };
 
 exports.setFirstDayOfWeekIndex = setFirstDayOfWeekIndex;
+
+var setBoardsNum = function setBoardsNum(boardsNum) {
+  return {
+    type: 'SET_BOARDS_NUM',
+    boardsNum: boardsNum
+  };
+};
+
+exports.setBoardsNum = setBoardsNum;

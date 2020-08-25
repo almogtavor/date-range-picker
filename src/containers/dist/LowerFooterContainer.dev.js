@@ -11,25 +11,21 @@ var _LowerFooter = require("../components/LowerFooter");
 
 var _reactRedux = require("react-redux");
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     selectedColor: state.selectedColor,
-    muted: state.muted,
-    showColorPicker: state.showColorPicker,
+    showColorPicker: ownProps.showColorPicker,
     language: state.language
   };
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   return {
     setSelectedColor: function setSelectedColor(selectedColor) {
       return dispatch((0, _actions.setSelectedColor)(selectedColor));
     },
-    setMuted: function setMuted(muted) {
-      return dispatch((0, _actions.setMuted)(muted));
-    },
     setShowColorPicker: function setShowColorPicker(showColorPicker) {
-      return dispatch((0, _actions.setShowColorPicker)(showColorPicker));
+      return ownProps.setShowColorPicker(showColorPicker);
     }
   };
 };
