@@ -27,6 +27,17 @@ export const Header = (props) => {
         "rightArrow": false,
     });
 
+    const isNearMonthBiggerAtOne = () => {
+        if (nearViewedMonths.right.month) {
+            console.log("alog");
+            console.log(nearViewedMonths, viewedYear, viewedMonth);
+            return (((nearViewedMonths.right.month === viewedMonth + 1) && (nearViewedMonths.right.year === viewedYear)) || 
+                ((nearViewedMonths.right.month === 11 && viewedMonth === 0) && nearViewedMonths.right.year === viewedYear + 1));
+        } else {
+            return false;
+        }
+    }
+
     const monthHandler = () => {
         setMode("Months");
     };
@@ -48,7 +59,7 @@ export const Header = (props) => {
     
     const increaseMonth = () => {
         // check that the month will not be bigger than the near's calendar
-        if ((nearViewedMonths.right.month !== viewedMonth + 1) &&  ) {
+        if (!isNearMonthBiggerAtOne()) {
             if (viewedMonth === 11) {
                 if (viewedYear + 1 < endYear) {
                     setViewedYear((viewedYear + 1));

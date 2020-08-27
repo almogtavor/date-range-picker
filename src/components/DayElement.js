@@ -13,7 +13,6 @@ export const DayElement = (props) => {
         genericStyle,
     } = props;
 
-    console.log(selectedDays);
     const dayNum = date.getDate();
     const isOfCurrentViewedMonth = true;
     const isToday = date.toLocaleDateString() === new Date().toLocaleDateString() ?  true : false;

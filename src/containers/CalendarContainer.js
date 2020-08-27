@@ -3,7 +3,6 @@ import { Calendar } from '../components/Calendar';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state, ownProps);
     return ({
     selectedColor: state.selectedColor,
     viewedYear: state.viewedYear[ownProps.id],

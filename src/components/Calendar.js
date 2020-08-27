@@ -22,7 +22,6 @@ export const Calendar = (props) => {
       selectedDays,
       setSelectedDays,
     } = props;
-    console.log(props);
 
     return (
     <div className="calendar">
