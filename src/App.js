@@ -5,7 +5,6 @@ import LowerFooterContainer from './containers/LowerFooterContainer';
 import HeaderContainer from './containers/HeaderContainer';
 
 function App(props) {
-  console.log(props);
   return (
     <div className="App">
       <div className="date-range-picker" style={{

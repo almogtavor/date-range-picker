@@ -31,11 +31,15 @@ export const DayElement = (props) => {
         if (hoveredDay && selectedDays.length === 1) {
             if ((date >= selectedDays[0] && date <= hoveredDay) || (date <= selectedDays[0] && date >= hoveredDay)) {
                 setIsInRange(true);
+            } else if (isInRange) {
+                setIsInRange(false);
             }
         } else {
             if (selectedDays.length === 2) {
                 if ((date >= selectedDays[0] && date <= selectedDays[1]) || (date <= selectedDays[0] && date >= selectedDays[1])) {
                     setIsInRange(true);
+                } else if (isInRange) {
+                    setIsInRange(false);
                 }
             }
         }
@@ -70,7 +74,7 @@ export const DayElement = (props) => {
         style={isSelected ? {...genericStyle, "background": selectedColor} : genericStyle}
         onClick={handleClick}
         onMouseEnter={handleEnterHover}
-        onMouseOut={handleOutHover} 
+        // onMouseOut={handleOutHover} 
     >
         <div 
             className={`${isInRange && "hover-div"}`} 

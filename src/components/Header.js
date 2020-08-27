@@ -1,12 +1,25 @@
 import React, { useState } from "react";
 import {calendarConfig} from '../configuration/config';
 import '../styles/header.css';
+import { setViewedYear } from "../actions";
 
 const leftArrow = require('../images/arrow-left.png');
 const rightArrow = require('../images/arrow-right.png');
 
 export const Header = (props) => {
-    const {selectedColor, viewedMonth, viewedYear, setViewedMonth, setMode, language} = props;
+    const {
+        selectedColor, 
+        viewedMonth, 
+        viewedYear, 
+        setViewedYear, 
+        setViewedMonth, 
+        setMode, 
+        language, 
+        startYear, 
+        endYear,
+        nearViewedMonths
+    } = props;
+
     const [isHover, setIsHover] = useState({
         "month": false, 
         "year": false,
@@ -23,11 +36,28 @@ export const Header = (props) => {
     };
 
     const decreaseMonth = () => {
-        setViewedMonth(Math.abs((viewedMonth + 12 - 1) % 12));
+        if (viewedMonth === 0) {
+            if (viewedYear - 1 > startYear) {
+                setViewedYear((viewedYear - 1));
+                setViewedMonth(Math.abs((viewedMonth + 12 - 1) % 12));    
+            }
+        } else {
+            setViewedMonth(Math.abs((viewedMonth + 12 - 1) % 12));
+        }
     };
     
     const increaseMonth = () => {
-        setViewedMonth(Math.abs((viewedMonth + 1) % 12));
+        // check that the month will not be bigger than the near's calendar
+        if ((nearViewedMonths.right.month !== viewedMonth + 1) &&  ) {
+            if (viewedMonth === 11) {
+                if (viewedYear + 1 < endYear) {
+                    setViewedYear((viewedYear + 1));
+                    setViewedMonth(Math.abs((viewedMonth + 1) % 12));    
+                }
+            } else {
+                setViewedMonth(Math.abs((viewedMonth + 1) % 12));
+            }
+        }
     };
 
     const hoverHandle = (param, hasEntered) => {
@@ -81,6 +111,8 @@ export const Header = (props) => {
             </div>
             <div 
                 onClick={language === "Hebrew" ? decreaseMonth : increaseMonth} 
+                // viewedMonth <  ? 
+                // {"opacity": 0.5, "cursor":"not-allowed"}
                 className="arrow"
                 onMouseEnter={() => hoverHandle("rightArrow", true)} 
                 onMouseOut={() => hoverHandle("rightArrow", false)}

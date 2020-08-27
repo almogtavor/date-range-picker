@@ -5,11 +5,6 @@ import LowerFooterContainer from '../containers/LowerFooterContainer';
 import HeaderContainer from '../containers/HeaderContainer';
 
 const DateRangePicker = (props) => {
-    // const [showColorPicker, setShowColorPicker] = useState(false);
-    // const [viewedMonth, setViewedMonth] = useState(new Date().getMonth());
-    // const [viewedYear, setViewedYear] = useState(new Date().getFullYear());
-    // const [mode, setMode] = useState("Days");
-  
     return (
       <div 
         className="calendar-component" 
@@ -18,6 +13,8 @@ const DateRangePicker = (props) => {
         <HeaderContainer 
           id={props.i}
           language={props.language}
+          startYear={props.startYear}
+          endYear={props.endYear}
         />
         <CalendarConatiner
           id={props.i}
@@ -33,9 +30,10 @@ const DateRangePicker = (props) => {
   };
   
   export const DateRangePickerMapper = (props) => {
+    const calendarsIndexes = [...Array(props.boardsNum).keys()];
     return (
       <>
-      {[...Array(props.boardsNum).keys()].map((i) => {
+      {calendarsIndexes.map((i) => {
           return (
           <DateRangePicker
               key={i}

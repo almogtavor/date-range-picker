@@ -1,20 +1,21 @@
 const initialState = {
+    boardsKeysMap: ["1", "0"],
     showColorPicker: {"0": false,"1": false,},
-    viewedMonth: {"0": new Date().getMonth(), "1":new Date().getMonth()},
+    viewedMonth: {"0": new Date().getMonth() - 1, "1": new Date().getMonth()},
     viewedYear: {'0': new Date().getFullYear(), '1': new Date().getFullYear(), },
     mode: {'0': "Days", '1': "Days", },
     selectedDays: [],
     selectedColor: "#2196f3",
     language: "Hebrew",
     startYear: 1900,
-    endYear: 2100,
+    endYear: 2025,
     firstDayOfWeekIndex: 0,
-    boardsNum: 1,
+    boardsNum: 2,
 };
 
 
 function rootReducer (state = initialState, payload) {
-  const componentIDs = [...Array(state.boardsNum).keys()];
+  const componentIDs = state.language === "Hebrew" ? [...Array(state.boardsNum).keys()].reverse() : [...Array(state.boardsNum).keys()];
   let stateObj = new Object();
 
   if (payload.type === 'SET_SELECTED_COLOR') {
