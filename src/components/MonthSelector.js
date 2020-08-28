@@ -10,9 +10,10 @@ export const MonthSelector = (props) => {
         setViewedMonth, 
         viewedYear, 
         setMode,
-        language
+        language,
+        near,
+        nearViewedMonths
     } = props;
-    console.log(props);
 
     const selectMonthHandler = month => {
       setMode("Days");
@@ -22,18 +23,29 @@ export const MonthSelector = (props) => {
     return (
         <div className="month-selector">
             {calendarConfig.months[language].map((month, i) => {
-                console.log(i);
-            return (
-                <div
-                    key={month}
-                    onClick={() => selectMonthHandler(i)}
-                    className={"selectable-month"}
-                    style={i === viewedMonth ? {"backgroundColor": selectedColor + "60"} : {}}
-                >
-                    {month}
-                </div>
-            );
-            })}
+                let validMonth = true;
+                if (nearViewedMonths.right.year) {
+                    if (new Date(viewedYear, i, 0) >= new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0)) {
+                        validMonth = false;
+                    }
+                }
+                if (nearViewedMonths.left.year) {
+                    if (new Date(viewedYear, i, 0) <= new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 0)) {
+                        validMonth = false;
+                    }
+                }
+                return (
+                    <div
+                        key={month}
+                        onClick={() => validMonth && selectMonthHandler(i)}
+                        className={`selectable-month ${!validMonth && "invalid"}`}
+                        style={i === viewedMonth ? {"backgroundColor": selectedColor + "60"} : {}}
+                    >
+                        {month}
+                    </div>
+                );
+                })
+            }
       </div>
     );
 }

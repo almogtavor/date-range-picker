@@ -30,8 +30,7 @@ export const Header = (props) => {
 
     const isNearMonthBiggerAtOne = () => {
         if (nearViewedMonths.right.year) {
-            return (((nearViewedMonths.right.month === viewedMonth + 1) && (nearViewedMonths.right.year === viewedYear)) || 
-                ((nearViewedMonths.right.month === 0 && viewedMonth === 11) && nearViewedMonths.right.year === viewedYear + 1));
+            return ((new Date(viewedYear, viewedMonth + 2, 0) > new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0)));
         } else {
             return false;
         }
@@ -39,8 +38,7 @@ export const Header = (props) => {
 
     const isNearMonthLowerAtOne = () => {
         if (nearViewedMonths.left.year) {
-            return (((nearViewedMonths.left.month === viewedMonth - 1) && (nearViewedMonths.left.year === viewedYear)) || 
-                ((nearViewedMonths.left.month === 11 && viewedMonth === 0) && nearViewedMonths.left.year === viewedYear - 1));
+            return ((new Date(viewedYear, viewedMonth - 2, 0) < new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 0)));
         } else {
             return false;
         }
@@ -55,28 +53,25 @@ export const Header = (props) => {
     };
 
     const decreaseMonth = () => {
-        if (!isNearMonthLowerAtOne()) {
-            if (viewedMonth === 0) {
-                if (viewedYear - 1 > startYear) {
-                    setViewedYear((viewedYear - 1));
-                    setViewedMonth(Math.abs((viewedMonth + 12 - 1) % 12));    
-                }
-            } else {
-                setViewedMonth(Math.abs((viewedMonth + 12 - 1) % 12));
+
+        if (viewedMonth === 0) {
+            if (viewedYear - 1 > startYear) {
+                setViewedYear((viewedYear - 1));
+                setViewedMonth(Math.abs((viewedMonth + 12 - 1) % 12));    
             }
+        } else {
+            setViewedMonth(Math.abs((viewedMonth + 12 - 1) % 12));
         }
     };
     
     const increaseMonth = () => {
-        if (!isNearMonthBiggerAtOne()) {
-            if (viewedMonth === 11) {
-                if (viewedYear + 1 < endYear) {
-                    setViewedYear((viewedYear + 1));
-                    setViewedMonth(Math.abs((viewedMonth + 1) % 12));    
-                }
-            } else {
-                setViewedMonth(Math.abs((viewedMonth + 1) % 12));
+        if (viewedMonth === 11) {
+            if (viewedYear + 1 < endYear) {
+                setViewedYear((viewedYear + 1));
+                setViewedMonth(Math.abs((viewedMonth + 1) % 12));    
             }
+        } else {
+            setViewedMonth(Math.abs((viewedMonth + 1) % 12));
         }
     };
 
@@ -127,7 +122,7 @@ export const Header = (props) => {
                 onMouseOut={() => hoverHandle("leftArrow", false)}
                 style={isHover.leftArrow && !isNearMonthLowerAtOne() ? {"backgroundColor": selectedColor + "60"} : {}}
             >
-                <img alt="" src={leftArrow} height="15px"/>
+                <img alt="" src={leftArrow} height="18px"/>
             </div>
             <div 
                 onClick={!isNearMonthBiggerAtOne() && (language === "Hebrew" ? decreaseMonth : increaseMonth)} 
@@ -136,7 +131,7 @@ export const Header = (props) => {
                 onMouseOut={() => hoverHandle("rightArrow", false)}
                 style={isHover.rightArrow && !isNearMonthBiggerAtOne() ? {"backgroundColor": selectedColor + "60"} : {}}
             >
-                <img alt="" src={rightArrow}  height="15px"/>
+                <img alt="" src={rightArrow}  height="18px"/>
             </div>
         </div>
     </div>

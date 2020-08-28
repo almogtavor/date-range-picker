@@ -13,7 +13,17 @@ const mapStateToProps = (state, ownProps) => {
     endYear: state.endYear,
     firstDayOfWeekIndex: state.firstDayOfWeekIndex,
     selectedDays: state.selectedDays,
-})}
+    nearViewedMonths: {
+        "right": {
+            "year": state.viewedYear[ownProps.id + 1], 
+            "month": state.viewedMonth[ownProps.id + 1]
+        },
+        "left": {
+            "year": state.viewedYear[ownProps.id - 1],
+            "month": state.viewedMonth[ownProps.id - 1]
+        },
+    }}
+)}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     if (ownProps.startYear) {

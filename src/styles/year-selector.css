@@ -37,6 +37,11 @@
     background: rgb(198, 203, 211);
     background-clip: content-box;
   }
+
+  .selectable-year.invalid {
+      opacity: 0.5;
+      cursor: not-allowed;
+  }
     
   .year-selector div:nth-child(1) {
     border-top-left-radius: 12px;

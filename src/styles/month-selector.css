@@ -19,6 +19,11 @@
     padding: 2px;
     background-clip: content-box;
   }
+
+  .selectable-month.invalid {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
   
   .selectable-month:hover {
     background: rgb(198, 203, 211);

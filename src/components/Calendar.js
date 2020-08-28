@@ -21,6 +21,7 @@ export const Calendar = (props) => {
       firstDayOfWeekIndex,
       selectedDays,
       setSelectedDays,
+      nearViewedMonths,
     } = props;
 
     return (
@@ -43,16 +44,19 @@ export const Calendar = (props) => {
             mode={mode}
             setMode={setMode}
             language={language}
+            nearViewedMonths={nearViewedMonths}
           />
         ) : mode === "Years" && 
           <YearSelector
             selectedColor={selectedColor}
             viewedYear={viewedYear} 
+            viewedMonth={viewedMonth}
             setViewedYear={setViewedYear}
             mode={mode}
             setMode={setMode}
             startYear={startYear}
             endYear={endYear}
+            nearViewedMonths={nearViewedMonths}
           />
         }
     </div>)

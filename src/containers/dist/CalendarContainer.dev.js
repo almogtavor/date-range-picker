@@ -12,7 +12,6 @@ var _Calendar = require("../components/Calendar");
 var _reactRedux = require("react-redux");
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  console.log(state, ownProps);
   return {
     selectedColor: state.selectedColor,
     viewedYear: state.viewedYear[ownProps.id],
@@ -22,7 +21,17 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     startYear: state.startYear,
     endYear: state.endYear,
     firstDayOfWeekIndex: state.firstDayOfWeekIndex,
-    selectedDays: state.selectedDays
+    selectedDays: state.selectedDays,
+    nearViewedMonths: {
+      "right": {
+        "year": state.viewedYear[ownProps.id + 1],
+        "month": state.viewedMonth[ownProps.id + 1]
+      },
+      "left": {
+        "year": state.viewedYear[ownProps.id - 1],
+        "month": state.viewedMonth[ownProps.id - 1]
+      }
+    }
   };
 };
 
