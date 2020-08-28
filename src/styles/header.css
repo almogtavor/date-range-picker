@@ -45,3 +45,8 @@
     border-radius: 20px;
     margin: 10%;
   }
+
+  .arrow.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
