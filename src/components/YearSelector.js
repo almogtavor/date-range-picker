@@ -21,11 +21,8 @@ export const YearSelector = (props) => {
     }
 
     const selectYearHandler = year => {
+        console.log(nearViewedMonths);
       setMode("Days");
-
-      if (nearViewedMonths.right.year) {
-
-      }
       setViewedYear(year);
     };
 
@@ -33,6 +30,7 @@ export const YearSelector = (props) => {
         <div className="year-selector">
             {yearsArray.map((year) => {
                 let validYear = true;
+                
                 if (nearViewedMonths.right.year) {
                     if (new Date(year, viewedMonth, 0) >= new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0)) {
                         validYear = false;

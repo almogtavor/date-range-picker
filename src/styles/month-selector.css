@@ -10,6 +10,10 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .month-selector.hebrew {
+    direction: rtl;
+  }
   
   .selectable-month {
     display: grid;

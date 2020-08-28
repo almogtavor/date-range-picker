@@ -21,7 +21,7 @@ export const MonthSelector = (props) => {
     };
 
     return (
-        <div className="month-selector">
+        <div className={`month-selector ${language === "Hebrew" && "hebrew"}`}>
             {calendarConfig.months[language].map((month, i) => {
                 let validMonth = true;
                 if (nearViewedMonths.right.year) {

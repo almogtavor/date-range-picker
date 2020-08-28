@@ -12,6 +12,8 @@ var _Calendar = require("../components/Calendar");
 var _reactRedux = require("react-redux");
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var leftId = state.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
+  var rightId = state.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
   return {
     selectedColor: state.selectedColor,
     viewedYear: state.viewedYear[ownProps.id],
@@ -24,12 +26,12 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     selectedDays: state.selectedDays,
     nearViewedMonths: {
       "right": {
-        "year": state.viewedYear[ownProps.id + 1],
-        "month": state.viewedMonth[ownProps.id + 1]
+        "year": state.viewedYear[rightId],
+        "month": state.viewedMonth[rightId]
       },
       "left": {
-        "year": state.viewedYear[ownProps.id - 1],
-        "month": state.viewedMonth[ownProps.id - 1]
+        "year": state.viewedYear[leftId],
+        "month": state.viewedMonth[leftId]
       }
     }
   };

@@ -12,31 +12,43 @@ var _Header = require("../components/Header");
 var _reactRedux = require("react-redux");
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var leftId = state.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
+  var rightId = state.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
   return {
     selectedColor: state.selectedColor,
-    viewedYear: ownProps.viewedYear,
-    viewedMonth: ownProps.viewedMonth,
-    language: state.language
+    viewedYear: state.viewedYear[ownProps.id],
+    viewedMonth: state.viewedMonth[ownProps.id],
+    startYear: state.startYear,
+    endYear: state.endYear,
+    language: state.language,
+    selectedDays: state.selectedDays,
+    nearViewedMonths: {
+      "right": {
+        "year": state.viewedYear[rightId],
+        "month": state.viewedMonth[rightId]
+      },
+      "left": {
+        "year": state.viewedYear[leftId],
+        "month": state.viewedMonth[leftId]
+      }
+    }
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
-  if (ownProps.language) {
-    dispatch((0, _actions.setLanguage)(ownProps.language));
-  }
-
+  dispatch((0, _actions.setLanguage)(ownProps.language));
   return {
     setSelectedColor: function setSelectedColor(selectedColor) {
-      return dispatch((0, _actions.setSelectedColor)(selectedColor));
+      return dispatch((0, _actions.setSelectedColor)(ownProps.id, selectedColor));
     },
     setViewedMonth: function setViewedMonth(viewedMonth) {
-      return ownProps.setViewedMonth(viewedMonth);
+      return dispatch((0, _actions.setViewedMonth)(ownProps.id, viewedMonth));
     },
     setViewedYear: function setViewedYear(viewedYear) {
-      return ownProps.setViewedYear(viewedYear);
+      return dispatch((0, _actions.setViewedYear)(ownProps.id, viewedYear));
     },
     setMode: function setMode(mode) {
-      return ownProps.setMode(mode);
+      return dispatch((0, _actions.setMode)(ownProps.id, mode));
     }
   };
 };

@@ -11,7 +11,8 @@ const mapStateToProps = (state, ownProps) => {
         endYear : ownProps.endYear,
         firstDayOfWeekIndex : ownProps.firstDayOfWeekIndex,
         boardsNum : ownProps.boardsNum,
-})}
+    }
+)}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     if (ownProps.boardsNum) {

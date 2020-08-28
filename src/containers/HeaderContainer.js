@@ -2,24 +2,28 @@ import { setSelectedColor, setViewedMonth, setViewedYear, setMode, setLanguage }
 import { Header } from '../components/Header';
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => {
+    const leftId = state.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
+    const rightId = state.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
+    return ({
     selectedColor: state.selectedColor,
     viewedYear: state.viewedYear[ownProps.id],
     viewedMonth: state.viewedMonth[ownProps.id],
     startYear: state.startYear,
     endYear: state.endYear,
     language: state.language,
+    selectedDays: state.selectedDays,
     nearViewedMonths: {
         "right": {
-            "year": state.viewedYear[ownProps.id + 1], 
-            "month": state.viewedMonth[ownProps.id + 1]
+            "year": state.viewedYear[rightId], 
+            "month": state.viewedMonth[rightId]
         },
         "left": {
-            "year": state.viewedYear[ownProps.id - 1],
-            "month": state.viewedMonth[ownProps.id - 1]
+            "year": state.viewedYear[leftId],
+            "month": state.viewedMonth[leftId]
         },
     }
-});
+})};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     dispatch(setLanguage(ownProps.language));
