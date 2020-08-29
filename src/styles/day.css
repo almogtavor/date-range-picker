@@ -7,11 +7,11 @@
 }
 
 .not-in-range:hover {
-    background-color: rgb(198, 203, 211);
+    background-color: rgb(226, 225, 225);
 }
 
 .in-range:hover {
-    background-color: rgb(226, 226, 226);
+    background-color: none;
 }
 
 .hover-div {

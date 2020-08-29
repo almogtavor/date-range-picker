@@ -22,6 +22,8 @@ export const Calendar = (props) => {
       selectedDays,
       setSelectedDays,
       nearViewedMonths,
+      setHoveredDay,
+      hoveredDay,
     } = props;
 
     return (
@@ -34,6 +36,8 @@ export const Calendar = (props) => {
           selectedColor={selectedColor}
           selectedDays={selectedDays}
           setSelectedDays={setSelectedDays}
+          setHoveredDay={setHoveredDay}
+          hoveredDay={hoveredDay}
         />
         {mode === "Months" ? (
           <MonthSelector

@@ -1,24 +1,29 @@
 .App {
   width: 100vw;
   height: 100vh;
+  user-select: none;
 }
 
 .selected-dates {
-  height: 20px;
-  background-color: rgb(231, 231, 231);
+  height: 22px;
+  /* background-color: rgb(231, 231, 231); */
+  background-color: rgb(244, 246, 248);
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-  margin-top: -20px;
+  margin-top: -22px;
   box-shadow: 0 3px 6px #ddd;
-
-  /* background-color: rgb(228, 228, 228); */
-  /* border-top-right-radius: 12px;
-  border-top-left-radius: 12px; */
-
+  display: flex;
 }
 
-.text {
+.dates-display.hebrew {
+  flex-direction: "row-reverse";
+  margin-right: 5%;
+}
+
+.dates-display {
   margin-left: 5%;
+  font-size: 1em;
+  font-weight: 500;
 }
 
 .date-range-picker {

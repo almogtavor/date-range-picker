@@ -18,7 +18,9 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     endYear: ownProps.endYear,
     firstDayOfWeekIndex: ownProps.firstDayOfWeekIndex,
     boardsNum: ownProps.boardsNum,
-    selectedDays: state.selectedDays
+    selectedDays: state.selectedDays,
+    selectedColor: state.selectedColor,
+    hoveredDay: state.hoveredDay
   };
 };
 

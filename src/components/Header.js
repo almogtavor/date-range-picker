@@ -95,7 +95,7 @@ export const Header = (props) => {
     }
 
     return (
-    <div className="header"  style={language === "Hebrew" ? { "flexDirection": "row-reverse"}: {}}>
+    <div className="header" style={language === "Hebrew" ? { "flexDirection": "row-reverse"}: {}}>
         <div className="info">
             <div 
                 className="month" 
@@ -120,8 +120,8 @@ export const Header = (props) => {
             <div 
                 onClick={language === "Hebrew" ? increaseMonth : decreaseMonth} 
                 className={`arrow ${(language === "Hebrew" ? isNearMonthBiggerAtOne() : isNearMonthLowerAtOne()) && "disabled"}`}
-                onMouseEnter={() => language === "Hebrew" ? hoverHandle("rightArrow", true) : hoverHandle("leftArrow", true)} 
-                onMouseOut={() => language === "Hebrew" ? hoverHandle("rightArrow", false) : hoverHandle("leftArrow", false)}
+                onMouseEnter={() => hoverHandle("leftArrow", true)} 
+                onMouseOut={() => hoverHandle("leftArrow", false)}
                 style={isHover.leftArrow && !isNearMonthLowerAtOne() ? {"backgroundColor": selectedColor + "60"} : {}}
             >
                 <img alt="" src={leftArrow} height="18px"/>
@@ -129,8 +129,8 @@ export const Header = (props) => {
             <div 
                 onClick={language === "Hebrew" ? decreaseMonth : increaseMonth} 
                 className={`arrow ${(language === "Hebrew" ? isNearMonthLowerAtOne() : isNearMonthBiggerAtOne()) && "disabled"}`}
-                onMouseEnter={() => language === "Hebrew" ? hoverHandle("leftArrow", true) : hoverHandle("rightArrow", true)} 
-                onMouseOut={() => language === "Hebrew" ? hoverHandle("leftArrow", false) : hoverHandle("rightArrow", false) }
+                onMouseEnter={() => hoverHandle("rightArrow", true)} 
+                onMouseOut={() => hoverHandle("rightArrow", false) }
                 style={isHover.rightArrow && !isNearMonthBiggerAtOne() ? {"backgroundColor": selectedColor + "60"} : {}}
             >
                 <img alt="" src={rightArrow}  height="18px"/>

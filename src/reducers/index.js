@@ -11,12 +11,13 @@ const initialState = {
     endYear: 2025,
     firstDayOfWeekIndex: 0,
     boardsNum: 2,
+    hoveredDay: null,
 };
 
 
 function rootReducer (state = initialState, payload) {
   const boardsNum = payload.boardsNum ? payload.boardsNum : state.boardsNum;
-  let componentIDs = state.language === "Hebrew" ? [...Array(boardsNum).keys()].reverse() : [...Array(boardsNum).keys()];
+  const componentIDs = state.language === "Hebrew" ? [...Array(boardsNum).keys()].reverse() : [...Array(boardsNum).keys()];
   if (payload) {
     if (payload.type === 'SET_SELECTED_COLOR') {
         return Object.assign({}, state, {
@@ -91,7 +92,6 @@ function rootReducer (state = initialState, payload) {
         let yearsObj = {};
         let modeObj = {};
         let showColorPickerObj = {};
-        // componentIDs = componentIDs.reverse();
         for (let i in componentIDs) {
           const index = state.language === "Hebrew" ? boardsNum - i - 1 : i;
           let date = new Date();
@@ -112,7 +112,11 @@ function rootReducer (state = initialState, payload) {
         return Object.assign({}, state, {
           selectedDays: payload.selectedDays
         });
-    }else {
+    } else if (payload.type === 'SET_HOVERED_DAY') {
+        return Object.assign({}, state, {
+          hoveredDay: payload.hoveredDay
+        });
+    } else {
         return state;
     }
   } else {

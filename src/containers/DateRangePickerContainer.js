@@ -10,6 +10,8 @@ const mapStateToProps = (state, ownProps) => {
         firstDayOfWeekIndex : ownProps.firstDayOfWeekIndex,
         boardsNum : ownProps.boardsNum,
         selectedDays: state.selectedDays,
+        selectedColor: state.selectedColor,
+        hoveredDay: state.hoveredDay,
     }
 )}
 

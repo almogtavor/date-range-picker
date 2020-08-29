@@ -37,7 +37,8 @@ var initialState = {
   startYear: 1900,
   endYear: 2025,
   firstDayOfWeekIndex: 0,
-  boardsNum: 2
+  boardsNum: 2,
+  hoveredDay: null
 };
 
 function rootReducer() {
@@ -127,7 +128,7 @@ function rootReducer() {
       var monthsObj = {};
       var yearsObj = {};
       var modeObj = {};
-      var showColorPickerObj = {}; // componentIDs = componentIDs.reverse();
+      var showColorPickerObj = {};
 
       for (var _i4 in componentIDs) {
         var index = state.language === "Hebrew" ? boardsNum - _i4 - 1 : _i4;
@@ -149,6 +150,10 @@ function rootReducer() {
     } else if (payload.type === 'SET_SELECTED_DAYS') {
       return Object.assign({}, state, {
         selectedDays: payload.selectedDays
+      });
+    } else if (payload.type === 'SET_HOVERED_DAY') {
+      return Object.assign({}, state, {
+        hoveredDay: payload.hoveredDay
       });
     } else {
       return state;

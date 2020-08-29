@@ -40,25 +40,39 @@ const DateRangePicker = (props) => {
       endYear,
       firstDayOfWeekIndex,
       boardsNum,
+      selectedDays,
+      selectedColor,
+      hoveredDay,
     } = props;
 
+    let selectedDaysStyle = {
+      "width": ((boardsNum * 100) > 300 ? 300 : (boardsNum * 100)) + "%", 
+      "backgroundColor": selectedColor + "60",
+    };
+
+    if (language === "Hebrew") {
+      selectedDaysStyle["flexDirection"] = "row-reverse";
+    }
 
     const calendarsIndexes = [...Array(props.boardsNum).keys()];
     return (
       <>
         <div 
           className="selected-dates" 
-          style={{
-            "width": ((props.boardsNum * 100) > 300 ? 300 : (props.boardsNum * 100)) + "%", 
-            "backgroundColor": props.selectedColor
-          }}
+          style={selectedDaysStyle}
         >
-          <div className="text">
+          <div className={`dates-display ${language === "Hebrew" && "hebrew"}`}>
             {
-              props.selectedDays[1] !== undefined ?
-                props.selectedDays[0].toLocaleDateString() + " - " +
-                props.selectedDays[1].toLocaleDateString() :
-                "DD-MM-YYYY - DD-MM-YYYY"
+              selectedDays.length === 2 ?
+                selectedDays[0].toLocaleDateString() + " - " +
+                selectedDays[1].toLocaleDateString() :
+                selectedDays.length === 1 && hoveredDay ? 
+                  selectedDays[0] > hoveredDay ?
+                    selectedDays[0].toLocaleDateString() + " - " +
+                    hoveredDay.toLocaleDateString() :
+                    hoveredDay.toLocaleDateString() + " - " +
+                    selectedDays[0].toLocaleDateString() :
+                  "DD-MM-YYYY - DD-MM-YYYY"
             }
           </div>
         </div>

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setSelectedDays = exports.setBoardsNum = exports.setFirstDayOfWeekIndex = exports.setEndYear = exports.setStartYear = exports.setLanguage = exports.setSelectedColor = exports.setMode = exports.setViewedYear = exports.setViewedMonth = exports.setShowColorPicker = void 0;
+exports.setHoveredDay = exports.setSelectedDays = exports.setBoardsNum = exports.setFirstDayOfWeekIndex = exports.setEndYear = exports.setStartYear = exports.setLanguage = exports.setSelectedColor = exports.setMode = exports.setViewedYear = exports.setViewedMonth = exports.setShowColorPicker = void 0;
 
 var setShowColorPicker = function setShowColorPicker(id, showColorPicker) {
   return {
@@ -107,3 +107,12 @@ var setSelectedDays = function setSelectedDays(selectedDays) {
 };
 
 exports.setSelectedDays = setSelectedDays;
+
+var setHoveredDay = function setHoveredDay(hoveredDay) {
+  return {
+    type: 'SET_HOVERED_DAY',
+    hoveredDay: hoveredDay
+  };
+};
+
+exports.setHoveredDay = setHoveredDay;

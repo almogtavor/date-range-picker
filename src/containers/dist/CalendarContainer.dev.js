@@ -24,6 +24,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     endYear: state.endYear,
     firstDayOfWeekIndex: state.firstDayOfWeekIndex,
     selectedDays: state.selectedDays,
+    hoveredDay: state.hoveredDay,
     nearViewedMonths: {
       "right": {
         "year": state.viewedYear[rightId],
@@ -51,6 +52,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   }
 
   return {
+    setHoveredDay: function setHoveredDay(hoveredDay) {
+      return dispatch((0, _actions.setHoveredDay)(hoveredDay));
+    },
     setSelectedDays: function setSelectedDays(selectedDays) {
       return dispatch((0, _actions.setSelectedDays)(selectedDays));
     },
