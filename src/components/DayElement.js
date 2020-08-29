@@ -7,6 +7,7 @@ export const DayElement = (props) => {
         date,
         selectedDays, 
         setSelectedDays,
+        isOfCurrentViewedMonth,
         hoveredDay,
         setHoveredDay,
         selectedColor,
@@ -15,7 +16,6 @@ export const DayElement = (props) => {
     } = props;
 
     const dayNum = date.getDate();
-    const isOfCurrentViewedMonth = true;
     const isToday = date.toLocaleDateString() === new Date().toLocaleDateString() ?  true : false;
     const [isSelected, setIsSelected] = useState(false);
     const [isInRange, setIsInRange] = useState(false);
@@ -65,7 +65,7 @@ export const DayElement = (props) => {
     <div 
         className={`day-element ${!isOfCurrentViewedMonth && "non-current"}
             ${isInRange ? "in-range" : "not-in-range"}
-            ${isToday && "today"}            
+            ${isToday && "today"}
             ${(dayOfWeek === 0 && !isInRange) && "first-day-of-week"}
             ${(dayOfWeek === 6 && !isInRange) && "last-day-of-week"}`}
         style={isSelected ? {...genericStyle, "background": selectedColor} : genericStyle}

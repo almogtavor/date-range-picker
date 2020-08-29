@@ -31,7 +31,7 @@ export const calendarConfig = {
         ],
     },
     "weeks": {
-        "English": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+        "English": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
         "Hebrew": ["א", "ב", "ג", "ד", "ה", "ו", "ש"].reverse(),
     },
     "pickableColors": [

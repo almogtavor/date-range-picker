@@ -16,11 +16,14 @@
 
 .hover-div {
     height: 100%;
-
     border-radius: 7px;
 }
 
-.first-selected {
+.non-current {
+    opacity: 0.2;
+}
+
+/* .first-selected {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
@@ -28,15 +31,15 @@
 .last-selected {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-}
-
+} */
+/* 
 .last-day-of-week {
     background-color: rgb(236, 217, 218);
 }
 
 .first-day-of-week {
     background-color: rgb(236, 229, 229);
-}
+} */
 
 .today {
     font-weight: bold;
