@@ -47,8 +47,7 @@ function rootReducer() {
 
   if (payload) {
     var boardsNum = payload.boardsNum ? payload.boardsNum : state.boardsNum;
-
-    var componentIDs = _toConsumableArray(Array(boardsNum).keys());
+    var componentIDs = state.language === "Hebrew" ? _toConsumableArray(Array(boardsNum).keys()).reverse() : _toConsumableArray(Array(boardsNum).keys());
 
     if (payload.type === 'SET_SELECTED_COLOR') {
       return Object.assign({}, state, {
@@ -64,7 +63,7 @@ function rootReducer() {
         for (var _iterator = componentIDs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           var i = _step.value;
 
-          if (payload.id === i) {
+          if (String(payload.id) === i) {
             stateObj[i] = payload.showColorPicker;
           } else {
             stateObj[i] = state.showColorPicker[i];
@@ -98,7 +97,7 @@ function rootReducer() {
         for (var _iterator2 = componentIDs[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
           var _i = _step2.value;
 
-          if (payload.id === _i) {
+          if (String(payload.id) === _i) {
             _stateObj[_i] = payload.viewedMonth;
           } else {
             _stateObj[_i] = state.viewedMonth[_i];
@@ -132,7 +131,7 @@ function rootReducer() {
         for (var _iterator3 = componentIDs[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
           var _i2 = _step3.value;
 
-          if (payload.id === _i2) {
+          if (String(payload.id) === _i2) {
             _stateObj2[_i2] = payload.viewedYear;
           } else {
             _stateObj2[_i2] = state.viewedYear[_i2];
@@ -166,7 +165,7 @@ function rootReducer() {
         for (var _iterator4 = componentIDs[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
           var _i3 = _step4.value;
 
-          if (payload.id === _i3) {
+          if (String(payload.id) === _i3) {
             _stateObj3[_i3] = payload.mode;
           } else {
             _stateObj3[_i3] = state.mode[_i3];
