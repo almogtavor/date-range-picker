@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import {calendarConfig} from '../configuration/config';
+import React from "react";
 import '../styles/year-selector.css';
 
 

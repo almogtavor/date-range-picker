@@ -15,14 +15,15 @@ const initialState = {
 
 
 function rootReducer (state = initialState, payload) {
-  const componentIDs = state.language === "Hebrew" ? [...Array(state.boardsNum).keys()].reverse() : [...Array(state.boardsNum).keys()];
-  let stateObj = new Object();
+  const boardsNum = payload.boardsNum ? payload.boardsNum : state.boardsNum;
+  let componentIDs = state.language === "Hebrew" ? [...Array(boardsNum).keys()].reverse() : [...Array(boardsNum).keys()];
   if (payload) {
     if (payload.type === 'SET_SELECTED_COLOR') {
         return Object.assign({}, state, {
           selectedColor: payload.selectedColor
         });
       } else if (payload.type === 'SET_SHOW_COLOR_PICKER') {
+        let stateObj = {};
         for (let i in componentIDs) {
           if (String(payload.id) === i) {
             stateObj[i] = payload.showColorPicker;
@@ -34,6 +35,7 @@ function rootReducer (state = initialState, payload) {
           showColorPicker: stateObj
         });
     } else if (payload.type === 'SET_VIEWED_MONTH') {
+        let stateObj = {};
         for (let i in componentIDs) {
           if (String(payload.id) === i) {
             stateObj[i] = payload.viewedMonth;
@@ -45,6 +47,7 @@ function rootReducer (state = initialState, payload) {
           viewedMonth: stateObj
         });
     } else if (payload.type === 'SET_VIEWED_YEAR') {
+        let stateObj = {};
         for (let i in componentIDs) {
           if (String(payload.id) === i) {
             stateObj[i] = payload.viewedYear;
@@ -56,6 +59,7 @@ function rootReducer (state = initialState, payload) {
           viewedYear: stateObj
         });
     } else if (payload.type === 'SET_MODE') {
+        let stateObj = {};
         for (let i in componentIDs) {
           if (String(payload.id) === i) {
             stateObj[i] = payload.mode;
@@ -83,8 +87,26 @@ function rootReducer (state = initialState, payload) {
           firstDayOfWeekIndex: payload.firstDayOfWeekIndex
         });
     } else if (payload.type === 'SET_BOARDS_NUM') {
+        let monthsObj = {};
+        let yearsObj = {};
+        let modeObj = {};
+        let showColorPickerObj = {};
+        // componentIDs = componentIDs.reverse();
+        for (let i in componentIDs) {
+          const index = state.language === "Hebrew" ? boardsNum - i - 1 : i;
+          let date = new Date();
+          date.setMonth(new Date().getMonth() - (boardsNum - i) + 2);
+          monthsObj[index] = date.getMonth();
+          yearsObj[index] = date.getFullYear();
+          modeObj[index] = "Days";
+          showColorPickerObj[index] = false;
+        }
         return Object.assign({}, state, {
-          boardsNum: payload.boardsNum
+          boardsNum: payload.boardsNum,
+          viewedMonth: monthsObj,
+          viewedYear: yearsObj,
+          mode: modeObj,
+          showColorPicker: showColorPickerObj,
         });
     } else if (payload.type === 'SET_SELECTED_DAYS') {
         return Object.assign({}, state, {

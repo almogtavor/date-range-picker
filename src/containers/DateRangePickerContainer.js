@@ -1,25 +1,26 @@
-import { setSelectedColor, setStartYear, setEndYear, setFirstDayOfWeekIndex, setViewedMonth, setViewedYear, setMode, setBoardsNum } from '../actions';
-import { Calendar } from '../components/Calendar';
+import { setLanguage, setBoardsNum } from '../actions';
 import { connect } from 'react-redux';
 import { DateRangePickerMapper } from '../components/DateRangePicker';
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state, ownProps);
     return ({
         language : ownProps.language,
         startYear : ownProps.startYear, 
         endYear : ownProps.endYear,
         firstDayOfWeekIndex : ownProps.firstDayOfWeekIndex,
         boardsNum : ownProps.boardsNum,
+        selectedDays: state.selectedDays,
     }
 )}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+    if (ownProps.language) {
+        dispatch(setLanguage(ownProps.language));
+    }
     if (ownProps.boardsNum) {
         dispatch(setBoardsNum(ownProps.boardsNum));
     }
-    return ({
-})
+    return ({})
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DateRangePickerMapper);

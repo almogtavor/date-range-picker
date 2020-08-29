@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { WeekDaysNames } from "./WeekDaysNames";
 import { MonthDaysElements } from "./MonthDaysElements";
 import { MonthSelector } from "./MonthSelector";

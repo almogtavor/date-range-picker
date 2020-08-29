@@ -36,7 +36,6 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
-  dispatch((0, _actions.setLanguage)(ownProps.language));
   return {
     setSelectedColor: function setSelectedColor(selectedColor) {
       return dispatch((0, _actions.setSelectedColor)(ownProps.id, selectedColor));

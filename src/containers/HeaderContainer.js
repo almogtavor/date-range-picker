@@ -1,4 +1,4 @@
-import { setSelectedColor, setViewedMonth, setViewedYear, setMode, setLanguage } from '../actions';
+import { setSelectedColor, setViewedMonth, setViewedYear, setMode } from '../actions';
 import { Header } from '../components/Header';
 import { connect } from 'react-redux';
 
@@ -26,7 +26,6 @@ const mapStateToProps = (state, ownProps) => {
 })};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    dispatch(setLanguage(ownProps.language));
     return ({
         setSelectedColor: (selectedColor) => dispatch(setSelectedColor(ownProps.id, selectedColor)),
         setViewedMonth: (viewedMonth) => dispatch(setViewedMonth(ownProps.id, viewedMonth)),

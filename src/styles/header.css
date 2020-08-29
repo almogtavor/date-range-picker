@@ -1,12 +1,4 @@
-.selected-dates {
-    height: 20px;
-    background-color: rgb(228, 228, 228);
-    border-top-right-radius: 12px;
-    border-top-left-radius: 12px;
-
-}
-
-.calendar-buttons {
+.header {
     grid-column: 1 / -1;
     display: flex;
     justify-content: space-between;
@@ -49,9 +41,10 @@
 }
 
 .arrow {
-    border-radius: 20px;
+    border-radius: 12px;
     margin: 10%;
 }
+
 
 .arrow.disabled {
     opacity: 0.4;

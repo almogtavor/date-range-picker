@@ -3,6 +3,24 @@
   height: 100vh;
 }
 
+.selected-dates {
+  height: 20px;
+  background-color: rgb(231, 231, 231);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  margin-top: -20px;
+  box-shadow: 0 3px 6px #ddd;
+
+  /* background-color: rgb(228, 228, 228); */
+  /* border-top-right-radius: 12px;
+  border-top-left-radius: 12px; */
+
+}
+
+.text {
+  margin-left: 5%;
+}
+
 .date-range-picker {
   position: absolute;
   width: 795px;
@@ -17,7 +35,8 @@
   position: absolute;
   height: 295px;
   width: 255px;
-  border-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
   box-shadow: 0 3px 6px #ddd;
   padding: 0px 5px 10px 5px;
   background-color: rgb(244, 246, 248);

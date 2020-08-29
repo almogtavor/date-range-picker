@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {calendarConfig} from '../configuration/config';
 import '../styles/header.css';
-import { setViewedYear } from "../actions";
 
 const leftArrow = require('../images/arrow-left.png');
 const rightArrow = require('../images/arrow-right.png');
@@ -18,7 +17,6 @@ export const Header = (props) => {
         startYear, 
         endYear,
         nearViewedMonths,
-        selectedDays,
     } = props;
 
     const [isHover, setIsHover] = useState({
@@ -97,50 +95,45 @@ export const Header = (props) => {
     }
 
     return (
-    <div className="header">
-        <div className="selected-dates">
-            d
-        </div>
-        <div className="calendar-buttons">
-            <div className="info" style={language === "Hebrew" ? { "flexDirection": "row-reverse"}: {}}>
-                <div 
-                    className="month" 
-                    onMouseEnter={() => hoverHandle("month", true)} 
-                    onMouseOut={() => hoverHandle("month", false)} 
-                    onClick={monthHandler} 
-                    style={isHover.month ? {"backgroundColor": selectedColor + "60"} : {}}
-                >
-                    {calendarConfig.months[language][viewedMonth]}
-                </div>
-                <div 
-                    className="year" 
-                    onMouseEnter={() => hoverHandle("year", true)} 
-                    onMouseOut={() => hoverHandle("year", false)} 
-                    onClick={yearHandler} 
-                    style={isHover.year ? {"backgroundColor": selectedColor + "60"} : {}}
-                >
-                    {viewedYear}
-                </div>
-                </div>
-                <div className="header-icons">
-                <div 
-                    onClick={language === "Hebrew" ? increaseMonth : decreaseMonth} 
-                    className={`arrow ${(language === "Hebrew" ? isNearMonthBiggerAtOne() : isNearMonthLowerAtOne()) && "disabled"}`}
-                    onMouseEnter={() => hoverHandle("leftArrow", true)} 
-                    onMouseOut={() => hoverHandle("leftArrow", false)}
-                    style={isHover.leftArrow && !isNearMonthLowerAtOne() ? {"backgroundColor": selectedColor + "60"} : {}}
-                >
-                    <img alt="" src={leftArrow} height="18px"/>
-                </div>
-                <div 
-                    onClick={language === "Hebrew" ? decreaseMonth : increaseMonth} 
-                    className={`arrow ${(language === "Hebrew" ? isNearMonthLowerAtOne() : isNearMonthBiggerAtOne()) && "disabled"}`}
-                    onMouseEnter={() => hoverHandle("rightArrow", true)} 
-                    onMouseOut={() => hoverHandle("rightArrow", false)}
-                    style={isHover.rightArrow && !isNearMonthBiggerAtOne() ? {"backgroundColor": selectedColor + "60"} : {}}
-                >
-                    <img alt="" src={rightArrow}  height="18px"/>
-                </div>
+    <div className="header"  style={language === "Hebrew" ? { "flexDirection": "row-reverse"}: {}}>
+        <div className="info">
+            <div 
+                className="month" 
+                onMouseEnter={() => hoverHandle("month", true)} 
+                onMouseOut={() => hoverHandle("month", false)} 
+                onClick={monthHandler} 
+                style={isHover.month ? {"backgroundColor": selectedColor + "60"} : {}}
+            >
+                {calendarConfig.months[language][viewedMonth]}
+            </div>
+            <div 
+                className="year" 
+                onMouseEnter={() => hoverHandle("year", true)} 
+                onMouseOut={() => hoverHandle("year", false)} 
+                onClick={yearHandler} 
+                style={isHover.year ? {"backgroundColor": selectedColor + "60"} : {}}
+            >
+                {viewedYear}
+            </div>
+            </div>
+            <div className="header-icons">
+            <div 
+                onClick={language === "Hebrew" ? increaseMonth : decreaseMonth} 
+                className={`arrow ${(language === "Hebrew" ? isNearMonthBiggerAtOne() : isNearMonthLowerAtOne()) && "disabled"}`}
+                onMouseEnter={() => language === "Hebrew" ? hoverHandle("rightArrow", true) : hoverHandle("leftArrow", true)} 
+                onMouseOut={() => language === "Hebrew" ? hoverHandle("rightArrow", false) : hoverHandle("leftArrow", false)}
+                style={isHover.leftArrow && !isNearMonthLowerAtOne() ? {"backgroundColor": selectedColor + "60"} : {}}
+            >
+                <img alt="" src={leftArrow} height="18px"/>
+            </div>
+            <div 
+                onClick={language === "Hebrew" ? decreaseMonth : increaseMonth} 
+                className={`arrow ${(language === "Hebrew" ? isNearMonthLowerAtOne() : isNearMonthBiggerAtOne()) && "disabled"}`}
+                onMouseEnter={() => language === "Hebrew" ? hoverHandle("leftArrow", true) : hoverHandle("rightArrow", true)} 
+                onMouseOut={() => language === "Hebrew" ? hoverHandle("leftArrow", false) : hoverHandle("rightArrow", false) }
+                style={isHover.rightArrow && !isNearMonthBiggerAtOne() ? {"backgroundColor": selectedColor + "60"} : {}}
+            >
+                <img alt="" src={rightArrow}  height="18px"/>
             </div>
         </div>
     </div>

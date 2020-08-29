@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {calendarConfig} from '../configuration/config';
 import '../styles/month-selector.css';
 
@@ -11,7 +11,6 @@ export const MonthSelector = (props) => {
         viewedYear, 
         setMode,
         language,
-        near,
         nearViewedMonths
     } = props;
 

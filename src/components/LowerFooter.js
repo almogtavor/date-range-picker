@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { CirclePicker } from "react-color";
 import {calendarConfig} from '../configuration/config';
 import '../styles/lower-footer.css';
@@ -11,12 +11,7 @@ export const LowerFooter = (props) => {
         setSelectedColor, 
         setShowColorPicker} = props;
 
-    console.log(selectedColor, showColorPicker, 
-        setSelectedColor, 
-        setShowColorPicker);  
-
     const changeColor = (color) => {
-        // this.setState({ selectedColor: color.hex, showColorPicker: false })
         setSelectedColor(color.hex);
         setShowColorPicker(false);
         localStorage.setItem("selectedColor", color.hex);

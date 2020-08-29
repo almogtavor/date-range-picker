@@ -57,11 +57,11 @@ export const DayElement = (props) => {
         setHoveredDay(date);
     };
 
-    const handleOutHover = () => {
-        if (selectedDays.length === 2) {
-            setHoveredDay(null);
-        }
-    };
+    // const handleOutHover = () => {
+    //     if (selectedDays.length === 2) {
+    //         setHoveredDay(null);
+    //     }
+    // };
 
     return (
     <div 
@@ -77,10 +77,15 @@ export const DayElement = (props) => {
     >
         <div 
             className={`${isInRange && "hover-div"}`} 
-            style={hoveredDay !== null ? (isInRange && (date.toLocaleDateString() !== hoveredDay.toLocaleDateString() || selectedDays.length !== 2) ?
-                {"background": selectedColor + "60"} : {}) :
+            style={
+                hoveredDay !== null ? 
+                    (isInRange && 
+                        (date.toLocaleDateString() !== hoveredDay.toLocaleDateString() || selectedDays.length !== 2) ?
+                            {"background": selectedColor + "60"} : 
+                            {}) :
                 isInRange && selectedDays.length === 2 ?
-                {"background": selectedColor + "60"} : {}
+                    {"background": selectedColor + "60"} :
+                    {}
             }>
                 {dayNum}
         </div>
