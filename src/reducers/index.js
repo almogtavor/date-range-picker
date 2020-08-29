@@ -16,16 +16,17 @@ const initialState = {
 
 
 function rootReducer (state = initialState, payload) {
-  const boardsNum = payload.boardsNum ? payload.boardsNum : state.boardsNum;
-  const componentIDs = state.language === "Hebrew" ? [...Array(boardsNum).keys()].reverse() : [...Array(boardsNum).keys()];
   if (payload) {
+    const boardsNum = payload.boardsNum ? payload.boardsNum : state.boardsNum;
+    const componentIDs = state.language === "Hebrew" ? [...Array(boardsNum).keys()].reverse() : [...Array(boardsNum).keys()];
+  
     if (payload.type === 'SET_SELECTED_COLOR') {
         return Object.assign({}, state, {
           selectedColor: payload.selectedColor
         });
       } else if (payload.type === 'SET_SHOW_COLOR_PICKER') {
         let stateObj = {};
-        for (let i in componentIDs) {
+        for (let i of componentIDs) {
           if (String(payload.id) === i) {
             stateObj[i] = payload.showColorPicker;
           } else {
@@ -37,7 +38,7 @@ function rootReducer (state = initialState, payload) {
         });
     } else if (payload.type === 'SET_VIEWED_MONTH') {
         let stateObj = {};
-        for (let i in componentIDs) {
+        for (let i of componentIDs) {
           if (String(payload.id) === i) {
             stateObj[i] = payload.viewedMonth;
           } else {
@@ -49,7 +50,7 @@ function rootReducer (state = initialState, payload) {
         });
     } else if (payload.type === 'SET_VIEWED_YEAR') {
         let stateObj = {};
-        for (let i in componentIDs) {
+        for (let i of componentIDs) {
           if (String(payload.id) === i) {
             stateObj[i] = payload.viewedYear;
           } else {
@@ -61,7 +62,7 @@ function rootReducer (state = initialState, payload) {
         });
     } else if (payload.type === 'SET_MODE') {
         let stateObj = {};
-        for (let i in componentIDs) {
+        for (let i of componentIDs) {
           if (String(payload.id) === i) {
             stateObj[i] = payload.mode;
           } else {
@@ -92,7 +93,7 @@ function rootReducer (state = initialState, payload) {
         let yearsObj = {};
         let modeObj = {};
         let showColorPickerObj = {};
-        for (let i in componentIDs) {
+        for (let i of componentIDs) {
           const index = state.language === "Hebrew" ? boardsNum - i - 1 : i;
           let date = new Date();
           date.setMonth(new Date().getMonth() - (boardsNum - i) + 2);

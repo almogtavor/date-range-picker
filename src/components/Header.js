@@ -29,7 +29,10 @@ export const Header = (props) => {
 
     const isNearMonthBiggerAtOne = () => {
         if (nearViewedMonths.right.year) {
-            return ((new Date(viewedYear, viewedMonth + 2, 0) > new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0)));
+            return (
+                new Date(viewedYear, viewedMonth + 2, 0) > 
+                new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0)
+            );
         } else {
             return false;
         }
@@ -37,7 +40,10 @@ export const Header = (props) => {
 
     const isNearMonthLowerAtOne = () => {
         if (nearViewedMonths.left.year) {
-            return ((new Date(viewedYear, viewedMonth - 2, 0) < new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 0)));
+            return (
+                new Date(viewedYear, viewedMonth - 2, 0) < 
+                new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 0)
+            );
         } else {
             return false;
         }

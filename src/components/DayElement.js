@@ -31,17 +31,13 @@ export const DayElement = (props) => {
             if ((date >= selectedDays[0] && date <= hoveredDay) || 
                 (date <= selectedDays[0] && date >= hoveredDay)) {
                 setIsInRange(true);
-            } else if (isInRange) {
-                setIsInRange(false);
-            }
+            } 
         } else {
             if (selectedDays.length === 2) {
                 if ((date >= selectedDays[0] && date <= selectedDays[1]) ||
                  (date <= selectedDays[0] && date >= selectedDays[1])) {
                     setIsInRange(true);
-                } else if (isInRange) {
-                    setIsInRange(false);
-                }
+                } 
             }
         }
     }
@@ -64,15 +60,6 @@ export const DayElement = (props) => {
             setHoveredDay(null);
         }
     };
-
-    if (date.getDate() ===15 && date.getMonth() ===7) {
-        console.log(hoveredDay);
-        console.log(isInRange);
-        if (hoveredDay) {
-            console.log(date.toLocaleDateString() !== hoveredDay.toLocaleDateString());
-        }
-        
-    }
     
     return (
     <div 

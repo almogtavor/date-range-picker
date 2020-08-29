@@ -44,22 +44,43 @@ var initialState = {
 function rootReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var payload = arguments.length > 1 ? arguments[1] : undefined;
-  var boardsNum = payload.boardsNum ? payload.boardsNum : state.boardsNum;
-  var componentIDs = state.language === "Hebrew" ? _toConsumableArray(Array(boardsNum).keys()).reverse() : _toConsumableArray(Array(boardsNum).keys());
 
   if (payload) {
+    var boardsNum = payload.boardsNum ? payload.boardsNum : state.boardsNum;
+    var componentIDs = state.language === "Hebrew" ? _toConsumableArray(Array(boardsNum).keys()).reverse() : _toConsumableArray(Array(boardsNum).keys());
+
     if (payload.type === 'SET_SELECTED_COLOR') {
       return Object.assign({}, state, {
         selectedColor: payload.selectedColor
       });
     } else if (payload.type === 'SET_SHOW_COLOR_PICKER') {
       var stateObj = {};
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
 
-      for (var i in componentIDs) {
-        if (String(payload.id) === i) {
-          stateObj[i] = payload.showColorPicker;
-        } else {
-          stateObj[i] = state.showColorPicker[i];
+      try {
+        for (var _iterator = componentIDs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var i = _step.value;
+
+          if (String(payload.id) === i) {
+            stateObj[i] = payload.showColorPicker;
+          } else {
+            stateObj[i] = state.showColorPicker[i];
+          }
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+            _iterator["return"]();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
         }
       }
 
@@ -68,12 +89,32 @@ function rootReducer() {
       });
     } else if (payload.type === 'SET_VIEWED_MONTH') {
       var _stateObj = {};
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
 
-      for (var _i in componentIDs) {
-        if (String(payload.id) === _i) {
-          _stateObj[_i] = payload.viewedMonth;
-        } else {
-          _stateObj[_i] = state.viewedMonth[_i];
+      try {
+        for (var _iterator2 = componentIDs[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var _i = _step2.value;
+
+          if (String(payload.id) === _i) {
+            _stateObj[_i] = payload.viewedMonth;
+          } else {
+            _stateObj[_i] = state.viewedMonth[_i];
+          }
+        }
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+            _iterator2["return"]();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
         }
       }
 
@@ -82,12 +123,32 @@ function rootReducer() {
       });
     } else if (payload.type === 'SET_VIEWED_YEAR') {
       var _stateObj2 = {};
+      var _iteratorNormalCompletion3 = true;
+      var _didIteratorError3 = false;
+      var _iteratorError3 = undefined;
 
-      for (var _i2 in componentIDs) {
-        if (String(payload.id) === _i2) {
-          _stateObj2[_i2] = payload.viewedYear;
-        } else {
-          _stateObj2[_i2] = state.viewedYear[_i2];
+      try {
+        for (var _iterator3 = componentIDs[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+          var _i2 = _step3.value;
+
+          if (String(payload.id) === _i2) {
+            _stateObj2[_i2] = payload.viewedYear;
+          } else {
+            _stateObj2[_i2] = state.viewedYear[_i2];
+          }
+        }
+      } catch (err) {
+        _didIteratorError3 = true;
+        _iteratorError3 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
+            _iterator3["return"]();
+          }
+        } finally {
+          if (_didIteratorError3) {
+            throw _iteratorError3;
+          }
         }
       }
 
@@ -96,12 +157,32 @@ function rootReducer() {
       });
     } else if (payload.type === 'SET_MODE') {
       var _stateObj3 = {};
+      var _iteratorNormalCompletion4 = true;
+      var _didIteratorError4 = false;
+      var _iteratorError4 = undefined;
 
-      for (var _i3 in componentIDs) {
-        if (String(payload.id) === _i3) {
-          _stateObj3[_i3] = payload.mode;
-        } else {
-          _stateObj3[_i3] = state.mode[_i3];
+      try {
+        for (var _iterator4 = componentIDs[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+          var _i3 = _step4.value;
+
+          if (String(payload.id) === _i3) {
+            _stateObj3[_i3] = payload.mode;
+          } else {
+            _stateObj3[_i3] = state.mode[_i3];
+          }
+        }
+      } catch (err) {
+        _didIteratorError4 = true;
+        _iteratorError4 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion4 && _iterator4["return"] != null) {
+            _iterator4["return"]();
+          }
+        } finally {
+          if (_didIteratorError4) {
+            throw _iteratorError4;
+          }
         }
       }
 
@@ -129,15 +210,34 @@ function rootReducer() {
       var yearsObj = {};
       var modeObj = {};
       var showColorPickerObj = {};
+      var _iteratorNormalCompletion5 = true;
+      var _didIteratorError5 = false;
+      var _iteratorError5 = undefined;
 
-      for (var _i4 in componentIDs) {
-        var index = state.language === "Hebrew" ? boardsNum - _i4 - 1 : _i4;
-        var date = new Date();
-        date.setMonth(new Date().getMonth() - (boardsNum - _i4) + 2);
-        monthsObj[index] = date.getMonth();
-        yearsObj[index] = date.getFullYear();
-        modeObj[index] = "Days";
-        showColorPickerObj[index] = false;
+      try {
+        for (var _iterator5 = componentIDs[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+          var _i4 = _step5.value;
+          var index = state.language === "Hebrew" ? boardsNum - _i4 - 1 : _i4;
+          var date = new Date();
+          date.setMonth(new Date().getMonth() - (boardsNum - _i4) + 2);
+          monthsObj[index] = date.getMonth();
+          yearsObj[index] = date.getFullYear();
+          modeObj[index] = "Days";
+          showColorPickerObj[index] = false;
+        }
+      } catch (err) {
+        _didIteratorError5 = true;
+        _iteratorError5 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion5 && _iterator5["return"] != null) {
+            _iterator5["return"]();
+          }
+        } finally {
+          if (_didIteratorError5) {
+            throw _iteratorError5;
+          }
+        }
       }
 
       return Object.assign({}, state, {
