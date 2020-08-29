@@ -67,12 +67,18 @@ const DateRangePicker = (props) => {
                 selectedDays[0].toLocaleDateString() + " - " +
                 selectedDays[1].toLocaleDateString() :
                 selectedDays.length === 1 && hoveredDay ? 
-                  selectedDays[0] > hoveredDay ?
-                    selectedDays[0].toLocaleDateString() + " - " +
-                    hoveredDay.toLocaleDateString() :
-                    hoveredDay.toLocaleDateString() + " - " +
-                    selectedDays[0].toLocaleDateString() :
-                  "DD-MM-YYYY - DD-MM-YYYY"
+                  (language === "Hebrew" ?
+                    (selectedDays[0] > hoveredDay ?
+                      (selectedDays[0].toLocaleDateString() + " - " +
+                      hoveredDay.toLocaleDateString()) :
+                      (hoveredDay.toLocaleDateString() + " - " +
+                      selectedDays[0].toLocaleDateString())) :
+                    (selectedDays[0] > hoveredDay ?
+                      (hoveredDay.toLocaleDateString() + " - " +
+                      selectedDays[0].toLocaleDateString()) :
+                      (selectedDays[0].toLocaleDateString() + " - " +
+                      hoveredDay.toLocaleDateString()))) :
+                "DD-MM-YYYY - DD-MM-YYYY"
             }
           </div>
         </div>

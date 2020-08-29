@@ -27,7 +27,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return ({
-        setSelectedColor: (selectedColor) => dispatch(setSelectedColor(ownProps.id, selectedColor)),
+        setSelectedColor: (selectedColor) => dispatch(setSelectedColor(selectedColor)),
         setViewedMonth: (viewedMonth) => dispatch(setViewedMonth(ownProps.id, viewedMonth)),
         setViewedYear: (viewedYear) => dispatch(setViewedYear(ownProps.id, viewedYear)),
         setMode: (mode) => dispatch(setMode(ownProps.id, mode)),

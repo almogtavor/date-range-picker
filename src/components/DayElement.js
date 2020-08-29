@@ -71,7 +71,7 @@ export const DayElement = (props) => {
         style={isSelected ? {...genericStyle, "background": selectedColor} : genericStyle}
         onClick={handleClick}
         onMouseEnter={handleEnterHover}
-        onMouseOut={handleOutHover} 
+        onMouseLeave={handleOutHover} 
     >
         <div 
             className={`${isInRange && "hover-div"}`} 

@@ -38,7 +38,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   return {
     setSelectedColor: function setSelectedColor(selectedColor) {
-      return dispatch((0, _actions.setSelectedColor)(ownProps.id, selectedColor));
+      return dispatch((0, _actions.setSelectedColor)(selectedColor));
     },
     setViewedMonth: function setViewedMonth(viewedMonth) {
       return dispatch((0, _actions.setViewedMonth)(ownProps.id, viewedMonth));
