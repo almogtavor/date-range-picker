@@ -1,8 +1,8 @@
 .day-element {
-    height: 89%;
+    height: 80%;
     width: 100.5%;
     background-clip: content-box;
-    border-radius: 20px;
+    border-radius: 7px;
     cursor: pointer;
 }
 
@@ -15,10 +15,12 @@
 }
 
 .hover-div {
-    border-radius: 20px;
+    height: 100%;
+
+    border-radius: 7px;
 }
 
-/* .first-selected {
+.first-selected {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
@@ -26,7 +28,7 @@
 .last-selected {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-} */
+}
 
 .last-day-of-week {
     background-color: rgb(236, 217, 218);

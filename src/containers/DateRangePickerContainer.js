@@ -1,6 +1,6 @@
 import { setLanguage, setBoardsNum } from '../actions';
 import { connect } from 'react-redux';
-import { DateRangePickerMapper } from '../components/DateRangePicker';
+import { DateRangePickerMapper } from '../components/DateRangePickerMapper';
 
 const mapStateToProps = (state, ownProps) => {
     return ({

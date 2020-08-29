@@ -65,7 +65,7 @@ export const DayElement = (props) => {
     <div 
         className={`day-element ${!isOfCurrentViewedMonth && "non-current"}
             ${isInRange ? "in-range" : "not-in-range"}
-            ${isToday && "today"}
+            ${isToday && "today"}            
             ${(dayOfWeek === 0 && !isInRange) && "first-day-of-week"}
             ${(dayOfWeek === 6 && !isInRange) && "last-day-of-week"}`}
         style={isSelected ? {...genericStyle, "background": selectedColor} : genericStyle}
@@ -90,10 +90,11 @@ export const DayElement = (props) => {
     </div>)
 }
 
-            // ${selectedDays === 2 ? 
-            //     (date.toLocaleDateString() === selectedDays[0].toLocaleDateString()) && selectedDays[0] > selectedDays[1] ? "last-selected" : 
-            //     (date.toLocaleDateString() === selectedDays[0].toLocaleDateString()) && selectedDays[0] < selectedDays[1] ? "first-selected" :
-            //     (date.toLocaleDateString() === selectedDays[1].toLocaleDateString()) && selectedDays[0] > selectedDays[1] ? "first-selected" :
-            //     (date.toLocaleDateString() === selectedDays[1].toLocaleDateString()) && selectedDays[0] < selectedDays[1] && "last-selected" :
-            // (selectedDays === 1 && (date.toLocaleDateString() === selectedDays[0].toLocaleDateString()) && 
-            //     selectedDays[0] > hoveredDay) ? "last-selected" : "first-selected"
+ // ${selectedDays.length === 2 ? 
+//     (date.toLocaleDateString() === selectedDays[0].toLocaleDateString()) && selectedDays[0] > selectedDays[1] ? "last-selected" : 
+//     (date.toLocaleDateString() === selectedDays[0].toLocaleDateString()) && selectedDays[0] < selectedDays[1] ? "first-selected" :
+//     (date.toLocaleDateString() === selectedDays[1].toLocaleDateString()) && selectedDays[0] > selectedDays[1] ? "first-selected" :
+//     (date.toLocaleDateString() === selectedDays[1].toLocaleDateString()) && selectedDays[0] < selectedDays[1] && "last-selected" :
+// (selectedDays.length === 1 && 
+//     (date.toLocaleDateString() === selectedDays[0].toLocaleDateString()) && selectedDays[0] > hoveredDay) ? "last-selected" :
+//     selectedDays[0] < hoveredDay && "first-selected"}

@@ -9,7 +9,7 @@ var _actions = require("../actions");
 
 var _reactRedux = require("react-redux");
 
-var _DateRangePicker = require("../components/DateRangePicker");
+var _DateRangePickerMapper = require("../components/DateRangePickerMapper");
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
@@ -36,6 +36,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   return {};
 };
 
-var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_DateRangePicker.DateRangePickerMapper);
+var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_DateRangePickerMapper.DateRangePickerMapper);
 
 exports["default"] = _default;

@@ -128,7 +128,14 @@ export const Header = (props) => {
                 className={`arrow ${(language === "Hebrew" ? isNearMonthBiggerAtOne() : isNearMonthLowerAtOne()) && "disabled"}`}
                 onMouseEnter={() => hoverHandle("leftArrow", true)} 
                 onMouseOut={() => hoverHandle("leftArrow", false)}
-                style={isHover.leftArrow && !isNearMonthLowerAtOne() ? {"backgroundColor": selectedColor + "60"} : {}}
+                style={
+                    isHover.leftArrow && 
+                        (language === "Hebrew" ? 
+                            !isNearMonthBiggerAtOne() : 
+                            !isNearMonthLowerAtOne()) ? 
+                        {"backgroundColor": selectedColor + "60"} : 
+                        {}
+                }
             >
                 <img alt="" src={leftArrow} height="18px"/>
             </div>
@@ -137,7 +144,14 @@ export const Header = (props) => {
                 className={`arrow ${(language === "Hebrew" ? isNearMonthLowerAtOne() : isNearMonthBiggerAtOne()) && "disabled"}`}
                 onMouseEnter={() => hoverHandle("rightArrow", true)} 
                 onMouseOut={() => hoverHandle("rightArrow", false) }
-                style={isHover.rightArrow && !isNearMonthBiggerAtOne() ? {"backgroundColor": selectedColor + "60"} : {}}
+                style={
+                    isHover.rightArrow && 
+                        (language === "Hebrew" ? 
+                            !isNearMonthLowerAtOne() :  
+                            !isNearMonthBiggerAtOne()) ? 
+                        {"backgroundColor": selectedColor + "60"} : 
+                        {}
+                    }
             >
                 <img alt="" src={rightArrow}  height="18px"/>
             </div>
