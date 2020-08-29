@@ -18,7 +18,7 @@ const initialState = {
 function rootReducer (state = initialState, payload) {
   if (payload) {
     const boardsNum = payload.boardsNum ? payload.boardsNum : state.boardsNum;
-    const componentIDs = state.language === "Hebrew" ? [...Array(boardsNum).keys()].reverse() : [...Array(boardsNum).keys()];
+    const componentIDs = [...Array(boardsNum).keys()];
   
     if (payload.type === 'SET_SELECTED_COLOR') {
         return Object.assign({}, state, {
@@ -27,7 +27,7 @@ function rootReducer (state = initialState, payload) {
       } else if (payload.type === 'SET_SHOW_COLOR_PICKER') {
         let stateObj = {};
         for (let i of componentIDs) {
-          if (String(payload.id) === i) {
+          if (payload.id === i) {
             stateObj[i] = payload.showColorPicker;
           } else {
             stateObj[i] = state.showColorPicker[i];
@@ -39,7 +39,7 @@ function rootReducer (state = initialState, payload) {
     } else if (payload.type === 'SET_VIEWED_MONTH') {
         let stateObj = {};
         for (let i of componentIDs) {
-          if (String(payload.id) === i) {
+          if (payload.id === i) {
             stateObj[i] = payload.viewedMonth;
           } else {
             stateObj[i] = state.viewedMonth[i];
@@ -51,7 +51,7 @@ function rootReducer (state = initialState, payload) {
     } else if (payload.type === 'SET_VIEWED_YEAR') {
         let stateObj = {};
         for (let i of componentIDs) {
-          if (String(payload.id) === i) {
+          if (payload.id === i) {
             stateObj[i] = payload.viewedYear;
           } else {
             stateObj[i] = state.viewedYear[i];
@@ -63,7 +63,7 @@ function rootReducer (state = initialState, payload) {
     } else if (payload.type === 'SET_MODE') {
         let stateObj = {};
         for (let i of componentIDs) {
-          if (String(payload.id) === i) {
+          if (payload.id === i) {
             stateObj[i] = payload.mode;
           } else {
             stateObj[i] = state.mode[i];
