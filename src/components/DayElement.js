@@ -5,8 +5,10 @@ import '../styles/day.css';
 export const DayElement = (props) => {
     const {
         date,
-        selectedDaysState,
-        hoveredDayState,
+        selectedDays, 
+        setSelectedDays,
+        hoveredDay,
+        setHoveredDay,
         selectedColor,
         dayOfWeek,
         genericStyle,
@@ -15,8 +17,6 @@ export const DayElement = (props) => {
     const dayNum = date.getDate();
     const isOfCurrentViewedMonth = true;
     const isToday = date.toLocaleDateString() === new Date().toLocaleDateString() ?  true : false;
-    const [selectedDays, setSelectedDays] = selectedDaysState;
-    const [hoveredDay, setHoveredDay] = hoveredDayState;
     const [isSelected, setIsSelected] = useState(false);
     const [isInRange, setIsInRange] = useState(false);
 
@@ -26,14 +26,18 @@ export const DayElement = (props) => {
         }
     });
 
-    if ((hoveredDay && selectedDays.length > 0) && !isInRange) {
-        if (selectedDays.length === 1) {
-            if ((date >= selectedDays[0] && date <= hoveredDay) || (date <= selectedDays[0] && date >= hoveredDay)) {
+    if ((selectedDays.length > 0) && !isInRange) {
+        if (hoveredDay && selectedDays.length === 1) {
+            if ((date >= selectedDays[0] && date <= hoveredDay) || 
+                (date <= selectedDays[0] && date >= hoveredDay)) {
                 setIsInRange(true);
-            }
+            } 
         } else {
-            if ((date >= selectedDays[0] && date <= selectedDays[1]) || (date <= selectedDays[0] && date >= selectedDays[1])) {
-                setIsInRange(true);
+            if (selectedDays.length === 2) {
+                if ((date >= selectedDays[0] && date <= selectedDays[1]) ||
+                 (date <= selectedDays[0] && date >= selectedDays[1])) {
+                    setIsInRange(true);
+                } 
             }
         }
     }
@@ -47,10 +51,16 @@ export const DayElement = (props) => {
         setIsSelected(!isSelected);
     };
 
-    const handleHover = () => {
+    const handleEnterHover = () => {
         setHoveredDay(date);
     };
 
+    const handleOutHover = () => {
+        if (selectedDays.length === 2) {
+            setHoveredDay(null);
+        }
+    };
+    
     return (
     <div 
         className={`day-element ${!isOfCurrentViewedMonth && "non-current"}
@@ -60,12 +70,21 @@ export const DayElement = (props) => {
             ${(dayOfWeek === 6 && !isInRange) && "last-day-of-week"}`}
         style={isSelected ? {...genericStyle, "background": selectedColor} : genericStyle}
         onClick={handleClick}
-        onMouseEnter={handleHover}
+        onMouseEnter={handleEnterHover}
+        onMouseLeave={handleOutHover} 
     >
         <div 
             className={`${isInRange && "hover-div"}`} 
-            style={isInRange && (date.toLocaleDateString() !== hoveredDay.toLocaleDateString() || selectedDays.length !== 2) ?
-                {"background": selectedColor + "60"} : {}}>
+            style={
+                hoveredDay !== null ? 
+                    (isInRange && 
+                        (date.toLocaleDateString() !== hoveredDay.toLocaleDateString() || selectedDays.length !== 2) ?
+                            {"background": selectedColor + "60"} : 
+                            {}) :
+                isInRange && selectedDays.length === 2 ?
+                    {"background": selectedColor + "60"} :
+                    {}
+            }>
                 {dayNum}
         </div>
     </div>)

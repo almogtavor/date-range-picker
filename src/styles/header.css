@@ -1,32 +1,52 @@
-  
-  .header {
+.header {
     grid-column: 1 / -1;
     display: flex;
     justify-content: space-between;
+
     align-items: center;
     margin: 10px 15px;
-  }
-  
-  .header--info {
-    flex: 1;
+}
+
+.info {
+    display: flex;
     font-size: 1.5em;
-  }
-  
-  .header--month {
+}
+
+.month {
+    margin-left: 5px;
     margin-right: 10px;
     cursor: pointer;
-  }
-  
-  .header--year {
-    /* cursor: pointer; */
-  }
-  
-  .header-icons span {
+    height: 35px;
+    border-radius: 10px;
+}
+
+.year {
     cursor: pointer;
-    display: inline-block;
+    height: 35px;
+    border-radius: 10px;
+}
+
+.year:hover {
+    background-color: rgb(198, 203, 211);
+}
+
+.header-icons {
+    cursor: pointer;
+    display: flex;
     padding: 2px 5px;
-  }
-  
-  .header-icons span:hover {
+}
+
+.header-icons:hover {
     background: #ffffff3b;
-  }
+}
+
+.arrow {
+    border-radius: 12px;
+    margin: 10%;
+}
+
+
+.arrow.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}

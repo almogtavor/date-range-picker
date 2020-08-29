@@ -1,16 +1,22 @@
 import React from "react";
 import "./App.css";
-import CalendarConatiner from './containers/CalendarContainer';
-import LowerFooterContainer from './containers/LowerFooterContainer';
-import HeaderContainer from './containers/HeaderContainer';
+import DateRangePickerContainer from './containers/DateRangePickerContainer';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-      <div className="calendar-component">
-          <HeaderContainer/>
-          <CalendarConatiner/>
-          <LowerFooterContainer/>
+        <div className="date-range-picker" style={{
+          "height": `${Math.floor(props.boardsNum / 3) * 292}px`,
+          "gridTemplateRows": `repeat(${Math.floor(props.boardsNum / 3)}, 1fr)`,
+        }}>
+          
+          <DateRangePickerContainer 
+              language={props.language} 
+              startYear={props.startYear} 
+              endYear={props.endYear}
+              firstDayOfWeekIndex={props.firstDayOfWeekIndex}
+              boardsNum={props.boardsNum}
+          />
       </div>
     </div>
   );

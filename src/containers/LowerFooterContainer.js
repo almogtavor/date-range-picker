@@ -1,17 +1,16 @@
-import { setSelectedColor, setMuted, setShowColorPicker } from '../actions';
+import { setSelectedColor, setShowColorPicker } from '../actions';
 import { LowerFooter } from '../components/LowerFooter';
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
     selectedColor: state.selectedColor,
-    muted: state.muted, 
-    showColorPicker: state.showColorPicker,
+    showColorPicker: state.showColorPicker[ownProps.id],
+    language: state.language,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
     setSelectedColor: (selectedColor) => dispatch(setSelectedColor(selectedColor)),
-    setMuted: (muted) => dispatch(setMuted(muted)),
-    setShowColorPicker: (showColorPicker) => dispatch(setShowColorPicker(showColorPicker)),
+    setShowColorPicker: (showColorPicker) => dispatch(setShowColorPicker(ownProps.id, showColorPicker)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LowerFooter);

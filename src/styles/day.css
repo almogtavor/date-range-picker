@@ -1,5 +1,5 @@
 .day-element {
-    height: 70%;
+    height: 89%;
     width: 100.5%;
     background-clip: content-box;
     border-radius: 20px;
@@ -7,7 +7,7 @@
 }
 
 .not-in-range:hover {
-    background-color: rgb(198, 203, 211);
+    background-color: rgb(226, 225, 225);
 }
 
 .in-range:hover {

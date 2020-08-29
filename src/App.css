@@ -1,20 +1,49 @@
 .App {
   width: 100vw;
   height: 100vh;
+  user-select: none;
+}
+
+.selected-dates {
+  height: 22px;
+  /* background-color: rgb(231, 231, 231); */
+  background-color: rgb(244, 246, 248);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  margin-top: -22px;
+  box-shadow: 0 3px 6px #ddd;
+  display: flex;
+}
+
+.dates-display.hebrew {
+  flex-direction: "row-reverse";
+  margin-right: 5%;
+}
+
+.dates-display {
+  margin-left: 5%;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.date-range-picker {
+  position: absolute;
+  width: 795px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  top: 30%;
+  left: 10%;
 }
 
 .calendar-component {
   text-align: center;
   position: absolute;
-  height: 280px;
+  height: 295px;
   width: 255px;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  border-radius: 10px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
   box-shadow: 0 3px 6px #ddd;
-  padding: 5px;
+  padding: 0px 5px 10px 5px;
   background-color: rgb(244, 246, 248);
 }
 

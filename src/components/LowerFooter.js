@@ -1,44 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { CirclePicker } from "react-color";
+import {calendarConfig} from '../configuration/config';
 import '../styles/lower-footer.css';
-
-const pickableColors = [
-    "#5ebaf8",
-    "#ec467d",
-    "#fdb241",
-    "#c559d8",
-    "#673ab7",
-    "#6d99e0",
-    "#43d6c8",
-    "#bd8470",
-  ];
 
 const rightHandIcon = require('../images/right-hand.png');
 
 export const LowerFooter = (props) => {
 
-    const {selectedColor, muted, showColorPicker, 
+    const {selectedColor, showColorPicker, 
         setSelectedColor, 
-        setMuted, 
         setShowColorPicker} = props;
 
-    console.log(selectedColor, muted, showColorPicker, 
-        setSelectedColor, 
-        setMuted, 
-        setShowColorPicker);
-
-
-    const mutedStyle = muted ? { color: "grey" } : {};
-  
-
-    const toggleMute = () => {
-        const toggled = !muted;
-        setMuted(toggled);
-        localStorage.setItem("muted", JSON.stringify(toggled))
-    };
-
     const changeColor = (color) => {
-        // this.setState({ selectedColor: color.hex, showColorPicker: false })
         setSelectedColor(color.hex);
         setShowColorPicker(false);
         localStorage.setItem("selectedColor", color.hex);
@@ -67,7 +40,7 @@ export const LowerFooter = (props) => {
                     className="hand-right"
                 />
                 <CirclePicker
-                    colors={pickableColors}
+                    colors={calendarConfig.pickableColors}
                     circleSize={15}
                     circleSpacing={3}
                     onChangeComplete={changeColor}
