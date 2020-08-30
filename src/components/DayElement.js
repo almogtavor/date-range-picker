@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import '../styles/day.css';
 
-
 export const DayElement = (props) => {
     const {
         date,
         selectedDays, 
         setSelectedDays,
+        setViewedMonth,
+        setViewedYear,
         isOfCurrentViewedMonth,
         hoveredDay,
         setHoveredDay,
         selectedColor,
         dayOfWeek,
         genericStyle,
+        updateLastChangedId,
     } = props;
 
     const dayNum = date.getDate();
@@ -49,6 +51,11 @@ export const DayElement = (props) => {
             setSelectedDays([...selectedDays, date]);
         }
         setIsSelected(!isSelected);
+        if (!isOfCurrentViewedMonth) {
+            setViewedMonth(date.getMonth());
+            setViewedYear(date.getFullYear());
+            updateLastChangedId();
+        }
     };
 
     const handleEnterHover = () => {

@@ -61,3 +61,8 @@ export const setHoveredDay = hoveredDay => ({
     type: 'SET_HOVERED_DAY',
     hoveredDay
 })
+
+export const setLastChangedId = lastChangedId => ({
+    type: 'SET_LAST_CHANGED_ID',
+    lastChangedId
+})

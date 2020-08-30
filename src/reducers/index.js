@@ -12,6 +12,7 @@ const initialState = {
     firstDayOfWeekIndex: 0,
     boardsNum: 2,
     hoveredDay: null,
+    lastChangedId: null,
 };
 
 
@@ -116,6 +117,10 @@ function rootReducer (state = initialState, payload) {
     } else if (payload.type === 'SET_HOVERED_DAY') {
         return Object.assign({}, state, {
           hoveredDay: payload.hoveredDay
+        });
+    } else if (payload.type === 'SET_LAST_CHANGED_ID') {
+        return Object.assign({}, state, {
+          lastChangedId: payload.lastChangedId
         });
     } else {
         return state;

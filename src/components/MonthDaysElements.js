@@ -11,6 +11,9 @@ export const MonthDaysElements = (props) => {
         setSelectedDays,
         setHoveredDay,
         hoveredDay,
+        setViewedMonth,
+        setViewedYear,
+        updateLastChangedId,
     } = props;
     const numOfDaysInMonth = new Date(viewedYear, viewedMonth + 1, 0).getDate();
     const dayToBeginTheMonthFrom = new Date(viewedYear, viewedMonth, 1).getDay();
@@ -52,7 +55,10 @@ export const MonthDaysElements = (props) => {
                 setSelectedDays={setSelectedDays}
                 isOfCurrentViewedMonth={isOfCurrentViewedMonth}
                 hoveredDay={hoveredDay}
+                setViewedMonth={setViewedMonth}
+                setViewedYear={setViewedYear}
                 setHoveredDay={setHoveredDay}
+                updateLastChangedId={updateLastChangedId}
                 selectedColor={selectedColor}
                 dayOfWeek={dayOfWeek}
                 genericStyle={genericStyle}

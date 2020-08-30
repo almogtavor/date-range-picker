@@ -8,6 +8,7 @@ import {
     setMode, 
     setSelectedDays,
     setHoveredDay,
+    setLastChangedId,
 } from '../actions';
 import { Calendar } from '../components/Calendar';
 import { connect } from 'react-redux';
@@ -50,6 +51,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(setFirstDayOfWeekIndex(ownProps.firstDayOfWeekIndex));
     }
     return ({
+        updateLastChangedId: () => dispatch(setLastChangedId(ownProps.id)),
         setHoveredDay: (hoveredDay) => dispatch(setHoveredDay(hoveredDay)),
         setSelectedDays: (selectedDays) => dispatch(setSelectedDays(selectedDays)),
         setSelectedColor: (selectedColor) => dispatch(setSelectedColor(selectedColor)),

@@ -24,6 +24,7 @@ export const Calendar = (props) => {
       nearViewedMonths,
       setHoveredDay,
       hoveredDay,
+      updateLastChangedId: updateLastChangedId,
     } = props;
 
     return (
@@ -36,7 +37,10 @@ export const Calendar = (props) => {
           selectedColor={selectedColor}
           selectedDays={selectedDays}
           setSelectedDays={setSelectedDays}
+          setViewedMonth={setViewedMonth}
+          setViewedYear={setViewedYear}
           setHoveredDay={setHoveredDay}
+          updateLastChangedId={updateLastChangedId}
           hoveredDay={hoveredDay}
         />
         {mode === "Months" ? (
