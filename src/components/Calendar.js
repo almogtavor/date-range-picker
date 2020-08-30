@@ -1,88 +1,33 @@
 import React from "react";
-import { WeekDaysNames } from "./WeekDaysNames";
-import { MonthDaysElements } from "./MonthDaysElements";
-import { MonthSelector } from "./MonthSelector";
 import '../styles/month.css';
-import { YearSelector } from "./YearSelector";
+import MonthDayElementsContainer from "../containers/MonthDayElementsContainer";
+import YearSelectorContainer from "../containers/YearSelectorContainer";
+import MonthSelectorContainer from "../containers/MonthSelectorContainer";
+import WeekDaysNamesContainer from "../containers/WeekDaysNamesContainer";
 
 
 export const Calendar = (props) => {
     const {
-      selectedColor, 
-      viewedMonth, 
-      setViewedMonth, 
-      viewedYear, 
-      setViewedYear, 
       mode, 
-      setMode, 
-      language, 
-      startYear, 
-      endYear, 
       firstDayOfWeekIndex,
-      selectedDays,
-      setSelectedDays,
-      nearViewedMonths,
-      setHoveredDay,
-      hoveredDay,
-      updateLastChangedId,
-      isLastChangedId,
-      setRightViewedMonth,
-      setRightViewedYear,
-      setLeftViewedMonth,
-      setLeftViewedYear,
-      rightViewedMonth,
-      rightViewedYear,
-      leftViewedMonth,
-      leftViewedYear,
+      id,
     } = props;
 
     return (
     <div className="calendar">
-        <WeekDaysNames firstDayOfWeekIndex={ language === "Hebrew" ? 7 - firstDayOfWeekIndex : firstDayOfWeekIndex } language={language}/>
-        <MonthDaysElements 
-          viewedYear={viewedYear} 
-          viewedMonth={viewedMonth} 
-          language={language}
-          selectedColor={selectedColor}
-          selectedDays={selectedDays}
-          setSelectedDays={setSelectedDays}
-          setViewedMonth={setViewedMonth}
-          setViewedYear={setViewedYear}
-          setHoveredDay={setHoveredDay}
-          updateLastChangedId={updateLastChangedId}
-          hoveredDay={hoveredDay}
-          isLastChangedId={isLastChangedId}
-          setRightViewedMonth={setRightViewedMonth}
-          setRightViewedYear={setRightViewedYear}
-          setLeftViewedMonth={setLeftViewedMonth}
-          setLeftViewedYear={setLeftViewedYear}
-          rightViewedMonth={rightViewedMonth}
-          rightViewedYear={rightViewedYear}
-          leftViewedMonth={leftViewedMonth}
-          leftViewedYear={leftViewedYear}
+        <WeekDaysNamesContainer
+          firstDayOfWeekIndex={firstDayOfWeekIndex}
+        />
+        <MonthDayElementsContainer 
+          id={id}
         />
         {mode === "Months" ? (
-          <MonthSelector
-            selectedColor={selectedColor}
-            viewedYear={viewedYear} 
-            viewedMonth={viewedMonth}
-            setViewedMonth={setViewedMonth}
-            mode={mode}
-            setMode={setMode}
-            language={language}
-            nearViewedMonths={nearViewedMonths}
+          <MonthSelectorContainer
+          id={id}
           />
         ) : mode === "Years" && 
-          <YearSelector
-            selectedColor={selectedColor}
-            viewedYear={viewedYear} 
-            viewedMonth={viewedMonth}
-            setViewedYear={setViewedYear}
-            mode={mode}
-            setMode={setMode}
-            startYear={startYear}
-            endYear={endYear}
-            nearViewedMonths={nearViewedMonths}
+          <YearSelectorContainer
+            id={id}
           />
         }
     </div>)

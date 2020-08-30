@@ -1,27 +1,12 @@
 import React, { useState } from "react";
-import {DayElement} from "./DayElement";
+import DayElementContainer from "../containers/DayElementContainer";
 
 export const MonthDaysElements = (props) => { 
     const {
         viewedYear, 
         viewedMonth, 
         language, 
-        selectedColor, 
-        selectedDays, 
-        setSelectedDays,
-        setHoveredDay,
-        hoveredDay,
-        setViewedMonth,
-        setViewedYear,
-        updateLastChangedId,
-        setRightViewedMonth,
-        setRightViewedYear,
-        setLeftViewedMonth,
-        setLeftViewedYear,
-        rightViewedMonth,
-        rightViewedYear,
-        leftViewedMonth,
-        leftViewedYear,
+        id,
     } = props;
     const numOfDaysInMonth = new Date(viewedYear, viewedMonth + 1, 0).getDate();
     const dayToBeginTheMonthFrom = new Date(viewedYear, viewedMonth, 1).getDay();
@@ -57,28 +42,13 @@ export const MonthDaysElements = (props) => {
         };
 
         return (
-            <DayElement
+            <DayElementContainer
                 key={Math.random()} // TODO: change
+                id={id}
                 date={new Date(viewedYear, viewedMonth, day)}
-                selectedDays={selectedDays}
-                setSelectedDays={setSelectedDays}
                 isOfCurrentViewedMonth={isOfCurrentViewedMonth}
-                hoveredDay={hoveredDay}
-                setViewedMonth={setViewedMonth}
-                setViewedYear={setViewedYear}
-                setHoveredDay={setHoveredDay}
-                updateLastChangedId={updateLastChangedId}
-                selectedColor={selectedColor}
                 dayOfWeek={dayOfWeek}
                 genericStyle={genericStyle}
-                setRightViewedMonth={setRightViewedMonth}
-                setRightViewedYear={setRightViewedYear}
-                setLeftViewedMonth={setLeftViewedMonth}
-                setLeftViewedYear={setLeftViewedYear}
-                rightViewedMonth={rightViewedMonth}
-                rightViewedYear={rightViewedYear}
-                leftViewedMonth={leftViewedMonth}
-                leftViewedYear={leftViewedYear}
             />
         );
         

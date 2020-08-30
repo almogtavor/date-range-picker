@@ -24,6 +24,7 @@ export const DayElement = (props) => {
         leftViewedYear,
     } = props;
 
+
     const dayNum = date.getDate();
     const viewedMonth = date.getMonth();
     const viewedYear = date.getFullYear();
