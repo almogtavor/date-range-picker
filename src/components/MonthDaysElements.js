@@ -14,6 +14,14 @@ export const MonthDaysElements = (props) => {
         setViewedMonth,
         setViewedYear,
         updateLastChangedId,
+        setRightViewedMonth,
+        setRightViewedYear,
+        setLeftViewedMonth,
+        setLeftViewedYear,
+        rightViewedMonth,
+        rightViewedYear,
+        leftViewedMonth,
+        leftViewedYear,
     } = props;
     const numOfDaysInMonth = new Date(viewedYear, viewedMonth + 1, 0).getDate();
     const dayToBeginTheMonthFrom = new Date(viewedYear, viewedMonth, 1).getDay();
@@ -28,6 +36,7 @@ export const MonthDaysElements = (props) => {
     if ((monthDays.year !== viewedYear || monthDays.month !== viewedMonth) || monthDays.array.length === 0) {
         setMonthDays({"year": viewedYear, "month": viewedMonth, "array": tempMonthDaysArray});
     }
+    
     return monthDays.array.map((day) => {
         const date = new Date(viewedYear, viewedMonth, day);
         const columnOnGrid = (day + dayToBeginTheMonthFrom + 7) % 7;
@@ -62,6 +71,14 @@ export const MonthDaysElements = (props) => {
                 selectedColor={selectedColor}
                 dayOfWeek={dayOfWeek}
                 genericStyle={genericStyle}
+                setRightViewedMonth={setRightViewedMonth}
+                setRightViewedYear={setRightViewedYear}
+                setLeftViewedMonth={setLeftViewedMonth}
+                setLeftViewedYear={setLeftViewedYear}
+                rightViewedMonth={rightViewedMonth}
+                rightViewedYear={rightViewedYear}
+                leftViewedMonth={leftViewedMonth}
+                leftViewedYear={leftViewedYear}
             />
         );
         

@@ -14,7 +14,14 @@ export const DayElement = (props) => {
         selectedColor,
         dayOfWeek,
         genericStyle,
-        updateLastChangedId,
+        setRightViewedMonth,
+        setRightViewedYear,
+        setLeftViewedMonth,
+        setLeftViewedYear,
+        rightViewedMonth,
+        rightViewedYear,
+        leftViewedMonth,
+        leftViewedYear,
     } = props;
 
     const dayNum = date.getDate();
@@ -44,7 +51,32 @@ export const DayElement = (props) => {
         }
     }
 
-    const handleClick = () => {
+
+    const decreaseMonth = () => {
+        if (leftViewedMonth === 0) {
+            // if (leftViewedYear - 1 > startYear) { TODO: add startYear
+                setLeftViewedYear((leftViewedYear - 1));
+                setLeftViewedMonth(Math.abs((leftViewedMonth + 12 - 1) % 12));    
+            // }
+        } else {
+            console.log("fjiafe");
+            setLeftViewedMonth(Math.abs((leftViewedMonth + 12 - 1) % 12));
+        }
+    };
+
+    const increaseMonth = () => {
+        console.log(rightViewedMonth);
+        if (rightViewedMonth === 11) {
+            //   if (rightViewedYear + 1 < endYear) { TODO: add end dates to block from changing dates
+                    setRightViewedYear((rightViewedYear + 1));
+                    setRightViewedMonth(Math.abs((rightViewedMonth + 1) % 12));    
+            //   }
+        } else {
+                setRightViewedMonth(Math.abs((rightViewedMonth + 1) % 12));
+        }
+    }
+
+    const handleClick = () =>{
         if (selectedDays.length === 2) {
             setSelectedDays([date]);
         } else {
@@ -54,7 +86,11 @@ export const DayElement = (props) => {
         if (!isOfCurrentViewedMonth) {
             setViewedMonth(date.getMonth());
             setViewedYear(date.getFullYear());
-            updateLastChangedId();
+            if (dayNum < 15 && rightViewedMonth >= 0) {
+                increaseMonth();
+            } else if (dayNum > 15 && leftViewedMonth >= 0) {
+                decreaseMonth();
+            }
         }
     };
 
@@ -76,7 +112,7 @@ export const DayElement = (props) => {
             ${(dayOfWeek === 0 && !isInRange) && "first-day-of-week"}
             ${(dayOfWeek === 6 && !isInRange) && "last-day-of-week"}`}
         style={isSelected ? {...genericStyle, "background": selectedColor} : genericStyle}
-        onClick={handleClick}
+        onClick={() => handleClick()}
         onMouseEnter={handleEnterHover}
         onMouseLeave={handleOutHover} 
     >

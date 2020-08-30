@@ -17,7 +17,6 @@ export const Header = (props) => {
         startYear, 
         endYear,
         nearViewedMonths,
-        isLastChangedId,
     } = props;
 
     const [isHover, setIsHover] = useState({
@@ -26,11 +25,6 @@ export const Header = (props) => {
         "leftArrow": false,
         "rightArrow": false,
     });
-    const [lastMonth, setLastMonth] = useState([null, viewedMonth]);
-
-    if (lastMonth[1] !== viewedMonth) {
-        setLastMonth([lastMonth[1], viewedMonth]);
-    }
 
     const isNearMonthBiggerAtOne = () => {
         if (nearViewedMonths.right.year) {
@@ -103,27 +97,7 @@ export const Header = (props) => {
             setIsHover({...isHover, [param]: hasEntered});
         }
         // TODO: check if this is really needed.
-    }
-
-    if (nearViewedMonths.left.year && lastMonth[0] !== viewedMonth) {
-        console.log();
-        console.log(new Date(viewedYear, viewedMonth + 1, 0) === new Date(nearViewedMonths.left.year, nearViewedMonths.left.month + 1, 0));
-        if (new Date(nearViewedMonths.left.year, nearViewedMonths.left.month + 1, 0).toLocaleDateString() === 
-            new Date(viewedYear, viewedMonth + 1, 0).toLocaleDateString() && !isLastChangedId) {
-            increaseMonth();
-            console.log("should have increased");
-            
-        }
-    }
-
-    if (nearViewedMonths.right.year) {
-        if (new Date(nearViewedMonths.right.year, nearViewedMonths.right.month + 1, 0).toLocaleDateString() === 
-            new Date(viewedYear, viewedMonth + 1, 0).toLocaleDateString() && !isLastChangedId) {
-            decreaseMonth();
-            console.log("should have decreased");
-        }
-    }
-    
+    }  
 
     return (
     <div className="header" style={language === "Hebrew" ? { "flexDirection": "row-reverse"}: {}}>

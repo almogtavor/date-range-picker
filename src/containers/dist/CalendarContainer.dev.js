@@ -25,6 +25,11 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     firstDayOfWeekIndex: state.firstDayOfWeekIndex,
     selectedDays: state.selectedDays,
     hoveredDay: state.hoveredDay,
+    isLastChangedId: state.lastChangedId === ownProps.id,
+    rightViewedMonth: state.viewedMonth[ownProps.id + 1],
+    rightViewedYear: state.viewedYear[ownProps.id + 1],
+    leftViewedMonth: state.viewedMonth[ownProps.id - 1],
+    leftViewedYear: state.viewedYear[ownProps.id - 1],
     nearViewedMonths: {
       "right": {
         "year": state.viewedYear[rightId],
@@ -52,6 +57,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   }
 
   return {
+    updateLastChangedId: function updateLastChangedId() {
+      return dispatch((0, _actions.setLastChangedId)(ownProps.id));
+    },
     setHoveredDay: function setHoveredDay(hoveredDay) {
       return dispatch((0, _actions.setHoveredDay)(hoveredDay));
     },
@@ -66,6 +74,18 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     },
     setViewedYear: function setViewedYear(viewedYear) {
       return dispatch((0, _actions.setViewedYear)(ownProps.id, viewedYear));
+    },
+    setRightViewedMonth: function setRightViewedMonth(viewedMonth) {
+      return dispatch((0, _actions.setViewedMonth)(ownProps.id + 1, viewedMonth));
+    },
+    setRightViewedYear: function setRightViewedYear(viewedYear) {
+      return dispatch((0, _actions.setViewedYear)(ownProps.id + 1, viewedYear));
+    },
+    setLeftViewedMonth: function setLeftViewedMonth(viewedMonth) {
+      return dispatch((0, _actions.setViewedMonth)(ownProps.id - 1, viewedMonth));
+    },
+    setLeftViewedYear: function setLeftViewedYear(viewedYear) {
+      return dispatch((0, _actions.setViewedYear)(ownProps.id - 1, viewedYear));
     },
     setMode: function setMode(mode) {
       return dispatch((0, _actions.setMode)(ownProps.id, mode));

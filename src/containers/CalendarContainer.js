@@ -27,6 +27,11 @@ const mapStateToProps = (state, ownProps) => {
         firstDayOfWeekIndex: state.firstDayOfWeekIndex,
         selectedDays: state.selectedDays,
         hoveredDay: state.hoveredDay,
+        isLastChangedId: state.lastChangedId === ownProps.id,
+        rightViewedMonth: state.viewedMonth[ownProps.id + 1],
+        rightViewedYear: state.viewedYear[ownProps.id + 1],
+        leftViewedMonth: state.viewedMonth[ownProps.id - 1],
+        leftViewedYear: state.viewedYear[ownProps.id - 1],
         nearViewedMonths: {
             "right": {
                 "year": state.viewedYear[rightId], 
@@ -57,6 +62,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         setSelectedColor: (selectedColor) => dispatch(setSelectedColor(selectedColor)),
         setViewedMonth: (viewedMonth) => dispatch(setViewedMonth(ownProps.id, viewedMonth)),
         setViewedYear: (viewedYear) => dispatch(setViewedYear(ownProps.id, viewedYear)),
+        setRightViewedMonth: (viewedMonth) => dispatch(setViewedMonth(ownProps.id + 1, viewedMonth)),
+        setRightViewedYear: (viewedYear) => dispatch(setViewedYear(ownProps.id + 1, viewedYear)),
+        setLeftViewedMonth: (viewedMonth) => dispatch(setViewedMonth(ownProps.id - 1, viewedMonth)),
+        setLeftViewedYear: (viewedYear) => dispatch(setViewedYear(ownProps.id - 1, viewedYear)),
         setMode: (mode) => dispatch(setMode(ownProps.id, mode)),
 })
 };
