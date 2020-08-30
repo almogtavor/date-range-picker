@@ -14,8 +14,8 @@ import { Calendar } from '../components/Calendar';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
-    const leftId = state.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
     const rightId = state.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
+    const leftId = state.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
     return ({
         selectedColor: state.selectedColor,
         viewedYear: state.viewedYear[ownProps.id],
@@ -28,10 +28,10 @@ const mapStateToProps = (state, ownProps) => {
         selectedDays: state.selectedDays,
         hoveredDay: state.hoveredDay,
         isLastChangedId: state.lastChangedId === ownProps.id,
-        rightViewedMonth: state.viewedMonth[ownProps.id + 1],
-        rightViewedYear: state.viewedYear[ownProps.id + 1],
-        leftViewedMonth: state.viewedMonth[ownProps.id - 1],
-        leftViewedYear: state.viewedYear[ownProps.id - 1],
+        rightViewedMonth: state.viewedMonth[rightId],
+        rightViewedYear: state.viewedYear[rightId],
+        leftViewedMonth: state.viewedMonth[leftId],
+        leftViewedYear: state.viewedYear[leftId],
         nearViewedMonths: {
             "right": {
                 "year": state.viewedYear[rightId], 
@@ -62,12 +62,25 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         setSelectedColor: (selectedColor) => dispatch(setSelectedColor(selectedColor)),
         setViewedMonth: (viewedMonth) => dispatch(setViewedMonth(ownProps.id, viewedMonth)),
         setViewedYear: (viewedYear) => dispatch(setViewedYear(ownProps.id, viewedYear)),
-        setRightViewedMonth: (viewedMonth) => dispatch(setViewedMonth(ownProps.id + 1, viewedMonth)),
-        setRightViewedYear: (viewedYear) => dispatch(setViewedYear(ownProps.id + 1, viewedYear)),
-        setLeftViewedMonth: (viewedMonth) => dispatch(setViewedMonth(ownProps.id - 1, viewedMonth)),
-        setLeftViewedYear: (viewedYear) => dispatch(setViewedYear(ownProps.id - 1, viewedYear)),
+        mapRightViewedMonth: (rightId, viewedMonth) => dispatch(setViewedMonth(rightId, viewedMonth)),
+        mapRightViewedYear: (rightId, viewedYear) => dispatch(setViewedYear(rightId, viewedYear)),
+        mapLeftViewedMonth: (leftId, viewedMonth) => dispatch(setViewedMonth(leftId, viewedMonth)),
+        mapLeftViewedYear: (leftId, viewedYear) => dispatch(setViewedYear(leftId, viewedYear)),
         setMode: (mode) => dispatch(setMode(ownProps.id, mode)),
-})
+    })
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+    const rightId = stateProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
+    const leftId = stateProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
+    return {
+        ...stateProps,
+        ...dispatchProps,
+        setRightViewedMonth: (viewedMonth) => dispatchProps.mapRightViewedMonth(rightId, viewedMonth),
+        setRightViewedYear: (viewedYear) => dispatchProps.mapRightViewedYear(rightId, viewedYear),
+        setLeftViewedMonth: (viewedMonth) => dispatchProps.mapLeftViewedMonth(leftId, viewedMonth),
+        setLeftViewedYear: (viewedYear) => dispatchProps.mapLeftViewedYear(leftId, viewedYear),
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Calendar);
