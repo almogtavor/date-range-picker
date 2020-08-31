@@ -14,8 +14,8 @@ var _DateRangePickerMapper = require("../components/DateRangePickerMapper");
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     language: ownProps.language,
-    startYear: ownProps.startYear,
-    endYear: ownProps.endYear,
+    startDate: ownProps.startDate,
+    endDate: ownProps.endDate,
     firstDayOfWeekIndex: ownProps.firstDayOfWeekIndex,
     boardsNum: ownProps.boardsNum,
     selectedDays: state.selectedDays,

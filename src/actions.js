@@ -32,14 +32,14 @@ export const setLanguage = language => ({
     language
 })
 
-export const setStartYear = startYear => ({
-    type: 'SET_START_YEAR',
-    startYear
+export const setStartDate = startDate => ({
+    type: 'SET_START_DATE',
+    startDate
 })
 
-export const setEndYear = endYear => ({
-    type: 'SET_END_YEAR',
-    endYear
+export const setEndDate = endDate => ({
+    type: 'SET_END_DATE',
+    endDate
 })
 
 export const setFirstDayOfWeekIndex = firstDayOfWeekIndex => ({

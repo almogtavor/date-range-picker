@@ -11,7 +11,9 @@ export const MonthSelector = (props) => {
         viewedYear, 
         setMode,
         language,
-        nearViewedMonths
+        nearViewedMonths,
+        startDate,
+        endDate,
     } = props;
 
     const selectMonthHandler = month => {
@@ -32,6 +34,12 @@ export const MonthSelector = (props) => {
                     if (new Date(viewedYear, i, 0) <= new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 0)) {
                         validMonth = false;
                     }
+                }
+                if (new Date(viewedYear, i, 0) > new Date(endDate.getFullYear(), endDate.getMonth(), 0)) {
+                    validMonth = false;
+                }
+                if (new Date(viewedYear, i, 0) < new Date(startDate.getFullYear(), startDate.getMonth(), 0)) {
+                    validMonth = false;
                 }
                 return (
                     <div

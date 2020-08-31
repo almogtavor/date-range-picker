@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import '../styles/day.css';
 
 export const DayElement = (props) => {
@@ -14,6 +14,8 @@ export const DayElement = (props) => {
         selectedColor,
         dayOfWeek,
         genericStyle,
+        startDate,
+        endDate,
         setRightViewedMonth,
         setRightViewedYear,
         setLeftViewedMonth,
@@ -29,6 +31,7 @@ export const DayElement = (props) => {
     const viewedMonth = date.getMonth();
     const viewedYear = date.getFullYear();
     const isToday = date.toLocaleDateString() === new Date().toLocaleDateString() ?  true : false;
+    const isDisabled = date < startDate || date > endDate;
     let isSelected = false;
     let isInRange = false;
 
@@ -61,12 +64,28 @@ export const DayElement = (props) => {
         return { yearsDifference, monthsDifference };
     }
 
+    const boardsIncreasement = (currentViewedMonth = viewedMonth) => {
+        increaseMonth(setViewedYear, setViewedMonth, viewedYear, currentViewedMonth);
+        const { 
+            yearsDifference, 
+            monthsDifference 
+        } = differencesCalculation(viewedYear, leftViewedYear, currentViewedMonth, leftViewedMonth);
+        increaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth, monthsDifference, yearsDifference);
+    }
+
+    const boardsDecreasement = (currentViewedMonth = viewedMonth, yearDecreasement) => {
+        decreaseMonth(setViewedYear, setViewedMonth, viewedYear, currentViewedMonth, 0, yearDecreasement);
+        const { 
+            yearsDifference, 
+            monthsDifference 
+        } = differencesCalculation(rightViewedYear, viewedYear, rightViewedMonth, currentViewedMonth + 1);
+        decreaseMonth(setRightViewedYear, setRightViewedMonth, rightViewedYear, rightViewedMonth, monthsDifference, yearsDifference);
+    }
+
     const decreaseMonth = (setYear, setMonth, year, month, decreaseMonthsBy = 1, decreaseYearsBy = 0) => {
         if (month === 0) {
-            // if (leftViewedYear - 1 > startYear) { TODO: add startYear
-                setYear((year - decreaseYearsBy - 1));
-                setMonth(Math.abs((month + 12 - decreaseMonthsBy) % 12));    
-            // }
+            setYear((year - decreaseYearsBy - 1));
+            setMonth(Math.abs((month + 12 - decreaseMonthsBy) % 12));    
         } else {
             setYear((year - decreaseYearsBy));
             setMonth(Math.abs((month + 12 - decreaseMonthsBy) % 12));
@@ -75,79 +94,67 @@ export const DayElement = (props) => {
 
     const increaseMonth = (setYear, setMonth, year, month, increaseMonthsBy = 1, increaseYearsBy = 0) => {
         if (month === 11) {
-            //   if (rightViewedYear + 1 < endYear) { TODO: add end dates to block from changing dates
-                    setYear((year + increaseYearsBy + 1));
-                    setMonth(Math.abs((month + increaseMonthsBy) % 12));    
-            //   }
+            setYear((year + increaseYearsBy + 1));
+            setMonth(Math.abs((month + increaseMonthsBy) % 12));    
         } else {
             setYear((year + increaseYearsBy));
-            console.log(Math.abs((month + increaseMonthsBy) % 12));
             setMonth(Math.abs((month + increaseMonthsBy) % 12));
         }
     }
 
-    const handleClick = () =>{
-        if (selectedDays.length === 2) {
-            setSelectedDays([date]);
-        } else {
-            setSelectedDays([...selectedDays, date]);
-        }
-        isSelected = !isSelected;
-        if (!isOfCurrentViewedMonth && selectedDays.length !== 1) {
-            setViewedMonth(date.getMonth());
-            setViewedYear(date.getFullYear());
-            if (dayNum < 15 && 
-                new Date(rightViewedYear, rightViewedMonth + 1, 0).toLocaleDateString() === 
-                new Date(viewedYear, viewedMonth + 1, 0).toLocaleDateString()) {
-                increaseMonth(setRightViewedYear, setRightViewedMonth, rightViewedYear, rightViewedMonth);
-            } else if (dayNum > 15 && 
-                new Date(leftViewedYear, leftViewedMonth + 1, 0).toLocaleDateString() === 
-                new Date(viewedYear, viewedMonth + 1, 0).toLocaleDateString()) {
-                decreaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth);
+    const handleClick = () => {
+        if (!isDisabled) {
+            if (selectedDays.length === 2) {
+                setSelectedDays([date]);
+            } else {
+                setSelectedDays([...selectedDays, date]);
             }
-        }
-        if (selectedDays.length === 1) {
-            if (leftViewedMonth !== undefined) {
-                if (selectedDays[0].getMonth() === viewedMonth) {
+            isSelected = !isSelected;
+            if (!isOfCurrentViewedMonth && selectedDays.length !== 1) {
     
-                    increaseMonth(setViewedYear, setViewedMonth, viewedYear, viewedMonth);
-                    const { 
-                        yearsDifference, 
-                        monthsDifference 
-                    } = differencesCalculation(viewedYear, leftViewedYear, viewedMonth, leftViewedMonth);
-                    console.log(yearsDifference, monthsDifference);
-                    increaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth, monthsDifference, yearsDifference);
-    
-                } else if ((selectedDays[0].getMonth() === viewedMonth - 1 || selectedDays[0].getMonth() === viewedMonth + 11) && 
-                        (selectedDays[0].getMonth() !== leftViewedMonth || selectedDays[0].getFullYear() !== leftViewedYear)) {
-    
-                    increaseMonth(setViewedYear, setViewedMonth, viewedYear, viewedMonth - 1);
-                    const { 
-                        yearsDifference, 
-                        monthsDifference 
-                    } = differencesCalculation(viewedYear, leftViewedYear, viewedMonth - 1, leftViewedMonth);
-                    increaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth, monthsDifference, yearsDifference);
-    
+                setViewedMonth(date.getMonth());
+                setViewedYear(date.getFullYear());
+                if (rightViewedYear === viewedYear && rightViewedMonth === viewedMonth) {
+                    increaseMonth(setRightViewedYear, setRightViewedMonth, rightViewedYear, rightViewedMonth);
+                } else if (leftViewedYear === viewedYear && leftViewedMonth === viewedMonth) {
+                    decreaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth);
                 }
-            } else if (rightViewedMonth !== undefined) {
-                if ((selectedDays[0].getMonth() === viewedMonth + 1 || selectedDays[0].getMonth() === viewedMonth - 11) && 
-                        (rightViewedMonth !== undefined)) {
-                    const yearDecreasement = viewedMonth === 0 ? - 1 : 0;
-                    decreaseMonth(setViewedYear, setViewedMonth, viewedYear, viewedMonth, 0, yearDecreasement);
-                    const { 
-                        yearsDifference, 
-                        monthsDifference 
-                    } = differencesCalculation(rightViewedYear, viewedYear, rightViewedMonth, viewedMonth + 1);
-                    decreaseMonth(setRightViewedYear, setRightViewedMonth, rightViewedYear, rightViewedMonth, monthsDifference, yearsDifference);
-                    decreaseMonth(setRightViewedYear, setRightViewedMonth, rightViewedYear, rightViewedMonth, monthsDifference, yearsDifference);
-    
+            }
+            console.log(selectedDays.length === 1);
+
+            if (selectedDays.length === 1) {
+                const selectedDayMonth = selectedDays[0].getMonth();
+                const selectedDayYear = selectedDays[0].getFullYear();
+                console.log("selectedDays");
+
+                if (leftViewedMonth !== undefined) {
+                    if (selectedDayMonth === viewedMonth) {
+                        boardsIncreasement();    
+                    } else if ((selectedDayMonth === viewedMonth - 1 || selectedDayMonth === viewedMonth + 11) && 
+                            (selectedDayMonth !== leftViewedMonth || selectedDayYear !== leftViewedYear)) {
+                        boardsIncreasement(viewedMonth - 1);    
+                    } else if ((selectedDayMonth === viewedMonth + 1 || selectedDayMonth === viewedMonth - 11) &&
+                            (selectedDayMonth !== leftViewedMonth || selectedDayYear !== leftViewedYear)) {
+                        boardsIncreasement(); 
+                    }
+                } else if (rightViewedMonth !== undefined) {
+                    if ((selectedDayMonth === viewedMonth + 1 || selectedDayMonth === viewedMonth - 11) &&
+                            (selectedDayMonth !== rightViewedMonth || selectedDayYear !== rightViewedYear)) {
+                        const yearDecreasement = viewedMonth === 0 ? - 1 : 0;
+                        boardsDecreasement(viewedMonth, yearDecreasement);
+                    }  else if ((selectedDayMonth === viewedMonth - 1 || selectedDayMonth === viewedMonth + 11) &&
+                            (selectedDayMonth !== rightViewedMonth || selectedDayYear !== rightViewedYear)) {
+                        boardsDecreasement(viewedMonth - 1, 0); 
+                    }
                 }
             }
         }
     };
 
     const handleEnterHover = () => {
-        setHoveredDay(date);
+        if (!isDisabled) {
+            setHoveredDay(date);
+        }
     };
 
     const handleOutHover = () => {
@@ -160,6 +167,7 @@ export const DayElement = (props) => {
     <div 
         className={`day-element ${!isOfCurrentViewedMonth && "non-current"}
             ${isInRange ? "in-range" : "not-in-range"}
+            ${isDisabled && "disabled"}
             ${isToday && "today"}
             ${(dayOfWeek === 0 && !isInRange) && "first-day-of-week"}
             ${(dayOfWeek === 6 && !isInRange) && "last-day-of-week"}`}

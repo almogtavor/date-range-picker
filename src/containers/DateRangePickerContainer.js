@@ -5,8 +5,8 @@ import { DateRangePickerMapper } from '../components/DateRangePickerMapper';
 const mapStateToProps = (state, ownProps) => {
     return ({
         language : ownProps.language,
-        startYear : ownProps.startYear, 
-        endYear : ownProps.endYear,
+        startDate : ownProps.startDate, 
+        endDate : ownProps.endDate,
         firstDayOfWeekIndex : ownProps.firstDayOfWeekIndex,
         boardsNum : ownProps.boardsNum,
         selectedDays: state.selectedDays,

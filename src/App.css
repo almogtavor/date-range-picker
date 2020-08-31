@@ -32,8 +32,8 @@
   width: 795px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  top: 30%;
-  left: 10%;
+  top: 25%;
+  left: 25%;
 }
 
 .calendar-component {
@@ -46,14 +46,6 @@
   box-shadow: 3px 1px 5px 0px #ddd;
   padding: 0px 5px 10px 5px;
   background-color: rgb(244, 246, 248);
-}
-
-.mute-icon {
-  float: right;
-  cursor: pointer;
-  margin-right: 2em;
-  width: 1.5rem;
-  height: 1.5rem;
 }
 
 .picker-toggler,

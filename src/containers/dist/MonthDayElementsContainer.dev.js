@@ -14,8 +14,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     viewedYear: state.viewedYear[ownProps.id],
     viewedMonth: state.viewedMonth[ownProps.id],
     id: ownProps.id,
-    startYear: state.startYear,
-    endYear: state.endYear,
+    startDate: state.startDate,
+    endDate: state.endDate,
     language: state.language
   };
 };

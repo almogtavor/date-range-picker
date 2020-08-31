@@ -9,18 +9,17 @@ export const YearSelector = (props) => {
         viewedYear,
         viewedMonth,
         setMode,
-        startYear, 
-        endYear,
+        startDate, 
+        endDate,
         nearViewedMonths
     } = props;
     
     let yearsArray = [];
-    for (let i = endYear; i > startYear  + 1; i--) {
+    for (let i = endDate.getFullYear(); i > startDate.getFullYear() - 1; i--) {
         yearsArray.push(i);
     }
 
     const selectYearHandler = year => {
-        console.log(nearViewedMonths);
       setMode("Days");
       setViewedYear(year);
     };
@@ -39,6 +38,12 @@ export const YearSelector = (props) => {
                     if (new Date(year, viewedMonth, 0) <= new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 0)) {
                         validYear = false;
                     }
+                }
+                if (new Date(year, viewedMonth, 0) > new Date(endDate.getFullYear(), endDate.getMonth(), 0)) {
+                    validYear = false;
+                }
+                if (new Date(year, viewedMonth, 0) < new Date(startDate.getFullYear(), startDate.getMonth(), 0)) {
+                    validYear = false;
                 }
                 return (
                     <div

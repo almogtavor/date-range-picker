@@ -23,6 +23,12 @@
     opacity: 0.2;
 }
 
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
 /* .first-selected {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;

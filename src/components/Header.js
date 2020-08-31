@@ -14,8 +14,8 @@ export const Header = (props) => {
         setViewedMonth, 
         setMode, 
         language, 
-        startYear, 
-        endYear,
+        startDate, 
+        endDate,
         nearViewedMonths,
     } = props;
 
@@ -26,26 +26,22 @@ export const Header = (props) => {
         "rightArrow": false,
     });
 
-    const isNearMonthBiggerAtOne = () => {
-        if (nearViewedMonths.right.year) {
-            return (
-                new Date(viewedYear, viewedMonth + 2, 0) > 
-                new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0)
-            );
-        } else {
-            return false;
-        }
+    const canIncrease = () => {
+        const isNearMonthNotBlocks = (nearViewedMonths.right.year) ?            
+                new Date(viewedYear, viewedMonth + 2, 0) <= 
+                new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0) : 
+                true;
+        const isBiggerThanStartDate = new Date(viewedYear, viewedMonth + 1, 0) < endDate;
+        return isNearMonthNotBlocks && isBiggerThanStartDate;
     }
 
-    const isNearMonthLowerAtOne = () => {
-        if (nearViewedMonths.left.year) {
-            return (
-                new Date(viewedYear, viewedMonth - 2, 0) < 
-                new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 0)
-            );
-        } else {
-            return false;
-        }
+    const canDecrease = () => {
+        const isNearMonthNotBlocks = (nearViewedMonths.left.year) ?            
+                new Date(viewedYear, viewedMonth - 2, 0) >= 
+                new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 0) : 
+                true;
+        const isBiggerThanStartDate = new Date(viewedYear, viewedMonth - 1, 0) > startDate;
+        return isNearMonthNotBlocks && isBiggerThanStartDate;
     }
 
     const monthHandler = () => {
@@ -57,28 +53,20 @@ export const Header = (props) => {
     };
 
     const decreaseMonth = () => {
-        if (!isNearMonthLowerAtOne()) {
+        if (canDecrease()) {
             if (viewedMonth === 0) {
-                if (viewedYear - 1 > startYear) {
-                    setViewedYear((viewedYear - 1));
-                    setViewedMonth(Math.abs((viewedMonth + 12 - 1) % 12));    
-                }
-            } else {
-                setViewedMonth(Math.abs((viewedMonth + 12 - 1) % 12));
+                setViewedYear((viewedYear - 1));   
             }
+            setViewedMonth(Math.abs((viewedMonth + 12 - 1) % 12));
         }
     };
     
     const increaseMonth = () => {
-        if (!isNearMonthBiggerAtOne()) {
+        if (canIncrease()) {
             if (viewedMonth === 11) {
-                if (viewedYear + 1 < endYear) {
-                    setViewedYear((viewedYear + 1));
-                    setViewedMonth(Math.abs((viewedMonth + 1) % 12));    
-                }
-            } else {
-                setViewedMonth(Math.abs((viewedMonth + 1) % 12));
+                setViewedYear((viewedYear + 1));
             }
+            setViewedMonth(Math.abs((viewedMonth + 1) % 12));
         }
     };
 
@@ -124,14 +112,14 @@ export const Header = (props) => {
             <div className="header-icons">
             <div 
                 onClick={language === "Hebrew" ? increaseMonth : decreaseMonth} 
-                className={`arrow ${(language === "Hebrew" ? isNearMonthBiggerAtOne() : isNearMonthLowerAtOne()) && "disabled"}`}
+                className={`arrow ${(language === "Hebrew" ? !canIncrease() : !canDecrease()) && "disabled"}`}
                 onMouseEnter={() => hoverHandle("leftArrow", true)} 
                 onMouseOut={() => hoverHandle("leftArrow", false)}
                 style={
                     isHover.leftArrow && 
                         (language === "Hebrew" ? 
-                            !isNearMonthBiggerAtOne() : 
-                            !isNearMonthLowerAtOne()) ? 
+                            canIncrease() : 
+                            canDecrease()) ? 
                         {"backgroundColor": selectedColor + "60"} : 
                         {}
                 }
@@ -140,14 +128,14 @@ export const Header = (props) => {
             </div>
             <div 
                 onClick={language === "Hebrew" ? decreaseMonth : increaseMonth} 
-                className={`arrow ${(language === "Hebrew" ? isNearMonthLowerAtOne() : isNearMonthBiggerAtOne()) && "disabled"}`}
+                className={`arrow ${(language === "Hebrew" ? !canDecrease() : !canIncrease()) && "disabled"}`}
                 onMouseEnter={() => hoverHandle("rightArrow", true)} 
                 onMouseOut={() => hoverHandle("rightArrow", false) }
                 style={
                     isHover.rightArrow && 
                         (language === "Hebrew" ? 
-                            !isNearMonthLowerAtOne() :  
-                            !isNearMonthBiggerAtOne()) ? 
+                            canDecrease() :  
+                            canIncrease()) ? 
                         {"backgroundColor": selectedColor + "60"} : 
                         {}
                     }

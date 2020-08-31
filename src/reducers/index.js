@@ -7,8 +7,8 @@ const initialState = {
     selectedDays: [],
     selectedColor: "#2196f3",
     language: "English",
-    startYear: 1900,
-    endYear: 2025,
+    startDate: new Date(1900, 0, 0),
+    endDate: new Date(2025, 0, 0),
     firstDayOfWeekIndex: 0,
     boardsNum: 2,
     hoveredDay: null,
@@ -77,13 +77,13 @@ function rootReducer (state = initialState, payload) {
         return Object.assign({}, state, {
           language: payload.language
         });
-    } else if (payload.type === 'SET_START_YEAR') {
+    } else if (payload.type === 'SET_START_DATE') {
         return Object.assign({}, state, {
-          startYear: payload.startYear
+          startDate: payload.startDate
         });
-    } else if (payload.type === 'SET_END_YEAR') {
+    } else if (payload.type === 'SET_END_DATE') {
         return Object.assign({}, state, {
-          endYear: payload.endYear
+          endDate: payload.endDate
         });
     } else if (payload.type === 'SET_FIRST_DAY_OF_WEEK_INDEX') {
         return Object.assign({}, state, {

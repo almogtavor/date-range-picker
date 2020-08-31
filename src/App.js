@@ -12,8 +12,8 @@ function App(props) {
           
           <DateRangePickerContainer 
               language={props.language} 
-              startYear={props.startYear} 
-              endYear={props.endYear}
+              startDate={props.startDate} 
+              endDate={props.endDate}
               firstDayOfWeekIndex={props.firstDayOfWeekIndex}
               boardsNum={props.boardsNum}
           />

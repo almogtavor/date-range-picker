@@ -6,8 +6,8 @@ import { DateRangePicker } from '../components/DateRangePicker';
 export const DateRangePickerMapper = (props) => {
     const {
       language,
-      startYear,
-      endYear,
+      startDate,
+      endDate,
       firstDayOfWeekIndex,
       boardsNum,
       selectedDays,
@@ -58,8 +58,8 @@ export const DateRangePickerMapper = (props) => {
                 key={i}
                 i={i}
                 language={language} 
-                startYear={startYear} 
-                endYear={endYear}
+                startDate={startDate} 
+                endDate={endDate}
                 firstDayOfWeekIndex={firstDayOfWeekIndex}
                 boardsNum={boardsNum}
             />)

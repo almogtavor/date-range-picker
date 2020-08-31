@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { WeekDaysNames } from '../components/WeekDaysNames';
+import { setFirstDayOfWeekIndex } from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
     return ({
@@ -10,4 +11,11 @@ const mapStateToProps = (state, ownProps) => {
         language: state.language,
 })};
 
-export default connect(mapStateToProps)(WeekDaysNames);
+const mapDispatchToProps = (dispatch, ownProps) => {
+    if (ownProps.firstDayOfWeekIndex) {
+        dispatch(setFirstDayOfWeekIndex(ownProps.firstDayOfWeekIndex));
+    }
+    return ({})
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(WeekDaysNames);

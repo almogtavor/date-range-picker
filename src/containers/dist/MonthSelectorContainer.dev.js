@@ -19,8 +19,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     showColorPicker: state.showColorPicker[ownProps.id],
     viewedYear: state.viewedYear[ownProps.id],
     viewedMonth: state.viewedMonth[ownProps.id],
-    startYear: state.startYear,
-    endYear: state.endYear,
+    startDate: state.startDate,
+    endDate: state.endDate,
     mode: state.mode[ownProps.id],
     language: state.language,
     nearViewedMonths: {

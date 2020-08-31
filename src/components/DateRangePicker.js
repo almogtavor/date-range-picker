@@ -17,14 +17,14 @@ export const DateRangePicker = (props) => {
       >
         <HeaderContainer 
           id={props.i}
-          startYear={props.startYear}
-          endYear={props.endYear}
+          startDate={props.startDate}
+          endDate={props.endDate}
         />
         <CalendarConatiner
           id={props.i}
           firstDayOfWeekIndex={props.firstDayOfWeekIndex}
-          startYear={props.startYear}
-          endYear={props.endYear}
+          startDate={props.startDate}
+          endDate={props.endDate}
         />
         <LowerFooterContainer
           id={props.i}

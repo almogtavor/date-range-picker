@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setHoveredDay = exports.setSelectedDays = exports.setBoardsNum = exports.setFirstDayOfWeekIndex = exports.setEndYear = exports.setStartYear = exports.setLanguage = exports.setSelectedColor = exports.setMode = exports.setViewedYear = exports.setViewedMonth = exports.setShowColorPicker = void 0;
+exports.setLastChangedId = exports.setHoveredDay = exports.setSelectedDays = exports.setBoardsNum = exports.setFirstDayOfWeekIndex = exports.setEndDate = exports.setStartDate = exports.setLanguage = exports.setSelectedColor = exports.setMode = exports.setViewedYear = exports.setViewedMonth = exports.setShowColorPicker = void 0;
 
 var setShowColorPicker = function setShowColorPicker(id, showColorPicker) {
   return {
@@ -63,23 +63,23 @@ var setLanguage = function setLanguage(language) {
 
 exports.setLanguage = setLanguage;
 
-var setStartYear = function setStartYear(startYear) {
+var setStartDate = function setStartDate(startDate) {
   return {
-    type: 'SET_START_YEAR',
-    startYear: startYear
+    type: 'SET_START_DATE',
+    startDate: startDate
   };
 };
 
-exports.setStartYear = setStartYear;
+exports.setStartDate = setStartDate;
 
-var setEndYear = function setEndYear(endYear) {
+var setEndDate = function setEndDate(endDate) {
   return {
-    type: 'SET_END_YEAR',
-    endYear: endYear
+    type: 'SET_END_DATE',
+    endDate: endDate
   };
 };
 
-exports.setEndYear = setEndYear;
+exports.setEndDate = setEndDate;
 
 var setFirstDayOfWeekIndex = function setFirstDayOfWeekIndex(firstDayOfWeekIndex) {
   return {
@@ -116,3 +116,12 @@ var setHoveredDay = function setHoveredDay(hoveredDay) {
 };
 
 exports.setHoveredDay = setHoveredDay;
+
+var setLastChangedId = function setLastChangedId(lastChangedId) {
+  return {
+    type: 'SET_LAST_CHANGED_ID',
+    lastChangedId: lastChangedId
+  };
+};
+
+exports.setLastChangedId = setLastChangedId;
