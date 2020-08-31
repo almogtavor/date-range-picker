@@ -54,6 +54,12 @@ export const DayElement = (props) => {
         }
     }
 
+    const differencesCalculation = (rightYear, leftYear, rightMonth, leftMonth) => {
+        const monthsDifferenceSum = (rightYear - leftYear) * 12 + (rightMonth - leftMonth);
+        const yearsDifference = Math.floor(monthsDifferenceSum / 12);
+        const monthsDifference = monthsDifferenceSum % 12;
+        return { yearsDifference, monthsDifference };
+    }
 
     const decreaseMonth = (setYear, setMonth, year, month, decreaseMonthsBy = 1, decreaseYearsBy = 0) => {
         if (month === 0) {
@@ -100,38 +106,42 @@ export const DayElement = (props) => {
                 decreaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth);
             }
         }
-        if (selectedDays.length === 1 && leftViewedMonth !== undefined) {
-            if (selectedDays[0].getMonth() === viewedMonth) {
-
-                increaseMonth(setViewedYear, setViewedMonth, viewedYear, viewedMonth);
-                let monthsDiff = (viewedYear - leftViewedYear) * 12 + (viewedMonth - leftViewedMonth);
-                const yearsDiff = Math.floor(monthsDiff / 12);
-                monthsDiff = monthsDiff % 12;
-                increaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth, monthsDiff, yearsDiff);
-
-            } else if ((selectedDays[0].getMonth() === viewedMonth - 1 || selectedDays[0].getMonth() === viewedMonth + 11) && 
-                    (selectedDays[0].getMonth() !== leftViewedMonth || selectedDays[0].getFullYear() !== leftViewedYear)) {
-
-                increaseMonth(setViewedYear, setViewedMonth, viewedYear, viewedMonth - 1);
-                let monthsDiff = (viewedYear - leftViewedYear) * 12 + (viewedMonth - leftViewedMonth) -1;
-                const yearsDiff = Math.floor(monthsDiff / 12);
-                monthsDiff = monthsDiff % 12;
-                increaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth, monthsDiff, yearsDiff);
-
-            }
-        } else if (selectedDays.length === 1 && rightViewedMonth !== undefined) {
-            if ((selectedDays[0].getMonth() === viewedMonth + 1 || selectedDays[0].getMonth() === viewedMonth - 11) && 
-                    (rightViewedMonth !== undefined)) {
-                if (viewedMonth === 0) {
-                    decreaseMonth(setViewedYear, setViewedMonth, viewedYear, viewedMonth, 0, -1);
-                } else {
-                    decreaseMonth(setViewedYear, setViewedMonth, viewedYear, viewedMonth, 0);
+        if (selectedDays.length === 1) {
+            if (leftViewedMonth !== undefined) {
+                if (selectedDays[0].getMonth() === viewedMonth) {
+    
+                    increaseMonth(setViewedYear, setViewedMonth, viewedYear, viewedMonth);
+                    const { 
+                        yearsDifference, 
+                        monthsDifference 
+                    } = differencesCalculation(viewedYear, leftViewedYear, viewedMonth, leftViewedMonth);
+                    console.log(yearsDifference, monthsDifference);
+                    increaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth, monthsDifference, yearsDifference);
+    
+                } else if ((selectedDays[0].getMonth() === viewedMonth - 1 || selectedDays[0].getMonth() === viewedMonth + 11) && 
+                        (selectedDays[0].getMonth() !== leftViewedMonth || selectedDays[0].getFullYear() !== leftViewedYear)) {
+    
+                    increaseMonth(setViewedYear, setViewedMonth, viewedYear, viewedMonth - 1);
+                    const { 
+                        yearsDifference, 
+                        monthsDifference 
+                    } = differencesCalculation(viewedYear, leftViewedYear, viewedMonth - 1, leftViewedMonth);
+                    increaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth, monthsDifference, yearsDifference);
+    
                 }
-                let monthsDiff = (rightViewedYear - viewedYear) * 12 + (rightViewedMonth - (viewedMonth + 1));
-                const yearsDiff = Math.floor(monthsDiff / 12);
-                monthsDiff = monthsDiff % 12;
-                decreaseMonth(setRightViewedYear, setRightViewedMonth, rightViewedYear, rightViewedMonth, monthsDiff, yearsDiff);
-
+            } else if (rightViewedMonth !== undefined) {
+                if ((selectedDays[0].getMonth() === viewedMonth + 1 || selectedDays[0].getMonth() === viewedMonth - 11) && 
+                        (rightViewedMonth !== undefined)) {
+                    const yearDecreasement = viewedMonth === 0 ? - 1 : 0;
+                    decreaseMonth(setViewedYear, setViewedMonth, viewedYear, viewedMonth, 0, yearDecreasement);
+                    const { 
+                        yearsDifference, 
+                        monthsDifference 
+                    } = differencesCalculation(rightViewedYear, viewedYear, rightViewedMonth, viewedMonth + 1);
+                    decreaseMonth(setRightViewedYear, setRightViewedMonth, rightViewedYear, rightViewedMonth, monthsDifference, yearsDifference);
+                    decreaseMonth(setRightViewedYear, setRightViewedMonth, rightViewedYear, rightViewedMonth, monthsDifference, yearsDifference);
+    
+                }
             }
         }
     };
