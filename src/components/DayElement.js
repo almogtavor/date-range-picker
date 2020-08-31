@@ -62,7 +62,7 @@ export const DayElement = (props) => {
                 setMonth(Math.abs(( + 12 - decreaseMonthsBy) % 12));    
             // }
         } else {
-            setYear((year + decreaseYearsBy));
+            setYear((year - decreaseYearsBy));
             setMonth(Math.abs((month + 12 - decreaseMonthsBy) % 12));
         }
     };
@@ -75,6 +75,7 @@ export const DayElement = (props) => {
             //   }
         } else {
             setYear((year + increaseYearsBy));
+            console.log(Math.abs((month + increaseMonthsBy) % 12));
             setMonth(Math.abs((month + increaseMonthsBy) % 12));
         }
     }
@@ -92,25 +93,23 @@ export const DayElement = (props) => {
             if (dayNum < 15 && 
                 new Date(rightViewedYear, rightViewedMonth + 1, 0).toLocaleDateString() === 
                 new Date(viewedYear, viewedMonth + 1, 0).toLocaleDateString()) {
-                    console.log("afeafea");
                 increaseMonth(setRightViewedYear, setRightViewedMonth, rightViewedYear, rightViewedMonth);
             } else if (dayNum > 15 && 
                 new Date(leftViewedYear, leftViewedMonth + 1, 0).toLocaleDateString() === 
                 new Date(viewedYear, viewedMonth + 1, 0).toLocaleDateString()) {
-                    console.log("afeafea2");
                 decreaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth);
             }
         }
-        console.log(leftViewedMonth !== undefined);
         if (selectedDays.length === 1 && leftViewedMonth !== undefined) {
-            console.log(selectedDays[0].getMonth());
-            console.log(date.getMonth());
-            console.log(viewedMonth);
-            console.log((selectedDays[0].getMonth() === viewedMonth || selectedDays[0].getMonth() === viewedMonth + 1));
-            if ((selectedDays[0].getMonth() === viewedMonth || selectedDays[0].getMonth() === viewedMonth - 1) && 
-                (date.getMonth() === viewedMonth || date.getMonth() === viewedMonth + 1)) {
+            if (selectedDays[0].getMonth() === viewedMonth) {
                 increaseMonth(setViewedYear, setViewedMonth, viewedYear, viewedMonth);
                 let monthsDiff = (viewedYear - leftViewedYear) * 12 + (viewedMonth - leftViewedMonth);
+                const yearsDiff = Math.floor(monthsDiff / 12);
+                monthsDiff = monthsDiff % 12;
+                increaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth, monthsDiff, yearsDiff);
+            } else if (selectedDays[0].getMonth() === viewedMonth - 1 && selectedDays[0].getMonth() !== leftViewedMonth) {
+                increaseMonth(setViewedYear, setViewedMonth, viewedYear, viewedMonth - 1);
+                let monthsDiff = (viewedYear - leftViewedYear) * 12 + (viewedMonth - leftViewedMonth) - 1;
                 const yearsDiff = Math.floor(monthsDiff / 12);
                 monthsDiff = monthsDiff % 12;
                 increaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth, monthsDiff, yearsDiff);

@@ -97,8 +97,8 @@ function rootReducer (state = initialState, payload) {
         for (let i of componentIDs) {
           const index = state.language === "Hebrew" ? boardsNum - i - 1 : i;
           let date = new Date();
-          date.setMonth(new Date().getMonth() - (boardsNum - i) + 2);
-          monthsObj[index] = date.getMonth();
+          date.setMonth(new Date().getMonth() - (boardsNum - i) + 1);
+          monthsObj[index] = date.getMonth() + 1;
           yearsObj[index] = date.getFullYear();
           modeObj[index] = "Days";
           showColorPickerObj[index] = false;

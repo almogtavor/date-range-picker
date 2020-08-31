@@ -12,7 +12,7 @@
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   margin-top: -22px;
-  /* box-shadow: 3px 1px 5px 0px #ddd; */
+  box-shadow: 3px 1px 5px 0px #ddd;
   display: flex;
 }
 
@@ -43,7 +43,7 @@
   width: 255px;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
-  /* box-shadow: 3px 1px 5px 0px #ddd; */
+  box-shadow: 3px 1px 5px 0px #ddd;
   padding: 0px 5px 10px 5px;
   background-color: rgb(244, 246, 248);
 }
