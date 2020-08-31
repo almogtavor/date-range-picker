@@ -59,7 +59,7 @@ export const DayElement = (props) => {
         if (month === 0) {
             // if (leftViewedYear - 1 > startYear) { TODO: add startYear
                 setYear((year - decreaseYearsBy - 1));
-                setMonth(Math.abs(( + 12 - decreaseMonthsBy) % 12));    
+                setMonth(Math.abs((month + 12 - decreaseMonthsBy) % 12));    
             // }
         } else {
             setYear((year - decreaseYearsBy));
@@ -102,18 +102,36 @@ export const DayElement = (props) => {
         }
         if (selectedDays.length === 1 && leftViewedMonth !== undefined) {
             if (selectedDays[0].getMonth() === viewedMonth) {
+
                 increaseMonth(setViewedYear, setViewedMonth, viewedYear, viewedMonth);
                 let monthsDiff = (viewedYear - leftViewedYear) * 12 + (viewedMonth - leftViewedMonth);
                 const yearsDiff = Math.floor(monthsDiff / 12);
                 monthsDiff = monthsDiff % 12;
                 increaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth, monthsDiff, yearsDiff);
+
             } else if ((selectedDays[0].getMonth() === viewedMonth - 1 || selectedDays[0].getMonth() === viewedMonth + 11) && 
-                (selectedDays[0].getMonth() !== leftViewedMonth || selectedDays[0].getFullYear() !== leftViewedYear)) {
+                    (selectedDays[0].getMonth() !== leftViewedMonth || selectedDays[0].getFullYear() !== leftViewedYear)) {
+
                 increaseMonth(setViewedYear, setViewedMonth, viewedYear, viewedMonth - 1);
                 let monthsDiff = (viewedYear - leftViewedYear) * 12 + (viewedMonth - leftViewedMonth) -1;
                 const yearsDiff = Math.floor(monthsDiff / 12);
                 monthsDiff = monthsDiff % 12;
                 increaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth, monthsDiff, yearsDiff);
+
+            }
+        } else if (selectedDays.length === 1 && rightViewedMonth !== undefined) {
+            if ((selectedDays[0].getMonth() === viewedMonth + 1 || selectedDays[0].getMonth() === viewedMonth - 11) && 
+                    (rightViewedMonth !== undefined)) {
+                if (viewedMonth === 0) {
+                    decreaseMonth(setViewedYear, setViewedMonth, viewedYear, viewedMonth, 0, -1);
+                } else {
+                    decreaseMonth(setViewedYear, setViewedMonth, viewedYear, viewedMonth, 0);
+                }
+                let monthsDiff = (rightViewedYear - viewedYear) * 12 + (rightViewedMonth - (viewedMonth + 1));
+                const yearsDiff = Math.floor(monthsDiff / 12);
+                monthsDiff = monthsDiff % 12;
+                decreaseMonth(setRightViewedYear, setRightViewedMonth, rightViewedYear, rightViewedMonth, monthsDiff, yearsDiff);
+
             }
         }
     };
