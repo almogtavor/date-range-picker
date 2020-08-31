@@ -107,9 +107,10 @@ export const DayElement = (props) => {
                 const yearsDiff = Math.floor(monthsDiff / 12);
                 monthsDiff = monthsDiff % 12;
                 increaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth, monthsDiff, yearsDiff);
-            } else if (selectedDays[0].getMonth() === viewedMonth - 1 && selectedDays[0].getMonth() !== leftViewedMonth) {
+            } else if ((selectedDays[0].getMonth() === viewedMonth - 1 || selectedDays[0].getMonth() === viewedMonth + 11) && 
+                (selectedDays[0].getMonth() !== leftViewedMonth || selectedDays[0].getFullYear() !== leftViewedYear)) {
                 increaseMonth(setViewedYear, setViewedMonth, viewedYear, viewedMonth - 1);
-                let monthsDiff = (viewedYear - leftViewedYear) * 12 + (viewedMonth - leftViewedMonth) - 1;
+                let monthsDiff = (viewedYear - leftViewedYear) * 12 + (viewedMonth - leftViewedMonth) -1;
                 const yearsDiff = Math.floor(monthsDiff / 12);
                 monthsDiff = monthsDiff % 12;
                 increaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth, monthsDiff, yearsDiff);
