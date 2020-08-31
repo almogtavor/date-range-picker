@@ -29,12 +29,12 @@ export const DayElement = (props) => {
     const viewedMonth = date.getMonth();
     const viewedYear = date.getFullYear();
     const isToday = date.toLocaleDateString() === new Date().toLocaleDateString() ?  true : false;
-    const [isSelected, setIsSelected] = useState(false);
-    const [isInRange, setIsInRange] = useState(false);
+    let isSelected = false;
+    let isInRange = false;
 
     selectedDays.forEach(element => {
-       if (date.toLocaleDateString() === element.toLocaleDateString() && isSelected === false) {
-            setIsSelected(true);
+       if (date.toLocaleDateString() === element.toLocaleDateString() && !isSelected) {
+            isSelected = true;
         }
     });
 
@@ -42,13 +42,13 @@ export const DayElement = (props) => {
         if (hoveredDay && selectedDays.length === 1) {
             if ((date >= selectedDays[0] && date <= hoveredDay) || 
                 (date <= selectedDays[0] && date >= hoveredDay)) {
-                setIsInRange(true);
+                isInRange = true;
             } 
         } else {
             if (selectedDays.length === 2) {
                 if ((date >= selectedDays[0] && date <= selectedDays[1]) ||
                  (date <= selectedDays[0] && date >= selectedDays[1])) {
-                    setIsInRange(true);
+                    isInRange = true;
                 } 
             }
         }
@@ -85,7 +85,7 @@ export const DayElement = (props) => {
         } else {
             setSelectedDays([...selectedDays, date]);
         }
-        setIsSelected(!isSelected);
+        isSelected = !isSelected;
         if (!isOfCurrentViewedMonth && selectedDays.length !== 1) {
             setViewedMonth(date.getMonth());
             setViewedYear(date.getFullYear());
@@ -106,9 +106,9 @@ export const DayElement = (props) => {
             console.log(selectedDays[0].getMonth());
             console.log(date.getMonth());
             console.log(viewedMonth);
-            if ((selectedDays[0].getMonth() === viewedMonth || selectedDays[0].getMonth() === viewedMonth + 1) && 
+            console.log((selectedDays[0].getMonth() === viewedMonth || selectedDays[0].getMonth() === viewedMonth + 1));
+            if ((selectedDays[0].getMonth() === viewedMonth || selectedDays[0].getMonth() === viewedMonth - 1) && 
                 (date.getMonth() === viewedMonth || date.getMonth() === viewedMonth + 1)) {
-                    console.log("afeafea3")
                 increaseMonth(setViewedYear, setViewedMonth, viewedYear, viewedMonth);
                 let monthsDiff = (viewedYear - leftViewedYear) * 12 + (viewedMonth - leftViewedMonth);
                 const yearsDiff = Math.floor(monthsDiff / 12);
@@ -136,7 +136,7 @@ export const DayElement = (props) => {
             ${(dayOfWeek === 0 && !isInRange) && "first-day-of-week"}
             ${(dayOfWeek === 6 && !isInRange) && "last-day-of-week"}`}
         style={isSelected ? {...genericStyle, "background": selectedColor} : genericStyle}
-        onClick={() => handleClick()}
+        onClick={handleClick}
         onMouseEnter={handleEnterHover}
         onMouseLeave={handleOutHover} 
     >
