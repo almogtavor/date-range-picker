@@ -34,7 +34,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     date: ownProps.date,
     isOfCurrentViewedMonth: ownProps.isOfCurrentViewedMonth,
     dayOfWeek: ownProps.dayOfWeek,
-    genericStyle: ownProps.genericStyle
+    genericStyle: ownProps.genericStyle,
+    id: ownProps.id
   };
 };
 
@@ -43,7 +44,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     setSelectedDays: function setSelectedDays(selectedDays) {
       return dispatch((0, _actions.setSelectedDays)(selectedDays));
     },
-    setViewedMonth: function setViewedMonth(viewedMonth) {
+    mapViewedMonth: function mapViewedMonth(viewedMonth) {
       return dispatch((0, _actions.setViewedMonth)(ownProps.id, viewedMonth));
     },
     setViewedYear: function setViewedYear(viewedYear) {
@@ -70,6 +71,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 var mergeProps = function mergeProps(stateProps, dispatchProps, ownProps) {
   var rightId = stateProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
   var leftId = stateProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
+
+  var yearBorderHandler = function yearBorderHandler(viewedMonth, viewedYear, yearIncreasement) {
+    dispatchProps.mapViewedMonth(ownProps.id);
+    dispatchProps.mapViewedYear(ownProps.id, viewedYear + yearIncreasement);
+  };
+
   return _objectSpread({}, stateProps, {}, dispatchProps, {
     setRightViewedMonth: function setRightViewedMonth(viewedMonth) {
       return dispatchProps.mapRightViewedMonth(rightId, viewedMonth);
@@ -82,6 +89,9 @@ var mergeProps = function mergeProps(stateProps, dispatchProps, ownProps) {
     },
     setLeftViewedYear: function setLeftViewedYear(viewedYear) {
       return dispatchProps.mapLeftViewedYear(leftId, viewedYear);
+    },
+    setViewedMonth: function setViewedMonth(viewedMonth) {
+      return viewedMonth > 11 ? yearBorderHandler(0, stateProps.viewedYear, 1) : viewedMonth < 0 ? yearBorderHandler(11, stateProps.viewedYear, -1) : dispatchProps.mapViewedMonth(ownProps.id, viewedMonth);
     }
   });
 };

@@ -26,7 +26,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return ({
         setSelectedDays: (selectedDays) => dispatch(setSelectedDays(selectedDays)),
-        setViewedMonth: (viewedMonth) => dispatch(setViewedMonth(ownProps.id, viewedMonth)),
+        mapViewedMonth: (viewedMonth) => dispatch(setViewedMonth(ownProps.id, viewedMonth)),
         setViewedYear: (viewedYear) => dispatch(setViewedYear(ownProps.id, viewedYear)),
         setHoveredDay: (hoveredDay) => dispatch(setHoveredDay(hoveredDay)),
         mapRightViewedMonth: (rightId, viewedMonth) => dispatch(setViewedMonth(rightId, viewedMonth)),
@@ -38,6 +38,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
     const rightId = stateProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
     const leftId = stateProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
+    const yearBorderHandler = (viewedMonth, viewedYear, yearIncreasement) => {
+        dispatchProps.mapViewedMonth(ownProps.id);
+        dispatchProps.mapViewedYear(ownProps.id, viewedYear + yearIncreasement);
+    }
     return {
         ...stateProps,
         ...dispatchProps,
@@ -45,6 +49,11 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
         setRightViewedYear: (viewedYear) => dispatchProps.mapRightViewedYear(rightId, viewedYear),
         setLeftViewedMonth: (viewedMonth) => dispatchProps.mapLeftViewedMonth(leftId, viewedMonth),
         setLeftViewedYear: (viewedYear) => dispatchProps.mapLeftViewedYear(leftId, viewedYear),
+        setViewedMonth: (viewedMonth) => viewedMonth > 11 ? 
+            yearBorderHandler(0, stateProps.viewedYear, 1) :
+            viewedMonth < 0 ?
+            yearBorderHandler(11, stateProps.viewedYear, -1) :
+            dispatchProps.mapViewedMonth(ownProps.id, viewedMonth),
     }
   }
 

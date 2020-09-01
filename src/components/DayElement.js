@@ -160,18 +160,11 @@ export const DayElement = (props) => {
                         setViewedMonth(viewedMonth);
                     } else if (id === 1 && dayNum > 15) {
                         console.log(2);
-                        if (new Date(viewedYear, viewedMonth, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
+                        // second click on non current of right board - before month
+                        if (new Date(viewedYear, viewedMonth, 0) < new Date(firstSelectYear, firstSelectMonth, 0)) {
                             console.log(3);
-                            setRightViewedYear(viewedYear);
-                            setRightViewedMonth(viewedMonth);
-                            setViewedYear(firstSelectYear);
-                            setViewedMonth(firstSelectMonth);
-                        } else {
-                            console.log(4);
-                            setRightViewedYear(firstSelectYear);
-                            setRightViewedMonth(firstSelectMonth);
-                            setViewedYear(viewedYear);
-                            setViewedMonth(viewedMonth);
+                            setLeftViewedYear(viewedYear);
+                            setLeftViewedMonth(viewedMonth);
                         }
                     } else if (id === 0 && dayNum < 15) {
                         if (firstSelectMonth === viewedMonth - 1) {
@@ -210,7 +203,7 @@ export const DayElement = (props) => {
                     console.log(8);
                     setLeftViewedYear(viewedYear);
                     setLeftViewedMonth(viewedMonth);
-                    setViewedYear(viewedYear + 1);
+                    setViewedYear(viewedYear);
                     setViewedMonth(viewedMonth + 1);
                 }
             }
