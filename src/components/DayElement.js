@@ -4,6 +4,7 @@ import '../styles/day.css';
 export const DayElement = (props) => {
     const {
         date,
+        id,
         selectedDays, 
         setSelectedDays,
         setViewedMonth,
@@ -70,24 +71,40 @@ export const DayElement = (props) => {
             yearsDifference, 
             monthsDifference 
         } = differencesCalculation(viewedYear, leftViewedYear, currentViewedMonth, leftViewedMonth);
-        increaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth, monthsDifference, yearsDifference);
+        // increaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth, monthsDifference, yearsDifference);
+        if (currentViewedMonth === 0) {
+            setLeftViewedYear(viewedYear - 1);
+            setLeftViewedMonth(11);    
+        }
+        setLeftViewedYear(viewedYear);
+        setLeftViewedMonth(currentViewedMonth - 1);
     }
-
+    //TODO: change right board on left board click to left + 1
     const boardsDecreasement = (currentViewedMonth = viewedMonth, yearDecreasement) => {
         decreaseMonth(setViewedYear, setViewedMonth, viewedYear, currentViewedMonth, 0, yearDecreasement);
-        const { 
-            yearsDifference, 
-            monthsDifference 
-        } = differencesCalculation(rightViewedYear, viewedYear, rightViewedMonth, currentViewedMonth + 1);
-        decreaseMonth(setRightViewedYear, setRightViewedMonth, rightViewedYear, rightViewedMonth, monthsDifference, yearsDifference);
+        // const { 
+        //     yearsDifference, 
+        //     monthsDifference 
+        // } = differencesCalculation(rightViewedYear, viewedYear, rightViewedMonth, currentViewedMonth + 1);
+        if (currentViewedMonth === 11) {
+            setRightViewedYear(viewedYear + 1);
+            setRightViewedMonth(0);    
+        }
+        setRightViewedYear(viewedYear);
+        setRightViewedMonth(currentViewedMonth);
+        // decreaseMonth(setRightViewedYear, setRightViewedMonth, rightViewedYear, rightViewedMonth, monthsDifference, yearsDifference);
     }
 
     const decreaseMonth = (setYear, setMonth, year, month, decreaseMonthsBy = 1, decreaseYearsBy = 0) => {
         if (month === 0) {
             setYear((year - decreaseYearsBy - 1));
+            console.log("decr1111111111easing");
+
             setMonth(Math.abs((month + 12 - decreaseMonthsBy) % 12));    
         } else {
             setYear((year - decreaseYearsBy));
+            console.log("decreasing");
+
             setMonth(Math.abs((month + 12 - decreaseMonthsBy) % 12));
         }
     };
@@ -95,7 +112,7 @@ export const DayElement = (props) => {
     const increaseMonth = (setYear, setMonth, year, month, increaseMonthsBy = 1, increaseYearsBy = 0) => {
         if (month === 11) {
             setYear((year + increaseYearsBy + 1));
-            setMonth(Math.abs((month + increaseMonthsBy) % 12));    
+            setMonth(Math.abs((month + increaseMonthsBy) % 12));
         } else {
             setYear((year + increaseYearsBy));
             setMonth(Math.abs((month + increaseMonthsBy) % 12));
@@ -127,24 +144,114 @@ export const DayElement = (props) => {
                 const selectedDayYear = selectedDays[0].getFullYear();
                 console.log("selectedDays");
 
+                // if (leftViewedMonth !== undefined) {
+                //     if (selectedDayMonth === viewedMonth) {
+                //         // right board click to current of same right board
+                //         boardsIncreasement();    
+                //     } else if ((selectedDayMonth === viewedMonth - 1 || selectedDayMonth === viewedMonth + 11) && 
+                //             (selectedDayMonth !== leftViewedMonth || selectedDayYear !== leftViewedYear)) {
+                //         // right board click to non current of righter board
+                //         boardsIncreasement(viewedMonth - 1);    
+                //     } else if ((selectedDayMonth === viewedMonth + 1 || selectedDayMonth === viewedMonth - 11) &&
+                //             (selectedDayMonth !== leftViewedMonth || selectedDayYear !== leftViewedYear)) {
+                //         // right board click to non current of left board
+                //         boardsIncreasement(); 
+                //     }
+                // } else if (rightViewedMonth !== undefined) {
+                //     if ((selectedDayMonth === viewedMonth + 1 || selectedDayMonth === viewedMonth - 11) &&
+                //             (selectedDayMonth !== rightViewedMonth || selectedDayYear !== rightViewedYear)) {
+                //         // left board click to non current of lefter board
+                //         const yearDecreasement = viewedMonth === 0 ? - 1 : 0;
+                //         boardsDecreasement(viewedMonth, yearDecreasement);
+                //     }  else if ((selectedDayMonth === viewedMonth - 1 || selectedDayMonth === viewedMonth + 11) &&
+                //             (selectedDayMonth !== rightViewedMonth || selectedDayYear !== rightViewedYear)) {
+                //         // left board click to non current of right board
+                //         const yearDecreasement = viewedMonth === 0 ? 1 : 0;
+                //         console.log("ajeiafjeaf");
+                //         boardsDecreasement(viewedMonth - 1, yearDecreasement); 
+                //     }
+                // }
+                const firstSelectMonth = selectedDays[0].getMonth();
+                const firstSelectYear = selectedDays[0].getFullYear();
+                
+                
+                if (!isOfCurrentViewedMonth) {
+                    // second click on non current of left board - before month
+                    if (id === 0 && dayNum > 15) {
+                        setRightViewedYear(firstSelectYear);
+                        setRightViewedMonth(firstSelectMonth);
+                        setViewedYear(viewedYear);
+                        setViewedMonth(viewedMonth);
+                    } else if (id === 1 && dayNum < 15) {
+                        setLeftViewedYear(firstSelectYear);
+                        setLeftViewedMonth(firstSelectMonth);
+                        setViewedYear(viewedYear);
+                        setViewedMonth(viewedMonth);
+                    } else if (id === 1 && dayNum > 15) {
+                        if (new Date(viewedYear, viewedMonth, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
+                            setRightViewedYear(viewedYear);
+                            setRightViewedMonth(viewedMonth);
+                            setViewedYear(firstSelectYear);
+                            setViewedMonth(firstSelectMonth);
+                        } else {
+                            setRightViewedYear(firstSelectYear);
+                            setRightViewedMonth(firstSelectMonth);
+                            setViewedYear(viewedYear);
+                            setViewedMonth(viewedMonth);
+                        }
+                    } else if ((id === 0 && dayNum < 15) && firstSelectMonth !== viewedMonth - 1) {
+                        setLeftViewedYear(viewedYear);
+                        setLeftViewedMonth(viewedMonth);
+                        if (firstSelectMonth === viewedMonth) {
+                            setViewedYear(viewedYear + 1);
+                            setViewedMonth(viewedMonth + 1);
+                        } else {
+                            setViewedYear(firstSelectYear);
+                            setViewedMonth(firstSelectMonth);
+                        }
+                    }
+                } else if (id === 1) {
+                    setLeftViewedYear(viewedYear);
+                    setLeftViewedMonth(viewedMonth);
+                    setViewedYear(viewedYear + 1);
+                    setViewedMonth(viewedMonth + 1);
+                }
+
+
+
                 if (leftViewedMonth !== undefined) {
-                    if (selectedDayMonth === viewedMonth) {
-                        boardsIncreasement();    
-                    } else if ((selectedDayMonth === viewedMonth - 1 || selectedDayMonth === viewedMonth + 11) && 
-                            (selectedDayMonth !== leftViewedMonth || selectedDayYear !== leftViewedYear)) {
-                        boardsIncreasement(viewedMonth - 1);    
-                    } else if ((selectedDayMonth === viewedMonth + 1 || selectedDayMonth === viewedMonth - 11) &&
-                            (selectedDayMonth !== leftViewedMonth || selectedDayYear !== leftViewedYear)) {
-                        boardsIncreasement(); 
+                    if (!(selectedDayMonth === viewedMonth + 1 && selectedDayYear === viewedYear)) {
+                        if (viewedMonth !== selectedDayMonth && viewedYear !== selectedDayYear) {
+                            setViewedYear(viewedYear);
+                            setViewedMonth(viewedMonth);
+                        } else {
+                            if (viewedMonth === 11) {
+                                setViewedYear(viewedYear + 1);
+                                setViewedMonth(0);    
+                            } else {
+                                setViewedYear(viewedYear);
+                                setViewedMonth(viewedMonth);    
+                            }
+                        }
+                        setLeftViewedYear(selectedDayYear);
+                        setLeftViewedMonth(selectedDayMonth);
                     }
                 } else if (rightViewedMonth !== undefined) {
-                    if ((selectedDayMonth === viewedMonth + 1 || selectedDayMonth === viewedMonth - 11) &&
-                            (selectedDayMonth !== rightViewedMonth || selectedDayYear !== rightViewedYear)) {
-                        const yearDecreasement = viewedMonth === 0 ? - 1 : 0;
-                        boardsDecreasement(viewedMonth, yearDecreasement);
-                    }  else if ((selectedDayMonth === viewedMonth - 1 || selectedDayMonth === viewedMonth + 11) &&
-                            (selectedDayMonth !== rightViewedMonth || selectedDayYear !== rightViewedYear)) {
-                        boardsDecreasement(viewedMonth - 1, 0); 
+                    if (!(selectedDayMonth === viewedMonth && selectedDayYear === viewedYear)) {
+                        setViewedMonth(selectedDayMonth);
+                        setViewedYear(selectedDayYear);
+                        if (viewedMonth !== selectedDayMonth && viewedYear !== selectedDayYear) {
+                            setRightViewedYear(viewedYear);
+                            setRightViewedMonth(viewedMonth);
+                        } else {
+                            if (viewedMonth === 11) {
+                                setRightViewedYear(viewedYear + 1);
+                                setRightViewedMonth(0);    
+                            } else {
+                                setRightViewedYear(viewedYear);
+                                setRightViewedMonth(viewedMonth);
+                            }
+                        }
                     }
                 }
             }
@@ -170,6 +277,7 @@ export const DayElement = (props) => {
             ${isDisabled && "disabled"}
             ${isToday && "today"}
             ${(dayOfWeek === 0 && !isInRange) && "first-day-of-week"}
+            ${isSelected && "selected-day"}
             ${(dayOfWeek === 6 && !isInRange) && "last-day-of-week"}`}
         style={isSelected ? {...genericStyle, "background": selectedColor} : genericStyle}
         onClick={handleClick}

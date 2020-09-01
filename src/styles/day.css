@@ -1,6 +1,6 @@
 .day-element {
     height: 80%;
-    width: 100.5%;
+    width: 90%;
     background-clip: content-box;
     border-radius: 7px;
     cursor: pointer;
@@ -13,6 +13,10 @@
 .in-range:hover {
     background-color: none;
 }
+/* 
+.selected-day{
+    
+} */
 
 .hover-div {
     height: 100%;
@@ -20,7 +24,7 @@
 }
 
 .non-current {
-    opacity: 0.2;
+    opacity: 0.4;
 }
 
 .disabled {

@@ -20,7 +20,7 @@ const mapStateToProps = (state, ownProps) => {
         isOfCurrentViewedMonth: ownProps.isOfCurrentViewedMonth,
         dayOfWeek: ownProps.dayOfWeek,
         genericStyle: ownProps.genericStyle,
-        
+        id: ownProps.id,
 })};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
