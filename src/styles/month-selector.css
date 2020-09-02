@@ -34,7 +34,14 @@
     background: rgb(198, 203, 211);
     background-clip: content-box;
   }
+    
+  .month-selector div:nth-child(1) {
+    border-top-left-radius: 12px;
+  }
   
+  .month-selector div:nth-child(3) {
+    border-top-right-radius: 12px;
+  }
   
   .month-selector div:nth-last-child(3) {
     border-bottom-left-radius: 12px;
