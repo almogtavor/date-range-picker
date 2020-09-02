@@ -58,53 +58,12 @@ export const DayElement = (props) => {
         }
     }
 
-    const differencesCalculation = (rightYear, leftYear, rightMonth, leftMonth) => {
-        const monthsDifferenceSum = (rightYear - leftYear) * 12 + (rightMonth - leftMonth);
-        const yearsDifference = Math.floor(monthsDifferenceSum / 12);
-        const monthsDifference = monthsDifferenceSum % 12;
-        return { yearsDifference, monthsDifference };
-    }
-
-    const boardsIncreasement = (currentViewedMonth = viewedMonth) => {
-        increaseMonth(setViewedYear, setViewedMonth, viewedYear, currentViewedMonth);
-        const { 
-            yearsDifference, 
-            monthsDifference 
-        } = differencesCalculation(viewedYear, leftViewedYear, currentViewedMonth, leftViewedMonth);
-        // increaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth, monthsDifference, yearsDifference);
-        if (currentViewedMonth === 0) {
-            setLeftViewedYear(viewedYear - 1);
-            setLeftViewedMonth(11);    
-        }
-        setLeftViewedYear(viewedYear);
-        setLeftViewedMonth(currentViewedMonth - 1);
-    }
-    //TODO: change right board on left board click to left + 1
-    const boardsDecreasement = (currentViewedMonth = viewedMonth, yearDecreasement) => {
-        decreaseMonth(setViewedYear, setViewedMonth, viewedYear, currentViewedMonth, 0, yearDecreasement);
-        // const { 
-        //     yearsDifference, 
-        //     monthsDifference 
-        // } = differencesCalculation(rightViewedYear, viewedYear, rightViewedMonth, currentViewedMonth + 1);
-        if (currentViewedMonth === 11) {
-            setRightViewedYear(viewedYear + 1);
-            setRightViewedMonth(0);    
-        }
-        setRightViewedYear(viewedYear);
-        setRightViewedMonth(currentViewedMonth);
-        // decreaseMonth(setRightViewedYear, setRightViewedMonth, rightViewedYear, rightViewedMonth, monthsDifference, yearsDifference);
-    }
-
     const decreaseMonth = (setYear, setMonth, year, month, decreaseMonthsBy = 1, decreaseYearsBy = 0) => {
         if (month === 0) {
             setYear((year - decreaseYearsBy - 1));
-            console.log("decr1111111111easing");
-
             setMonth(Math.abs((month + 12 - decreaseMonthsBy) % 12));    
         } else {
             setYear((year - decreaseYearsBy));
-            console.log("decreasing");
-
             setMonth(Math.abs((month + 12 - decreaseMonthsBy) % 12));
         }
     };
@@ -128,7 +87,6 @@ export const DayElement = (props) => {
             }
             isSelected = !isSelected;
             if (!isOfCurrentViewedMonth && selectedDays.length !== 1) {
-    
                 setViewedMonth(date.getMonth());
                 setViewedYear(date.getFullYear());
                 if (rightViewedYear === viewedYear && rightViewedMonth === viewedMonth) {
@@ -137,74 +95,42 @@ export const DayElement = (props) => {
                     decreaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth);
                 }
             }
-            console.log(selectedDays.length === 1);
 
             if (selectedDays.length === 1) {
                 const firstSelectMonth = selectedDays[0].getMonth();
                 const firstSelectYear = selectedDays[0].getFullYear();
                 
                 
-                if (!isOfCurrentViewedMonth) {
-                    if (id === 0 && dayNum > 15) {
-                        // second click on non current of left board - before month
-                        console.log(0);
+                if (id === 0) {
+                    if (new Date(viewedYear, viewedMonth, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
+                        console.log(1);
+                        setRightViewedYear(viewedYear);
+                        setRightViewedMonth(viewedMonth);
+                        setViewedYear(firstSelectYear);
+                        setViewedMonth(firstSelectMonth);
+                    } else if (new Date(viewedYear, viewedMonth, 0) < new Date(firstSelectYear, firstSelectMonth, 0)) {
                         setRightViewedYear(firstSelectYear);
                         setRightViewedMonth(firstSelectMonth);
                         setViewedYear(viewedYear);
                         setViewedMonth(viewedMonth);
-                    } else if (id === 1 && dayNum < 15) {
-                        console.log(1);
+                    }
+                } else if (id === 1) {
+                    if (new Date(viewedYear, viewedMonth, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
                         setLeftViewedYear(firstSelectYear);
                         setLeftViewedMonth(firstSelectMonth);
                         setViewedYear(viewedYear);
                         setViewedMonth(viewedMonth);
-                    } else if (id === 1 && dayNum > 15) {
-                        console.log(2);
-                        // second click on non current of right board - before month
-                        if (new Date(viewedYear, viewedMonth, 0) < new Date(firstSelectYear, firstSelectMonth, 0)) {
-                            console.log(3);
-                            setLeftViewedYear(viewedYear);
-                            setLeftViewedMonth(viewedMonth);
-                        }
-                    } else if (id === 0 && dayNum < 15) {
-                        if (firstSelectMonth === viewedMonth - 1) {
-                            if (!(rightViewedMonth === viewedMonth && rightViewedYear === viewedYear)) {
-                                if (new Date(viewedYear, viewedMonth, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
-                                    console.log(511);
-                                    setRightViewedYear(viewedYear);
-                                    setRightViewedMonth(viewedMonth);
-                                    setViewedYear(firstSelectYear);
-                                    setViewedMonth(firstSelectMonth);
-                                } else {
-                                    console.log(512);
-                                    setRightViewedYear(firstSelectYear);
-                                    setRightViewedMonth(firstSelectMonth);
-                                    setViewedYear(viewedYear);
-                                    setViewedMonth(viewedMonth);
-                                }
-                            }
-                        } else {
-                            console.log(52);
-                            setLeftViewedYear(viewedYear);
-                            setLeftViewedMonth(viewedMonth);
-                            if (firstSelectMonth === viewedMonth) {
-                                console.log(6);
-                                setViewedYear(viewedYear + 1);
-                                setViewedMonth(viewedMonth + 1);
-                            } else {
-                                console.log(7);
-                                setViewedYear(firstSelectYear);
-                                setViewedMonth(firstSelectMonth);
-                            }
-                        }
+                    } else if (viewedYear === firstSelectYear && viewedMonth === firstSelectMonth) {
+                        setLeftViewedYear(viewedYear);
+                        setLeftViewedMonth(viewedMonth);
+                        setViewedYear(viewedYear);
+                        setViewedMonth(viewedMonth + 1);
+                    } else {
+                        setLeftViewedYear(viewedYear);
+                        setLeftViewedMonth(viewedMonth);
+                        setViewedYear(firstSelectYear);
+                        setViewedMonth(firstSelectMonth);
                     }
-                } else if (id === 1 && viewedMonth === firstSelectMonth) {
-                    // first & second clicks on right board
-                    console.log(8);
-                    setLeftViewedYear(viewedYear);
-                    setLeftViewedMonth(viewedMonth);
-                    setViewedYear(viewedYear);
-                    setViewedMonth(viewedMonth + 1);
                 }
             }
         }

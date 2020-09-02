@@ -39,8 +39,9 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     const rightId = stateProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
     const leftId = stateProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
     const yearBorderHandler = (viewedMonth, viewedYear, yearIncreasement) => {
-        dispatchProps.mapViewedMonth(ownProps.id);
-        dispatchProps.mapViewedYear(ownProps.id, viewedYear + yearIncreasement);
+        console.log(viewedMonth, viewedYear, yearIncreasement);
+        dispatchProps.mapViewedMonth(viewedMonth);
+        dispatchProps.setViewedYear(viewedYear + yearIncreasement);
     }
     return {
         ...stateProps,
@@ -53,7 +54,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
             yearBorderHandler(0, stateProps.viewedYear, 1) :
             viewedMonth < 0 ?
             yearBorderHandler(11, stateProps.viewedYear, -1) :
-            dispatchProps.mapViewedMonth(ownProps.id, viewedMonth),
+            dispatchProps.mapViewedMonth(viewedMonth),
     }
   }
 
