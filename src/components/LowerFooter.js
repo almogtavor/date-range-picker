@@ -7,7 +7,10 @@ const rightHandIcon = require('../images/right-hand.png');
 
 export const LowerFooter = (props) => {
 
-    const {selectedColor, showColorPicker, 
+    const {
+        id,
+        selectedColor, 
+        showColorPicker, 
         setSelectedColor, 
         setShowColorPicker} = props;
 
@@ -24,7 +27,7 @@ export const LowerFooter = (props) => {
 
     return (
     <div className="settings">
-        {!showColorPicker && (
+        {id === 0 && !showColorPicker && (
             <button
                 style={{ backgroundColor: selectedColor }}
                 onClick={toggleColorPicker}

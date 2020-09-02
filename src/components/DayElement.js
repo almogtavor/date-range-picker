@@ -17,6 +17,7 @@ export const DayElement = (props) => {
         genericStyle,
         startDate,
         endDate,
+        language,
         setRightViewedMonth,
         setRightViewedYear,
         setLeftViewedMonth,
@@ -99,9 +100,10 @@ export const DayElement = (props) => {
             if (selectedDays.length === 1) {
                 const firstSelectMonth = selectedDays[0].getMonth();
                 const firstSelectYear = selectedDays[0].getFullYear();
+                const {rightId, leftId} = language === "Hebrew" ? {rightId: 0, leftId: 1} : {rightId: 1, leftId: 0}; 
                 
-                
-                if (id === 0) {
+                console.log(rightId);
+                if (id === leftId) {
                     if (new Date(viewedYear, viewedMonth, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
                         console.log(1);
                         setRightViewedYear(viewedYear);
@@ -114,7 +116,7 @@ export const DayElement = (props) => {
                         setViewedYear(viewedYear);
                         setViewedMonth(viewedMonth);
                     }
-                } else if (id === 1) {
+                } else if (id === rightId) {
                     if (new Date(viewedYear, viewedMonth, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
                         setLeftViewedYear(firstSelectYear);
                         setLeftViewedMonth(firstSelectMonth);

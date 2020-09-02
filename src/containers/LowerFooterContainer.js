@@ -3,6 +3,7 @@ import { LowerFooter } from '../components/LowerFooter';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => ({
+    id: ownProps.id,
     selectedColor: state.selectedColor,
     showColorPicker: state.showColorPicker[ownProps.id],
     language: state.language,
