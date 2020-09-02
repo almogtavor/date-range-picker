@@ -3,6 +3,9 @@
   height: 100vh;
   user-select: none;
   opacity: 0.9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .selected-dates {
