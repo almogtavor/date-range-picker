@@ -13,6 +13,7 @@ const mapStateToProps = (state, ownProps) => {
     endDate: state.endDate,
     language: state.language,
     selectedDays: state.selectedDays,
+    
     nearViewedMonths: {
         "right": {
             "year": state.viewedYear[rightId], 

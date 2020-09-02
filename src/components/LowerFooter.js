@@ -12,7 +12,9 @@ export const LowerFooter = (props) => {
         selectedColor, 
         showColorPicker, 
         setSelectedColor, 
-        setShowColorPicker} = props;
+        setShowColorPicker,        
+        setShowCalendar,
+    } = props;
 
     const changeColor = (color) => {
         setSelectedColor(color.hex);
@@ -26,7 +28,10 @@ export const LowerFooter = (props) => {
     }
 
     return (
-    <div className="settings">
+    <div className="settings" style={id===1 ? 
+        {"justifyContent": "flex-end"}: 
+        {"justifyContent": "flex-start"}}
+    >
         {id === 0 && !showColorPicker && (
             <button
                 style={{ backgroundColor: selectedColor }}
@@ -43,6 +48,7 @@ export const LowerFooter = (props) => {
                     className="hand-right"
                 />
                 <CirclePicker
+                    className="circle-picker"
                     colors={calendarConfig.pickableColors}
                     circleSize={15}
                     circleSpacing={3}
@@ -51,6 +57,19 @@ export const LowerFooter = (props) => {
                 />
             </div>
         )}
+
+        {id === 1 && 
+            <button 
+                className="pick-button"
+                style={{
+                    "backgroundColor": selectedColor + "80",
+                    "borderColor": selectedColor + "50",
+                }}
+                onClick={() => setShowCalendar(false)}
+            >
+                Pick
+            </button>
+        }
     </div>
     );
 }

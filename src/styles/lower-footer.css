@@ -1,2 +1,17 @@
 .settings {
+    display: flex;
+}
+
+.circle-picker {
+    outline: none;
+}
+
+.pick-button {
+    align-self: center;
+    border-radius: 20px;
+    height: 30px;
+    width: 60px;
+    margin-right: 3%;
+    border-width: 2px;
+    outline: none;
 }

@@ -20,7 +20,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     boardsNum: ownProps.boardsNum,
     selectedDays: state.selectedDays,
     selectedColor: state.selectedColor,
-    hoveredDay: state.hoveredDay
+    hoveredDay: state.hoveredDay,
+    showCalendar: state.showCalendar
   };
 };
 
@@ -33,7 +34,11 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     dispatch((0, _actions.setBoardsNum)(ownProps.boardsNum));
   }
 
-  return {};
+  return {
+    setChoosenDates: function setChoosenDates(choosenDates) {
+      return dispatch((0, _actions.setChoosenDates)(choosenDates));
+    }
+  };
 };
 
 var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_DateRangePickerMapper.DateRangePickerMapper);

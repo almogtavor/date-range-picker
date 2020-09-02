@@ -1,4 +1,4 @@
-import { setLanguage, setBoardsNum } from '../actions';
+import { setLanguage, setBoardsNum, setChoosenDates } from '../actions';
 import { connect } from 'react-redux';
 import { DateRangePickerMapper } from '../components/DateRangePickerMapper';
 
@@ -12,6 +12,7 @@ const mapStateToProps = (state, ownProps) => {
         selectedDays: state.selectedDays,
         selectedColor: state.selectedColor,
         hoveredDay: state.hoveredDay,
+        showCalendar: state.showCalendar,
     }
 )}
 
@@ -22,7 +23,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     if (ownProps.boardsNum) {
         dispatch(setBoardsNum(ownProps.boardsNum));
     }
-    return ({})
+    return ({
+        setChoosenDates: (choosenDates) => dispatch(setChoosenDates(choosenDates)),
+    })
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DateRangePickerMapper);

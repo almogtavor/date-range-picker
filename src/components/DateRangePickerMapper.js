@@ -13,6 +13,8 @@ export const DateRangePickerMapper = (props) => {
       selectedDays,
       selectedColor,
       hoveredDay,
+      showCalendar,
+      setChoosenDates,
     } = props;
 
     let selectedDaysStyle = {
@@ -25,30 +27,32 @@ export const DateRangePickerMapper = (props) => {
     }
 
     const calendarsIndexes = [...Array(props.boardsNum).keys()];
+    const choosenDates = selectedDays.length === 2 ?
+        selectedDays[0].toLocaleDateString() + " - " +
+        selectedDays[1].toLocaleDateString() :
+        selectedDays.length === 1 && hoveredDay ? 
+            (language === "Hebrew" ?
+            (selectedDays[0] > hoveredDay ?
+                (selectedDays[0].toLocaleDateString() + " - " +
+                hoveredDay.toLocaleDateString()) :
+                (hoveredDay.toLocaleDateString() + " - " +
+                selectedDays[0].toLocaleDateString())) :
+            (selectedDays[0] > hoveredDay ?
+                (hoveredDay.toLocaleDateString() + " - " +
+                selectedDays[0].toLocaleDateString()) :
+                (selectedDays[0].toLocaleDateString() + " - " +
+                hoveredDay.toLocaleDateString()))) :
+        "DD-MM-YYYY - DD-MM-YYYY";
+
     return (
-      <>
+    <>{showCalendar && <>
         <div 
           className="selected-dates" 
           style={selectedDaysStyle}
         >
           <div className={`dates-display ${language === "Hebrew" && "hebrew"}`}>
             {
-              selectedDays.length === 2 ?
-                selectedDays[0].toLocaleDateString() + " - " +
-                selectedDays[1].toLocaleDateString() :
-                selectedDays.length === 1 && hoveredDay ? 
-                  (language === "Hebrew" ?
-                    (selectedDays[0] > hoveredDay ?
-                      (selectedDays[0].toLocaleDateString() + " - " +
-                      hoveredDay.toLocaleDateString()) :
-                      (hoveredDay.toLocaleDateString() + " - " +
-                      selectedDays[0].toLocaleDateString())) :
-                    (selectedDays[0] > hoveredDay ?
-                      (hoveredDay.toLocaleDateString() + " - " +
-                      selectedDays[0].toLocaleDateString()) :
-                      (selectedDays[0].toLocaleDateString() + " - " +
-                      hoveredDay.toLocaleDateString()))) :
-                "DD-MM-YYYY - DD-MM-YYYY"
+              choosenDates
             }
           </div>
         </div>
@@ -65,5 +69,6 @@ export const DateRangePickerMapper = (props) => {
             />)
           })}
       </>
+    }</>
     );
   };

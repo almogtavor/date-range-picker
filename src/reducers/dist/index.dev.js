@@ -39,7 +39,9 @@ var initialState = {
   firstDayOfWeekIndex: 0,
   boardsNum: 2,
   hoveredDay: null,
-  lastChangedId: null
+  lastChangedId: null,
+  choosenDates: "YYYY-MM-DD ~ YYYY-MM-DD",
+  showCalendar: false
 };
 
 function rootReducer() {
@@ -260,6 +262,14 @@ function rootReducer() {
     } else if (payload.type === 'SET_LAST_CHANGED_ID') {
       return Object.assign({}, state, {
         lastChangedId: payload.lastChangedId
+      });
+    } else if (payload.type === 'SET_CHOOSEN_DATES') {
+      return Object.assign({}, state, {
+        choosenDates: payload.choosenDates
+      });
+    } else if (payload.type === 'SET_SHOW_CALENDAR') {
+      return Object.assign({}, state, {
+        showCalendar: payload.showCalendar
       });
     } else {
       return state;

@@ -8,6 +8,14 @@
   justify-content: center;
 }
 
+.date-range-picker-component {
+  user-select: none;
+  display: flex;
+  margin-top: 95px;
+  margin-left: -75px;
+  justify-content: center;
+}
+
 .selected-dates {
   height: 22px;
   /* background-color: rgb(231, 231, 231); */
@@ -16,7 +24,6 @@
   border-top-right-radius: 12px;
   margin-top: -22px;
   box-shadow: 3px 1px 5px 0px #ddd;
-  display: flex;
 }
 
 .dates-display.hebrew {
@@ -35,8 +42,7 @@
   width: 795px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  top: 25%;
-  left: 25%;
+
 }
 
 .calendar-component {

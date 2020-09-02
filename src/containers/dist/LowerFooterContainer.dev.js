@@ -13,8 +13,9 @@ var _reactRedux = require("react-redux");
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
+    id: ownProps.id,
     selectedColor: state.selectedColor,
-    showColorPicker: ownProps.showColorPicker,
+    showColorPicker: state.showColorPicker[ownProps.id],
     language: state.language
   };
 };
@@ -25,7 +26,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
       return dispatch((0, _actions.setSelectedColor)(selectedColor));
     },
     setShowColorPicker: function setShowColorPicker(showColorPicker) {
-      return ownProps.setShowColorPicker(showColorPicker);
+      return dispatch((0, _actions.setShowColorPicker)(ownProps.id, showColorPicker));
+    },
+    setShowCalendar: function setShowCalendar(showCalendar) {
+      return dispatch((0, _actions.setShowCalendar)(showCalendar));
     }
   };
 };

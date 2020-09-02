@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setLastChangedId = exports.setHoveredDay = exports.setSelectedDays = exports.setBoardsNum = exports.setFirstDayOfWeekIndex = exports.setEndDate = exports.setStartDate = exports.setLanguage = exports.setSelectedColor = exports.setMode = exports.setViewedYear = exports.setViewedMonth = exports.setShowColorPicker = void 0;
+exports.setShowCalendar = exports.setChoosenDates = exports.setLastChangedId = exports.setHoveredDay = exports.setSelectedDays = exports.setBoardsNum = exports.setFirstDayOfWeekIndex = exports.setEndDate = exports.setStartDate = exports.setLanguage = exports.setSelectedColor = exports.setMode = exports.setViewedYear = exports.setViewedMonth = exports.setShowColorPicker = void 0;
 
 var setShowColorPicker = function setShowColorPicker(id, showColorPicker) {
   return {
@@ -125,3 +125,21 @@ var setLastChangedId = function setLastChangedId(lastChangedId) {
 };
 
 exports.setLastChangedId = setLastChangedId;
+
+var setChoosenDates = function setChoosenDates(choosenDates) {
+  return {
+    type: 'SET_CHOOSEN_DATES',
+    choosenDates: choosenDates
+  };
+};
+
+exports.setChoosenDates = setChoosenDates;
+
+var setShowCalendar = function setShowCalendar(showCalendar) {
+  return {
+    type: 'SET_SHOW_CALENDAR',
+    showCalendar: showCalendar
+  };
+};
+
+exports.setShowCalendar = setShowCalendar;

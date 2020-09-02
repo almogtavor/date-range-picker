@@ -66,3 +66,13 @@ export const setLastChangedId = lastChangedId => ({
     type: 'SET_LAST_CHANGED_ID',
     lastChangedId
 })
+
+export const setChoosenDates = choosenDates => ({
+    type: 'SET_CHOOSEN_DATES',
+    choosenDates
+})
+
+export const setShowCalendar = showCalendar => ({
+    type: 'SET_SHOW_CALENDAR',
+    showCalendar
+})
