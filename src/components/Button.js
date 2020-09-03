@@ -1,18 +1,23 @@
 import React from "react";
 import '../styles/button.css';
+import { choosenDatesCalculation } from "../utils/utils";
 
 const calendarIcon = require('../images/calendar-icon3.png');
 
 export const Button = (props) => {
     const {
-        choosenDates,
+        selectedDays, 
+        hoveredDay, 
+        language,
         showCalendar,
         setShowCalendar,
     } = props;
 
+    const choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, language);
+
     return (
         <button className="button" onClick={() => setShowCalendar(!showCalendar)}>
-            {choosenDates}
+            {  choosenDates}
             <img
                     alt=""
                     src={calendarIcon}

@@ -76,3 +76,8 @@ export const setShowCalendar = showCalendar => ({
     type: 'SET_SHOW_CALENDAR',
     showCalendar
 })
+
+export const setPickType = pickType => ({
+    type: 'SET_PICK_TYPE',
+    pickType
+})

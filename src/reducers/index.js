@@ -15,6 +15,7 @@ const initialState = {
     lastChangedId: null,
     choosenDates: "YYYY-MM-DD ~ YYYY-MM-DD",
     showCalendar: false,
+    pickType: "range" // can be date, range and ranges
 };
 
 
@@ -131,6 +132,10 @@ function rootReducer (state = initialState, payload) {
     } else if (payload.type === 'SET_SHOW_CALENDAR') {
         return Object.assign({}, state, {
           showCalendar: payload.showCalendar
+        });
+    } else if (payload.type === 'SET_PICK_TYPE') {
+        return Object.assign({}, state, {
+          pickType: payload.pickType
         });
     } else {
         return state;
