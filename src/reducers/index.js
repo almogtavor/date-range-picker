@@ -15,7 +15,8 @@ const initialState = {
     lastChangedId: null,
     choosenDates: "YYYY-MM-DD ~ YYYY-MM-DD",
     showCalendar: false,
-    pickType: "range" // can be date, range and ranges
+    pickType: "range", // can be date, range and ranges
+    colorsPalette: "enabled",
 };
 
 
@@ -136,6 +137,10 @@ function rootReducer (state = initialState, payload) {
     } else if (payload.type === 'SET_PICK_TYPE') {
         return Object.assign({}, state, {
           pickType: payload.pickType
+        });
+    } else if (payload.type === 'SET_COLORS_PALETTE') {
+        return Object.assign({}, state, {
+          colorsPalette: payload.colorsPalette
         });
     } else {
         return state;

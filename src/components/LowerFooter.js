@@ -14,6 +14,7 @@ export const LowerFooter = (props) => {
         setSelectedColor, 
         setShowColorPicker,        
         setShowCalendar,
+        colorsPalette,
     } = props;
 
     const changeColor = (color) => {
@@ -32,7 +33,7 @@ export const LowerFooter = (props) => {
         {"justifyContent": "flex-end"}: 
         {"justifyContent": "flex-start"}}
     >
-        {id === 0 && !showColorPicker && (
+        {id === 0 && colorsPalette !== "disabled" && !showColorPicker && (
             <button
                 style={{ backgroundColor: selectedColor }}
                 onClick={toggleColorPicker}
@@ -40,7 +41,7 @@ export const LowerFooter = (props) => {
             ></button>
         )}
 
-        {showColorPicker && (
+        {colorsPalette !== "disabled" && showColorPicker && (
             <div className="color-picker" onClick={toggleColorPicker}>
                 <img
                     alt=""

@@ -17,7 +17,7 @@ export const Button = (props) => {
 
     return (
         <button className="button" onClick={() => setShowCalendar(!showCalendar)}>
-            {  choosenDates}
+            { !showCalendar ? choosenDates : "YYYY-MM-DD-YYYY-MM-DD"}
             <img
                     alt=""
                     src={calendarIcon}

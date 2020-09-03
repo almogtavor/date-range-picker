@@ -21,6 +21,7 @@ function App(props) {
               endDate={props.endDate}
               firstDayOfWeekIndex={props.firstDayOfWeekIndex}
               boardsNum={props.boardsNum}
+              colorsPalette={props.colorsPalette}
           />
           </div>
         </div>

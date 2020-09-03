@@ -7,6 +7,7 @@ const mapStateToProps = (state, ownProps) => ({
     selectedColor: state.selectedColor,
     showColorPicker: state.showColorPicker[ownProps.id],
     language: state.language,
+    colorsPalette: state.colorsPalette,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

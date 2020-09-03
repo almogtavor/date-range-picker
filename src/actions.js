@@ -81,3 +81,8 @@ export const setPickType = pickType => ({
     type: 'SET_PICK_TYPE',
     pickType
 })
+
+export const setColorsPalette = colorsPalette => ({
+    type: 'SET_COLORS_PALETTE',
+    colorsPalette
+})
