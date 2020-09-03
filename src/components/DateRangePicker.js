@@ -2,7 +2,7 @@ import React from "react";
 import "../App.css";
 import CalendarConatiner from '../containers/CalendarContainer';
 import LowerFooterContainer from '../containers/LowerFooterContainer';
-import HeaderContainer from '../containers/HeaderContainer';
+import HeaderContainer from '../containers/DatesHeaderContainer';
 
 export const DateRangePicker = (props) => {
     return (

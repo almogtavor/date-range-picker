@@ -27,21 +27,12 @@ export const DateRangePickerMapper = (props) => {
       selectedDaysStyle["flexDirection"] = "row-reverse";
     }
 
-    const calendarsIndexes = [...Array(props.boardsNum).keys()];
+    const calendarsIndexes = [...Array(boardsNum).keys()];
     const choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, language);
     
     return (
     <>{showCalendar && <>
-        <div 
-          className="selected-dates" 
-          style={selectedDaysStyle}
-        >
-          <div className={`dates-display ${language === "Hebrew" && "hebrew"}`}>
-            {
-              choosenDates
-            }
-          </div>
-        </div>
+      
         {calendarsIndexes.map((i) => {
             return (
             <DateRangePicker

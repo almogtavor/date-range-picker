@@ -7,6 +7,7 @@ import ButtonContainer from "./containers/ButtonContainer";
 function App(props) {
   return (
     <div className="App">
+      {/* <h1>Date Range Picker Example</h1> */}
       <ButtonContainer/>
 
       <div className="date-range-picker-component">

@@ -64,7 +64,7 @@ export const LowerFooter = (props) => {
                 className="pick-button"
                 style={{
                     "backgroundColor": selectedColor + "80",
-                    "borderColor": selectedColor + "50",
+                    "borderColor": selectedColor + "20",
                 }}
                 onClick={() => setShowCalendar(false)}
             >

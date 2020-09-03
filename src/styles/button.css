@@ -6,8 +6,13 @@
     width: 350px;
     font-size: 1.2em;
     border-radius: 16px;
-    background-color: rgb(226, 225, 225);
-    outline: none;
+    border-width: 1px;
+    background-color: rgb(229, 229, 238);
+    outline: none;    
+}
+
+.button:hover {
+	background-color:#d1d1d1;
 }
 
 .calendar-icon {

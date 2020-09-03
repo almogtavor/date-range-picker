@@ -1,5 +1,5 @@
 import { setSelectedColor, setViewedMonth, setViewedYear, setMode } from '../actions';
-import { Header } from '../components/Header';
+import { CalendarHeader } from '../components/CalendarHeader';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
@@ -34,4 +34,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         setMode: (mode) => dispatch(setMode(ownProps.id, mode)),
 })};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarHeader);
