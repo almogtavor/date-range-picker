@@ -16,16 +16,6 @@
   justify-content: center;
 }
 
-.selected-dates {
-  height: 22px;
-  /* background-color: rgb(231, 231, 231); */
-  background-color: rgb(244, 246, 248);
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  margin-top: -22px;
-  box-shadow: 3px 1px 5px 0px #ddd;
-}
-
 .dates-display.hebrew {
   flex-direction: "row-reverse";
   margin-right: 5%;

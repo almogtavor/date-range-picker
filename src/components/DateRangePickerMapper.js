@@ -2,6 +2,7 @@ import React from "react";
 import "../App.css";
 import { DateRangePicker } from '../components/DateRangePicker';
 import { choosenDatesCalculation } from "../utils/utils";
+import CalendarHeaderContainer from "../containers/CalendarHeaderContainer";
 
 
 export const DateRangePickerMapper = (props) => {
@@ -32,7 +33,7 @@ export const DateRangePickerMapper = (props) => {
     
     return (
     <>{showCalendar && <>
-      
+        <CalendarHeaderContainer/>
         {calendarsIndexes.map((i) => {
             return (
             <DateRangePicker

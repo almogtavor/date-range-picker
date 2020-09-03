@@ -1,29 +1,22 @@
 import React from "react";
-import '../styles/button.css';
+import '../styles/calendar-header.css';
 import { choosenDatesCalculation } from "../utils/utils";
 
-const calendarIcon = require('../images/calendar-icon3.png');
-
-export const Button = (props) => {
+export const CalendarHeader = (props) => {
     const {
         selectedDays, 
         hoveredDay, 
         language,
-        startDate,
-        endDate,
-        firstDayOfWeekIndex,
         boardsNum,
-        selectedDays,
         selectedColor,
-        hoveredDay,
-        showCalendar,
-        setChoosenDates,
     } = props;
 
     let selectedDaysStyle = {
         "width": ((boardsNum * 100) > 300 ? 300 : (boardsNum * 100)) + "%", 
         "backgroundColor": selectedColor + "60",
     };
+
+    console.log(selectedDaysStyle);
   
     if (language === "Hebrew") {
     selectedDaysStyle["flexDirection"] = "row-reverse";
@@ -41,5 +34,6 @@ export const Button = (props) => {
                 choosenDates
             }
             </div>
+            <button>Clear All</button>
         </div>)
 }

@@ -2,36 +2,17 @@ import { setSelectedColor, setViewedMonth, setViewedYear, setMode } from '../act
 import { CalendarHeader } from '../components/CalendarHeader';
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state, ownProps) => {
-    const leftId = state.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
-    const rightId = state.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
+const mapStateToProps = (state) => {
     return ({
     selectedColor: state.selectedColor,
-    viewedYear: state.viewedYear[ownProps.id],
-    viewedMonth: state.viewedMonth[ownProps.id],
     startDate: state.startDate,
     endDate: state.endDate,
     language: state.language,
     selectedDays: state.selectedDays,
-    
-    nearViewedMonths: {
-        "right": {
-            "year": state.viewedYear[rightId], 
-            "month": state.viewedMonth[rightId]
-        },
-        "left": {
-            "year": state.viewedYear[leftId],
-            "month": state.viewedMonth[leftId]
-        },
-    }
+    boardsNum: state.boardsNum,
 })};
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return ({
-        setSelectedColor: (selectedColor) => dispatch(setSelectedColor(selectedColor)),
-        setViewedMonth: (viewedMonth) => dispatch(setViewedMonth(ownProps.id, viewedMonth)),
-        setViewedYear: (viewedYear) => dispatch(setViewedYear(ownProps.id, viewedYear)),
-        setMode: (mode) => dispatch(setMode(ownProps.id, mode)),
-})};
+const mapDispatchToProps = (dispatch) => {
+    return ({})};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarHeader);

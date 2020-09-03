@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import {calendarConfig} from '../configuration/config';
-import '../styles/header.css';
+import '../styles/dates-header.css';
 
 const leftArrow = require('../images/arrow-left.png');
 const rightArrow = require('../images/arrow-right.png');
 
-export const Header = (props) => {
+export const DatesHeader = (props) => {
     const {
         selectedColor, 
         viewedMonth, 
