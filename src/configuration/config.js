@@ -38,7 +38,7 @@ export const calendarConfig = {
         "#5ebaf8",
         "#ec467d",
         "#fdb241",
-        "#c559d8",
+        "#d889ac",
         "#673ab7",
         "#0078D7",
         "#43d6c8",

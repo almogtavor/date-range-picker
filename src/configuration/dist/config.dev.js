@@ -13,6 +13,6 @@ var calendarConfig = {
     "English": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
     "Hebrew": ["א", "ב", "ג", "ד", "ה", "ו", "ש"].reverse()
   },
-  "pickableColors": ["#5ebaf8", "#ec467d", "#fdb241", "#c559d8", "#673ab7", "#0078D7", "#43d6c8", "#498205"]
+  "pickableColors": ["#5ebaf8", "#ec467d", "#fdb241", "#d889ac", "#673ab7", "#0078D7", "#43d6c8", "#498205"]
 };
 exports.calendarConfig = calendarConfig;

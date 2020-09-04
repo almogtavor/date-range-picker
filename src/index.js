@@ -13,7 +13,7 @@ ReactDOM.render(
     <Provider store={store}>
         <DateRangePicker 
             language="English"
-            colorsPalette="disabled"
+            colorsPalette="enabled"
             startDate={new Date(1990, 8, 21)} 
             endDate={new Date(2025, 8, 21)}
             firstDayOfWeekIndex={0}

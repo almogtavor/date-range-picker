@@ -38,6 +38,7 @@ export const CalendarHeader = (props) => {
             <button 
                 className="clear"
                 onClick={() => setSelectedDays([])}
+                style={{"color": selectedColor}}
             >
                 Clear
             </button>

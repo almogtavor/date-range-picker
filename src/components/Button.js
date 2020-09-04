@@ -2,7 +2,7 @@ import React from "react";
 import '../styles/button.css';
 import { choosenDatesCalculation } from "../utils/utils";
 
-const calendarIcon = require('../images/calendar-icon3.png');
+const calendarIcon = require('../images/calendar-icon5.png');
 
 export const Button = (props) => {
     const {
