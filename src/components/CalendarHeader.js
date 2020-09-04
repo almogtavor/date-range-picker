@@ -4,6 +4,7 @@ import { choosenDatesCalculation } from "../utils/utils";
 
 export const CalendarHeader = (props) => {
     const {
+        setSelectedDays,
         selectedDays, 
         hoveredDay, 
         language,
@@ -34,6 +35,11 @@ export const CalendarHeader = (props) => {
                 choosenDates
             }
             </div>
-            <button>Clear All</button>
+            <button 
+                className="clear"
+                onClick={() => setSelectedDays([])}
+            >
+                Clear
+            </button>
         </div>)
 }
