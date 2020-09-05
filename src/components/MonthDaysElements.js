@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DayElementContainer from "../containers/DayElementContainer";
 
 export const MonthDaysElements = (props) => { 
@@ -10,19 +10,19 @@ export const MonthDaysElements = (props) => {
     } = props;
     const numOfDaysInMonth = new Date(viewedYear, viewedMonth + 1, 0).getDate();
     const dayToBeginTheMonthFrom = new Date(viewedYear, viewedMonth, 1).getDay();
-    const [monthDays, setMonthDays] = useState({"year": viewedYear, "month": viewedMonth, "array": []});
+    const [monthDays, setMonthDays] = useState([]);
     let tempMonthDaysArray = [];
 
-    const loopStartIndex = dayToBeginTheMonthFrom === 0 ? 7 : dayToBeginTheMonthFrom;
-    for (let i = -loopStartIndex; i < 42 - loopStartIndex; i++) {
-        tempMonthDaysArray.push(i + 1);
-    }
+    useEffect(() => {
+        const loopStartIndex = dayToBeginTheMonthFrom === 0 ? 7 : dayToBeginTheMonthFrom;
+        for (let i = -loopStartIndex; i < 42 - loopStartIndex; i++) {
+            tempMonthDaysArray.push(i + 1);
+        }
+        setMonthDays(tempMonthDaysArray);
+    }, [viewedMonth, viewedYear]);
 
-    if ((monthDays.year !== viewedYear || monthDays.month !== viewedMonth) || monthDays.array.length === 0) {
-        setMonthDays({"year": viewedYear, "month": viewedMonth, "array": tempMonthDaysArray});
-    }
     
-    return monthDays.array.map((day) => {
+    return monthDays.map((day) => {
         const date = new Date(viewedYear, viewedMonth, day);
         const columnOnGrid = (day + dayToBeginTheMonthFrom + 7) % 7;
         const dayOfWeek = date.getDay();

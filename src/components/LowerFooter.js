@@ -20,7 +20,6 @@ export const LowerFooter = (props) => {
     const changeColor = (color) => {
         setSelectedColor(color.hex);
         setShowColorPicker(false);
-        localStorage.setItem("selectedColor", color.hex);
     }
 
     const toggleColorPicker = () => {
