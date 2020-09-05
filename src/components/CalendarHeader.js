@@ -16,8 +16,6 @@ export const CalendarHeader = (props) => {
         "width": ((boardsNum * 100) > 300 ? 300 : (boardsNum * 100)) + "%", 
         "backgroundColor": selectedColor + "60",
     };
-
-    console.log(selectedDaysStyle);
   
     if (language === "Hebrew") {
     selectedDaysStyle["flexDirection"] = "row-reverse";

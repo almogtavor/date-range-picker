@@ -7,8 +7,34 @@
     outline: none;
 }
 
+.dot {
+    margin-left: 5%;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+}
+
+.right-hand {
+    margin-left: 5%;
+    height: 25px;
+}
+
+.color-circle {
+    margin-bottom: 5%;
+    margin-left: 4%;
+    height: 13px;
+    width: 13px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.color-circle:hover {
+    height: 18px;
+    width: 18px;
+}
+
+
 .pick-button {
-    /* align-self: center; */
     border-radius: 20px;
     height: 30px;
     width: 60px;
@@ -22,8 +48,9 @@
 }
 
 .checkbox {
-    height: 30px;
+    height: 20px;
     /* width: 30px; */
+    margin-top: 1.5%;
     margin-right: 5%;
     margin-left: 5%;
     /* justify-items: flex-start; */

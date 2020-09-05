@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { CirclePicker } from "react-color";
 import {calendarConfig} from '../configuration/config';
 import '../styles/lower-footer.css';
@@ -27,8 +27,10 @@ export const LowerFooter = (props) => {
 
     const [checkboxSrc, setCheckboxSrc] = useState(checkbox);
 
+    const checkeboxChanged = useRef(false);
+
     const changeColor = (color) => {
-        setSelectedColor(color.hex);
+        setSelectedColor(color);
         setShowColorPicker(false);
     }
 
@@ -38,12 +40,17 @@ export const LowerFooter = (props) => {
     }
 
     useEffect(() => {
-
+        if (checkeboxChanged.current === false) {
+            setCheckboxSrc(checkbox);
+        } else {
+            checkeboxChanged.current = false;
+        }
     }, [selectedDays])
 
     const handleClick = () => {
         if (checkboxSrc !== clickedCheckbox) {
             setCheckboxSrc(clickedCheckbox);
+            checkeboxChanged.current = true;
             if (mode === "Days") {
                 setSelectedDays(
                     [new Date(viewedYear, viewedMonth, 1),
@@ -82,29 +89,27 @@ export const LowerFooter = (props) => {
     //     {"justifyContent": "flex-end"}: 
     //     {"justifyContent": "flex-start"}}
     >
-        {id === 0 && colorsPalette !== "disabled" && !showColorPicker && (
-            <button
-                style={{ backgroundColor: selectedColor }}
-                onClick={toggleColorPicker}
-                className="picker-toggler"
-            ></button>
-        )}
-
-        {colorsPalette !== "disabled" && showColorPicker && (
-            <div className="color-picker" onClick={toggleColorPicker}>
-                <img
-                    alt=""
-                    src={rightHandIcon}
-                    className="hand-right"
+        {id === 0 && colorsPalette !== "disabled" && !showColorPicker && (<div 
+            className="dot" 
+            style={{"backgroundColor": selectedColor}} 
+            onClick={showColorPicker => setShowColorPicker(showColorPicker)}
+        />)}
+        {showColorPicker && (
+            <div className="color-picker">
+            <img
+                alt=""
+                src={rightHandIcon}
+                className="right-hand"
+                onClick={showColorPicker => setShowColorPicker(!showColorPicker)}
+            />
+            {calendarConfig.pickableColors.map(color => {
+                return <div 
+                    key={color} 
+                    className="color-circle" 
+                    style={{"backgroundColor": color}}
+                    onClick={() => changeColor(color)}
                 />
-                <CirclePicker
-                    className="circle-picker"
-                    colors={calendarConfig.pickableColors}
-                    circleSize={15}
-                    circleSpacing={3}
-                    onChangeComplete={changeColor}
-                    width="150px"
-                />
+            })}
             </div>
         )}
         <img

@@ -46,7 +46,11 @@ export const MonthSelector = (props) => {
                         key={month}
                         onClick={() => validMonth && selectMonthHandler(i)}
                         className={`selectable-month ${!validMonth && "invalid"}`}
-                        style={i === viewedMonth ? {"backgroundColor": selectedColor + "60"} : {}}
+                        style={
+                            i === viewedMonth ? 
+                            {"backgroundColor": selectedColor + "60"} : 
+                            {}
+                        }
                     >
                         {month}
                     </div>

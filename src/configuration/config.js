@@ -35,6 +35,7 @@ export const calendarConfig = {
         "Hebrew": ["א", "ב", "ג", "ד", "ה", "ו", "ש"].reverse(),
     },
     "pickableColors": [
+        // "#38a1f4"
         "#5ebaf8",
         "#ec467d",
         "#fdb241",
