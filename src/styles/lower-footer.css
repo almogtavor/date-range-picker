@@ -1,5 +1,6 @@
 .settings {
     display: flex;
+    justify-content: space-between;
 }
 
 .circle-picker {
@@ -7,11 +8,23 @@
 }
 
 .pick-button {
-    align-self: center;
+    /* align-self: center; */
     border-radius: 20px;
     height: 30px;
     width: 60px;
     margin-right: 3%;
     border-width: 2px;
     outline: none;
+}
+
+.pick-button:hover {
+    opacity: 0.8;
+}
+
+.checkbox {
+    height: 30px;
+    /* width: 30px; */
+    margin-right: 5%;
+    margin-left: 5%;
+    /* justify-items: flex-start; */
 }
