@@ -11,10 +11,13 @@ function App(props) {
       <ButtonContainer/>
 
       <div className="date-range-picker-component">
-        <div className="date-range-picker" style={{
+        <div 
+          className="date-range-picker" 
+          style={{
           "height": `${Math.floor(props.boardsNum / 3) * 292}px`,
-          "gridTemplateRows": `repeat(${Math.floor(props.boardsNum / 3)}, 1fr)`,
-        }}>
+          "gridTemplateRows": `repeat(${Math.floor(props.boardsNum / 3)}, 1fr)`,}}
+          onMouseDown={console.log("ejaifjaifeaofj")}
+        >
           
           <DateRangePickerContainer 
               language={props.language} 
