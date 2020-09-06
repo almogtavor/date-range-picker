@@ -44,16 +44,15 @@ export const MonthSelector = (props) => {
                     validMonth = false;
                 }
                 if (selectedDays.length === 2) {
-                    if (selectedDays[0] > selectedDays[1]) {
-                        console.log(i);
-                        console.log(selectedDays[0].getMonth(), selectedDays[1].getMonth());
-                        console.log((selectedDays[0].getMonth() <= i && selectedDays[1].getMonth() >= i) );
-                        console.log((selectedDays[0].getMonth() >= i && selectedDays[1].getMonth() <= i) );
-                        if (selectedDays[0].getMonth() <= i && selectedDays[1].getMonth() >= i) {
+                    const firstSelectionMonthDate = new Date(selectedDays[0].getFullYear(), selectedDays[0].getMonth(), 1);
+                    const secondSelectionMonthDate = new Date(selectedDays[1].getFullYear(), selectedDays[1].getMonth(), 1);
+                    const currentMonthDate = new Date(viewedYear, i, 1);
+                    if (firstSelectionMonthDate > secondSelectionMonthDate) {
+                        if (firstSelectionMonthDate >= currentMonthDate && secondSelectionMonthDate <= currentMonthDate) {
                             selectedMonth = true;
                         }
                     }  else {
-                        if (selectedDays[0].getMonth() >= i && selectedDays[1].getMonth() <= i) {
+                        if (firstSelectionMonthDate <= currentMonthDate && secondSelectionMonthDate >= currentMonthDate) {
                             selectedMonth = true;
                         }
                     }
