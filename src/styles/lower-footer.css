@@ -33,7 +33,6 @@
     width: 18px;
 }
 
-
 .pick-button {
     border-radius: 20px;
     height: 30px;
@@ -50,8 +49,12 @@
 .checkbox {
     height: 20px;
     /* width: 30px; */
+
+    /* justify-items: flex-start; */
+}
+
+.checkbox-div {
     margin-top: 1.5%;
     margin-right: 5%;
     margin-left: 5%;
-    /* justify-items: flex-start; */
 }

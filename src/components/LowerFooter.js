@@ -21,6 +21,8 @@ export const LowerFooter = (props) => {
         selectedDays,
         setSelectedDays,
         mode,
+        startYear,
+        endYear
         viewedMonth,
         viewedYear,
     } = props;
@@ -57,12 +59,12 @@ export const LowerFooter = (props) => {
                      new Date(viewedYear, viewedMonth + 1, 0)]);
             } else if (mode === "Months") {
                 setSelectedDays(
-                    [new Date(viewedYear, 1, 1),
-                     new Date(viewedYear, 11, 0)]);
+                    [new Date(viewedYear, 0, 1),
+                     new Date(viewedYear, 12, 0)]);
             } else {
                 setSelectedDays(
-                    [new Date(viewedYear, viewedMonth + 1, 1),
-                     new Date(viewedYear, viewedMonth + 1, 0)]);
+                    [new Date(viewedYear, 1, 1),
+                     new Date(viewedYear, 12, 0)]);
             }
         } else {
             setCheckboxSrc(hoverCheckbox);
@@ -112,14 +114,20 @@ export const LowerFooter = (props) => {
             })}
             </div>
         )}
-        <img
-            className="checkbox"
-            alt=""
-            src={checkboxSrc}
+        <div 
+            className="checkbox-div"
             onClick={handleClick}
             onMouseEnter={handleEnter}
             onMouseLeave={handleLeave}
-        />
+
+        >
+            <img
+                className="checkbox"
+                alt=""
+                src={checkboxSrc}
+            />
+            Select All
+        </div>
         {/* </button> */}
 
         {id === 1 && 
