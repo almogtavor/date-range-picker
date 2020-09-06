@@ -2,7 +2,10 @@ import { setSelectedColor, setShowColorPicker, setShowCalendar, setSelectedDays 
 import { LowerFooter } from '../components/LowerFooter';
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => {
+    const leftId = state.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
+    const rightId = state.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
+    return ({
     id: ownProps.id,
     selectedColor: state.selectedColor,
     showColorPicker: state.showColorPicker[ownProps.id],
@@ -12,7 +15,19 @@ const mapStateToProps = (state, ownProps) => ({
     selectedDays: state.selectedDays,
     viewedMonth: state.viewedMonth[ownProps.id],
     viewedYear: state.viewedYear[ownProps.id],
-});
+    startDate: state.startDate,
+    endDate: state.endDate,
+    nearViewedMonths: {
+        "right": {
+            "year": state.viewedYear[rightId], 
+            "month": state.viewedMonth[rightId],
+        },
+        "left": {
+            "year": state.viewedYear[leftId],
+            "month": state.viewedMonth[leftId],
+        },
+    }
+})};
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     setSelectedDays: (selectedDays) => dispatch(setSelectedDays(selectedDays)),

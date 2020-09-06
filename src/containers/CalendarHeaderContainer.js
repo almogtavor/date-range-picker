@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
     language: state.language,
     selectedDays: state.selectedDays,
     boardsNum: state.boardsNum,
+    hoveredDay: state.hoveredDay,
 })};
 
 const mapDispatchToProps = (dispatch) => {

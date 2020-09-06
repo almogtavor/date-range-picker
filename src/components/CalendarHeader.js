@@ -29,9 +29,7 @@ export const CalendarHeader = (props) => {
             style={selectedDaysStyle}
         >
             <div className={`dates-display ${language === "Hebrew" && "hebrew"}`}>
-            {
-                choosenDates
-            }
+                { choosenDates }
             </div>
             <button 
                 className="clear"

@@ -21,10 +21,11 @@ export const LowerFooter = (props) => {
         selectedDays,
         setSelectedDays,
         mode,
-        startYear,
-        endYear
+        startDate,
+        endDate,
         viewedMonth,
         viewedYear,
+        nearViewedMonths,
     } = props;
 
     const [checkboxSrc, setCheckboxSrc] = useState(checkbox);
@@ -58,13 +59,51 @@ export const LowerFooter = (props) => {
                     [new Date(viewedYear, viewedMonth, 1),
                      new Date(viewedYear, viewedMonth + 1, 0)]);
             } else if (mode === "Months") {
-                setSelectedDays(
-                    [new Date(viewedYear, 0, 1),
-                     new Date(viewedYear, 12, 0)]);
+                // if (nearViewedMonths.left.year) {
+                //     if (nearViewedMonths.right.year) {
+                //         setSelectedDays(
+                //             [new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 1),
+                //             new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0)]);
+                //     } else {
+                //         if (endDate < new Date(nearViewedMonths.left.year, nearViewedMonths.left.month + 1, 1)) {
+                //             setSelectedDays(
+                //                 [new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 1),
+                //                 endDate]);
+                //         } else {
+                //             setSelectedDays(
+                //                 [new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 1),
+                //                 new Date(nearViewedMonths.left.year, 11, 1)]);
+                //         }
+                //     }
+                // } else if (nearViewedMonths.right.year) {
+                //     setSelectedDays(
+                //         [startDate,
+                //         new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0)]);
+                // } else {
+                    setSelectedDays(
+                        [new Date(viewedYear, 0, 1),
+                         new Date(viewedYear, 12, 0)]);
+                // }
             } else {
-                setSelectedDays(
-                    [new Date(viewedYear, 1, 1),
-                     new Date(viewedYear, 12, 0)]);
+                if (nearViewedMonths.left.year) {
+                    if (nearViewedMonths.right.year) {
+                        setSelectedDays(
+                            [new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 1),
+                            new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 1)]);
+                    } else {
+                        setSelectedDays(
+                            [new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 1),
+                            endDate]);
+                    }
+                } else if (nearViewedMonths.right.year) {
+                    setSelectedDays(
+                        [startDate,
+                        new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 1)]);
+                } else {
+                    setSelectedDays(
+                        [startDate,
+                         endDate]);
+                }
             }
         } else {
             setCheckboxSrc(hoverCheckbox);

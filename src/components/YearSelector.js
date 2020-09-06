@@ -52,7 +52,7 @@ export const YearSelector = (props) => {
                             selectedYear = true;
                         }
                     }  else {
-                        if (selectedDays[0].getMonth() <= year && selectedDays[1].getMonth() >= year) {
+                        if (selectedDays[0].getFullYear() <= year && selectedDays[1].getFullYear() >= year) {
                             selectedYear = true;
                         }
                     }
@@ -66,7 +66,7 @@ export const YearSelector = (props) => {
                             year === viewedYear ? 
                             {"backgroundColor": selectedColor + "60"} :
                             selectedYear ?
-                            {"backgroundColor": selectedColor + "60"} :
+                            {"backgroundColor": selectedColor + "30"} :
                             {}
                         }
                     >
