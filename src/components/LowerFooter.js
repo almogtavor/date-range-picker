@@ -112,6 +112,10 @@ export const LowerFooter = (props) => {
         
     }
 
+    useEffect(() => {
+        setCheckboxSrc(checkbox);
+    }, [mode])
+
     const handleEnter = () => {
         if (checkboxSrc !== clickedCheckbox) {
             setCheckboxSrc(hoverCheckbox);
@@ -131,12 +135,12 @@ export const LowerFooter = (props) => {
     //     {"justifyContent": "flex-start"}}
     >
         {id === 0 && colorsPalette !== "disabled" && !showColorPicker && (<div 
-            className="dot" 
+            className="color-circle" 
             style={{"backgroundColor": selectedColor}} 
             onClick={showColorPicker => setShowColorPicker(showColorPicker)}
         />)}
         {showColorPicker && (
-            <div className="color-picker">
+            <div className="color-picker-palette">
             <img
                 alt=""
                 src={rightHandIcon}
@@ -146,7 +150,7 @@ export const LowerFooter = (props) => {
             {calendarConfig.pickableColors.map(color => {
                 return <div 
                     key={color} 
-                    className="color-circle" 
+                    className="selectable-color-circle" 
                     style={{"backgroundColor": color}}
                     onClick={() => changeColor(color)}
                 />
@@ -165,9 +169,10 @@ export const LowerFooter = (props) => {
                 alt=""
                 src={checkboxSrc}
             />
-            Select All
+            <div className="select-all-text">
+                Select All
+            </div>
         </div>
-        {/* </button> */}
 
         {id === 1 && 
             <button 
