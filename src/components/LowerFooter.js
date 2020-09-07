@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { CirclePicker } from "react-color";
 import {calendarConfig} from '../configuration/config';
 import '../styles/lower-footer.css';
 
@@ -53,57 +52,45 @@ export const LowerFooter = (props) => {
     const handleClick = () => {
         if (checkboxSrc !== clickedCheckbox) {
             setCheckboxSrc(clickedCheckbox);
-            checkeboxChanged.current = true;
+            checkeboxChanged.current = true;            
             if (mode === "Days") {
                 setSelectedDays(
                     [new Date(viewedYear, viewedMonth, 1),
                      new Date(viewedYear, viewedMonth + 1, 0)]);
-            } else if (mode === "Months") {
-                // if (nearViewedMonths.left.year) {
-                //     if (nearViewedMonths.right.year) {
-                //         setSelectedDays(
-                //             [new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 1),
-                //             new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0)]);
-                //     } else {
-                //         if (endDate < new Date(nearViewedMonths.left.year, nearViewedMonths.left.month + 1, 1)) {
-                //             setSelectedDays(
-                //                 [new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 1),
-                //                 endDate]);
-                //         } else {
-                //             setSelectedDays(
-                //                 [new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 1),
-                //                 new Date(nearViewedMonths.left.year, 11, 1)]);
-                //         }
-                //     }
-                // } else if (nearViewedMonths.right.year) {
-                //     setSelectedDays(
-                //         [startDate,
-                //         new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0)]);
-                // } else {
-                    setSelectedDays(
-                        [new Date(viewedYear, 0, 1),
-                         new Date(viewedYear, 12, 0)]);
-                // }
             } else {
-                if (nearViewedMonths.left.year) {
-                    if (nearViewedMonths.right.year) {
-                        setSelectedDays(
-                            [new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 1),
-                            new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 1)]);
+                let startSelectDate, endSelectDate;
+                if (mode === "Months") {
+                    if (nearViewedMonths.left.year) {
+                        if (new Date(viewedYear, 1, 1) < new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 1)) {
+                            startSelectDate = new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 1);
+                        } else {
+                            startSelectDate = new Date(viewedYear, 1, 1);
+                        }
                     } else {
-                        setSelectedDays(
-                            [new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 1),
-                            endDate]);
+                        startSelectDate = new Date(viewedYear, 1, 1);
                     }
-                } else if (nearViewedMonths.right.year) {
-                    setSelectedDays(
-                        [startDate,
-                        new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 1)]);
+                    if (nearViewedMonths.right.year) {
+                        if (new Date(viewedYear, 11, 1) > new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 1)) {
+                            endSelectDate = new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 1);
+                        } else {
+                            endSelectDate = new Date(viewedYear, 11, 1);
+                        }
+                    } else {
+                        endSelectDate = new Date(viewedYear, 11, 1);
+                    }
                 } else {
-                    setSelectedDays(
-                        [startDate,
-                         endDate]);
+                    if (nearViewedMonths.left.year) {
+                        startSelectDate = new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 1);
+                    } else {
+                        startSelectDate = startDate;
+                    }
+                    if (nearViewedMonths.right.year) {
+                        endSelectDate = new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 1);
+                    } else {
+                        endSelectDate = endDate;
+                    }
                 }
+                setSelectedDays([startSelectDate, endSelectDate]);
             }
         } else {
             setCheckboxSrc(hoverCheckbox);
