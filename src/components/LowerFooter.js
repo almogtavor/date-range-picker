@@ -61,31 +61,31 @@ export const LowerFooter = (props) => {
                 let startSelectDate, endSelectDate;
                 if (mode === "Months") {
                     if (nearViewedMonths.left.year) {
-                        if (new Date(viewedYear, 1, 1) < new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 1)) {
-                            startSelectDate = new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 1);
+                        if (new Date(viewedYear, 0, 1) < new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 1)) {
+                            startSelectDate = new Date(nearViewedMonths.left.year, nearViewedMonths.left.month + 1, 1);
                         } else {
-                            startSelectDate = new Date(viewedYear, 1, 1);
+                            startSelectDate = new Date(viewedYear, 0, 1);
                         }
                     } else {
-                        startSelectDate = new Date(viewedYear, 1, 1);
+                        startSelectDate = new Date(viewedYear, 0, 1);
                     }
                     if (nearViewedMonths.right.year) {
-                        if (new Date(viewedYear, 11, 1) > new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 1)) {
-                            endSelectDate = new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 1);
+                        if (new Date(viewedYear, 12, 0) > new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0)) {
+                            endSelectDate = new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0);
                         } else {
-                            endSelectDate = new Date(viewedYear, 11, 1);
+                            endSelectDate = new Date(viewedYear, 12, 0);
                         }
                     } else {
-                        endSelectDate = new Date(viewedYear, 11, 1);
+                        endSelectDate = new Date(viewedYear, 12, 0);
                     }
                 } else {
                     if (nearViewedMonths.left.year) {
-                        startSelectDate = new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 1);
+                        startSelectDate = new Date(nearViewedMonths.left.year, nearViewedMonths.left.month + 1, 1);
                     } else {
                         startSelectDate = startDate;
                     }
                     if (nearViewedMonths.right.year) {
-                        endSelectDate = new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 1);
+                        endSelectDate = new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0);
                     } else {
                         endSelectDate = endDate;
                     }
