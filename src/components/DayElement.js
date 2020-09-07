@@ -30,8 +30,8 @@ export const DayElement = (props) => {
 
 
     const dayNum = date.getDate();
-    const viewedMonth = date.getMonth();
-    const viewedYear = date.getFullYear();
+    const month = date.getMonth();
+    const year = date.getFullYear();
     const isToday = date.toLocaleDateString() === new Date().toLocaleDateString() ?  true : false;
     const isDisabled = date < startDate || date > endDate;
     let isSelected = false;
@@ -60,23 +60,23 @@ export const DayElement = (props) => {
     }
 
     const decreaseMonth = (setYear, setMonth, year, month, decreaseMonthsBy = 1, decreaseYearsBy = 0) => {
-        if (month === 0) {
-            setYear((year - decreaseYearsBy - 1));
-            setMonth(Math.abs((month + 12 - decreaseMonthsBy) % 12));    
-        } else {
-            setYear((year - decreaseYearsBy));
-            setMonth(Math.abs((month + 12 - decreaseMonthsBy) % 12));
-        }
+        // if (month === 0) {
+        //     setYear((year - decreaseYearsBy - 1));
+        //     setMonth(Math.abs((month + 12 - decreaseMonthsBy) % 12));    
+        // } else {
+            // setYear((year - decreaseYearsBy));
+            setMonth((month - decreaseMonthsBy));
+        // }
     };
 
     const increaseMonth = (setYear, setMonth, year, month, increaseMonthsBy = 1, increaseYearsBy = 0) => {
-        if (month === 11) {
-            setYear((year + increaseYearsBy + 1));
-            setMonth(Math.abs((month + increaseMonthsBy) % 12));
-        } else {
-            setYear((year + increaseYearsBy));
-            setMonth(Math.abs((month + increaseMonthsBy) % 12));
-        }
+        // if (month === 11) {
+        //     setYear((year + increaseYearsBy + 1));
+        //     setMonth(Math.abs((month + increaseMonthsBy) % 12));
+        // } else {
+            // setYear((year + increaseYearsBy));
+            setMonth((month + increaseMonthsBy));
+        // }
     }
 
     const handleClick = () => {
@@ -89,10 +89,9 @@ export const DayElement = (props) => {
             isSelected = !isSelected;
             if (!isOfCurrentViewedMonth && selectedDays.length !== 1) {
                 setViewedMonth(date.getMonth());
-                setViewedYear(date.getFullYear());
-                if (rightViewedYear === viewedYear && rightViewedMonth === viewedMonth) {
+                if (rightViewedYear === year && rightViewedMonth === month) {
                     increaseMonth(setRightViewedYear, setRightViewedMonth, rightViewedYear, rightViewedMonth);
-                } else if (leftViewedYear === viewedYear && leftViewedMonth === viewedMonth) {
+                } else if (leftViewedYear === year && leftViewedMonth === month) {
                     decreaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth);
                 }
             }
@@ -104,32 +103,32 @@ export const DayElement = (props) => {
                 
                 console.log(rightId);
                 if (id === leftId) {
-                    if (new Date(viewedYear, viewedMonth, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
+                    if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
                         console.log(1);
-                        setRightViewedYear(viewedYear);
-                        setRightViewedMonth(viewedMonth);
+                        setRightViewedYear(year);
+                        setRightViewedMonth(month);
                         setViewedYear(firstSelectYear);
                         setViewedMonth(firstSelectMonth);
-                    } else if (new Date(viewedYear, viewedMonth, 0) < new Date(firstSelectYear, firstSelectMonth, 0)) {
+                    } else if (new Date(year, month, 0) < new Date(firstSelectYear, firstSelectMonth, 0)) {
                         setRightViewedYear(firstSelectYear);
                         setRightViewedMonth(firstSelectMonth);
-                        setViewedYear(viewedYear);
-                        setViewedMonth(viewedMonth);
+                        setViewedYear(year);
+                        setViewedMonth(month);
                     }
                 } else if (id === rightId) {
-                    if (new Date(viewedYear, viewedMonth, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
+                    if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
                         setLeftViewedYear(firstSelectYear);
                         setLeftViewedMonth(firstSelectMonth);
-                        setViewedYear(viewedYear);
-                        setViewedMonth(viewedMonth);
-                    } else if (viewedYear === firstSelectYear && viewedMonth === firstSelectMonth) {
-                        setLeftViewedYear(viewedYear);
-                        setLeftViewedMonth(viewedMonth);
-                        setViewedYear(viewedYear);
-                        setViewedMonth(viewedMonth + 1);
+                        setViewedYear(year);
+                        setViewedMonth(month);
+                    } else if (year === firstSelectYear && month === firstSelectMonth) {
+                        setLeftViewedYear(year);
+                        setLeftViewedMonth(month);
+                        setViewedYear(year);
+                        setViewedMonth(month + 1);
                     } else {
-                        setLeftViewedYear(viewedYear);
-                        setLeftViewedMonth(viewedMonth);
+                        setLeftViewedYear(year);
+                        setLeftViewedMonth(month);
                         setViewedYear(firstSelectYear);
                         setViewedMonth(firstSelectMonth);
                     }

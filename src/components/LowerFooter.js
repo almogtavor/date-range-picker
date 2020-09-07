@@ -36,11 +36,6 @@ export const LowerFooter = (props) => {
         setShowColorPicker(false);
     }
 
-    const toggleColorPicker = () => {
-        const toggled = !showColorPicker;
-        setShowColorPicker(toggled);
-    }
-
     useEffect(() => {
         if (checkeboxChanged.current === false) {
             setCheckboxSrc(checkbox);
@@ -52,13 +47,21 @@ export const LowerFooter = (props) => {
     const handleClick = () => {
         if (checkboxSrc !== clickedCheckbox) {
             setCheckboxSrc(clickedCheckbox);
-            checkeboxChanged.current = true;            
+            checkeboxChanged.current = true;
+            let startSelectDate, endSelectDate;
+
             if (mode === "Days") {
-                setSelectedDays(
-                    [new Date(viewedYear, viewedMonth, 1),
-                     new Date(viewedYear, viewedMonth + 1, 0)]);
+                if (new Date(viewedYear, viewedMonth, 1) > startDate) {
+                    startSelectDate = new Date(viewedYear, viewedMonth, 1);
+                } else {
+                    startSelectDate = startDate;
+                }
+                if (new Date(viewedYear, viewedMonth + 1, 0) < endDate) {
+                    endSelectDate = new Date(viewedYear, viewedMonth + 1, 0);
+                } else {
+                    endSelectDate = endDate;
+                }
             } else {
-                let startSelectDate, endSelectDate;
                 if (mode === "Months") {
                     if (nearViewedMonths.left.year) {
                         if (new Date(viewedYear, 0, 1) < new Date(nearViewedMonths.left.year, nearViewedMonths.left.month, 1)) {
@@ -90,8 +93,8 @@ export const LowerFooter = (props) => {
                         endSelectDate = endDate;
                     }
                 }
-                setSelectedDays([startSelectDate, endSelectDate]);
             }
+            setSelectedDays([startSelectDate, endSelectDate]);
         } else {
             setCheckboxSrc(hoverCheckbox);
             setSelectedDays([]);
