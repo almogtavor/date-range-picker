@@ -46,11 +46,11 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     }
 
     const setMonthById = (id, viewedMonth) => {
-        console.log(id, viewedMonth);
+        console.log(id, viewedMonth, stateProps.viewedYear[id]);
         viewedMonth > 11 ? 
-            yearBorderHandler(0, stateProps.viewedYear[id], 1, id) :
+            yearBorderHandler(0, stateProps.viewedYear[id] + 1, 1, id) :
             viewedMonth < 0 ?
-            yearBorderHandler(11, stateProps.viewedYear[id], -1, id) :
+            yearBorderHandler(11, stateProps.viewedYear[id] - 1, -1, id) :
             dispatchProps.mapViewedMonth(id, viewedMonth);
     }
     return {

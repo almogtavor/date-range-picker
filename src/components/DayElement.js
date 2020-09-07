@@ -89,9 +89,11 @@ export const DayElement = (props) => {
             isSelected = !isSelected;
             if (!isOfCurrentViewedMonth && selectedDays.length !== 1) {
                 setViewedMonth(date.getMonth());
+                setViewedYear(id, date.getFullYear());
                 if (rightViewedYear === year && rightViewedMonth === month) {
                     increaseMonth(setRightViewedYear, setRightViewedMonth, rightViewedYear, rightViewedMonth);
                 } else if (leftViewedYear === year && leftViewedMonth === month) {
+                    console.log("fiaejfiajeijfiwf");
                     decreaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth);
                 }
             }
@@ -104,7 +106,7 @@ export const DayElement = (props) => {
                 console.log(rightId);
                 if (id === leftId) {
                     if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
-                        console.log(1);
+                        console.log("fiaejfiajeijfiwf");
                         setRightViewedYear(year);
                         setRightViewedMonth(month);
                         setViewedYear(firstSelectYear);
