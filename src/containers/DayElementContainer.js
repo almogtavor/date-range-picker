@@ -28,8 +28,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return ({
         setSelectedDays: (selectedDays) => dispatch(setSelectedDays(selectedDays)),
-        mapViewedMonth: (id, viewedMonth) => dispatch(setViewedMonth(id, viewedMonth)),
-        setViewedYear: (id, viewedYear) => dispatch(setViewedYear(id, viewedYear)),
+        mapViewedMonth: (viewedMonth, id) => dispatch(setViewedMonth(id, viewedMonth)),
+        setViewedYear: (viewedYear, id = ownProps.id) => dispatch(setViewedYear(id, viewedYear)),
         setHoveredDay: (hoveredDay) => dispatch(setHoveredDay(hoveredDay)),
         // mapRightViewedMonth: (rightId, viewedMonth) => dispatch(setViewedMonth(rightId, viewedMonth)),
         // mapRightViewedYear: (rightId, viewedYear) => dispatch(setViewedYear(rightId, viewedYear)),
@@ -41,26 +41,26 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     const rightId = stateProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
     const leftId = stateProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
     const yearBorderHandler = (viewedMonth, viewedYear, yearIncreasement, id) => {
-        dispatchProps.mapViewedMonth(id, viewedMonth);
-        dispatchProps.setViewedYear(id, viewedYear + yearIncreasement);
+        dispatchProps.mapViewedMonth(viewedMonth, id);
+        dispatchProps.setViewedYear(viewedYear + yearIncreasement, id);
     }
 
-    const setMonthById = (id, viewedMonth) => {
+    const setMonthById = (viewedMonth, id) => {
         console.log(id, viewedMonth, stateProps.viewedYear[id]);
         viewedMonth > 11 ? 
             yearBorderHandler(0, stateProps.viewedYear[id] + 1, 1, id) :
             viewedMonth < 0 ?
             yearBorderHandler(11, stateProps.viewedYear[id] - 1, -1, id) :
-            dispatchProps.mapViewedMonth(id, viewedMonth);
+            dispatchProps.mapViewedMonth(viewedMonth, id);
     }
     return {
         ...stateProps,
         ...dispatchProps,
-        setRightViewedMonth: (viewedMonth) => setMonthById(rightId, viewedMonth),
-        setRightViewedYear: (viewedYear) => setViewedYear(rightId, viewedYear),
-        setLeftViewedMonth: (viewedMonth) => setMonthById(leftId, viewedMonth),
-        setLeftViewedYear: (viewedYear) => setViewedYear(leftId, viewedYear),
-        setViewedMonth: (viewedMonth) => setMonthById(ownProps.id, viewedMonth),
+        setRightViewedMonth: (viewedMonth) => setMonthById(viewedMonth, rightId),
+        setRightViewedYear: (viewedYear) => setViewedYear(viewedYear, rightId),
+        setLeftViewedMonth: (viewedMonth) => setMonthById(viewedMonth, leftId),
+        setLeftViewedYear: (viewedYear) => setViewedYear(viewedYear, leftId),
+        setViewedMonth: (viewedMonth) => setMonthById(viewedMonth, ownProps.id),
     }
   }
 
