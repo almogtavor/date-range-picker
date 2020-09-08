@@ -59,26 +59,6 @@ export const DayElement = (props) => {
         }
     }
 
-    const decreaseMonth = (setYear, setMonth, year, month, decreaseMonthsBy = 1, decreaseYearsBy = 0) => {
-        // if (month === 0) {
-        //     setYear((year - decreaseYearsBy - 1));
-        //     setMonth(Math.abs((month + 12 - decreaseMonthsBy) % 12));    
-        // } else {
-            // setYear((year - decreaseYearsBy));
-            setMonth((month - decreaseMonthsBy));
-        // }
-    };
-
-    const increaseMonth = (setYear, setMonth, year, month, increaseMonthsBy = 1, increaseYearsBy = 0) => {
-        // if (month === 11) {
-        //     setYear((year + increaseYearsBy + 1));
-        //     setMonth(Math.abs((month + increaseMonthsBy) % 12));
-        // } else {
-            // setYear((year + increaseYearsBy));
-            setMonth((month + increaseMonthsBy));
-        // }
-    }
-
     const handleClick = () => {
         if (!isDisabled) {
             if (selectedDays.length === 2) {
@@ -89,12 +69,14 @@ export const DayElement = (props) => {
             isSelected = !isSelected;
             if (!isOfCurrentViewedMonth && selectedDays.length !== 1) {
                 setViewedMonth(date.getMonth());
-                setViewedYear(date.getFullYear());
+                // setViewedYear(date.getFullYear());
                 if (rightViewedYear === year && rightViewedMonth === month) {
-                    increaseMonth(setRightViewedYear, setRightViewedMonth, rightViewedYear, rightViewedMonth);
+                    setRightViewedMonth((rightViewedMonth + 1));
+                    // increaseMonth(setRightViewedYear, setRightViewedMonth, rightViewedYear, rightViewedMonth);
                 } else if (leftViewedYear === year && leftViewedMonth === month) {
                     console.log("fiaejfiajeijfiwf");
-                    decreaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth);
+                    setLeftViewedMonth((leftViewedMonth - 1));
+                    // decreaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth);
                 }
             }
 
@@ -103,35 +85,38 @@ export const DayElement = (props) => {
                 const firstSelectYear = selectedDays[0].getFullYear();
                 const {rightId, leftId} = language === "Hebrew" ? {rightId: 0, leftId: 1} : {rightId: 1, leftId: 0}; 
                 
-                console.log(rightId);
                 if (id === leftId) {
                     if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
-                        console.log(year, month, firstSelectMonth, firstSelectYear);
+                        console.log("a " + year, month, firstSelectMonth, firstSelectYear);
                         setRightViewedYear(year);
                         setRightViewedMonth(month);
-                        setViewedYear(firstSelectYear);
+                        // setViewedYear(firstSelectYear);
                         setViewedMonth(firstSelectMonth);
                     } else if (new Date(year, month, 0) < new Date(firstSelectYear, firstSelectMonth, 0)) {
+                        console.log("b " + year, month, firstSelectMonth, firstSelectYear);
                         setRightViewedYear(firstSelectYear);
                         setRightViewedMonth(firstSelectMonth);
-                        setViewedYear(year);
+                        // setViewedYear(year);
                         setViewedMonth(month);
                     }
                 } else if (id === rightId) {
                     if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
+                        console.log("c " + year, month, firstSelectMonth, firstSelectYear);
                         setLeftViewedYear(firstSelectYear);
                         setLeftViewedMonth(firstSelectMonth);
-                        setViewedYear(year);
+                        // setViewedYear(year);
                         setViewedMonth(month);
                     } else if (year === firstSelectYear && month === firstSelectMonth) {
+                        console.log("d " + year, month, firstSelectMonth, firstSelectYear);
                         setLeftViewedYear(year);
                         setLeftViewedMonth(month);
-                        setViewedYear(year);
+                        // setViewedYear(year);
                         setViewedMonth(month + 1);
                     } else {
+                        console.log("e " + year, month, firstSelectMonth, firstSelectYear);
                         setLeftViewedYear(year);
                         setLeftViewedMonth(month);
-                        setViewedYear(firstSelectYear);
+                        // setViewedYear(firstSelectYear);
                         setViewedMonth(firstSelectMonth);
                     }
                 }

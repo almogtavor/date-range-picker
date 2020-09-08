@@ -41,26 +41,36 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     const rightId = stateProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
     const leftId = stateProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
     const yearBorderHandler = (viewedMonth, viewedYear, yearIncreasement, id) => {
+        console.log("i", id, viewedMonth, viewedYear, viewedYear + yearIncreasement);
         dispatchProps.mapViewedMonth(viewedMonth, id);
         dispatchProps.setViewedYear(viewedYear + yearIncreasement, id);
     }
 
-    const setMonthById = (viewedMonth, id) => {
-        console.log(id, viewedMonth, stateProps.viewedYear[id]);
-        viewedMonth > 11 ? 
-            yearBorderHandler(0, stateProps.viewedYear[id] + 1, 1, id) :
-            viewedMonth < 0 ?
-            yearBorderHandler(11, stateProps.viewedYear[id] - 1, -1, id) :
-            dispatchProps.mapViewedMonth(viewedMonth, id);
+    const setMonthById = (viewedMonth, id, viewedYear) => {
+        if (viewedYear) {
+            
+        } else {
+            console.log(id, viewedMonth, stateProps.viewedYear[id]);
+            if (viewedMonth > 11) {
+                console.log("f");
+                yearBorderHandler(0, stateProps.viewedYear[id], 1, id);
+            } else if (viewedMonth < 0) {
+                console.log("g");
+                yearBorderHandler(11, stateProps.viewedYear[id], -1, id);
+            } else {
+                console.log("h" + id, viewedMonth);
+                dispatchProps.mapViewedMonth(viewedMonth, id);
+            }
+        }
     }
     return {
         ...stateProps,
         ...dispatchProps,
         setRightViewedMonth: (viewedMonth) => setMonthById(viewedMonth, rightId),
-        setRightViewedYear: (viewedYear) => setViewedYear(viewedYear, rightId),
+        // setRightViewedYear: (viewedYear) => setViewedYear(viewedYear, rightId),
         setLeftViewedMonth: (viewedMonth) => setMonthById(viewedMonth, leftId),
-        setLeftViewedYear: (viewedYear) => setViewedYear(viewedYear, leftId),
-        setViewedMonth: (viewedMonth) => setMonthById(viewedMonth, ownProps.id),
+        // setLeftViewedYear: (viewedYear) => setViewedYear(viewedYear, leftId),
+        setViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, ownProps.id, viewedYear),
     }
   }
 
