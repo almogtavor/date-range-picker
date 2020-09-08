@@ -1,26 +1,27 @@
-export function choosenDatesCalculation(selectedDays, hoveredDay, language, format) {
-    if (selectedDays.length === 2) {
-        return selectedDays[0].toLocaleDateString() + " - " +
-            selectedDays[1].toLocaleDateString();
-    } else if (selectedDays.length === 1 && hoveredDay) {
-        if (language === "Hebrew") {
-            if (selectedDays[0] > hoveredDay) {
-                return (selectedDays[0].toLocaleDateString() + " - " +
-                    hoveredDay.toLocaleDateString());
-            } else {
-                return (hoveredDay.toLocaleDateString() + " - " +
-                    selectedDays[0].toLocaleDateString()); 
-            }
+export function choosenDatesCalculation(selectedDays, hoveredDay, format) {
+    if (selectedDays.length) {
+        if (selectedDays.length === 2) {
+            return placeDateInFormat(selectedDays[0], format) + 
+                " - " + placeDateInFormat(selectedDays[1], format);
+        } else if (selectedDays[0] > hoveredDay) {
+            return placeDateInFormat(hoveredDay, format) + 
+                " - " + placeDateInFormat(selectedDays[0], format);
         } else {
-            if (selectedDays [0] > hoveredDay) {
-                return (hoveredDay.toLocaleDateString() + " - " +
-                    selectedDays[0].toLocaleDateString())
-            } else {
-                return (selectedDays[0].toLocaleDateString() + " - " +
-                    hoveredDay.toLocaleDateString());
-            }
+            return placeDateInFormat(selectedDays[0], format) +
+                " - " + placeDateInFormat(hoveredDay, format);
         }
     } else {
-        return "DD-MM-YYYY - DD-MM-YYYY";
+        return format + " - " + format;
     }
+}
+
+function placeDateInFormat(date, format) {
+    if (format.includes("YYYY")) {
+        format = format.replace("YYYY", date.getFullYear());
+    } else if (format.includes("YY")) {
+        format = format.replace("YYYY", date.getFullYear());
+    }
+    format = format.replace("MM", date.getMonth());
+    format = format.replace("DD", date.getDate());
+    return format;
 }

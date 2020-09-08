@@ -11,15 +11,15 @@ export const MonthDaysElements = (props) => {
     const numOfDaysInMonth = new Date(viewedYear, viewedMonth + 1, 0).getDate();
     const dayToBeginTheMonthFrom = new Date(viewedYear, viewedMonth, 1).getDay();
     const [monthDays, setMonthDays] = useState([]);
-    let tempMonthDaysArray = [];
 
     useEffect(() => {
+        let tempMonthDaysArray = [];
         const loopStartIndex = dayToBeginTheMonthFrom === 0 ? 7 : dayToBeginTheMonthFrom;
         for (let i = -loopStartIndex; i < 42 - loopStartIndex; i++) {
             tempMonthDaysArray.push(i + 1);
         }
         setMonthDays(tempMonthDaysArray);
-    }, [viewedMonth, viewedYear]);
+    }, [viewedMonth, viewedYear, dayToBeginTheMonthFrom]);
 
     
     return monthDays.map((day) => {

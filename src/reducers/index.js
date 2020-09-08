@@ -17,6 +17,7 @@ const initialState = {
     showCalendar: false,
     pickType: "range", // can be date, range and ranges
     colorsPalette: "enabled",
+    format: "MM-DD-YYYY",
 };
 
 
@@ -142,6 +143,10 @@ function rootReducer (state = initialState, payload) {
         return Object.assign({}, state, {
           colorsPalette: payload.colorsPalette
         });
+    } else if (payload.type === 'SET_FORMAT') {
+        return Object.assign({}, state, {
+          format: payload.format
+        })
     } else {
         return state;
     }

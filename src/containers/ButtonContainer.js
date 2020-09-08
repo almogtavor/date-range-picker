@@ -6,10 +6,10 @@ const mapStateToProps = (state) => {
     return ({
         choosenDates: state.choosenDates,
         showCalendar: state.showCalendar,
-        choosenDates: state.choosenDates,
         selectedDays: state.selectedDays, 
         hoveredDay: state.hoveredDay, 
         language: state.language,
+        format: state.format,
 })};
 
 const mapDispatchToProps = (dispatch) => {

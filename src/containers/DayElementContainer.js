@@ -31,35 +31,25 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         mapViewedMonth: (viewedMonth, id) => dispatch(setViewedMonth(id, viewedMonth)),
         setViewedYear: (viewedYear, id = ownProps.id) => dispatch(setViewedYear(id, viewedYear)),
         setHoveredDay: (hoveredDay) => dispatch(setHoveredDay(hoveredDay)),
-        // mapRightViewedMonth: (rightId, viewedMonth) => dispatch(setViewedMonth(rightId, viewedMonth)),
-        // mapRightViewedYear: (rightId, viewedYear) => dispatch(setViewedYear(rightId, viewedYear)),
-        // mapLeftViewedMonth: (leftId, viewedMonth) => dispatch(setViewedMonth(leftId, viewedMonth)),
-        // mapLeftViewedYear: (leftId, viewedYear) => dispatch(setViewedYear(leftId, viewedYear)),
 })};
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
     const rightId = stateProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
     const leftId = stateProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
     const yearBorderHandler = (viewedMonth, viewedYear, yearIncreasement, id) => {
-        console.log("i", id, viewedMonth, viewedYear, viewedYear + yearIncreasement);
         dispatchProps.mapViewedMonth(viewedMonth, id);
         dispatchProps.setViewedYear(viewedYear + yearIncreasement, id);
     }
 
     const setMonthById = (viewedMonth, id, viewedYear) => {
         if (viewedYear) {
-            console.log("new" + id, viewedMonth, viewedYear);
             yearBorderHandler(viewedMonth, viewedYear, 0, id);
         } else {
-            console.log(id, viewedMonth, stateProps.viewedYear[id]);
             if (viewedMonth > 11) {
-                console.log("f");
                 yearBorderHandler(0, stateProps.viewedYear[id], 1, id);
             } else if (viewedMonth < 0) {
-                console.log("g");
                 yearBorderHandler(11, stateProps.viewedYear[id], -1, id);
             } else {
-                console.log("h" + id, viewedMonth);
                 dispatchProps.mapViewedMonth(viewedMonth, id);
             }
         }
@@ -68,9 +58,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
         ...stateProps,
         ...dispatchProps,
         setRightViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, rightId, viewedYear),
-        // setRightViewedYear: (viewedYear) => setViewedYear(viewedYear, rightId),
         setLeftViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, leftId, viewedYear),
-        // setLeftViewedYear: (viewedYear) => setViewedYear(viewedYear, leftId),
         setViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, ownProps.id, viewedYear),
     }
   }

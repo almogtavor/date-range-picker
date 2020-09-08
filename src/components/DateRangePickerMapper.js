@@ -1,7 +1,6 @@
 import React from "react";
 import "../App.css";
 import { DateRangePicker } from '../components/DateRangePicker';
-import { choosenDatesCalculation } from "../utils/utils";
 import CalendarHeaderContainer from "../containers/CalendarHeaderContainer";
 
 
@@ -29,7 +28,6 @@ export const DateRangePickerMapper = (props) => {
     }
 
     const calendarsIndexes = [...Array(boardsNum).keys()];
-    const choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, language);
     
     return (
     <>{showCalendar && <>

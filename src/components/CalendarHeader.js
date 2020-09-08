@@ -10,6 +10,7 @@ export const CalendarHeader = (props) => {
         language,
         boardsNum,
         selectedColor,
+        format,
     } = props;
 
     let selectedDaysStyle = {
@@ -18,10 +19,10 @@ export const CalendarHeader = (props) => {
     };
   
     if (language === "Hebrew") {
-    selectedDaysStyle["flexDirection"] = "row-reverse";
+        selectedDaysStyle["flexDirection"] = "row-reverse";
     }
   
-    const choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, language);
+    const choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, format);
 
     return (
         <div 
@@ -36,7 +37,7 @@ export const CalendarHeader = (props) => {
                 onClick={() => setSelectedDays([])}
                 style={{"color": selectedColor}}
             >
-                Clear
+                {language === "Hebrew" ? "נקה" : "Clear"}
             </button>
         </div>)
 }

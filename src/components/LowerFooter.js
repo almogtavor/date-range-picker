@@ -20,6 +20,7 @@ export const LowerFooter = (props) => {
         selectedDays,
         setSelectedDays,
         mode,
+        language,
         startDate,
         endDate,
         viewedMonth,
@@ -160,7 +161,7 @@ export const LowerFooter = (props) => {
                 src={checkboxSrc}
             />
             <div className="select-all-text">
-                Select All
+                {language === "Hebrew" ? "בחר הכל" : "Select All"}
             </div>
         </div>
 
@@ -173,7 +174,7 @@ export const LowerFooter = (props) => {
                 }}
                 onClick={() => setShowCalendar(false)}
             >
-                Pick
+                {language === "Hebrew" ? "בחר" : "Pick"}
             </button>
         }
     </div>

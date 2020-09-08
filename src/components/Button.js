@@ -11,13 +11,14 @@ export const Button = (props) => {
         language,
         showCalendar,
         setShowCalendar,
+        format,
     } = props;
 
-    const choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, language);
+    const choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, format);
 
     return (
         <button className="button" onClick={() => setShowCalendar(!showCalendar)}>
-            { !showCalendar ? choosenDates : "YYYY-MM-DD-YYYY-MM-DD"}
+            { choosenDates }
             <img
                     alt=""
                     src={calendarIcon}
