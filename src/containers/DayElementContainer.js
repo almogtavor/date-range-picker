@@ -48,7 +48,8 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
 
     const setMonthById = (viewedMonth, id, viewedYear) => {
         if (viewedYear) {
-            
+            console.log("new" + id, viewedMonth, viewedYear);
+            yearBorderHandler(viewedMonth, viewedYear, 0, id);
         } else {
             console.log(id, viewedMonth, stateProps.viewedYear[id]);
             if (viewedMonth > 11) {
@@ -66,9 +67,9 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     return {
         ...stateProps,
         ...dispatchProps,
-        setRightViewedMonth: (viewedMonth) => setMonthById(viewedMonth, rightId),
+        setRightViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, rightId, viewedYear),
         // setRightViewedYear: (viewedYear) => setViewedYear(viewedYear, rightId),
-        setLeftViewedMonth: (viewedMonth) => setMonthById(viewedMonth, leftId),
+        setLeftViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, leftId, viewedYear),
         // setLeftViewedYear: (viewedYear) => setViewedYear(viewedYear, leftId),
         setViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, ownProps.id, viewedYear),
     }

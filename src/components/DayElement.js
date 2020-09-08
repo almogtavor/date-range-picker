@@ -68,15 +68,11 @@ export const DayElement = (props) => {
             }
             isSelected = !isSelected;
             if (!isOfCurrentViewedMonth && selectedDays.length !== 1) {
-                setViewedMonth(date.getMonth());
-                // setViewedYear(date.getFullYear());
+                setViewedMonth(date.getMonth(), date.getFullYear());
                 if (rightViewedYear === year && rightViewedMonth === month) {
-                    setRightViewedMonth((rightViewedMonth + 1));
-                    // increaseMonth(setRightViewedYear, setRightViewedMonth, rightViewedYear, rightViewedMonth);
+                    setRightViewedMonth(rightViewedMonth + 1);
                 } else if (leftViewedYear === year && leftViewedMonth === month) {
-                    console.log("fiaejfiajeijfiwf");
-                    setLeftViewedMonth((leftViewedMonth - 1));
-                    // decreaseMonth(setLeftViewedYear, setLeftViewedMonth, leftViewedYear, leftViewedMonth);
+                    setLeftViewedMonth(leftViewedMonth - 1);
                 }
             }
 
@@ -87,37 +83,25 @@ export const DayElement = (props) => {
                 
                 if (id === leftId) {
                     if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
-                        console.log("a " + year, month, firstSelectMonth, firstSelectYear);
-                        setRightViewedYear(year);
-                        setRightViewedMonth(month);
-                        // setViewedYear(firstSelectYear);
-                        setViewedMonth(firstSelectMonth);
-                    } else if (new Date(year, month, 0) < new Date(firstSelectYear, firstSelectMonth, 0)) {
-                        console.log("b " + year, month, firstSelectMonth, firstSelectYear);
-                        setRightViewedYear(firstSelectYear);
-                        setRightViewedMonth(firstSelectMonth);
-                        // setViewedYear(year);
-                        setViewedMonth(month);
+                        setRightViewedMonth(month, year);
+                        setViewedMonth(firstSelectMonth, firstSelectYear);
+                    } else if (year === firstSelectYear && month === firstSelectMonth) {
+                        setViewedMonth(month, year);
+                        setRightViewedMonth(month + 1);
+                    } else {
+                        setRightViewedMonth(firstSelectMonth, firstSelectYear);
+                        setViewedMonth(month, year);
                     }
                 } else if (id === rightId) {
                     if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
-                        console.log("c " + year, month, firstSelectMonth, firstSelectYear);
-                        setLeftViewedYear(firstSelectYear);
-                        setLeftViewedMonth(firstSelectMonth);
-                        // setViewedYear(year);
-                        setViewedMonth(month);
+                        setLeftViewedMonth(firstSelectMonth, firstSelectYear);
+                        setViewedMonth(month, year);
                     } else if (year === firstSelectYear && month === firstSelectMonth) {
-                        console.log("d " + year, month, firstSelectMonth, firstSelectYear);
-                        setLeftViewedYear(year);
-                        setLeftViewedMonth(month);
-                        // setViewedYear(year);
+                        setLeftViewedMonth(month, year);
                         setViewedMonth(month + 1);
                     } else {
-                        console.log("e " + year, month, firstSelectMonth, firstSelectYear);
-                        setLeftViewedYear(year);
-                        setLeftViewedMonth(month);
-                        // setViewedYear(firstSelectYear);
-                        setViewedMonth(firstSelectMonth);
+                        setLeftViewedMonth(month, year);
+                        setViewedMonth(firstSelectMonth, firstSelectYear);
                     }
                 }
             }
@@ -145,7 +129,7 @@ export const DayElement = (props) => {
             ${(dayOfWeek === 0 && !isInRange) && "first-day-of-week"}
             ${isSelected && "selected-day"}
             ${(dayOfWeek === 6 && !isInRange) && "last-day-of-week"}`}
-        style={isSelected ? {...genericStyle, "background": selectedColor} : genericStyle}
+        style={isSelected ? {...genericStyle, "background": selectedColor, "borderColor": selectedColor} : genericStyle}
         onClick={handleClick}
         onMouseEnter={handleEnterHover}
         onMouseLeave={handleOutHover} 

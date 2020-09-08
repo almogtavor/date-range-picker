@@ -13,14 +13,18 @@
 .in-range:hover {
     background-color: none;
 }
-/* 
+
 .selected-day{
-    
-} */
+    margin-top: -0.2em;
+    margin-bottom: -0.2em;
+    border-width: 0.2em;
+    border-top-style: solid;
+    border-bottom-style: solid;
+}
 
 .hover-div {
     height: 100%;
-    border-radius: 7px;
+    border-radius: 5px;
 }
 
 .non-current {
