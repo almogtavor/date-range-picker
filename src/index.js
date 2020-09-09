@@ -14,7 +14,7 @@ ReactDOM.render(
         <DateRangePicker 
             language="Hebrew"
             colorsPalette="enabled"
-            format="MM-DD-YYYY"
+            format="DD-MM-YYYY"
             startDate={new Date(1990, 8, 21)} 
             endDate={new Date(2025, 8, 21)}
             firstDayOfWeekIndex={0}
