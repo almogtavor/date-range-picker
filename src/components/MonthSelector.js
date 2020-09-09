@@ -11,7 +11,10 @@ export const MonthSelector = (props) => {
         viewedYear, 
         setMode,
         language,
-        nearViewedMonths
+        nearViewedMonths,
+        startDate,
+        endDate,
+        selectedDays,
     } = props;
 
     const selectMonthHandler = month => {
@@ -23,6 +26,7 @@ export const MonthSelector = (props) => {
         <div className={`month-selector ${language === "Hebrew" && "hebrew"}`}>
             {calendarConfig.months[language].map((month, i) => {
                 let validMonth = true;
+                let selectedMonth = false;
                 if (nearViewedMonths.right.year) {
                     if (new Date(viewedYear, i, 0) >= new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0)) {
                         validMonth = false;
@@ -33,12 +37,38 @@ export const MonthSelector = (props) => {
                         validMonth = false;
                     }
                 }
+                if (new Date(viewedYear, i, 0) > new Date(endDate.getFullYear(), endDate.getMonth(), 0)) {
+                    validMonth = false;
+                }
+                if (new Date(viewedYear, i, 0) < new Date(startDate.getFullYear(), startDate.getMonth(), 0)) {
+                    validMonth = false;
+                }
+                if (selectedDays.length === 2) {
+                    const firstSelectionMonthDate = new Date(selectedDays[0].getFullYear(), selectedDays[0].getMonth(), 1);
+                    const secondSelectionMonthDate = new Date(selectedDays[1].getFullYear(), selectedDays[1].getMonth(), 1);
+                    const currentMonthDate = new Date(viewedYear, i, 1);
+                    if (firstSelectionMonthDate > secondSelectionMonthDate) {
+                        if (firstSelectionMonthDate >= currentMonthDate && secondSelectionMonthDate <= currentMonthDate) {
+                            selectedMonth = true;
+                        }
+                    }  else {
+                        if (firstSelectionMonthDate <= currentMonthDate && secondSelectionMonthDate >= currentMonthDate) {
+                            selectedMonth = true;
+                        }
+                    }
+                }
                 return (
                     <div
                         key={month}
                         onClick={() => validMonth && selectMonthHandler(i)}
                         className={`selectable-month ${!validMonth && "invalid"}`}
-                        style={i === viewedMonth ? {"backgroundColor": selectedColor + "60"} : {}}
+                        style={
+                            i === viewedMonth ? 
+                            {"backgroundColor": selectedColor + "60"} :
+                            selectedMonth ?
+                            {"backgroundColor": selectedColor + "30"} :
+                            {}
+                        }
                     >
                         {month}
                     </div>

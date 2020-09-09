@@ -31,17 +31,18 @@ export const calendarConfig = {
         ],
     },
     "weeks": {
-        "English": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+        "English": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
         "Hebrew": ["א", "ב", "ג", "ד", "ה", "ו", "ש"].reverse(),
     },
     "pickableColors": [
+        // "#38a1f4"
         "#5ebaf8",
         "#ec467d",
         "#fdb241",
-        "#c559d8",
+        "#d889ac",
         "#673ab7",
-        "#6d99e0",
+        "#0078D7",
         "#43d6c8",
-        "#bd8470",
+        "#498205",
     ],
 };

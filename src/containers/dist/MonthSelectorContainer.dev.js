@@ -7,21 +7,22 @@ exports["default"] = void 0;
 
 var _actions = require("../actions");
 
-var _Header = require("../components/Header");
-
 var _reactRedux = require("react-redux");
+
+var _MonthSelector = require("../components/MonthSelector");
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var leftId = state.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
   var rightId = state.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
   return {
     selectedColor: state.selectedColor,
+    showColorPicker: state.showColorPicker[ownProps.id],
     viewedYear: state.viewedYear[ownProps.id],
     viewedMonth: state.viewedMonth[ownProps.id],
     startDate: state.startDate,
     endDate: state.endDate,
+    mode: state.mode[ownProps.id],
     language: state.language,
-    selectedDays: state.selectedDays,
     nearViewedMonths: {
       "right": {
         "year": state.viewedYear[rightId],
@@ -37,14 +38,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   return {
-    setSelectedColor: function setSelectedColor(selectedColor) {
-      return dispatch((0, _actions.setSelectedColor)(selectedColor));
-    },
     setViewedMonth: function setViewedMonth(viewedMonth) {
       return dispatch((0, _actions.setViewedMonth)(ownProps.id, viewedMonth));
-    },
-    setViewedYear: function setViewedYear(viewedYear) {
-      return dispatch((0, _actions.setViewedYear)(ownProps.id, viewedYear));
     },
     setMode: function setMode(mode) {
       return dispatch((0, _actions.setMode)(ownProps.id, mode));
@@ -52,6 +47,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   };
 };
 
-var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Header.Header);
+var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_MonthSelector.MonthSelector);
 
 exports["default"] = _default;

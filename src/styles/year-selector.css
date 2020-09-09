@@ -46,16 +46,10 @@
     
   .year-selector div:nth-child(1) {
     border-top-left-radius: 12px;
-  }
-  
-  .year-selector div:nth-child(3) {
     border-top-right-radius: 12px;
   }
   
-  .year-selector div:nth-last-child(3) {
-    border-bottom-left-radius: 12px;
-  }
-  
   .year-selector div:nth-last-child(1) {
+    border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
   }

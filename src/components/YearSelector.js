@@ -9,18 +9,18 @@ export const YearSelector = (props) => {
         viewedYear,
         viewedMonth,
         setMode,
-        startYear, 
-        endYear,
-        nearViewedMonths
+        startDate, 
+        endDate,
+        nearViewedMonths,
+        selectedDays,
     } = props;
     
     let yearsArray = [];
-    for (let i = endYear; i > startYear  + 1; i--) {
+    for (let i = endDate.getFullYear(); i > startDate.getFullYear() - 1; i--) {
         yearsArray.push(i);
     }
 
     const selectYearHandler = year => {
-        console.log(nearViewedMonths);
       setMode("Days");
       setViewedYear(year);
     };
@@ -29,7 +29,7 @@ export const YearSelector = (props) => {
         <div className="year-selector">
             {yearsArray.map((year) => {
                 let validYear = true;
-                
+                let selectedYear = false;
                 if (nearViewedMonths.right.year) {
                     if (new Date(year, viewedMonth, 0) >= new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0)) {
                         validYear = false;
@@ -40,12 +40,35 @@ export const YearSelector = (props) => {
                         validYear = false;
                     }
                 }
+                if (new Date(year, viewedMonth, 0) > new Date(endDate.getFullYear(), endDate.getMonth(), 0)) {
+                    validYear = false;
+                }
+                if (new Date(year, viewedMonth, 0) < new Date(startDate.getFullYear(), startDate.getMonth(), 0)) {
+                    validYear = false;
+                }
+                if (selectedDays.length === 2) {
+                    if (selectedDays[0] > selectedDays[1]) {
+                        if (selectedDays[0].getFullYear() >= year && selectedDays[1].getFullYear() <= year) {
+                            selectedYear = true;
+                        }
+                    }  else {
+                        if (selectedDays[0].getFullYear() <= year && selectedDays[1].getFullYear() >= year) {
+                            selectedYear = true;
+                        }
+                    }
+                }
                 return (
                     <div
                         key={year}
                         onClick={() => validYear && selectYearHandler(year)}
                         className={`selectable-year ${!validYear && "invalid"}`}
-                        style={year === viewedYear ? {"backgroundColor": selectedColor + "60"} : {}}
+                        style={
+                            year === viewedYear ? 
+                            {"backgroundColor": selectedColor + "60"} :
+                            selectedYear ?
+                            {"backgroundColor": selectedColor + "30"} :
+                            {}
+                        }
                     >
                         {year}
                     </div>

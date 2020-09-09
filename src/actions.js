@@ -32,14 +32,14 @@ export const setLanguage = language => ({
     language
 })
 
-export const setStartYear = startYear => ({
-    type: 'SET_START_YEAR',
-    startYear
+export const setStartDate = startDate => ({
+    type: 'SET_START_DATE',
+    startDate
 })
 
-export const setEndYear = endYear => ({
-    type: 'SET_END_YEAR',
-    endYear
+export const setEndDate = endDate => ({
+    type: 'SET_END_DATE',
+    endDate
 })
 
 export const setFirstDayOfWeekIndex = firstDayOfWeekIndex => ({
@@ -60,4 +60,39 @@ export const setSelectedDays = selectedDays => ({
 export const setHoveredDay = hoveredDay => ({
     type: 'SET_HOVERED_DAY',
     hoveredDay
+})
+
+export const setLastChangedId = lastChangedId => ({
+    type: 'SET_LAST_CHANGED_ID',
+    lastChangedId
+})
+
+export const setChoosenDates = choosenDates => ({
+    type: 'SET_CHOOSEN_DATES',
+    choosenDates
+})
+
+export const setShowCalendar = showCalendar => ({
+    type: 'SET_SHOW_CALENDAR',
+    showCalendar
+})
+
+export const setPickType = pickType => ({
+    type: 'SET_PICK_TYPE',
+    pickType
+})
+
+export const setColorsPalette = colorsPalette => ({
+    type: 'SET_COLORS_PALETTE',
+    colorsPalette
+})
+
+export const setFormat = format => ({
+    type: 'SET_FORMAT',
+    format
+}) 
+
+export const setSelectAllButton = selectAllButton => ({
+    type: 'SET_SELECT_ALL_BUTTON',
+    selectAllButton
 })

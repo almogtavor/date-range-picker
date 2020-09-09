@@ -1,8 +1,8 @@
 .day-element {
-    height: 89%;
-    width: 100.5%;
+    height: 80%;
+    width: 90%;
     background-clip: content-box;
-    border-radius: 20px;
+    border-radius: 7px;
     cursor: pointer;
 }
 
@@ -14,8 +14,27 @@
     background-color: none;
 }
 
+.selected-day{
+    margin-top: -0.15em;
+    margin-bottom: -0.15em;
+    border-width: 0.15em;
+    border-top-style: solid;
+    border-bottom-style: solid;
+}
+
 .hover-div {
-    border-radius: 20px;
+    height: 100%;
+    border-radius: 7px;
+}
+
+.non-current {
+    opacity: 0.4;
+}
+
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    text-decoration: line-through;
 }
 
 /* .first-selected {
@@ -28,13 +47,13 @@
     border-bottom-left-radius: 20px;
 } */
 
-.last-day-of-week {
+/* .last-day-of-week {
     background-color: rgb(236, 217, 218);
 }
 
 .first-day-of-week {
     background-color: rgb(236, 229, 229);
-}
+} */
 
 .today {
     font-weight: bold;

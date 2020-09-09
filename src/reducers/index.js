@@ -7,11 +7,18 @@ const initialState = {
     selectedDays: [],
     selectedColor: "#2196f3",
     language: "English",
-    startYear: 1900,
-    endYear: 2025,
+    startDate: new Date(1900, 0, 0),
+    endDate: new Date(2025, 0, 0),
     firstDayOfWeekIndex: 0,
     boardsNum: 2,
     hoveredDay: null,
+    lastChangedId: null,
+    choosenDates: "YYYY-MM-DD ~ YYYY-MM-DD",
+    showCalendar: false,
+    pickType: "range", // can be date, range and ranges
+    colorsPalette: "enabled",
+    format: "MM-DD-YYYY",
+    selectAllButton: "enabled",
 };
 
 
@@ -76,13 +83,13 @@ function rootReducer (state = initialState, payload) {
         return Object.assign({}, state, {
           language: payload.language
         });
-    } else if (payload.type === 'SET_START_YEAR') {
+    } else if (payload.type === 'SET_START_DATE') {
         return Object.assign({}, state, {
-          startYear: payload.startYear
+          startDate: payload.startDate
         });
-    } else if (payload.type === 'SET_END_YEAR') {
+    } else if (payload.type === 'SET_END_DATE') {
         return Object.assign({}, state, {
-          endYear: payload.endYear
+          endDate: payload.endDate
         });
     } else if (payload.type === 'SET_FIRST_DAY_OF_WEEK_INDEX') {
         return Object.assign({}, state, {
@@ -96,8 +103,8 @@ function rootReducer (state = initialState, payload) {
         for (let i of componentIDs) {
           const index = state.language === "Hebrew" ? boardsNum - i - 1 : i;
           let date = new Date();
-          date.setMonth(new Date().getMonth() - (boardsNum - i) + 2);
-          monthsObj[index] = date.getMonth();
+          date.setMonth(new Date().getMonth() - (boardsNum - i) + 1);
+          monthsObj[index] = date.getMonth() + 1;
           yearsObj[index] = date.getFullYear();
           modeObj[index] = "Days";
           showColorPickerObj[index] = false;
@@ -117,6 +124,34 @@ function rootReducer (state = initialState, payload) {
         return Object.assign({}, state, {
           hoveredDay: payload.hoveredDay
         });
+    } else if (payload.type === 'SET_LAST_CHANGED_ID') {
+        return Object.assign({}, state, {
+          lastChangedId: payload.lastChangedId
+        });
+    } else if (payload.type === 'SET_CHOOSEN_DATES') {
+        return Object.assign({}, state, {
+          choosenDates: payload.choosenDates
+        });
+    } else if (payload.type === 'SET_SHOW_CALENDAR') {
+        return Object.assign({}, state, {
+          showCalendar: payload.showCalendar
+        });
+    } else if (payload.type === 'SET_PICK_TYPE') {
+        return Object.assign({}, state, {
+          pickType: payload.pickType
+        });
+    } else if (payload.type === 'SET_COLORS_PALETTE') {
+        return Object.assign({}, state, {
+          colorsPalette: payload.colorsPalette
+        });
+    } else if (payload.type === 'SET_FORMAT') {
+        return Object.assign({}, state, {
+          format: payload.format
+        })
+    } else if (payload.type === 'SET_SELECT_ALL_BUTTON') {
+        return Object.assign({}, state, {
+          selectAllButton: payload.selectAllButton
+        })
     } else {
         return state;
     }
