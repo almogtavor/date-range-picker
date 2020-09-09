@@ -91,3 +91,8 @@ export const setFormat = format => ({
     type: 'SET_FORMAT',
     format
 }) 
+
+export const setSelectAllButton = selectAllButton => ({
+    type: 'SET_SELECT_ALL_BUTTON',
+    selectAllButton
+})

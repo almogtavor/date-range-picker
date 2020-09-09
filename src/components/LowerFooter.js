@@ -26,6 +26,7 @@ export const LowerFooter = (props) => {
         viewedMonth,
         viewedYear,
         nearViewedMonths,
+        selectAllButton,
     } = props;
 
     const [checkboxSrc, setCheckboxSrc] = useState(checkbox);
@@ -104,7 +105,9 @@ export const LowerFooter = (props) => {
     }
 
     useEffect(() => {
-        setCheckboxSrc(checkbox);
+        if (selectAllButton === "enabled") {
+            setCheckboxSrc(checkbox);
+        }
     }, [mode])
 
     const handleEnter = () => {
@@ -148,7 +151,7 @@ export const LowerFooter = (props) => {
             })}
             </div>
         )}
-        <div 
+        {selectAllButton === "enabled" && <div 
             className="checkbox-div"
             onClick={handleClick}
             onMouseEnter={handleEnter}
@@ -163,7 +166,7 @@ export const LowerFooter = (props) => {
             <div className="select-all-text">
                 {language === "Hebrew" ? "בחר הכל" : "Select All"}
             </div>
-        </div>
+        </div>}
 
         {id === 1 && 
             <button 

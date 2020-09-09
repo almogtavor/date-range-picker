@@ -28,15 +28,6 @@ export const DateRangePickerMapper = (props) => {
     //   selectedDaysStyle["flexDirection"] = "row-reverse";
     // }
 
-    const iij = useRef(null);
-
-    useEffect(() => {
-      console.log("jaiejfaieja");
-      if (iij.current) {
-        iij.current.focus();
-      }
-    }, []);
-
     const handleBlur = () => {
       setShowCalendar(false);
     }
@@ -44,7 +35,9 @@ export const DateRangePickerMapper = (props) => {
     const calendarsIndexes = [...Array(boardsNum).keys()];
     
     return (
-    <>{showCalendar && <div ref={iij} className="date-range-picker" tabIndex="0" onBlur={handleBlur} autoFocus={true}>
+    <>{showCalendar && <div className="date-range-picker" tabIndex="0" onBlur={handleBlur} onClick={(e) => {
+      //stop clicks getting to the overlay
+      e.stopPropagation()}}>
         <CalendarHeaderContainer/>
         {calendarsIndexes.map((i) => {
             return (

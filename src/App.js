@@ -13,9 +13,11 @@ function App(props) {
     boardsNum,
     colorsPalette,
     format,
+    selectAllButton,
   } = props;
 
 
+  console.log(selectAllButton);
   return (
     <div className="App">
       {/* <h1>Date Range Picker Example</h1> */}
@@ -37,6 +39,7 @@ function App(props) {
               boardsNum={boardsNum}
               colorsPalette={colorsPalette}
               format={format}
+              selectAllButon={selectAllButton}
           />
           </div>
         </div>

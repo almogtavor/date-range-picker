@@ -15,6 +15,7 @@ ReactDOM.render(
             language="Hebrew"
             colorsPalette="enabled"
             format="DD-MM-YYYY"
+            selectAllButton="disabled"
             startDate={new Date(1990, 8, 21)} 
             endDate={new Date(2025, 8, 21)}
             firstDayOfWeekIndex={0}

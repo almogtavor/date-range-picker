@@ -17,6 +17,7 @@ const mapStateToProps = (state, ownProps) => {
     viewedYear: state.viewedYear[ownProps.id],
     startDate: state.startDate,
     endDate: state.endDate,
+    selectAllButton: state.selectAllButton,
     nearViewedMonths: {
         "right": {
             "year": state.viewedYear[rightId], 

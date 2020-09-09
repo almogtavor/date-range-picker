@@ -18,6 +18,7 @@ const initialState = {
     pickType: "range", // can be date, range and ranges
     colorsPalette: "enabled",
     format: "MM-DD-YYYY",
+    selectAllButton: "enabled",
 };
 
 
@@ -146,6 +147,10 @@ function rootReducer (state = initialState, payload) {
     } else if (payload.type === 'SET_FORMAT') {
         return Object.assign({}, state, {
           format: payload.format
+        })
+    } else if (payload.type === 'SET_SELECT_ALL_BUTTON') {
+        return Object.assign({}, state, {
+          selectAllButton: payload.selectAllButton
         })
     } else {
         return state;
