@@ -39,7 +39,7 @@ function App(props) {
               boardsNum={boardsNum}
               colorsPalette={colorsPalette}
               format={format}
-              selectAllButon={selectAllButton}
+              selectAllButton={selectAllButton}
           />
           </div>
         </div>
