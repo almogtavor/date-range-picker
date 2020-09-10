@@ -19,15 +19,6 @@ export const DateRangePickerMapper = (props) => {
       setShowCalendar,
     } = props;
 
-    // let selectedDaysStyle = {
-    //   "width": ((boardsNum * 100) > 300 ? 300 : (boardsNum * 100)) + "%", 
-    //   "backgroundColor": selectedColor + "60",
-    // };
-
-    // if (language === "Hebrew") {
-    //   selectedDaysStyle["flexDirection"] = "row-reverse";
-    // }
-
     const handleBlur = () => {
       setShowCalendar(false);
     }

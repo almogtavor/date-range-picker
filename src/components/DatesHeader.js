@@ -88,7 +88,7 @@ export const DatesHeader = (props) => {
     }  
 
     return (
-    <div className="header" style={language === "Hebrew" ? { "flexDirection": "row-reverse"}: {}}>
+    <div className="header" lang={language}>
         <div className="info">
             <div 
                 className="month" 
