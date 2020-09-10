@@ -29,11 +29,12 @@ export const CalendarHeader = (props) => {
             className="selected-dates" 
             style={selectedDaysStyle}
         >
-            <div className={`dates-display ${language === "Hebrew" && "hebrew"}`}>
+            <div className="dates-display" lang={language}>
                 { choosenDates }
             </div>
             <button 
                 className="clear"
+                lang={language}
                 onClick={() => setSelectedDays([])}
                 style={{"color": selectedColor}}
             >

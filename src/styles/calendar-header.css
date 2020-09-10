@@ -11,6 +11,20 @@
     
     box-shadow: 3px 1px 5px 0px #ddd;
   }
+  
+.dates-display:lang(Hebrew) {
+  margin-right: -12%;
+}
+
+.dates-display:lang(English) {
+  margin-left: -8%;
+}
+
+.dates-display {
+  margin-left: 5%;
+  font-size: 1em;
+  font-weight: 500;
+}
 
 .clear {
   background-color: rgb(244, 246, 248);
@@ -18,9 +32,17 @@
   color: white;
   border-radius: 15px;
   height: 17px;
-  margin: 0.5%;
+  margin-top: 0.5%;
   outline: none;
   font-weight: 600;
+}
+
+.clear:lang(Hebrew) {
+  margin-left: -12%;
+}
+
+.clear:lang(English) {
+  margin-right: -20%;
 }
 
 .clear:hover {

@@ -18,17 +18,6 @@
 
 }
 
-.dates-display.hebrew {
-  flex-direction: "row-reverse";
-  margin-right: 5%;
-}
-
-.dates-display {
-  margin-left: 5%;
-  font-size: 1em;
-  font-weight: 500;
-}
-
 .date-range-picker {
   position: absolute;
   margin-left: 1.5%;

@@ -19,16 +19,15 @@ export const DateRangePickerMapper = (props) => {
       setShowCalendar,
     } = props;
 
-    const handleBlur = () => {
-      setShowCalendar(false);
-    }
+    // const handleBlur = () => {
+    //   setShowCalendar(false);
+    // }
+    // tabIndex="1" onBlur={handleBlur}
 
     const calendarsIndexes = [...Array(boardsNum).keys()];
     
     return (
-    <>{showCalendar && <div className="date-range-picker" tabIndex="0" onBlur={handleBlur} onClick={(e) => {
-      //stop clicks getting to the overlay
-      e.stopPropagation()}}>
+    <>{showCalendar && <div className="date-range-picker">
         <CalendarHeaderContainer/>
         {calendarsIndexes.map((i) => {
             return (
