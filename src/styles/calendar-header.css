@@ -17,13 +17,14 @@
 }
 
 .dates-display:lang(English) {
-  margin-left: -8%;
+  margin-left: -12%;
 }
 
 .dates-display {
   margin-left: 5%;
   font-size: 1em;
   font-weight: 500;
+  width: 200px;
 }
 
 .clear {
@@ -42,7 +43,7 @@
 }
 
 .clear:lang(English) {
-  margin-right: -20%;
+  margin-right: -12%;
 }
 
 .clear:hover {

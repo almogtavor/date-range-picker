@@ -13,9 +13,9 @@ ReactDOM.render(
     <Provider store={store}>
         <DateRangePicker 
             language="English"
-            colorsPalette="enabled"
+            colorsPalette="disabled"
             format="DD-MM-YYYY"
-            selectAllButton="disabled"
+            selectAllButton="enabled"
             startDate={new Date(1990, 8, 21)} 
             endDate={new Date(2025, 8, 21)}
             firstDayOfWeekIndex={0}

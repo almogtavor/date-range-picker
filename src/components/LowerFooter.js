@@ -124,9 +124,8 @@ export const LowerFooter = (props) => {
 
     return (
     <div className="settings" 
-    // style={id===1 ? 
-    //     {"justifyContent": "flex-end"}: 
-    //     {"justifyContent": "flex-start"}}
+    style={id===1 ? 
+        {"flexDirection": "row-reverse"}: {}}
     >
         {id === 0 && colorsPalette !== "disabled" && !showColorPicker && (<div 
             className="color-circle" 
@@ -151,6 +150,20 @@ export const LowerFooter = (props) => {
             })}
             </div>
         )}
+
+        {id === 1 && 
+            <button 
+                className="pick-button"
+                style={{
+                    "backgroundColor": selectedColor + "80",
+                    "borderColor": selectedColor + "20",
+                }}
+                onClick={() => setShowCalendar(false)}
+            >
+                {language === "Hebrew" ? "בחר" : "Pick"}
+            </button>
+        }
+
         {selectAllButton === "enabled" && <div 
             className="checkbox-div"
             onClick={handleClick}
@@ -167,19 +180,6 @@ export const LowerFooter = (props) => {
                 {language === "Hebrew" ? "בחר הכל" : "Select All"}
             </div>
         </div>}
-
-        {id === 1 && 
-            <button 
-                className="pick-button"
-                style={{
-                    "backgroundColor": selectedColor + "80",
-                    "borderColor": selectedColor + "20",
-                }}
-                onClick={() => setShowCalendar(false)}
-            >
-                {language === "Hebrew" ? "בחר" : "Pick"}
-            </button>
-        }
     </div>
     );
 }
