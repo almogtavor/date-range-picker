@@ -2,7 +2,7 @@ import React from "react";
 import "../App.css";
 import CalendarConatiner from '../containers/CalendarContainer';
 import LowerFooterContainer from '../containers/LowerFooterContainer';
-import HeaderContainer from '../containers/DatesHeaderContainer';
+import DatesHeaderContainer from '../containers/DatesHeaderContainer';
 
 export const DateRangePicker = (props) => {
     return (
@@ -15,7 +15,7 @@ export const DateRangePicker = (props) => {
           "gridRow": Math.floor(props.i / 3) + 1 
         }}
       >
-        <HeaderContainer 
+        <DatesHeaderContainer 
           id={props.i}
           startDate={props.startDate}
           endDate={props.endDate}

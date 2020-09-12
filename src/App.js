@@ -3,6 +3,7 @@ import "./App.css";
 import "./styles/button.css";
 import DateRangePickerContainer from './containers/DateRangePickerContainer';
 import ButtonContainer from "./containers/ButtonContainer";
+import { ColorPalleteProvider } from "./context/InitialParametersContext";
 
 function App(props) {
   const {
@@ -31,16 +32,18 @@ function App(props) {
           "gridTemplateRows": `repeat(${Math.floor(props.boardsNum / 3)}, 1fr)`,}}
           onMouseDown={console.log("ejaifjaifeaofj")}
         >
-          <DateRangePickerContainer 
-              language={language} 
-              startDate={startDate} 
-              endDate={endDate}
-              firstDayOfWeekIndex={firstDayOfWeekIndex}
-              boardsNum={boardsNum}
-              colorsPalette={colorsPalette}
-              format={format}
-              selectAllButton={selectAllButton}
-          />
+          <ColorPalleteProvider>
+            <DateRangePickerContainer 
+                language={language} 
+                startDate={startDate} 
+                endDate={endDate}
+                firstDayOfWeekIndex={firstDayOfWeekIndex}
+                boardsNum={boardsNum}
+                colorsPalette={colorsPalette}
+                format={format}
+                selectAllButton={selectAllButton}
+            />
+          </ColorPalleteProvider>
           </div>
         </div>
     </div>

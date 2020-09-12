@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import {calendarConfig} from '../configuration/config';
 import '../styles/lower-footer.css';
+import { useColorsPallete } from "../context/InitialParametersContext";
 
 const rightHandIcon = require('../images/right-hand.png');
 const checkbox= require('../images/checkbox.png');
@@ -16,7 +17,7 @@ export const LowerFooter = (props) => {
         setSelectedColor, 
         setShowColorPicker,        
         setShowCalendar,
-        colorsPalette,
+        // colorsPalette,
         selectedDays,
         setSelectedDays,
         mode,
@@ -29,8 +30,8 @@ export const LowerFooter = (props) => {
         selectAllButton,
     } = props;
 
+    const colorsPalette = useColorsPallete();
     const [checkboxSrc, setCheckboxSrc] = useState(checkbox);
-
     const checkeboxChanged = useRef(false);
 
     const changeColor = (color) => {
