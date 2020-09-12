@@ -43,7 +43,7 @@ export const MonthDaysElements = (props) => {
 
         return (
             <DayElementContainer
-                key={Math.random()} // TODO: change
+                key={day + viewedMonth + viewedYear}
                 id={id}
                 date={new Date(viewedYear, viewedMonth, day)}
                 isOfCurrentViewedMonth={isOfCurrentViewedMonth}

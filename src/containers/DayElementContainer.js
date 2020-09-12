@@ -21,6 +21,7 @@ const mapStateToProps = (state, ownProps) => {
         dayOfWeek: ownProps.dayOfWeek,
         genericStyle: ownProps.genericStyle,
         id: ownProps.id,
+        boardsNum: state.boardsNum,
         viewedMonth: state.viewedMonth,
         viewedYear: state.viewedYear,
 })};

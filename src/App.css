@@ -15,7 +15,6 @@
   margin-top: 95px;
   margin-left: -75px;
   justify-content: center;
-
 }
 
 .date-range-picker {
@@ -39,34 +38,4 @@
   box-shadow: 3px 1px 5px 0px #ddd;
   padding: 0px 5px 10px 5px;
   background-color: rgb(244, 246, 248);
-}
-
-.picker-toggler,
-.hand-right {
-  float: left;
-  margin-left: 2em;
-}
-
-.picker-toggler {
-  width: 1.5rem;
-  height: 1.5rem;
-
-  border-radius: 50%;
-  border: 0;
-  cursor: pointer;
-}
-
-.hand-right {
-  margin-right: 5px;
-  height: 30px;
-}
-
-.color-picker {
-  float: left;
-  height: 1.5rem;
-}
-
-.circle-picker {
-  padding-top: 10px !important;
-  margin-right: 0 !important;
 }

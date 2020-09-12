@@ -8,7 +8,7 @@ export const DayElement = (props) => {
         selectedDays, 
         setSelectedDays,
         setViewedMonth,
-        setViewedYear,
+        boardsNum,
         isOfCurrentViewedMonth,
         hoveredDay,
         setHoveredDay,
@@ -19,9 +19,7 @@ export const DayElement = (props) => {
         endDate,
         language,
         setRightViewedMonth,
-        setRightViewedYear,
         setLeftViewedMonth,
-        setLeftViewedYear,
         rightViewedMonth,
         rightViewedYear,
         leftViewedMonth,
@@ -76,7 +74,7 @@ export const DayElement = (props) => {
                 }
             }
 
-            if (new Date(year, month + 1, 1) < endDate) {
+            if (new Date(year, month + 1, 1) < endDate && boardsNum === 2) {
                 if (selectedDays.length === 1) {
                     const firstSelectMonth = selectedDays[0].getMonth();
                     const firstSelectYear = selectedDays[0].getFullYear();
@@ -149,12 +147,3 @@ export const DayElement = (props) => {
         </div>
     </div>)
 }
-
- // ${selectedDays.length === 2 ? 
-//     (date.toLocaleDateString() === selectedDays[0].toLocaleDateString()) && selectedDays[0] > selectedDays[1] ? "last-selected" : 
-//     (date.toLocaleDateString() === selectedDays[0].toLocaleDateString()) && selectedDays[0] < selectedDays[1] ? "first-selected" :
-//     (date.toLocaleDateString() === selectedDays[1].toLocaleDateString()) && selectedDays[0] > selectedDays[1] ? "first-selected" :
-//     (date.toLocaleDateString() === selectedDays[1].toLocaleDateString()) && selectedDays[0] < selectedDays[1] && "last-selected" :
-// (selectedDays.length === 1 && 
-//     (date.toLocaleDateString() === selectedDays[0].toLocaleDateString()) && selectedDays[0] > hoveredDay) ? "last-selected" :
-//     selectedDays[0] < hoveredDay && "first-selected"}
