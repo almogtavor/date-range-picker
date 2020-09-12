@@ -76,35 +76,34 @@ export const DayElement = (props) => {
                 }
             }
 
-            if (selectedDays.length === 1) {
-                const firstSelectMonth = selectedDays[0].getMonth();
-                const firstSelectYear = selectedDays[0].getFullYear();
-                const {rightId, leftId} = language === "Hebrew" ? {rightId: 0, leftId: 1} : {rightId: 1, leftId: 0}; 
-                
-                if (id === leftId) {
-                    if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
-                        setRightViewedMonth(month, year);
-                        setViewedMonth(firstSelectMonth, firstSelectYear);
-                    } else if (year === firstSelectYear && month === firstSelectMonth) {
-                        setViewedMonth(month, year);
-                        setRightViewedMonth(month + 1);
-                    } else {
-                        setRightViewedMonth(firstSelectMonth, firstSelectYear);
-                        setViewedMonth(month, year);
-                    }
-                } else if (id === rightId) {
-                    if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
-                        setLeftViewedMonth(firstSelectMonth, firstSelectYear);
-                        setViewedMonth(month, year);
-                    } else if (year === firstSelectYear && month === firstSelectMonth) {
-                        setLeftViewedMonth(month, year);
-                        setViewedMonth(month + 1);
-                    } else {
-                        setLeftViewedMonth(month, year);
-                        setViewedMonth(firstSelectMonth, firstSelectYear);
+            if (new Date(year, month + 1, 1) < endDate) {
+                if (selectedDays.length === 1) {
+                    const firstSelectMonth = selectedDays[0].getMonth();
+                    const firstSelectYear = selectedDays[0].getFullYear();
+                    const {rightId, leftId} = language === "Hebrew" ? {rightId: 0, leftId: 1} : {rightId: 1, leftId: 0}; 
+                    
+                    if (id === leftId) {
+                        if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
+                            setRightViewedMonth(month, year);
+                            setViewedMonth(firstSelectMonth, firstSelectYear);
+                        } else if (new Date(year, month, 0) < new Date(firstSelectYear, firstSelectMonth, 0)) {
+                            setRightViewedMonth(firstSelectMonth, firstSelectYear);
+                            setViewedMonth(month, year);
+                        }
+                    } else if (id === rightId) {
+                        if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
+                            setLeftViewedMonth(firstSelectMonth, firstSelectYear);
+                            setViewedMonth(month, year);
+                        } else if (year === firstSelectYear && month === firstSelectMonth) {
+                            setLeftViewedMonth(month, year);
+                            setViewedMonth(month + 1);
+                        } else {
+                            setLeftViewedMonth(month, year);
+                            setViewedMonth(firstSelectMonth, firstSelectYear);
+                        }
                     }
                 }
-            }
+            } 
         }
     };
 

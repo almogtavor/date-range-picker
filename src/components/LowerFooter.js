@@ -124,7 +124,7 @@ export const LowerFooter = (props) => {
 
     return (
     <div className="settings" 
-    style={id===1 ? 
+    style={id === 1 ? 
         {"flexDirection": "row-reverse"}: {}}
     >
         {id === 0 && colorsPalette !== "disabled" && !showColorPicker && (<div 
@@ -137,7 +137,7 @@ export const LowerFooter = (props) => {
             <img
                 alt=""
                 src={rightHandIcon}
-                className="right-hand"
+                className={`right-hand ${selectAllButton === "disabled" && "select-all-present"}`}
                 onClick={showColorPicker => setShowColorPicker(!showColorPicker)}
             />
             {calendarConfig.pickableColors.map(color => {
