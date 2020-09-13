@@ -11,11 +11,4 @@ const mapStateToProps = (state, ownProps) => {
         language: state.language,
 })};
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-    if (ownProps.firstDayOfWeekIndex) {
-        dispatch(setFirstDayOfWeekIndex(ownProps.firstDayOfWeekIndex));
-    }
-    return ({})
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(WeekDaysNames);
+export default connect(mapStateToProps)(WeekDaysNames);

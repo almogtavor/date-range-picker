@@ -1,5 +1,6 @@
 import React from "react";
 import '../styles/year-selector.css';
+import { useStartDate, useEndDate } from "../context/InitialParametersContext";
 
 
 export const YearSelector = (props) => {
@@ -9,11 +10,12 @@ export const YearSelector = (props) => {
         viewedYear,
         viewedMonth,
         setMode,
-        startDate, 
-        endDate,
         nearViewedMonths,
         selectedDays,
     } = props;
+
+    const startDate = useStartDate();
+    const endDate = useEndDate();
     
     let yearsArray = [];
     for (let i = endDate.getFullYear(); i > startDate.getFullYear() - 1; i--) {

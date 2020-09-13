@@ -1,6 +1,7 @@
 import React from "react";
 import {calendarConfig} from '../configuration/config';
 import '../styles/month-selector.css';
+import { useLanguage, useStartDate, useEndDate } from "../context/InitialParametersContext";
 
 
 export const MonthSelector = (props) => {
@@ -10,13 +11,14 @@ export const MonthSelector = (props) => {
         setViewedMonth, 
         viewedYear, 
         setMode,
-        language,
         nearViewedMonths,
-        startDate,
-        endDate,
         selectedDays,
     } = props;
 
+    const language = useLanguage();
+    const startDate = useStartDate();
+    const endDate = useEndDate();
+    
     const selectMonthHandler = month => {
       setMode("Days");
       setViewedMonth(month);

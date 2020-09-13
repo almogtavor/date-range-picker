@@ -15,7 +15,12 @@ export function useEndDate() {
 }
 
 export function useFirstDayOfWeekIndex() {
-    return useContext(InitialParametersContext).firstDayOfWeekIndex;
+    const language = useLanguage();
+    let columnNormalizer = 0;
+    if (language === "Hebrew") {
+        columnNormalizer = 7;
+    }
+    return Math.abs(columnNormalizer - useContext(InitialParametersContext).firstDayOfWeekIndex);
 }
 
 export function useColorsPalette() {
