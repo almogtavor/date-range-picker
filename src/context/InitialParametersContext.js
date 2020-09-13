@@ -23,6 +23,10 @@ export function useFirstDayOfWeekIndex() {
     return Math.abs(columnNormalizer - useContext(InitialParametersContext).firstDayOfWeekIndex);
 }
 
+export function useBoardsNum() {
+    return useContext(InitialParametersContext).boardsNum;
+}
+
 export function useColorsPalette() {
     return useContext(InitialParametersContext).colorsPalette;
 }

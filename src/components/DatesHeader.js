@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {calendarConfig} from '../configuration/config';
 import '../styles/dates-header.css';
+import { useEndDate, useStartDate, useLanguage } from "../context/InitialParametersContext";
 
 const leftArrow = require('../images/arrow-left.png');
 const rightArrow = require('../images/arrow-right.png');
@@ -13,12 +14,12 @@ export const DatesHeader = (props) => {
         setViewedYear, 
         setViewedMonth, 
         setMode, 
-        language, 
-        startDate, 
-        endDate,
         nearViewedMonths,
     } = props;
 
+    const language = useLanguage();
+    const startDate = useStartDate();
+    const endDate = useEndDate();
     const [isHover, setIsHover] = useState({
         "month": false, 
         "year": false,

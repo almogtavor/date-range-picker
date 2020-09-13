@@ -2,22 +2,19 @@ import React, { useEffect, useRef } from "react";
 import "../App.css";
 import { DateRangePicker } from '../components/DateRangePicker';
 import CalendarHeaderContainer from "../containers/CalendarHeaderContainer";
+import { useFirstDayOfWeekIndex, useLanguage, useBoardsNum, useStartDate, useEndDate } from "../context/InitialParametersContext";
 
 
 export const DateRangePickerMapper = (props) => {
     const {
-      language,
-      startDate,
-      endDate,
-      firstDayOfWeekIndex,
-      boardsNum,
-      selectedDays,
-      selectedColor,
-      hoveredDay,
       showCalendar,
-      setChoosenDates,
-      setShowCalendar,
     } = props;
+
+    const language = useLanguage();
+    const startDate = useStartDate();
+    const endDate = useEndDate();
+    const firstDayOfWeekIndex = useFirstDayOfWeekIndex();
+    const boardsNum = useBoardsNum();
 
     // const handleBlur = () => {
     //   setShowCalendar(false);
