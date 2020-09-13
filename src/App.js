@@ -3,22 +3,9 @@ import "./App.css";
 import "./styles/button.css";
 import DateRangePickerContainer from './containers/DateRangePickerContainer';
 import ButtonContainer from "./containers/ButtonContainer";
-import { ColorPalleteProvider } from "./context/InitialParametersContext";
+import { InitialParametersProvider } from "./context/InitialParametersContext";
 
 function App(props) {
-  const {
-    language,
-    startDate,
-    endDate,
-    firstDayOfWeekIndex,
-    boardsNum,
-    colorsPalette,
-    format,
-    selectAllButton,
-  } = props;
-
-
-  console.log(selectAllButton);
   return (
     <div className="App">
       {/* <h1>Date Range Picker Example</h1> */}
@@ -32,18 +19,18 @@ function App(props) {
           "gridTemplateRows": `repeat(${Math.floor(props.boardsNum / 3)}, 1fr)`,}}
           onMouseDown={console.log("ejaifjaifeaofj")}
         >
-          <ColorPalleteProvider>
+          <InitialParametersProvider props={props}>
             <DateRangePickerContainer 
-                language={language} 
-                startDate={startDate} 
-                endDate={endDate}
-                firstDayOfWeekIndex={firstDayOfWeekIndex}
-                boardsNum={boardsNum}
-                colorsPalette={colorsPalette}
-                format={format}
-                selectAllButton={selectAllButton}
+                // language={language} 
+                // startDate={startDate} 
+                // endDate={endDate}
+                // firstDayOfWeekIndex={firstDayOfWeekIndex}
+                // boardsNum={boardsNum}
+                // colorsPalette={colorsPalette}
+                // format={format}
+                // selectAllButton={selectAllButton}
             />
-          </ColorPalleteProvider>
+          </InitialParametersProvider>
           </div>
         </div>
     </div>

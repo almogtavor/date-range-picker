@@ -13,7 +13,7 @@ ReactDOM.render(
     <Provider store={store}>
         <DateRangePicker 
             language="Hebrew"
-            colorsPalette="enabled"
+            colorsPalette="disabled"
             format="DD-MM-YYYY"
             selectAllButton="disabled"
             startDate={new Date(1990, 8, 21)} 

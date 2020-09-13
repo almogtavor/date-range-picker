@@ -9,15 +9,10 @@ const mapStateToProps = (state, ownProps) => {
     id: ownProps.id,
     selectedColor: state.selectedColor,
     showColorPicker: state.showColorPicker[ownProps.id],
-    language: state.language,
-    colorsPalette: state.colorsPalette,
     mode: state.mode[ownProps.id],
     selectedDays: state.selectedDays,
     viewedMonth: state.viewedMonth[ownProps.id],
     viewedYear: state.viewedYear[ownProps.id],
-    startDate: state.startDate,
-    endDate: state.endDate,
-    selectAllButton: state.selectAllButton,
     nearViewedMonths: {
         "right": {
             "year": state.viewedYear[rightId], 
