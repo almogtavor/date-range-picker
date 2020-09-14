@@ -11,7 +11,7 @@ const store = createStore(rootReducer)
 
 ReactDOM.render(
     <Provider store={store}>
-        <DateRangePicker 
+        <DateRangePicker
             language="Hebrew"
             colorsPalette="disabled"
             format="DD-MM-YYYY"
@@ -19,7 +19,7 @@ ReactDOM.render(
             startDate={new Date(1990, 8, 21)} 
             endDate={new Date(2025, 9, 1)}
             firstDayOfWeekIndex={0}
-            boardsNum={1}
+            boardsNum={2}
         />
     </Provider>,
     document.getElementById('root')

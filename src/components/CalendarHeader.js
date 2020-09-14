@@ -1,18 +1,21 @@
 import React from "react";
 import '../styles/calendar-header.css';
 import { choosenDatesCalculation } from "../utils/utils";
+import { useFormat, useLanguage } from "../context/InitialParametersContext";
 
 export const CalendarHeader = (props) => {
     const {
         setSelectedDays,
         selectedDays, 
         hoveredDay, 
-        language,
-        boardsNum,
         selectedColor,
-        format,
+        boardsNum,
     } = props;
 
+    const language = useLanguage();
+    const format = useFormat();
+
+    console.log(boardsNum);
     let selectedDaysStyle = {
         "width": ((boardsNum * 100) > 300 ? 300 : (boardsNum * 100)) + "%", 
         "backgroundColor": selectedColor + "60",

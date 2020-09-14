@@ -32,8 +32,10 @@ export const DatesHeader = (props) => {
                 new Date(viewedYear, viewedMonth + 2, 0) <= 
                 new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0) : 
                 true;
-        const isBiggerThanStartDate = new Date(viewedYear, viewedMonth + 1, 0) < endDate;
-        return isNearMonthNotBlocks && isBiggerThanStartDate;
+        const isSmallerThanEndDate = new Date(viewedYear, viewedMonth + 1, 0) < endDate;
+        console.log(isNearMonthNotBlocks);
+        console.log(isSmallerThanEndDate);
+        return isNearMonthNotBlocks && isSmallerThanEndDate;
     }
 
     const canDecrease = () => {

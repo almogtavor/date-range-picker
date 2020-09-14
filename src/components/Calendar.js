@@ -4,14 +4,16 @@ import MonthDayElementsContainer from "../containers/MonthDayElementsContainer";
 import YearSelectorContainer from "../containers/YearSelectorContainer";
 import MonthSelectorContainer from "../containers/MonthSelectorContainer";
 import WeekDaysNamesContainer from "../containers/WeekDaysNamesContainer";
+import { useFirstDayOfWeekIndex } from "../context/InitialParametersContext";
 
 
 export const Calendar = (props) => {
     const {
       mode, 
-      firstDayOfWeekIndex,
       id,
     } = props;
+
+    const firstDayOfWeekIndex = useFirstDayOfWeekIndex();
 
     return (
     <div className="calendar">

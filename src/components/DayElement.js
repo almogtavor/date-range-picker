@@ -1,32 +1,33 @@
 import React from "react";
 import '../styles/day.css';
+import { useLanguage, useEndDate, useStartDate, useBoardsNum } from "../context/InitialParametersContext";
 
 export const DayElement = (props) => {
     const {
         date,
         id,
-        selectedDays, 
+        selectedDays,
         setSelectedDays,
         setViewedMonth,
-        boardsNum,
         isOfCurrentViewedMonth,
         hoveredDay,
         setHoveredDay,
         selectedColor,
         dayOfWeek,
         genericStyle,
-        startDate,
-        endDate,
-        language,
         setRightViewedMonth,
         setLeftViewedMonth,
         rightViewedMonth,
         rightViewedYear,
         leftViewedMonth,
         leftViewedYear,
+        boardsNum,
     } = props;
 
 
+    const startDate = useStartDate();
+    const endDate = useEndDate();
+    const language = useLanguage();
     const dayNum = date.getDate();
     const month = date.getMonth();
     const year = date.getFullYear();

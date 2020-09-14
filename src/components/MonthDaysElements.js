@@ -51,6 +51,7 @@ export const MonthDaysElements = (props) => {
                 isOfCurrentViewedMonth={isOfCurrentViewedMonth}
                 dayOfWeek={dayOfWeek}
                 genericStyle={genericStyle}
+                language={language}
             />
         );
         

@@ -8,13 +8,8 @@ import { useFirstDayOfWeekIndex, useLanguage, useBoardsNum, useStartDate, useEnd
 export const DateRangePickerMapper = (props) => {
     const {
       showCalendar,
+      boardsNum,
     } = props;
-
-    const language = useLanguage();
-    const startDate = useStartDate();
-    const endDate = useEndDate();
-    const firstDayOfWeekIndex = useFirstDayOfWeekIndex();
-    const boardsNum = useBoardsNum();
 
     // const handleBlur = () => {
     //   setShowCalendar(false);
@@ -31,11 +26,6 @@ export const DateRangePickerMapper = (props) => {
             <DateRangePicker
                 key={i}
                 i={i}
-                language={language} 
-                startDate={startDate} 
-                endDate={endDate}
-                firstDayOfWeekIndex={firstDayOfWeekIndex}
-                boardsNum={boardsNum}
             />)
           })}
       </div>

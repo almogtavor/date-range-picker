@@ -23,10 +23,6 @@ export function useFirstDayOfWeekIndex() {
     return Math.abs(columnNormalizer - useContext(InitialParametersContext).firstDayOfWeekIndex);
 }
 
-export function useBoardsNum() {
-    return useContext(InitialParametersContext).boardsNum;
-}
-
 export function useColorsPalette() {
     return useContext(InitialParametersContext).colorsPalette;
 }
@@ -54,7 +50,6 @@ export function InitialParametersProvider({children, props}) {
         startDate,
         endDate,
         firstDayOfWeekIndex,
-        boardsNum,
         colorsPalette,
         format,
         selectAllButton,
@@ -66,10 +61,14 @@ export function InitialParametersProvider({children, props}) {
         startDate: valueParse(startDate, new Date(1900, 0, 0)),
         endDate: valueParse(endDate, new Date(2025, 0, 0)),
         firstDayOfWeekIndex: valueParse(firstDayOfWeekIndex, 0),
-        boardsNum: valueParse(boardsNum, 2),
         format: valueParse(format, "DD-MM-YYYY"),
         selectAllButton: valueParse(selectAllButton, "disabled")
     })
+
+    if (valueState[0].endDate < valueState[0].startDate) {
+        throw Object.assign(new Error('"endDate" is bigger than "startDate"'), { code: 403 });
+    }
+    
     
     return (
         <InitialParametersContext.Provider 

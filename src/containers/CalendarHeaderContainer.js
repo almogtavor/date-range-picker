@@ -5,13 +5,9 @@ import { connect } from 'react-redux';
 const mapStateToProps = (state) => {
     return ({
         selectedColor: state.selectedColor,
-        startDate: state.startDate,
-        endDate: state.endDate,
-        language: state.language,
         selectedDays: state.selectedDays,
-        boardsNum: state.boardsNum,
         hoveredDay: state.hoveredDay,
-        format: state.format,
+        boardsNum: state.boardsNum,
 })};
 
 const mapDispatchToProps = (dispatch) => {

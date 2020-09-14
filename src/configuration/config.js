@@ -36,7 +36,7 @@ export const calendarConfig = {
     },
     "pickableColors": [
         // "#38a1f4"
-        "#5ebaf8",
+        "#2196f3",
         "#ec467d",
         "#fdb241",
         "#d889ac",
