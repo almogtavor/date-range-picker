@@ -125,9 +125,13 @@ export const LowerFooter = (props) => {
     }
 
     return (
-    <div className="settings" 
-    style={id === 1 ? 
-        {"flexDirection": "row-reverse"}: {}}
+    <div 
+        className="settings" 
+        style={
+            id === 1 ? 
+            {"flexDirection": "row-reverse"}: 
+            {}
+        }
     >
         {id === 0 && colorsPalette !== "disabled" && !showColorPicker && (<div 
             className="color-circle" 

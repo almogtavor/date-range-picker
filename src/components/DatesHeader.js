@@ -149,3 +149,5 @@ export const DatesHeader = (props) => {
     </div>
     );
 }
+
+export default React.memo(DatesHeader);

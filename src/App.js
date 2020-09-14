@@ -21,7 +21,10 @@ function App(props) {
               "gridTemplateRows": `repeat(${Math.floor(props.boardsNum / 3)}, 1fr)`,}
             }
           >
-              <DateRangePickerContainer boardsNum={props.boardsNum}/>
+              <DateRangePickerContainer 
+                boardsNum={props.boardsNum}
+                language={props.language}
+              />
           </div>
         </div>
       </InitialParametersProvider>

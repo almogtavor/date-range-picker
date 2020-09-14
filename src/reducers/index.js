@@ -88,12 +88,13 @@ function rootReducer (state = initialState, payload) {
           firstDayOfWeekIndex: payload.firstDayOfWeekIndex
         });
     } else if (payload.type === 'SET_BOARDS_NUM') {
+        console.log(payload);
         let monthsObj = {};
         let yearsObj = {};
         let modeObj = {};
         let showColorPickerObj = {};
         for (let i of componentIDs) {
-          const index = state.language === "Hebrew" ? boardsNum - i - 1 : i;
+          const index = payload.language === "Hebrew" ? boardsNum - i - 1 : i;
           let date = new Date();
           date.setMonth(new Date().getMonth() - (boardsNum - i) + 1);
           monthsObj[index] = date.getMonth() + 1;

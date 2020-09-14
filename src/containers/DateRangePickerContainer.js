@@ -14,7 +14,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     if (ownProps.boardsNum) {
-        dispatch(setBoardsNum(ownProps.boardsNum));
+        if (ownProps.language) {
+            dispatch(setBoardsNum(ownProps.boardsNum, ownProps.language));
+        } else {
+            throw Object.assign(new Error('"language" prop is undefined'), { code: 403 });
+        }
     }
     return ({
         setChoosenDates: (choosenDates) => dispatch(setChoosenDates(choosenDates)),
