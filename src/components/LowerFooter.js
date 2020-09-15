@@ -23,6 +23,7 @@ export const LowerFooter = (props) => {
         viewedMonth,
         viewedYear,
         nearViewedMonths,
+        setHoveredDay,
     } = props;
 
     const colorsPalette = useColorsPalette();
@@ -51,6 +52,7 @@ export const LowerFooter = (props) => {
     const handleClick = () => {
         if (checkboxSrc !== clickedCheckbox) {
             setCheckboxSrc(clickedCheckbox);
+            setHoveredDay(null);
             checkeboxChanged.current = true;
             let startSelectDate, endSelectDate;
 

@@ -13,7 +13,7 @@
   }
 
   .year-selector::-webkit-scrollbar {
-    width: 3%;
+    width: 7px;
     border-radius: 4px;
     background-color: rgb(228, 228, 228);
 
