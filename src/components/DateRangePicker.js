@@ -16,7 +16,7 @@ export const DateRangePicker = (props) => {
           "gridColumn": ((i + 1) % 3) === 0 ? 
             3 : 
             (i + 1) % 3,
-          "gridRow": Math.floor(i / 3) + 1 
+          "gridRow": Math.floor(i / 3) + 1 ,
         }}
       >
         <DatesHeaderContainer 

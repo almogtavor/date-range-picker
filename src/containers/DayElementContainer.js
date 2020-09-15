@@ -26,13 +26,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     const rightId = ownProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
     const leftId = ownProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
-    
-    const mapViewedMonth = (viewedMonth, id) => {
-        dispatch(setViewedMonth(id, viewedMonth))
-    };  
 
     const yearBorderHandler = (viewedMonth, viewedYear, yearIncreasement, id) => {
-        mapViewedMonth(viewedMonth, id);
+        setViewedMonth(id, viewedMonth);
         dispatch(setViewedYear(viewedYear + yearIncreasement, id));
     }
 
@@ -46,7 +42,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 // yearBorderHandler(11, stateProps.viewedYear[id], -1, id);
                 yearBorderHandler(11, viewedYear, -1, id);
             } else {
-                dispatch(mapViewedMonth(viewedMonth, id));
+                dispatch(setViewedMonth(id, viewedMonth));
             }
         }
     }

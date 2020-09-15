@@ -16,18 +16,28 @@ export const DateRangePickerMapper = (props) => {
     // tabIndex="1" onBlur={handleBlur}
 
     const calendarsIndexes = [...Array(boardsNum).keys()];
-    
+    const marginLeftStyle = boardsNum === 1 ? 
+        {"marginLeft": "255px"} :
+        boardsNum === 2 ?
+        {"marginLeft": 255 / 2 + "px"} :
+        {};
+
     return (
-    <>{showCalendar && <div className="date-range-picker">
-        <CalendarHeaderContainer/>
-        {calendarsIndexes.map((i) => {
-            return (
-            <DateRangePicker
-                key={i}
-                i={i}
-            />)
-          })}
-      </div>
-    }</>
+    <>{
+      showCalendar && 
+        <div 
+          className="date-range-picker" 
+          style={marginLeftStyle}
+        >
+          <CalendarHeaderContainer/>
+          {calendarsIndexes.map((i) => {
+              return (
+              <DateRangePicker
+                  key={i}
+                  i={i}
+              />)
+            })}
+        </div>
+      }</>
     );
   };

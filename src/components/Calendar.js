@@ -1,5 +1,6 @@
 import React from "react";
 import '../styles/month.css';
+import '../styles/calendar-component.css';
 import MonthDayElementsContainer from "../containers/MonthDayElementsContainer";
 import YearSelectorContainer from "../containers/YearSelectorContainer";
 import MonthSelectorContainer from "../containers/MonthSelectorContainer";
