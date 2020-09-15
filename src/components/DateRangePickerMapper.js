@@ -1,8 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import "../App.css";
 import { DateRangePicker } from '../components/DateRangePicker';
 import CalendarHeaderContainer from "../containers/CalendarHeaderContainer";
-import { useFirstDayOfWeekIndex, useLanguage, useBoardsNum, useStartDate, useEndDate } from "../context/InitialParametersContext";
 
 
 export const DateRangePickerMapper = (props) => {

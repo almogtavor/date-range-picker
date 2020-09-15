@@ -18,8 +18,8 @@ function App(props) {
             className="date-range-picker"
             style={{
               "height": `${Math.floor(props.boardsNum / 3) * 292}px`,
-              "gridTemplateRows": `repeat(${Math.floor(props.boardsNum / 3)}, 1fr)`,}
-            }
+              "gridTemplateRows": `repeat(${Math.floor(props.boardsNum / 3)}, 1fr)`,
+            }}
           >
               <DateRangePickerContainer 
                 boardsNum={props.boardsNum}

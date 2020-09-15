@@ -15,10 +15,10 @@ export const CalendarHeader = (props) => {
     const language = useLanguage();
     const format = useFormat();
 
-    console.log(boardsNum);
     let selectedDaysStyle = {
         "width": ((boardsNum * 100) > 300 ? 300 : (boardsNum * 100)) + "%", 
         "backgroundColor": selectedColor + "60",
+        "marginLeft": boardsNum * 255 + "px",
     };
   
     if (language === "Hebrew") {

@@ -19,7 +19,7 @@ ReactDOM.render(
             startDate={new Date(1990, 8, 21)} 
             endDate={new Date(2025, 9, 1)}
             firstDayOfWeekIndex={0}
-            boardsNum={2}
+            boardsNum={1}
         />
     </Provider>,
     document.getElementById('root')

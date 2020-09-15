@@ -2,7 +2,7 @@ import { setLanguage, setBoardsNum, setChoosenDates, setColorsPalette, setShowCa
 import { connect } from 'react-redux';
 import { DateRangePickerMapper } from '../components/DateRangePickerMapper';
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return ({
         selectedDays: state.selectedDays,
         selectedColor: state.selectedColor,
