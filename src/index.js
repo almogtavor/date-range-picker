@@ -1,3 +1,5 @@
+import './wdyr';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -11,13 +13,13 @@ const store = createStore(rootReducer)
 
 ReactDOM.render(
     <Provider store={store}>
-        <DateRangePicker 
-            language="Hebrew"
-            colorsPalette="enabled"
+        <DateRangePicker
+            language="English"
+            colorsPalette="disabled"
             format="DD-MM-YYYY"
-            selectAllButton="disabled"
+            selectAllButton="enabled"
             startDate={new Date(1990, 8, 21)} 
-            endDate={new Date(2025, 8, 21)}
+            endDate={new Date(2025, 9, 1)}
             firstDayOfWeekIndex={0}
             boardsNum={2}
         />

@@ -47,9 +47,10 @@ export const setFirstDayOfWeekIndex = firstDayOfWeekIndex => ({
     firstDayOfWeekIndex
 })
 
-export const setBoardsNum = boardsNum => ({
+export const setBoardsNum = (boardsNum, language) => ({
     type: 'SET_BOARDS_NUM',
-    boardsNum
+    boardsNum: boardsNum,
+    language: language
 })
 
 export const setSelectedDays = selectedDays => ({

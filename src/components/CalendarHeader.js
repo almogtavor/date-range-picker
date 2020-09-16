@@ -1,17 +1,19 @@
 import React from "react";
 import '../styles/calendar-header.css';
 import { choosenDatesCalculation } from "../utils/utils";
+import { useFormat, useLanguage } from "../context/InitialParametersContext";
 
 export const CalendarHeader = (props) => {
     const {
         setSelectedDays,
         selectedDays, 
         hoveredDay, 
-        language,
-        boardsNum,
         selectedColor,
-        format,
+        boardsNum,
     } = props;
+
+    const language = useLanguage();
+    const format = useFormat();
 
     let selectedDaysStyle = {
         "width": ((boardsNum * 100) > 300 ? 300 : (boardsNum * 100)) + "%", 
@@ -22,18 +24,28 @@ export const CalendarHeader = (props) => {
         selectedDaysStyle["flexDirection"] = "row-reverse";
     }
   
+    let boardsNumClassName;
+    if (boardsNum === 1) {
+        boardsNumClassName = "one-board";
+    } else if (boardsNum === 2) {
+        boardsNumClassName = "two-boards";
+    } else {
+        boardsNumClassName = "three-boards";
+    }
+
     const choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, format);
 
     return (
         <div 
-            className="selected-dates" 
+            className="selected-dates"
             style={selectedDaysStyle}
         >
-            <div className={`dates-display ${language === "Hebrew" && "hebrew"}`}>
+            <div className={`dates-display ${boardsNumClassName}`} lang={language}>
                 { choosenDates }
             </div>
             <button 
-                className="clear"
+                className={`clear ${boardsNumClassName}`}
+                lang={language}
                 onClick={() => setSelectedDays([])}
                 style={{"color": selectedColor}}
             >

@@ -11,8 +11,40 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .month-selector.hebrew {
+  .month-selector:lang(Hebrew) {
     direction: rtl;
+  }
+
+  .month-selector:lang(English) div:nth-child(1) {
+    border-top-left-radius: 12px;
+  }
+  
+  .month-selector:lang(English) div:nth-child(3) {
+    border-top-right-radius: 12px;
+  }
+  
+  .month-selector:lang(English) div:nth-last-child(3) {
+    border-bottom-left-radius: 12px;
+  }
+  
+  .month-selector:lang(English) div:nth-last-child(1) {
+    border-bottom-right-radius: 12px;
+  }
+
+  .month-selector:lang(Hebrew) div:nth-child(3) {
+    border-top-left-radius: 12px;
+  }
+  
+  .month-selector:lang(Hebrew) div:nth-child(1) {
+    border-top-right-radius: 12px;
+  }
+  
+  .month-selector:lang(Hebrew) div:nth-last-child(1) {
+    border-bottom-left-radius: 12px;
+  }
+  
+  .month-selector:lang(Hebrew) div:nth-last-child(3) {
+    border-bottom-right-radius: 12px;
   }
   
   .selectable-month {
@@ -33,20 +65,4 @@
   .selectable-month:hover {
     background: rgb(198, 203, 211);
     background-clip: content-box;
-  }
-    
-  .month-selector div:nth-child(1) {
-    border-top-left-radius: 12px;
-  }
-  
-  .month-selector div:nth-child(3) {
-    border-top-right-radius: 12px;
-  }
-  
-  .month-selector div:nth-last-child(3) {
-    border-bottom-left-radius: 12px;
-  }
-  
-  .month-selector div:nth-last-child(1) {
-    border-bottom-right-radius: 12px;
   }

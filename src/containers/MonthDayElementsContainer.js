@@ -6,9 +6,6 @@ const mapStateToProps = (state, ownProps) => {
         viewedYear: state.viewedYear[ownProps.id],
         viewedMonth: state.viewedMonth[ownProps.id],
         id: ownProps.id,
-        startDate: state.startDate,
-        endDate: state.endDate,
-        language: state.language,
 })};
 
 export default connect(mapStateToProps)(MonthDaysElements);

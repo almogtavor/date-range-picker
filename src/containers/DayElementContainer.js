@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { DayElement } from '../components/DayElement';
 
 const mapStateToProps = (state, ownProps) => {
-    const leftId = state.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
-    const rightId = state.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
+    const leftId = ownProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
+    const rightId = ownProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
     return ({
         selectedDays: state.selectedDays,
         rightViewedMonth: state.viewedMonth[rightId],
@@ -13,54 +13,46 @@ const mapStateToProps = (state, ownProps) => {
         leftViewedYear: state.viewedYear[leftId],
         selectedColor: state.selectedColor,
         hoveredDay: state.hoveredDay,
-        startDate: state.startDate,
-        endDate: state.endDate,
-        language: state.language,
         date: ownProps.date,
         isOfCurrentViewedMonth: ownProps.isOfCurrentViewedMonth,
         dayOfWeek: ownProps.dayOfWeek,
         genericStyle: ownProps.genericStyle,
         id: ownProps.id,
+        boardsNum: state.boardsNum,
         viewedMonth: state.viewedMonth,
         viewedYear: state.viewedYear,
 })};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return ({
-        setSelectedDays: (selectedDays) => dispatch(setSelectedDays(selectedDays)),
-        mapViewedMonth: (viewedMonth, id) => dispatch(setViewedMonth(id, viewedMonth)),
-        setViewedYear: (viewedYear, id = ownProps.id) => dispatch(setViewedYear(id, viewedYear)),
-        setHoveredDay: (hoveredDay) => dispatch(setHoveredDay(hoveredDay)),
-})};
+    const rightId = ownProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
+    const leftId = ownProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
 
-const mergeProps = (stateProps, dispatchProps, ownProps) => {
-    const rightId = stateProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
-    const leftId = stateProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
     const yearBorderHandler = (viewedMonth, viewedYear, yearIncreasement, id) => {
-        dispatchProps.mapViewedMonth(viewedMonth, id);
-        dispatchProps.setViewedYear(viewedYear + yearIncreasement, id);
+        console.log(viewedMonth, viewedYear, yearIncreasement, id );
+        dispatch(setViewedMonth(id, viewedMonth));
+        dispatch(setViewedYear(id, viewedYear + yearIncreasement));
     }
 
     const setMonthById = (viewedMonth, id, viewedYear) => {
-        if (viewedYear) {
-            yearBorderHandler(viewedMonth, viewedYear, 0, id);
+        console.log(viewedMonth, id, viewedYear);
+        if (viewedMonth > 11) {
+            yearBorderHandler(0, viewedYear, 1, id);
+        } else if (viewedMonth < 0) {
+            yearBorderHandler(11, viewedYear, -1, id);
         } else {
-            if (viewedMonth > 11) {
-                yearBorderHandler(0, stateProps.viewedYear[id], 1, id);
-            } else if (viewedMonth < 0) {
-                yearBorderHandler(11, stateProps.viewedYear[id], -1, id);
-            } else {
-                dispatchProps.mapViewedMonth(viewedMonth, id);
-            }
+            dispatch(setViewedMonth(id, viewedMonth));
+            dispatch(setViewedYear(id, viewedYear));
         }
     }
-    return {
-        ...stateProps,
-        ...dispatchProps,
+
+    return ({
+        setSelectedDays: (selectedDays) => dispatch(setSelectedDays(selectedDays)),
+        setViewedYear: (viewedYear, id = ownProps.id) => dispatch(setViewedYear(id, viewedYear)),
+        setHoveredDay: (hoveredDay) => dispatch(setHoveredDay(hoveredDay)),
+
         setRightViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, rightId, viewedYear),
         setLeftViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, leftId, viewedYear),
         setViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, ownProps.id, viewedYear),
-    }
-  }
+})};
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(DayElement);
+export default connect(mapStateToProps, mapDispatchToProps)(DayElement);

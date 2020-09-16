@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import DayElementContainer from "../containers/DayElementContainer";
+import { useLanguage } from "../context/InitialParametersContext";
 
 export const MonthDaysElements = (props) => { 
     const {
         viewedYear, 
         viewedMonth, 
-        language, 
         id,
     } = props;
+
+    const language = useLanguage();
     const numOfDaysInMonth = new Date(viewedYear, viewedMonth + 1, 0).getDate();
     const dayToBeginTheMonthFrom = new Date(viewedYear, viewedMonth, 1).getDay();
     const [monthDays, setMonthDays] = useState([]);
@@ -43,12 +45,13 @@ export const MonthDaysElements = (props) => {
 
         return (
             <DayElementContainer
-                key={Math.random()} // TODO: change
+                key={day + viewedMonth + viewedYear}
                 id={id}
                 date={new Date(viewedYear, viewedMonth, day)}
                 isOfCurrentViewedMonth={isOfCurrentViewedMonth}
                 dayOfWeek={dayOfWeek}
                 genericStyle={genericStyle}
+                language={language}
             />
         );
         

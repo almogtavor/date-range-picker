@@ -8,8 +8,6 @@ const mapStateToProps = (state) => {
         showCalendar: state.showCalendar,
         selectedDays: state.selectedDays, 
         hoveredDay: state.hoveredDay, 
-        language: state.language,
-        format: state.format,
 })};
 
 const mapDispatchToProps = (dispatch) => {

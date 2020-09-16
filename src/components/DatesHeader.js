@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {calendarConfig} from '../configuration/config';
 import '../styles/dates-header.css';
+import { useEndDate, useStartDate, useLanguage } from "../context/InitialParametersContext";
 
 const leftArrow = require('../images/arrow-left.png');
 const rightArrow = require('../images/arrow-right.png');
@@ -13,12 +14,12 @@ export const DatesHeader = (props) => {
         setViewedYear, 
         setViewedMonth, 
         setMode, 
-        language, 
-        startDate, 
-        endDate,
         nearViewedMonths,
     } = props;
 
+    const language = useLanguage();
+    const startDate = useStartDate();
+    const endDate = useEndDate();
     const [isHover, setIsHover] = useState({
         "month": false, 
         "year": false,
@@ -31,8 +32,10 @@ export const DatesHeader = (props) => {
                 new Date(viewedYear, viewedMonth + 2, 0) <= 
                 new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0) : 
                 true;
-        const isBiggerThanStartDate = new Date(viewedYear, viewedMonth + 1, 0) < endDate;
-        return isNearMonthNotBlocks && isBiggerThanStartDate;
+        const isSmallerThanEndDate = new Date(viewedYear, viewedMonth + 1, 0) < endDate;
+        // console.log(isNearMonthNotBlocks);
+        // console.log(isSmallerThanEndDate);
+        return isNearMonthNotBlocks && isSmallerThanEndDate;
     }
 
     const canDecrease = () => {
@@ -88,7 +91,7 @@ export const DatesHeader = (props) => {
     }  
 
     return (
-    <div className="header" style={language === "Hebrew" ? { "flexDirection": "row-reverse"}: {}}>
+    <div className="header" lang={language}>
         <div className="info">
             <div 
                 className="month" 
@@ -146,3 +149,5 @@ export const DatesHeader = (props) => {
     </div>
     );
 }
+
+export default React.memo(DatesHeader);

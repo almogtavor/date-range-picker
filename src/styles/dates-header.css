@@ -7,6 +7,10 @@
     margin: 10px 15px;
 }
 
+.header:lang(Hebrew) {
+    flex-direction: row-reverse;
+}
+
 .info {
     display: flex;
     font-size: 1.5em;
@@ -44,7 +48,6 @@
     border-radius: 12px;
     margin: 10%;
 }
-
 
 .arrow.disabled {
     opacity: 0.4;

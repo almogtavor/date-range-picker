@@ -16,8 +16,11 @@
 }
 
 .right-hand {
-    margin-left: 5%;
     height: 25px;
+}
+
+.right-hand.select-all-present {
+    margin-left: -25%;
 }
 
 .selectable-color-circle {
@@ -40,7 +43,7 @@
     width: 60px;
     margin-right: 3%;
     border-width: 2px;
-    outline: none;
+    outline: none;    
 }
 
 .pick-button:hover {

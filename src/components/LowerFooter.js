@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import {calendarConfig} from '../configuration/config';
 import '../styles/lower-footer.css';
+import { useColorsPalette, useLanguage, useEndDate, useStartDate, useSelectAllButton } from "../context/InitialParametersContext";
 
 const rightHandIcon = require('../images/right-hand.png');
 const checkbox= require('../images/checkbox.png');
@@ -11,26 +12,28 @@ export const LowerFooter = (props) => {
 
     const {
         id,
-        selectedColor, 
+        selectedColor,
+        setSelectedColor,
         showColorPicker, 
-        setSelectedColor, 
         setShowColorPicker,        
         setShowCalendar,
-        colorsPalette,
         selectedDays,
         setSelectedDays,
         mode,
-        language,
-        startDate,
-        endDate,
         viewedMonth,
         viewedYear,
         nearViewedMonths,
-        selectAllButton,
+        setHoveredDay,
     } = props;
 
-    const [checkboxSrc, setCheckboxSrc] = useState(checkbox);
+    const colorsPalette = useColorsPalette();
+    const language = useLanguage();
+    const startDate = useStartDate();
+    const endDate = useEndDate();
+    const selectAllButton = useSelectAllButton();
 
+
+    const [checkboxSrc, setCheckboxSrc] = useState(checkbox);
     const checkeboxChanged = useRef(false);
 
     const changeColor = (color) => {
@@ -49,6 +52,7 @@ export const LowerFooter = (props) => {
     const handleClick = () => {
         if (checkboxSrc !== clickedCheckbox) {
             setCheckboxSrc(clickedCheckbox);
+            setHoveredDay(null);
             checkeboxChanged.current = true;
             let startSelectDate, endSelectDate;
 
@@ -123,10 +127,13 @@ export const LowerFooter = (props) => {
     }
 
     return (
-    <div className="settings" 
-    // style={id===1 ? 
-    //     {"justifyContent": "flex-end"}: 
-    //     {"justifyContent": "flex-start"}}
+    <div 
+        className="settings" 
+        style={
+            id === 1 ? 
+            {"flexDirection": "row-reverse"}: 
+            {}
+        }
     >
         {id === 0 && colorsPalette !== "disabled" && !showColorPicker && (<div 
             className="color-circle" 
@@ -138,7 +145,7 @@ export const LowerFooter = (props) => {
             <img
                 alt=""
                 src={rightHandIcon}
-                className="right-hand"
+                className={`right-hand ${selectAllButton === "disabled" && "select-all-present"}`}
                 onClick={showColorPicker => setShowColorPicker(!showColorPicker)}
             />
             {calendarConfig.pickableColors.map(color => {
@@ -151,6 +158,20 @@ export const LowerFooter = (props) => {
             })}
             </div>
         )}
+
+        {id === 1 && 
+            <button 
+                className="pick-button"
+                style={{
+                    "backgroundColor": selectedColor + "80",
+                    "borderColor": selectedColor + "20",
+                }}
+                onClick={() => setShowCalendar(false)}
+            >
+                {language === "Hebrew" ? "בחר" : "Pick"}
+            </button>
+        }
+
         {selectAllButton === "enabled" && <div 
             className="checkbox-div"
             onClick={handleClick}
@@ -167,19 +188,6 @@ export const LowerFooter = (props) => {
                 {language === "Hebrew" ? "בחר הכל" : "Select All"}
             </div>
         </div>}
-
-        {id === 1 && 
-            <button 
-                className="pick-button"
-                style={{
-                    "backgroundColor": selectedColor + "80",
-                    "borderColor": selectedColor + "20",
-                }}
-                onClick={() => setShowCalendar(false)}
-            >
-                {language === "Hebrew" ? "בחר" : "Pick"}
-            </button>
-        }
     </div>
     );
 }

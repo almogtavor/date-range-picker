@@ -21,7 +21,7 @@ function placeDateInFormat(date, format) {
     } else if (format.includes("YY")) {
         format = format.replace("YY", date.getFullYear().toString().substr(-2));
     }
-    format = format.replace("MM", date.getMonth());
+    format = format.replace("MM", date.getMonth() + 1);
     format = format.replace("DD", date.getDate());
     return format;
 }

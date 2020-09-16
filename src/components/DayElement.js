@@ -1,34 +1,33 @@
 import React from "react";
 import '../styles/day.css';
+import { useLanguage, useEndDate, useStartDate, useBoardsNum } from "../context/InitialParametersContext";
 
 export const DayElement = (props) => {
     const {
         date,
         id,
-        selectedDays, 
+        selectedDays,
         setSelectedDays,
         setViewedMonth,
-        setViewedYear,
         isOfCurrentViewedMonth,
         hoveredDay,
         setHoveredDay,
         selectedColor,
         dayOfWeek,
         genericStyle,
-        startDate,
-        endDate,
-        language,
         setRightViewedMonth,
-        setRightViewedYear,
         setLeftViewedMonth,
-        setLeftViewedYear,
         rightViewedMonth,
         rightViewedYear,
         leftViewedMonth,
         leftViewedYear,
+        boardsNum,
     } = props;
 
 
+    const startDate = useStartDate();
+    const endDate = useEndDate();
+    const language = useLanguage();
     const dayNum = date.getDate();
     const month = date.getMonth();
     const year = date.getFullYear();
@@ -60,6 +59,7 @@ export const DayElement = (props) => {
     }
 
     const handleClick = () => {
+        console.log("new shit");
         if (!isDisabled) {
             if (selectedDays.length === 2) {
                 setSelectedDays([date]);
@@ -76,35 +76,34 @@ export const DayElement = (props) => {
                 }
             }
 
-            if (selectedDays.length === 1) {
-                const firstSelectMonth = selectedDays[0].getMonth();
-                const firstSelectYear = selectedDays[0].getFullYear();
-                const {rightId, leftId} = language === "Hebrew" ? {rightId: 0, leftId: 1} : {rightId: 1, leftId: 0}; 
-                
-                if (id === leftId) {
-                    if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
-                        setRightViewedMonth(month, year);
-                        setViewedMonth(firstSelectMonth, firstSelectYear);
-                    } else if (year === firstSelectYear && month === firstSelectMonth) {
-                        setViewedMonth(month, year);
-                        setRightViewedMonth(month + 1);
-                    } else {
-                        setRightViewedMonth(firstSelectMonth, firstSelectYear);
-                        setViewedMonth(month, year);
-                    }
-                } else if (id === rightId) {
-                    if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
-                        setLeftViewedMonth(firstSelectMonth, firstSelectYear);
-                        setViewedMonth(month, year);
-                    } else if (year === firstSelectYear && month === firstSelectMonth) {
-                        setLeftViewedMonth(month, year);
-                        setViewedMonth(month + 1);
-                    } else {
-                        setLeftViewedMonth(month, year);
-                        setViewedMonth(firstSelectMonth, firstSelectYear);
+            if (new Date(year, month + 1, 1) < endDate && boardsNum === 2) {
+                if (selectedDays.length === 1) {
+                    const firstSelectMonth = selectedDays[0].getMonth();
+                    const firstSelectYear = selectedDays[0].getFullYear();
+                    const {rightId, leftId} = language === "Hebrew" ? {rightId: 0, leftId: 1} : {rightId: 1, leftId: 0}; 
+                    
+                    if (id === leftId) {
+                        if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
+                            setRightViewedMonth(month, year);
+                            setViewedMonth(firstSelectMonth, firstSelectYear);
+                        } else if (new Date(year, month, 0) < new Date(firstSelectYear, firstSelectMonth, 0)) {
+                            setRightViewedMonth(firstSelectMonth, firstSelectYear);
+                            setViewedMonth(month, year);
+                        }
+                    } else if (id === rightId) {
+                        if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
+                            setLeftViewedMonth(firstSelectMonth, firstSelectYear);
+                            setViewedMonth(month, year);
+                        } else if (year === firstSelectYear && month === firstSelectMonth) {
+                            setLeftViewedMonth(month, year);
+                            setViewedMonth(month + 1, year);
+                        } else {
+                            setLeftViewedMonth(month, year);
+                            setViewedMonth(firstSelectMonth, firstSelectYear);
+                        }
                     }
                 }
-            }
+            } 
         }
     };
 
@@ -150,12 +149,3 @@ export const DayElement = (props) => {
         </div>
     </div>)
 }
-
- // ${selectedDays.length === 2 ? 
-//     (date.toLocaleDateString() === selectedDays[0].toLocaleDateString()) && selectedDays[0] > selectedDays[1] ? "last-selected" : 
-//     (date.toLocaleDateString() === selectedDays[0].toLocaleDateString()) && selectedDays[0] < selectedDays[1] ? "first-selected" :
-//     (date.toLocaleDateString() === selectedDays[1].toLocaleDateString()) && selectedDays[0] > selectedDays[1] ? "first-selected" :
-//     (date.toLocaleDateString() === selectedDays[1].toLocaleDateString()) && selectedDays[0] < selectedDays[1] && "last-selected" :
-// (selectedDays.length === 1 && 
-//     (date.toLocaleDateString() === selectedDays[0].toLocaleDateString()) && selectedDays[0] > hoveredDay) ? "last-selected" :
-//     selectedDays[0] < hoveredDay && "first-selected"}

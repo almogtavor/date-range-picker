@@ -1,5 +1,5 @@
 import { setSelectedColor, setViewedMonth, setViewedYear, setMode } from '../actions';
-import { DatesHeader } from '../components/DatesHeader';
+import DatesHeader from '../components/DatesHeader';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
@@ -9,9 +9,6 @@ const mapStateToProps = (state, ownProps) => {
     selectedColor: state.selectedColor,
     viewedYear: state.viewedYear[ownProps.id],
     viewedMonth: state.viewedMonth[ownProps.id],
-    startDate: state.startDate,
-    endDate: state.endDate,
-    language: state.language,
     selectedDays: state.selectedDays,
     
     nearViewedMonths: {

@@ -1,16 +1,49 @@
 .selected-dates {
-    display: flex;
-    height: 22px;
-    justify-content: space-around;
+  display: flex;
+  height: 22px;
+  justify-content: space-around;
+  /* background-color: rgb(231, 231, 231); */
+  background-color: rgb(244, 246, 248);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  margin-top: -22px;  
+  box-shadow: 3px 1px 5px 0px #ddd;
+}
 
-    /* background-color: rgb(231, 231, 231); */
-    background-color: rgb(244, 246, 248);
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    margin-top: -22px;
-    
-    box-shadow: 3px 1px 5px 0px #ddd;
-  }
+.dates-display {
+  position: absolute;
+  margin-top: 0.175em;
+  font-size: 0.9em;
+  font-weight: 500;
+  width: 180px;
+}
+
+.one-board.dates-display:lang(Hebrew) {
+  text-align: end;
+  margin-right: -7%;
+}
+
+.one-board.dates-display:lang(English) {
+  margin-left: -7%;
+}
+
+.two-boards.dates-display:lang(Hebrew) {
+  text-align: end;
+  margin-right: -38%;
+}
+
+.two-boards.dates-display:lang(English) {
+  margin-left: -37%;
+}
+
+.three-boards.dates-display:lang(Hebrew) {
+  text-align: end;
+  margin-right: -72%;
+}
+
+.three-boards.dates-display:lang(English) {
+  margin-left: -70%;
+}
 
 .clear {
   background-color: rgb(244, 246, 248);
@@ -18,9 +51,33 @@
   color: white;
   border-radius: 15px;
   height: 17px;
-  margin: 0.5%;
+  margin-top: 0.175em;
   outline: none;
   font-weight: 600;
+}
+
+.one-board.clear:lang(Hebrew) {
+  margin-left: -72.5%;
+}
+
+.one-board.clear:lang(English) {
+  margin-right: -72.5%;
+}
+
+.two-boards.clear:lang(Hebrew) {
+  margin-left: -80%;
+}
+
+.two-boards.clear:lang(English) {
+  margin-right: -87%;
+}
+
+.three-boards.clear:lang(Hebrew) {
+  margin-left: -88%;
+}
+
+.three-boards.clear:lang(English) {
+  margin-right: -91%;
 }
 
 .clear:hover {
