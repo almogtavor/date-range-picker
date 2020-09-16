@@ -33,8 +33,8 @@ export const DatesHeader = (props) => {
                 new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0) : 
                 true;
         const isSmallerThanEndDate = new Date(viewedYear, viewedMonth + 1, 0) < endDate;
-        console.log(isNearMonthNotBlocks);
-        console.log(isSmallerThanEndDate);
+        // console.log(isNearMonthNotBlocks);
+        // console.log(isSmallerThanEndDate);
         return isNearMonthNotBlocks && isSmallerThanEndDate;
     }
 

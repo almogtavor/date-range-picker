@@ -36,6 +36,15 @@
   margin-left: -37%;
 }
 
+.three-boards.dates-display:lang(Hebrew) {
+  text-align: end;
+  margin-right: -72%;
+}
+
+.three-boards.dates-display:lang(English) {
+  margin-left: -70%;
+}
+
 .clear {
   background-color: rgb(244, 246, 248);
   border-style: hidden;
@@ -61,6 +70,14 @@
 
 .two-boards.clear:lang(English) {
   margin-right: -87%;
+}
+
+.three-boards.clear:lang(Hebrew) {
+  margin-left: -88%;
+}
+
+.three-boards.clear:lang(English) {
+  margin-right: -91%;
 }
 
 .clear:hover {

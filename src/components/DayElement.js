@@ -59,6 +59,7 @@ export const DayElement = (props) => {
     }
 
     const handleClick = () => {
+        console.log("new shit");
         if (!isDisabled) {
             if (selectedDays.length === 2) {
                 setSelectedDays([date]);
@@ -95,7 +96,7 @@ export const DayElement = (props) => {
                             setViewedMonth(month, year);
                         } else if (year === firstSelectYear && month === firstSelectMonth) {
                             setLeftViewedMonth(month, year);
-                            setViewedMonth(month + 1);
+                            setViewedMonth(month + 1, year);
                         } else {
                             setLeftViewedMonth(month, year);
                             setViewedMonth(firstSelectMonth, firstSelectYear);
