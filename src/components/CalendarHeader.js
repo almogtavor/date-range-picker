@@ -32,18 +32,19 @@ export const CalendarHeader = (props) => {
     } else {
         boardsNumClassName = "three-boards";
     }
+
     const choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, format);
 
     return (
         <div 
-            className={`selected-dates ${boardsNumClassName }`}
+            className="selected-dates"
             style={selectedDaysStyle}
         >
-            <div className="dates-display" lang={language}>
+            <div className={`dates-display ${boardsNumClassName}`} lang={language}>
                 { choosenDates }
             </div>
             <button 
-                className="clear"
+                className={`clear ${boardsNumClassName}`}
                 lang={language}
                 onClick={() => setSelectedDays([])}
                 style={{"color": selectedColor}}
