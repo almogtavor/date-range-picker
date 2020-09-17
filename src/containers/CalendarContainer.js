@@ -1,4 +1,3 @@
-import { setStartDate, setEndDate } from '../actions';
 import { Calendar } from '../components/Calendar';
 import { connect } from 'react-redux';
 

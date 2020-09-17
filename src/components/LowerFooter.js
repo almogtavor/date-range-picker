@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {calendarConfig} from '../configuration/config';
 import '../styles/lower-footer.css';
 import { useColorsPalette, useLanguage, useEndDate, useStartDate, useSelectAllButton } from "../context/InitialParametersContext";
@@ -112,7 +112,7 @@ export const LowerFooter = (props) => {
         if (selectAllButton === "enabled") {
             setCheckboxSrc(checkbox);
         }
-    }, [mode])
+    }, [mode, selectAllButton])
 
     const handleEnter = () => {
         if (checkboxSrc !== clickedCheckbox) {

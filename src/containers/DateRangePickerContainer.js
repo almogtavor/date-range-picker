@@ -1,4 +1,4 @@
-import { setLanguage, setBoardsNum, setChoosenDates, setColorsPalette, setShowCalendar, setFormat, setSelectAllButton } from '../actions';
+import { setBoardsNum, setChoosenDates, setShowCalendar } from '../actions';
 import { connect } from 'react-redux';
 import { DateRangePickerMapper } from '../components/DateRangePickerMapper';
 

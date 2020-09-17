@@ -6,6 +6,8 @@ const mapStateToProps = (state, ownProps) => {
     const leftId = ownProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
     const rightId = ownProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
     return ({
+        date: ownProps.date,
+        id: ownProps.id,
         selectedDays: state.selectedDays,
         rightViewedMonth: state.viewedMonth[rightId],
         rightViewedYear: state.viewedYear[rightId],
@@ -13,36 +15,27 @@ const mapStateToProps = (state, ownProps) => {
         leftViewedYear: state.viewedYear[leftId],
         selectedColor: state.selectedColor,
         hoveredDay: state.hoveredDay,
-        date: ownProps.date,
         isOfCurrentViewedMonth: ownProps.isOfCurrentViewedMonth,
         dayOfWeek: ownProps.dayOfWeek,
         genericStyle: ownProps.genericStyle,
-        id: ownProps.id,
-        boardsNum: state.boardsNum,
-        viewedMonth: state.viewedMonth,
-        viewedYear: state.viewedYear,
 })};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     const rightId = ownProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
     const leftId = ownProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
 
-    const yearBorderHandler = (viewedMonth, viewedYear, yearIncreasement, id) => {
-        console.log(viewedMonth, viewedYear, yearIncreasement, id );
-        dispatch(setViewedMonth(id, viewedMonth));
-        dispatch(setViewedYear(id, viewedYear + yearIncreasement));
-    }
-
     const setMonthById = (viewedMonth, id, viewedYear) => {
-        console.log(viewedMonth, id, viewedYear);
+        let yearIncreasement = 0;
+        let newMonth = viewedMonth;
         if (viewedMonth > 11) {
-            yearBorderHandler(0, viewedYear, 1, id);
+            yearIncreasement = 1;
+            newMonth = 0;
         } else if (viewedMonth < 0) {
-            yearBorderHandler(11, viewedYear, -1, id);
-        } else {
-            dispatch(setViewedMonth(id, viewedMonth));
-            dispatch(setViewedYear(id, viewedYear));
+            yearIncreasement = -1;
+            newMonth = 11;
         }
+        dispatch(setViewedMonth(id, newMonth));
+        dispatch(setViewedYear(id, viewedYear + yearIncreasement));
     }
 
     return ({

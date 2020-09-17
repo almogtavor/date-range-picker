@@ -1,27 +1,27 @@
 import React from "react";
 import '../styles/day.css';
-import { useLanguage, useEndDate, useStartDate, useBoardsNum } from "../context/InitialParametersContext";
+import { useLanguage, useEndDate, useStartDate } from "../context/InitialParametersContext";
 
 export const DayElement = (props) => {
     const {
         date,
         id,
         selectedDays,
-        setSelectedDays,
-        setViewedMonth,
-        isOfCurrentViewedMonth,
-        hoveredDay,
-        setHoveredDay,
-        selectedColor,
-        dayOfWeek,
-        genericStyle,
-        setRightViewedMonth,
-        setLeftViewedMonth,
         rightViewedMonth,
         rightViewedYear,
         leftViewedMonth,
         leftViewedYear,
+        selectedColor,
+        hoveredDay,
+        isOfCurrentViewedMonth,
+        dayOfWeek,
+        genericStyle,
         boardsNum,
+        setSelectedDays,
+        setHoveredDay,
+        setRightViewedMonth,
+        setLeftViewedMonth,
+        setViewedMonth,
     } = props;
 
 
@@ -59,7 +59,6 @@ export const DayElement = (props) => {
     }
 
     const handleClick = () => {
-        console.log("new shit");
         if (!isDisabled) {
             if (selectedDays.length === 2) {
                 setSelectedDays([date]);
@@ -70,9 +69,9 @@ export const DayElement = (props) => {
             if (!isOfCurrentViewedMonth && selectedDays.length !== 1) {
                 setViewedMonth(date.getMonth(), date.getFullYear());
                 if (rightViewedYear === year && rightViewedMonth === month) {
-                    setRightViewedMonth(rightViewedMonth + 1);
+                    setRightViewedMonth(rightViewedMonth + 1, rightViewedYear);
                 } else if (leftViewedYear === year && leftViewedMonth === month) {
-                    setLeftViewedMonth(leftViewedMonth - 1);
+                    setLeftViewedMonth(leftViewedMonth - 1, leftViewedYear);
                 }
             }
 
