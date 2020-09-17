@@ -1,4 +1,4 @@
-import { setViewedMonth, setViewedYear, setSelectedDays, setHoveredDay } from '../actions';
+import { setViewedMonth, setViewedYear, setSelectedDays } from '../actions';
 import { connect } from 'react-redux';
 import { SelectableDayElement } from '../components/SelectableDayElement';
 
@@ -14,7 +14,6 @@ const mapStateToProps = (state, ownProps) => {
         leftViewedMonth: state.viewedMonth[leftId],
         leftViewedYear: state.viewedYear[leftId],
         selectedColor: state.selectedColor,
-        hoveredDay: state.hoveredDay,
         isOfCurrentViewedMonth: ownProps.isOfCurrentViewedMonth,
         dayOfWeek: ownProps.dayOfWeek,
         genericStyle: ownProps.genericStyle,
@@ -42,7 +41,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return ({
         setSelectedDays: (selectedDays) => dispatch(setSelectedDays(selectedDays)),
         setViewedYear: (viewedYear, id = ownProps.id) => dispatch(setViewedYear(id, viewedYear)),
-        setHoveredDay: (hoveredDay) => dispatch(setHoveredDay(hoveredDay)),
 
         setRightViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, rightId, viewedYear),
         setLeftViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, leftId, viewedYear),

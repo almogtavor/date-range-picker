@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles/day.css';
 import { useLanguage, useEndDate, useStartDate } from "../context/InitialParametersContext";
-import { HoverableDayElement } from "./HoverableDayElement";
+import HoverableDayElementContainer from "../containers/HoverableDayElementContainer";
 
 export const SelectableDayElement = (props) => {
     const {
@@ -13,13 +13,11 @@ export const SelectableDayElement = (props) => {
         leftViewedMonth,
         leftViewedYear,
         selectedColor,
-        hoveredDay,
         isOfCurrentViewedMonth,
         dayOfWeek,
         genericStyle,
         boardsNum,
         setSelectedDays,
-        setHoveredDay,
         setRightViewedMonth,
         setLeftViewedMonth,
         setViewedMonth,
@@ -118,12 +116,8 @@ export const SelectableDayElement = (props) => {
         style={isSelected ? {...genericStyle, "background": selectedColor, "borderColor": selectedColor} : genericStyle}
         onClick={handleClick}
     >
-        <HoverableDayElement
+        <HoverableDayElementContainer
             date={date}
-            selectedDays={selectedDays}
-            selectedColor={selectedColor}
-            hoveredDay={hoveredDay}
-            setHoveredDay={setHoveredDay}
             dayOfWeek={dayOfWeek}
         />
     </div>)
