@@ -18,6 +18,7 @@ const mapStateToProps = (state, ownProps) => {
         isOfCurrentViewedMonth: ownProps.isOfCurrentViewedMonth,
         dayOfWeek: ownProps.dayOfWeek,
         genericStyle: ownProps.genericStyle,
+        boardsNum: state.boardsNum,
 })};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
