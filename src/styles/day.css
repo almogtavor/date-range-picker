@@ -14,17 +14,17 @@
     background-color: none;
 }
 
+.hover-div {
+    height: 100%;
+    border-radius: 7px;
+}
+
 .selected-day {
     margin-top: -0.15em;
     margin-bottom: -0.15em;
     border-width: 0.15em;
     border-top-style: solid;
     border-bottom-style: solid;
-}
-
-.hover-div {
-    height: 100%;
-    border-radius: 7px;
 }
 
 .non-current {

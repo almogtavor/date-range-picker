@@ -9,9 +9,8 @@ export const HoverableDayElement = (props) => {
         selectedColor,
         hoveredDay,
         setHoveredDay,
+        dayOfWeek,
     } = props;
-
-    console.log(props);
 
     const startDate = useStartDate();
     const endDate = useEndDate();
@@ -19,6 +18,34 @@ export const HoverableDayElement = (props) => {
     const isDisabled = date < startDate || date > endDate;
     let isInRange = false;
 
+    if ((selectedDays.length > 0) && !isInRange) {
+        if (hoveredDay && selectedDays.length === 1) {
+            if ((date >= selectedDays[0] && date <= hoveredDay) || 
+                (date <= selectedDays[0] && date >= hoveredDay)) {
+                isInRange = true;
+            } 
+        } else {
+            if (selectedDays.length === 2) {
+                if ((date >= selectedDays[0] && date <= selectedDays[1]) ||
+                 (date <= selectedDays[0] && date >= selectedDays[1])) {
+                    isInRange = true;
+                } 
+            }
+        }
+    }
+
+    let hoverStyle = {};
+    const coloredStyle = {"background": selectedColor + "60"};
+    if (isInRange) {
+        if (hoveredDay !== null) {
+            if (date.toLocaleDateString() !== hoveredDay.toLocaleDateString()
+                || selectedDays.length !== 2) {
+                hoverStyle = coloredStyle;
+            }
+        } else if (selectedDays.length === 2) {
+                hoverStyle = coloredStyle;
+        }
+    }
 
     const handleEnterHover = () => {
         if (!isDisabled) {
@@ -34,16 +61,13 @@ export const HoverableDayElement = (props) => {
     
     return (
         <div 
-            className={`${isInRange && "hover-div"}`} 
-            style={
-                hoveredDay !== null ? 
-                    (isInRange && 
-                        (date.toLocaleDateString() !== hoveredDay.toLocaleDateString() || selectedDays.length !== 2) ?
-                            {"background": selectedColor + "60"} : 
-                            {}) :
-                isInRange && selectedDays.length === 2 ?
-                    {"background": selectedColor + "60"} :
-                    {}}
+            className={`
+                hover-div
+                ${isInRange ? "in-range" : "not-in-range"}
+                ${(dayOfWeek === 0 && !isInRange) && "first-day-of-week"}
+                ${(dayOfWeek === 6 && !isInRange) && "last-day-of-week"}
+            `} 
+            style={ hoverStyle }
             onMouseEnter={handleEnterHover}
             onMouseLeave={handleOutHover}
         >
