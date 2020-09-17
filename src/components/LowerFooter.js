@@ -34,6 +34,7 @@ export const LowerFooter = (props) => {
     const endDate = useEndDate();
     const selectAllButton = useSelectAllButton();
     const format = useFormat();
+    const idIndexes = language === "Hebrew" ? [1, 0] : [0, 1];
 
 
     const [checkboxSrc, setCheckboxSrc] = useState(checkbox);
@@ -143,31 +144,38 @@ export const LowerFooter = (props) => {
             {}
         }
     >
-        {id === 0 && colorsPalette !== "disabled" && !showColorPicker && (<div 
-            className="color-circle" 
-            style={{"backgroundColor": selectedColor}} 
-            onClick={showColorPicker => setShowColorPicker(showColorPicker)}
-        />)}
+        {id === idIndexes[0] && 
+            colorsPalette !== "disabled" && 
+            !showColorPicker && 
+            (<div 
+                className="color-circle" 
+                style={{"backgroundColor": selectedColor}} 
+                onClick={showColorPicker => setShowColorPicker(showColorPicker)}
+            />)
+        }
         {showColorPicker && (
-            <div className="color-picker-palette">
+            <div className="color-picker-palette" lang={language}>
             <img
                 alt=""
                 src={rightHandIcon}
+                lang={language}
                 className={`right-hand ${selectAllButton === "disabled" && "select-all-present"}`}
                 onClick={showColorPicker => setShowColorPicker(!showColorPicker)}
             />
             {calendarConfig.pickableColors.map(color => {
-                return <div 
+                return (<div className="wrapper" key={color}>
+                    <div 
                     key={color} 
-                    className="selectable-color-circle" 
+                    className="selectable-color-circle"
                     style={{"backgroundColor": color}}
                     onClick={() => changeColor(color)}
-                />
+                    />
+                </div>)
             })}
             </div>
         )}
 
-        {id === 1 && 
+        {id === idIndexes[1] && 
             <button 
                 className="pick-button"
                 style={{
