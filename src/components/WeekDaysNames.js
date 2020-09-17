@@ -10,7 +10,7 @@ export const WeekDaysNames = () => {
     let weekdays = calendarConfig.weeks[language];
     
     weekdays = weekdays.slice(firstDayOfWeekIndex,)
-        .concat(weekdays.slice(0,firstDayOfWeekIndex));
+        .concat(weekdays.slice(0, firstDayOfWeekIndex));
     let count = 0;
 
     return (

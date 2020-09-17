@@ -33,8 +33,6 @@ export const DatesHeader = (props) => {
                 new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0) : 
                 true;
         const isSmallerThanEndDate = new Date(viewedYear, viewedMonth + 1, 0) < endDate;
-        // console.log(isNearMonthNotBlocks);
-        // console.log(isSmallerThanEndDate);
         return isNearMonthNotBlocks && isSmallerThanEndDate;
     }
 
@@ -87,7 +85,6 @@ export const DatesHeader = (props) => {
         } else {
             setIsHover({...isHover, [param]: hasEntered});
         }
-        // TODO: check if this is really needed.
     }  
 
     return (

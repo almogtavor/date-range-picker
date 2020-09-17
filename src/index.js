@@ -1,4 +1,4 @@
-// import './wdyr';
+import './wdyr';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -15,7 +15,7 @@ ReactDOM.render(
     <Provider store={store}>
         <DateRangePicker
             language="English"
-            colorsPalette="disabled"
+            colorsPalette="enabled"
             format="DD-MM-YYYY"
             selectAllButton="enabled"
             startDate={new Date(1990, 8, 21)} 

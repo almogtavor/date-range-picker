@@ -1,6 +1,6 @@
 import { setViewedMonth, setViewedYear, setSelectedDays, setHoveredDay } from '../actions';
 import { connect } from 'react-redux';
-import { DayElement } from '../components/DayElement';
+import { SelectableDayElement } from '../components/SelectableDayElement';
 
 const mapStateToProps = (state, ownProps) => {
     const leftId = ownProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
@@ -49,4 +49,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         setViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, ownProps.id, viewedYear),
 })};
 
-export default connect(mapStateToProps, mapDispatchToProps)(DayElement);
+export default connect(mapStateToProps, mapDispatchToProps)(SelectableDayElement);

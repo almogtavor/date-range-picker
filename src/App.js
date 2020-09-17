@@ -7,8 +7,6 @@ import ButtonContainer from "./containers/ButtonContainer";
 import { InitialParametersProvider } from "./context/InitialParametersContext";
 
 function App(props) {
-  console.log(props.boardsNum);
-
   return (
     <div className="App">
       <InitialParametersProvider props={props}>

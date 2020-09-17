@@ -1,8 +1,9 @@
 import React from "react";
 import '../styles/day.css';
 import { useLanguage, useEndDate, useStartDate } from "../context/InitialParametersContext";
+import { HoverableDayElement } from "./HoverableDayElement";
 
-export const DayElement = (props) => {
+export const SelectableDayElement = (props) => {
     const {
         date,
         id,
@@ -58,6 +59,58 @@ export const DayElement = (props) => {
         }
     }
 
+    const nonCurrentDateClick = () => {
+        if (!isOfCurrentViewedMonth && selectedDays.length !== 1) {
+            setViewedMonth(date.getMonth(), date.getFullYear());
+            if (rightViewedYear === year && rightViewedMonth === month) {
+                setRightViewedMonth(rightViewedMonth + 1, rightViewedYear);
+            }
+            else if (leftViewedYear === year && leftViewedMonth === month) {
+                setLeftViewedMonth(leftViewedMonth - 1, leftViewedYear);
+            }
+        }
+    }
+
+    const setMonthsOnLeftClick = (rightMonth, rightYear, leftMonth, leftYear) => {
+        setRightViewedMonth(rightMonth, rightYear);
+        setViewedMonth(leftMonth, leftYear);
+    }
+    
+    const setMonthsOnRightClick = (rightMonth, rightYear, leftMonth, leftYear) => {
+        setViewedMonth(rightMonth, rightYear);
+        setLeftViewedMonth(leftMonth, leftYear);
+    }
+
+    const rangeSelectionHandling = () => {
+        if (new Date(year, month, 1) < endDate && boardsNum === 2) {
+            if (selectedDays.length === 1) {
+                const firstSelectMonth = selectedDays[0].getMonth();
+                const firstSelectYear = selectedDays[0].getFullYear();
+                const { rightId, leftId } = language === "Hebrew" ? { rightId: 0, leftId: 1 } : { rightId: 1, leftId: 0 };
+    
+                if (id === leftId) {
+                    if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
+                        setMonthsOnLeftClick(month, year, firstSelectMonth, firstSelectYear);
+                    }
+                    else if (new Date(year, month, 0) < new Date(firstSelectYear, firstSelectMonth, 0)) {
+                        setMonthsOnLeftClick(firstSelectMonth, firstSelectYear, month, year);
+                    }
+                }
+                else if (id === rightId) {
+                    if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
+                        setMonthsOnRightClick(month, year, firstSelectMonth, firstSelectYear);
+                    }
+                    else if (year === firstSelectYear && month === firstSelectMonth) {
+                        setMonthsOnRightClick(month + 1, year, month, year);
+                    }
+                    else {
+                        setMonthsOnRightClick(firstSelectMonth, firstSelectYear, month, year);
+                    }
+                }
+            }
+        }
+    }
+
     const handleClick = () => {
         if (!isDisabled) {
             if (selectedDays.length === 2) {
@@ -66,43 +119,8 @@ export const DayElement = (props) => {
                 setSelectedDays([...selectedDays, date]);
             }
             isSelected = !isSelected;
-            if (!isOfCurrentViewedMonth && selectedDays.length !== 1) {
-                setViewedMonth(date.getMonth(), date.getFullYear());
-                if (rightViewedYear === year && rightViewedMonth === month) {
-                    setRightViewedMonth(rightViewedMonth + 1, rightViewedYear);
-                } else if (leftViewedYear === year && leftViewedMonth === month) {
-                    setLeftViewedMonth(leftViewedMonth - 1, leftViewedYear);
-                }
-            }
-
-            if (new Date(year, month + 1, 1) < endDate && boardsNum === 2) {
-                if (selectedDays.length === 1) {
-                    const firstSelectMonth = selectedDays[0].getMonth();
-                    const firstSelectYear = selectedDays[0].getFullYear();
-                    const {rightId, leftId} = language === "Hebrew" ? {rightId: 0, leftId: 1} : {rightId: 1, leftId: 0}; 
-                    
-                    if (id === leftId) {
-                        if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
-                            setRightViewedMonth(month, year);
-                            setViewedMonth(firstSelectMonth, firstSelectYear);
-                        } else if (new Date(year, month, 0) < new Date(firstSelectYear, firstSelectMonth, 0)) {
-                            setRightViewedMonth(firstSelectMonth, firstSelectYear);
-                            setViewedMonth(month, year);
-                        }
-                    } else if (id === rightId) {
-                        if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
-                            setLeftViewedMonth(firstSelectMonth, firstSelectYear);
-                            setViewedMonth(month, year);
-                        } else if (year === firstSelectYear && month === firstSelectMonth) {
-                            setLeftViewedMonth(month, year);
-                            setViewedMonth(month + 1, year);
-                        } else {
-                            setLeftViewedMonth(month, year);
-                            setViewedMonth(firstSelectMonth, firstSelectYear);
-                        }
-                    }
-                }
-            } 
+            nonCurrentDateClick();
+            rangeSelectionHandling(); 
         }
     };
 
@@ -129,10 +147,8 @@ export const DayElement = (props) => {
             ${(dayOfWeek === 6 && !isInRange) && "last-day-of-week"}`}
         style={isSelected ? {...genericStyle, "background": selectedColor, "borderColor": selectedColor} : genericStyle}
         onClick={handleClick}
-        onMouseEnter={handleEnterHover}
-        onMouseLeave={handleOutHover} 
     >
-        <div 
+        {/* <div 
             className={`${isInRange && "hover-div"}`} 
             style={
                 hoveredDay !== null ? 
@@ -142,9 +158,18 @@ export const DayElement = (props) => {
                             {}) :
                 isInRange && selectedDays.length === 2 ?
                     {"background": selectedColor + "60"} :
-                    {}
-            }>
+                    {}}
+            onMouseEnter={handleEnterHover}
+            onMouseLeave={handleOutHover}
+        >
                 {dayNum}
-        </div>
+        </div> */}
+        <HoverableDayElement
+            date={date}
+            selectedDays={selectedDays}
+            selectedColor={selectedColor}
+            hoveredDay={hoveredDay}
+            setHoveredDay={setHoveredDay}
+        />
     </div>)
 }

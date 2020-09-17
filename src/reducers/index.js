@@ -88,7 +88,6 @@ function rootReducer (state = initialState, payload) {
           firstDayOfWeekIndex: payload.firstDayOfWeekIndex
         });
     } else if (payload.type === 'SET_BOARDS_NUM') {
-        console.log(payload);
         let monthsObj = {};
         let yearsObj = {};
         let modeObj = {};
