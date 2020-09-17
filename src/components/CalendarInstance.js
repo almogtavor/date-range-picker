@@ -3,11 +3,14 @@ import "../App.css";
 import CalendarContentContainer from '../containers/CalendarContentContainer';
 import LowerFooterContainer from '../containers/LowerFooterContainer';
 import DatesHeaderContainer from '../containers/DatesHeaderContainer';
+import { useLanguage } from "../context/InitialParametersContext";
 
 export const CalendarInstance = (props) => {
     const {
       i,
     } = props;
+
+    const language = useLanguage();
 
     return (
       <div 
@@ -21,12 +24,14 @@ export const CalendarInstance = (props) => {
       >
         <DatesHeaderContainer 
           id={i}
+          language={language}
         />
         <CalendarContentContainer
           id={i}
         />
         <LowerFooterContainer
           id={i}
+          language={language}
         />
       </div>
       );

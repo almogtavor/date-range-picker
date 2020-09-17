@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { YearSelector } from '../components/YearSelector';
 
 const mapStateToProps = (state, ownProps) => {
-    const leftId = state.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
-    const rightId = state.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
+    const leftId = ownProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
+    const rightId = ownProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
     return ({
     selectedColor: state.selectedColor,
     showColorPicker: state.showColorPicker[ownProps.id],

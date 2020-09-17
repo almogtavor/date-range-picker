@@ -5,7 +5,7 @@ import MonthDayElementsContainer from "../containers/MonthDayElementsContainer";
 import YearSelectorContainer from "../containers/YearSelectorContainer";
 import MonthSelectorContainer from "../containers/MonthSelectorContainer";
 import WeekDaysNamesContainer from "../containers/WeekDaysNamesContainer";
-import { useFirstDayOfWeekIndex } from "../context/InitialParametersContext";
+import { useLanguage } from "../context/InitialParametersContext";
 
 
 export const CalendarContent = (props) => {
@@ -14,23 +14,23 @@ export const CalendarContent = (props) => {
       id,
     } = props;
 
-    const firstDayOfWeekIndex = useFirstDayOfWeekIndex();
+    const language = useLanguage();
 
     return (
     <div className="calendar">
-        <WeekDaysNamesContainer
-          firstDayOfWeekIndex={firstDayOfWeekIndex}
-        />
+        <WeekDaysNamesContainer/>
         <MonthDayElementsContainer 
           id={id}
         />
         {mode === "Months" ? (
           <MonthSelectorContainer
-          id={id}
+            id={id}
+            language={language}
           />
         ) : mode === "Years" && 
           <YearSelectorContainer
             id={id}
+            language={language}
           />
         }
     </div>)
