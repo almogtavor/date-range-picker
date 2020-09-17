@@ -7,7 +7,8 @@ const mapStateToProps = (state) => {
         choosenDates: state.choosenDates,
         showCalendar: state.showCalendar,
         selectedDays: state.selectedDays, 
-        hoveredDay: state.hoveredDay, 
+        hoveredDay: state.hoveredDay,
+        choosenDates: state.choosenDates,
 })};
 
 const mapDispatchToProps = (dispatch) => {

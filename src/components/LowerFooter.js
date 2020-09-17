@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import {calendarConfig} from '../configuration/config';
 import '../styles/lower-footer.css';
-import { useColorsPalette, useLanguage, useEndDate, useStartDate, useSelectAllButton } from "../context/InitialParametersContext";
+import { useColorsPalette, useLanguage, useEndDate, useStartDate, useSelectAllButton, useFormat } from "../context/InitialParametersContext";
+import { choosenDatesCalculation } from '../utils/utils';
 
 const rightHandIcon = require('../images/right-hand.png');
 const checkbox= require('../images/checkbox.png');
@@ -24,6 +25,7 @@ export const LowerFooter = (props) => {
         viewedYear,
         nearViewedMonths,
         setHoveredDay,
+        setChoosenDates,
     } = props;
 
     const colorsPalette = useColorsPalette();
@@ -31,6 +33,7 @@ export const LowerFooter = (props) => {
     const startDate = useStartDate();
     const endDate = useEndDate();
     const selectAllButton = useSelectAllButton();
+    const format = useFormat();
 
 
     const [checkboxSrc, setCheckboxSrc] = useState(checkbox);
@@ -49,7 +52,7 @@ export const LowerFooter = (props) => {
         }
     }, [selectedDays])
 
-    const handleClick = () => {
+    const handleSelectAllClick = () => {
         if (checkboxSrc !== clickedCheckbox) {
             setCheckboxSrc(clickedCheckbox);
             setHoveredDay(null);
@@ -106,6 +109,11 @@ export const LowerFooter = (props) => {
             setSelectedDays([]);
         }
         
+    }
+
+    const handlePickClick = () => {
+        setShowCalendar(false);
+        setChoosenDates(choosenDatesCalculation(selectedDays, null, format));
     }
 
     useEffect(() => {
@@ -166,7 +174,7 @@ export const LowerFooter = (props) => {
                     "backgroundColor": selectedColor + "80",
                     "borderColor": selectedColor + "20",
                 }}
-                onClick={() => setShowCalendar(false)}
+                onClick={handlePickClick}
             >
                 {language === "Hebrew" ? "בחר" : "Pick"}
             </button>
@@ -174,7 +182,7 @@ export const LowerFooter = (props) => {
 
         {selectAllButton === "enabled" && <div 
             className="checkbox-div"
-            onClick={handleClick}
+            onClick={handleSelectAllClick}
             onMouseEnter={handleEnter}
             onMouseLeave={handleLeave}
 

@@ -1,4 +1,4 @@
-import { setSelectedColor, setShowColorPicker, setShowCalendar, setSelectedDays, setHoveredDay } from '../actions';
+import { setSelectedColor, setShowColorPicker, setShowCalendar, setSelectedDays, setHoveredDay, setChoosenDates } from '../actions';
 import { LowerFooter } from '../components/LowerFooter';
 import { connect } from 'react-redux';
 
@@ -31,6 +31,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     setShowColorPicker: (showColorPicker) => dispatch(setShowColorPicker(ownProps.id, showColorPicker)),
     setShowCalendar: (showCalendar) => dispatch(setShowCalendar(showCalendar)),
     setHoveredDay: (hoveredDay) => dispatch(setHoveredDay(hoveredDay)),
+    setChoosenDates: (choosenDates) => dispatch(setChoosenDates(choosenDates)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LowerFooter);

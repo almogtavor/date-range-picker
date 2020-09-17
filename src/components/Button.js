@@ -7,18 +7,16 @@ const calendarIcon = require('../images/calendar-icon5.png');
 
 export const Button = (props) => {
     const {
-        selectedDays, 
-        hoveredDay,
         showCalendar,
         setShowCalendar,
+        choosenDates,
     } = props;
 
     const format = useFormat();
-    const choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, format);
 
     return (
         <button className="button" onClick={() => setShowCalendar(!showCalendar)}>
-            { choosenDates }
+            { choosenDates ? choosenDates : format +  " - " + format}
             <img
                     alt=""
                     src={calendarIcon}
