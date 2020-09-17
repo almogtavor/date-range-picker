@@ -1,4 +1,4 @@
-import { Calendar } from '../components/Calendar';
+import { CalendarContent } from '../components/CalendarContent';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
@@ -8,4 +8,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 )}
 
-export default connect(mapStateToProps)(Calendar);
+export default connect(mapStateToProps)(CalendarContent);

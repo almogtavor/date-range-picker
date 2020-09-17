@@ -8,7 +8,7 @@ import WeekDaysNamesContainer from "../containers/WeekDaysNamesContainer";
 import { useFirstDayOfWeekIndex } from "../context/InitialParametersContext";
 
 
-export const Calendar = (props) => {
+export const CalendarContent = (props) => {
     const {
       mode, 
       id,

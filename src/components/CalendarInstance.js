@@ -1,10 +1,10 @@
 import React from "react";
 import "../App.css";
-import CalendarConatiner from '../containers/CalendarContainer';
+import CalendarContentContainer from '../containers/CalendarContentContainer';
 import LowerFooterContainer from '../containers/LowerFooterContainer';
 import DatesHeaderContainer from '../containers/DatesHeaderContainer';
 
-export const DateRangePicker = (props) => {
+export const CalendarInstance = (props) => {
     const {
       i,
     } = props;
@@ -22,7 +22,7 @@ export const DateRangePicker = (props) => {
         <DatesHeaderContainer 
           id={i}
         />
-        <CalendarConatiner
+        <CalendarContentContainer
           id={i}
         />
         <LowerFooterContainer
