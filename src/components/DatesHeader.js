@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {calendarConfig} from '../configuration/config';
 import '../styles/dates-header.css';
-import { useEndDate, useStartDate, useLanguage } from "../context/InitialParametersContext";
+import { useEndDate, useStartDate, useLanguage, usePickMethod } from "../context/InitialParametersContext";
 
 const leftArrow = require('../images/arrow-left.png');
 const rightArrow = require('../images/arrow-right.png');

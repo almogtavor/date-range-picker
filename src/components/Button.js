@@ -1,6 +1,7 @@
 import React from "react";
 import '../styles/button.css';
-import { useFormat } from "../context/InitialParametersContext";
+import { useFormat, usePickMethod } from "../context/InitialParametersContext";
+import { choosenDatesCalculation } from "../utils/utils";
 
 const calendarIcon = require('../images/calendar-icon5.png');
 
@@ -12,10 +13,12 @@ export const Button = (props) => {
     } = props;
 
     const format = useFormat();
+    const pickMethod = usePickMethod();
+    const formatPattern = choosenDatesCalculation([], null, format, pickMethod);
 
     return (
         <button className="button" onClick={() => setShowCalendar(!showCalendar)}>
-            { choosenDates ? choosenDates : format +  " - " + format}
+            { choosenDates ? choosenDates : formatPattern }
             <img
                     alt=""
                     src={calendarIcon}

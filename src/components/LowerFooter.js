@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {calendarConfig} from '../configuration/config';
 import '../styles/lower-footer.css';
-import { useColorsPalette, useLanguage, useEndDate, useStartDate, useSelectAllButton, useFormat } from "../context/InitialParametersContext";
+import { useColorsPalette, useLanguage, useEndDate, useStartDate, useSelectAllButton, useFormat, usePickMethod } from "../context/InitialParametersContext";
 import { choosenDatesCalculation } from '../utils/utils';
 
 const rightHandIcon = require('../images/right-hand.png');
@@ -34,6 +34,7 @@ export const LowerFooter = (props) => {
     const endDate = useEndDate();
     const selectAllButton = useSelectAllButton();
     const format = useFormat();
+    const pickMethod = usePickMethod();
     const idIndexes = language === "Hebrew" ? [1, 0] : [0, 1];
 
 
@@ -114,7 +115,7 @@ export const LowerFooter = (props) => {
 
     const handlePickClick = () => {
         setShowCalendar(false);
-        setChoosenDates(choosenDatesCalculation(selectedDays, null, format));
+        setChoosenDates(choosenDatesCalculation(selectedDays, null, format, pickMethod));
     }
 
     useEffect(() => {

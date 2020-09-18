@@ -1,17 +1,25 @@
-export function choosenDatesCalculation(selectedDays, hoveredDay, format) {
+export function choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod) {
     if (selectedDays.length) {
         if (selectedDays.length === 2) {
             return placeDateInFormat(selectedDays[0], format) + 
                 " - " + placeDateInFormat(selectedDays[1], format);
-        } else if (selectedDays[0] > hoveredDay) {
-            return placeDateInFormat(hoveredDay, format) + 
-                " - " + placeDateInFormat(selectedDays[0], format);
+        } else if (hoveredDay) {
+            if (selectedDays[0] > hoveredDay) {
+                return placeDateInFormat(hoveredDay, format) + 
+                    " - " + placeDateInFormat(selectedDays[0], format);
+            } else {
+                return placeDateInFormat(selectedDays[0], format) +
+                    " - " + placeDateInFormat(hoveredDay, format);
+            }
         } else {
-            return placeDateInFormat(selectedDays[0], format) +
-                " - " + placeDateInFormat(hoveredDay, format);
+            return placeDateInFormat(selectedDays[0], format)
         }
     } else {
-        return format + " - " + format;
+        if (pickMethod === "date") {
+            return format;
+        } else {
+            return format + " - " + format;
+        }
     }
 }
 

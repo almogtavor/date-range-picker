@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/day.css';
-import { useEndDate, useStartDate } from "../context/InitialParametersContext";
+import { useEndDate, useStartDate, usePickMethod } from "../context/InitialParametersContext";
 
 export const HoverableDayElement = (props) => {
     const {
@@ -15,6 +15,7 @@ export const HoverableDayElement = (props) => {
     const startDate = useStartDate();
     const endDate = useEndDate();
     const dayNum = date.getDate();
+    const pickMethod = usePickMethod();
     const isDisabled = date < startDate || date > endDate;
     let isInRange = false;
 
@@ -24,13 +25,13 @@ export const HoverableDayElement = (props) => {
                 (date <= selectedDays[0] && date >= hoveredDay)) {
                 isInRange = true;
             } 
-        } else {
-            if (selectedDays.length === 2) {
-                if ((date >= selectedDays[0] && date <= selectedDays[1]) ||
+        } else if (selectedDays.length === 2) {
+            if ((date >= selectedDays[0] && date <= selectedDays[1]) ||
                  (date <= selectedDays[0] && date >= selectedDays[1])) {
                     isInRange = true;
-                } 
             }
+        } else if (selectedDays.length === 1 && date === selectedDays[0]) {
+            isInRange = true;
         }
     }
 
@@ -48,7 +49,7 @@ export const HoverableDayElement = (props) => {
     }
 
     const handleEnterHover = () => {
-        if (!isDisabled) {
+        if (!isDisabled && pickMethod !== "date") {
             setHoveredDay(date);
         }
     };

@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/day.css';
-import { useLanguage, useEndDate, useStartDate } from "../context/InitialParametersContext";
+import { useLanguage, useEndDate, useStartDate, usePickMethod } from "../context/InitialParametersContext";
 import HoverableDayElementContainer from "../containers/HoverableDayElementContainer";
 
 export const SelectableDayElement = (props) => {
@@ -29,6 +29,7 @@ export const SelectableDayElement = (props) => {
     const language = useLanguage();
     const month = date.getMonth();
     const year = date.getFullYear();
+    const pickMethod = usePickMethod();
     const isToday = date.toLocaleDateString() === new Date().toLocaleDateString() ?  true : false;
     const isDisabled = date < startDate || date > endDate;
     let isSelected = false;
@@ -40,7 +41,13 @@ export const SelectableDayElement = (props) => {
     });
 
     const nonCurrentDateClick = () => {
-        if (!isOfCurrentViewedMonth && selectedDays.length !== 1) {
+        let isNonCurrentCase;
+        if (pickMethod === "range" && selectedDays.length !== 1) {
+            isNonCurrentCase = true;
+        } else if (pickMethod === "date") {
+            isNonCurrentCase = true;
+        }
+        if (!isOfCurrentViewedMonth && isNonCurrentCase) {
             setViewedMonth(date.getMonth(), date.getFullYear());
             if (rightViewedYear === year && rightViewedMonth === month) {
                 setRightViewedMonth(rightViewedMonth + 1, rightViewedYear);
@@ -93,14 +100,20 @@ export const SelectableDayElement = (props) => {
 
     const handleClick = () => {
         if (!isDisabled) {
-            if (selectedDays.length === 2) {
+            if (pickMethod === "range") {
+                if (selectedDays.length === 2) {
+                    setSelectedDays([date]);
+                } else {
+                    setSelectedDays([...selectedDays, date]);
+                }
+            } else if (pickMethod === "date") {
                 setSelectedDays([date]);
-            } else {
-                setSelectedDays([...selectedDays, date]);
             }
             isSelected = !isSelected;
             nonCurrentDateClick();
-            rangeSelectionHandling(); 
+            if (pickMethod === "range") {
+                rangeSelectionHandling(); 
+            }
         }
     };
 

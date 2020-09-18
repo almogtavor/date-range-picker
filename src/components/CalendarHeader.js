@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles/calendar-header.css';
 import { choosenDatesCalculation } from "../utils/utils";
-import { useFormat, useLanguage } from "../context/InitialParametersContext";
+import { useFormat, useLanguage, usePickMethod } from "../context/InitialParametersContext";
 
 export const CalendarHeader = (props) => {
     const {
@@ -14,6 +14,7 @@ export const CalendarHeader = (props) => {
 
     const language = useLanguage();
     const format = useFormat();
+    const pickMethod = usePickMethod();
 
     let selectedDaysStyle = {
         "width": ((boardsNum * 100) > 300 ? 300 : (boardsNum * 100)) + "%", 
@@ -33,7 +34,7 @@ export const CalendarHeader = (props) => {
         boardsNumClassName = "three-boards";
     }
 
-    const choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, format);
+    const choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod);
 
     return (
         <div 
