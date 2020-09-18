@@ -164,7 +164,7 @@ export const LowerFooter = (props) => {
                 onClick={showColorPicker => setShowColorPicker(!showColorPicker)}
             />
             {calendarConfig.pickableColors.map(color => {
-                return (<div className="wrapper" key={color}>
+                return (<div className="color-circle-wrapper" key={color}>
                     <div 
                     key={color} 
                     className="selectable-color-circle"
