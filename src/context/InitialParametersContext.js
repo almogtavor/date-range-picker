@@ -58,6 +58,7 @@ export function InitialParametersProvider({children, props}) {
         colorsPalette,
         format,
         pickMethod,
+        boardsNum,
         selectAllButton,
       } = props;
 
@@ -83,6 +84,10 @@ export function InitialParametersProvider({children, props}) {
 
     if (valueState.pickMethod === "date" && valueState.selectAllButton === "enabled") {
         throw Object.assign(new Error('"pickMethod" date prevents "selectAllButton" option.'), { code: 403 });
+    }
+
+    if (boardsNum === 2 && valueState.pickMethod === "date") {
+        throw Object.assign(new Error('"pickMethod" date prevents "boardsNum" bigger than 1.'), { code: 403 });
     }
     
     

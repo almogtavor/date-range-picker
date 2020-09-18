@@ -15,23 +15,18 @@
 }
 
 .color-circle {
-    /* margin-left: 5%; */
     height: 25px;
     width: 25px;
     border-radius: 50%;
 }
 
-.right-hand {
+.pointer-hand {
     height: 25px;
     margin-right: 1%;
 }
 
-.right-hand:lang(Hebrew) {
+.pointer-hand:lang(Hebrew) {
     transform: scaleX(-1);
-}
-
-.right-hand.select-all-present {
-    margin-left: -25%;
 }
 
 .wrapper {

@@ -4,7 +4,7 @@ import '../styles/lower-footer.css';
 import { useColorsPalette, useLanguage, useEndDate, useStartDate, useSelectAllButton, useFormat, usePickMethod } from "../context/InitialParametersContext";
 import { choosenDatesCalculation } from '../utils/utils';
 
-const rightHandIcon = require('../images/right-hand.png');
+const pointerHandIcon = require('../images/pointer-hand.png');
 const checkbox= require('../images/checkbox.png');
 const hoverCheckbox = require('../images/hover-checkbox.png');
 const clickedCheckbox = require('../images/clicked-checkbox.png');
@@ -158,9 +158,9 @@ export const LowerFooter = (props) => {
             <div className="color-picker-palette" lang={language}>
             <img
                 alt=""
-                src={rightHandIcon}
+                src={pointerHandIcon}
                 lang={language}
-                className={`right-hand ${selectAllButton === "disabled" && "select-all-present"}`}
+                className="pointer-hand"
                 onClick={showColorPicker => setShowColorPicker(!showColorPicker)}
             />
             {calendarConfig.pickableColors.map(color => {
