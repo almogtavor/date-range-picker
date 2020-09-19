@@ -1,6 +1,6 @@
 import React from "react";
-import '../styles/year-selector.css';
-import { useStartDate, useEndDate } from "../context/InitialParametersContext";
+import '../../styles/CalendarContentStyles/year-selector.css';
+import { useStartDate, useEndDate } from "../../context/InitialParametersContext";
 
 
 export const YearSelector = (props) => {

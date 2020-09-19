@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import SelectableDayElementContainer from "../containers/SelectableDayElementContainer";
-import { useLanguage } from "../context/InitialParametersContext";
+import SelectableDayElementContainer from "../../containers/DayElementsContainers/SelectableDayElementContainer";
+import { useLanguage } from "../../context/InitialParametersContext";
 
 export const MonthDaysElements = (props) => { 
     const {

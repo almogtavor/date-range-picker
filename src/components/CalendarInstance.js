@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.css";
-import CalendarContentContainer from '../containers/CalendarContentContainer';
+import CalendarContentContainer from '../containers/CalendarContentContainers/CalendarContentContainer';
 import LowerFooterContainer from '../containers/LowerFooterContainers/LowerFooterContainer';
 import DatesHeaderContainer from '../containers/DatesHeaderContainer';
 import { useLanguage } from "../context/InitialParametersContext";

@@ -1,6 +1,6 @@
 import { setSelectedDays, setHoveredDay } from '../../actions';
 import { connect } from 'react-redux';
-import { SelectAllButton } from '../../components/SelectAllButton';
+import { SelectAllButton } from '../../components/LowerFooterComponents/SelectAllButton';
 
 const mapStateToProps = (state, ownProps) => {
     const leftId = ownProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;

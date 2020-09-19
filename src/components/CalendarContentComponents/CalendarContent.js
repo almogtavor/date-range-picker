@@ -1,10 +1,10 @@
 import React from "react";
-import '../styles/month.css';
-import '../styles/calendar-component.css';
-import MonthDayElementsContainer from "../../containers/MonthDayElementsContainer";
+import '../../styles/CalendarContentStyles/month.css';
+import '../..//styles/calendar-component.css';
+import MonthDayElementsContainer from "../../containers/DayElementsContainers/MonthDayElementsContainer";
 import YearSelectorContainer from "../../containers/CalendarContentContainers/YearSelectorContainer";
-import MonthSelectorContainer from "../../containers/MonthSelectorContainer";
-import { WeekDaysNames } from ".//WeekDaysNames";
+import MonthSelectorContainer from "../../containers/CalendarContentContainers/MonthSelectorContainer";
+import { WeekDaysNames } from "./WeekDaysNames";
 import { useLanguage } from "../../context/InitialParametersContext";
 
 

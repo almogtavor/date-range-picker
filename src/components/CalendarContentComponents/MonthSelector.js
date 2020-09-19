@@ -1,7 +1,7 @@
 import React from "react";
-import {calendarConfig} from '../configuration/config';
-import '../styles/month-selector.css';
-import { useLanguage, useStartDate, useEndDate } from "../context/InitialParametersContext";
+import {calendarConfig} from '../../configuration/config';
+import '../../styles/CalendarContentStyles/month-selector.css';
+import { useLanguage, useStartDate, useEndDate } from "../../context/InitialParametersContext";
 
 
 export const MonthSelector = (props) => {

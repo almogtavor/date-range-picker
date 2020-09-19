@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { MonthDaysElements } from "../components/MonthDaysElements";
+import { MonthDaysElements } from "../../components/DayElementsComponents/MonthDaysElements";
 
 const mapStateToProps = (state, ownProps) => {
     return ({

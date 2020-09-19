@@ -1,7 +1,7 @@
 import React from "react";
-import '../styles/day.css';
-import { useLanguage, useEndDate, useStartDate, usePickMethod } from "../context/InitialParametersContext";
-import HoverableDayElementContainer from "../containers/HoverableDayElementContainer";
+import '../../styles/DayElementsStyles/day.css';
+import { useLanguage, useEndDate, useStartDate, usePickMethod } from "../../context/InitialParametersContext";
+import HoverableDayElementContainer from "../../containers/DayElementsContainers/HoverableDayElementContainer";
 
 export const SelectableDayElement = (props) => {
     const {

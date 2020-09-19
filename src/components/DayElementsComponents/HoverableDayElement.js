@@ -1,5 +1,5 @@
 import React from "react";
-import '../styles/day.css';
+import '../../styles/DayElementsStyles/day.css';
 import { useEndDate, useStartDate, usePickMethod } from "../../context/InitialParametersContext";
 
 export const HoverableDayElement = (props) => {

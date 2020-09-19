@@ -3,52 +3,6 @@
     justify-content: space-between;
 }
 
-.color-picker-palette {
-    display: flex;
-    outline: none;
-    width: 58%;
-}
-
-.color-picker-palette:lang(Hebrew) {
-    display: flex;
-    flex-direction: row-reverse;
-}
-
-.color-circle {
-    height: 25px;
-    width: 25px;
-    border-radius: 50%;
-}
-
-.pointer-hand {
-    height: 25px;
-    margin-right: 1%;
-}
-
-.pointer-hand:lang(Hebrew) {
-    transform: scaleX(-1);
-}
-
-.color-circle-wrapper {
-    margin-top: 2%;
-    width: 15px;
-}
-
-.selectable-color-circle {
-    height: 13px;
-    width: 13px;
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.selectable-color-circle:hover {
-    height: 15px;
-    width: 15px;
-    margin-top: 0.15em;
-    margin-right: 0.1em;
-}
-
 .pick-button {
     border-radius: 20px;
     height: 30px;

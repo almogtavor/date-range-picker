@@ -1,4 +1,4 @@
-import { CalendarContent } from '../components/CalendarContentComponents/CalendarContent';
+import { CalendarContent } from '../../components/CalendarContentComponents/CalendarContent';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {

@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import '../styles/select-all-button.css';
-import { useLanguage, useEndDate, useStartDate, useSelectAllButton } from "../context/InitialParametersContext";
+import '../../styles/LowerFooterStyles/select-all-button.css';
+import { useLanguage, useEndDate, useStartDate, useSelectAllButton } from "../../context/InitialParametersContext";
 
-const checkbox= require('../images/checkbox.png');
-const hoverCheckbox = require('../images/hover-checkbox.png');
-const clickedCheckbox = require('../images/clicked-checkbox.png');
+const checkbox= require('../../images/checkbox.png');
+const hoverCheckbox = require('../../images/hover-checkbox.png');
+const clickedCheckbox = require('../../images/clicked-checkbox.png');
 
-function limitDate(nearViewedMonths, side, dateOfCurrentMonth, fixedLimitDate, dateOfYear, dateOfNearMonth, customDateOfNearMonth) {
+function limitDate(mode, nearViewedMonths, side, dateOfCurrentMonth, fixedLimitDate, dateOfYear, dateOfNearMonth, customDateOfNearMonth) {
     let selectDate, limitBlocks = false;
 
     if (!customDateOfNearMonth) {
@@ -73,6 +73,7 @@ export const SelectAllButton = (props) => {
         const endOfRightMonth = new Date(nearViewedMonths.right.year, nearViewedMonths.right.month, 0);
 
         startSelectDate = limitDate(
+            mode,
             nearViewedMonths, 
             "left", 
             startOfCurrentMonth, 
@@ -83,6 +84,7 @@ export const SelectAllButton = (props) => {
         );
 
         endSelectDate = limitDate(
+            mode,
             nearViewedMonths, 
             "right", 
             endOfCurrentMonth, 
