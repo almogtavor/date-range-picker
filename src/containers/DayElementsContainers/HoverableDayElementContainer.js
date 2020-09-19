@@ -1,4 +1,4 @@
-import { setHoveredDay } from '../actions';
+import { setHoveredDay } from '../../actions';
 import { connect } from 'react-redux';
 import { HoverableDayElement } from '../components/HoverableDayElement';
 

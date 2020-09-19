@@ -1,11 +1,11 @@
 import React from "react";
 import '../styles/month.css';
 import '../styles/calendar-component.css';
-import MonthDayElementsContainer from "../containers/MonthDayElementsContainer";
-import YearSelectorContainer from "../containers/YearSelectorContainer";
-import MonthSelectorContainer from "../containers/MonthSelectorContainer";
-import WeekDaysNamesContainer from "../containers/WeekDaysNamesContainer";
-import { useLanguage } from "../context/InitialParametersContext";
+import MonthDayElementsContainer from "../../containers/MonthDayElementsContainer";
+import YearSelectorContainer from "../../containers/CalendarContentContainers/YearSelectorContainer";
+import MonthSelectorContainer from "../../containers/MonthSelectorContainer";
+import { WeekDaysNames } from ".//WeekDaysNames";
+import { useLanguage } from "../../context/InitialParametersContext";
 
 
 export const CalendarContent = (props) => {
@@ -18,7 +18,7 @@ export const CalendarContent = (props) => {
 
     return (
     <div className="calendar">
-        <WeekDaysNamesContainer/>
+        <WeekDaysNames/>
         <MonthDayElementsContainer 
           id={id}
         />

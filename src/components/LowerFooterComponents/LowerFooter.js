@@ -1,9 +1,9 @@
 import React from "react";
-import {calendarConfig} from '../configuration/config';
+import {calendarConfig} from '../../configuration/config';
 import '../styles/lower-footer.css';
-import { useColorsPalette, useLanguage, useFormat, usePickMethod } from "../context/InitialParametersContext";
-import { choosenDatesCalculation } from '../utils/utils';
-import SelectAllButtonContainer from "../containers/SelectAllButtonContainer";
+import { useColorsPalette, useLanguage, useFormat, usePickMethod } from "../../context/InitialParametersContext";
+import { choosenDatesCalculation } from '../../utils/utils';
+import SelectAllButtonContainer from "../../containers/LowerFooterContainers/SelectAllButtonContainer";
 
 const pointerHandIcon = require('../images/pointer-hand.png');
 
