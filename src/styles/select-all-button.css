@@ -1,0 +1,23 @@
+
+.checkbox {
+    height: 20px;
+}
+
+.checkbox-div {
+    display: flex;
+    margin-top: 1.5%;
+    margin-right: 5%;
+    margin-left: 5%;
+    font-weight: bold;
+    width: 80px;
+}
+
+.select-all-text {
+    display: inline-block;
+    margin-left: 4%;
+    font-size: 0.7em;
+}
+
+.checkbox-div:hover {
+    text-decoration: underline;
+}

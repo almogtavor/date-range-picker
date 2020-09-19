@@ -45,7 +45,7 @@
 .selectable-color-circle:hover {
     height: 15px;
     width: 15px;
-    margin-top: 0.2em;
+    margin-top: 0.15em;
     margin-right: 0.1em;
 }
 
@@ -60,27 +60,4 @@
 
 .pick-button:hover {
     opacity: 0.8;
-}
-
-.checkbox {
-    height: 20px;
-}
-
-.checkbox-div {
-    display: flex;
-    margin-top: 1.5%;
-    margin-right: 5%;
-    margin-left: 5%;
-    font-weight: bold;
-    width: 80px;
-}
-
-.select-all-text {
-    display: inline-block;
-    margin-left: 4%;
-    font-size: 0.7em;
-}
-
-.checkbox-div:hover {
-    text-decoration: underline;
 }
