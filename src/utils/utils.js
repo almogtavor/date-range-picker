@@ -33,3 +33,13 @@ function placeDateInFormat(date, format) {
     format = format.replace("DD", date.getDate());
     return format;
 }
+
+export function selectorsModeStyle(object, viewedObject, isObjectSelected, color) {
+    let style = {};
+    if (object === viewedObject) {
+        style = {"backgroundColor": color + "60"};
+    } else if (isObjectSelected) {
+        style = {"backgroundColor": color + "30"};
+    }
+    return style;
+}

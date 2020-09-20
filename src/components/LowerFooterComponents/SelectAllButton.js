@@ -55,10 +55,13 @@ export const SelectAllButton = (props) => {
     const endDate = useEndDate();
     const language = useLanguage();
     const selectAllButton = useSelectAllButton();
-
-
     const [checkboxSrc, setCheckboxSrc] = useState(checkbox);
     const checkeboxChanged = useRef(false);
+
+    let text = "Select All";
+    if (language === "Hebrew") {
+        text = "בחר הכל";
+    }
 
     function getLimits() {
         let startSelectDate, endSelectDate;
@@ -157,7 +160,7 @@ export const SelectAllButton = (props) => {
                     src={checkboxSrc}
                 />
                 <div className="select-all-text">
-                    {language === "Hebrew" ? "בחר הכל" : "Select All"}
+                    {text}
                 </div>
             </div>
         }

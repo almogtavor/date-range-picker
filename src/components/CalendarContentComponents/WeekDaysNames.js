@@ -16,16 +16,17 @@ export const WeekDaysNames = () => {
     return (
     <>
         {weekdays.map(weekday => {
-        count++;
-        return (
-            <div 
-                key={weekday} 
-                className="weekday" 
-                style={{gridColumn: count}}
-            >
-                {weekday}
-            </div>
-        );
+            count++;
+            const style = {"gridColumn": count};
+            return (
+                <div 
+                    key={weekday} 
+                    className="weekday" 
+                    style={style}
+                >
+                    {weekday}
+                </div>
+            );
         })}
     </>
     );

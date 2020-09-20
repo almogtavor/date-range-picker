@@ -15,10 +15,18 @@ export const Button = (props) => {
     const format = useFormat();
     const pickMethod = usePickMethod();
     const formatPattern = choosenDatesCalculation([], null, format, pickMethod);
+    let text = choosenDates;
+    if (!text) {
+        text = formatPattern;
+     };
+
+    const handleClick = () => {
+        setShowCalendar(!showCalendar)
+    }
 
     return (
-        <button className="button" onClick={() => setShowCalendar(!showCalendar)}>
-            { choosenDates ? choosenDates : formatPattern }
+        <button className="button" onClick={handleClick}>
+            { text }
             <img
                     alt=""
                     src={calendarIcon}

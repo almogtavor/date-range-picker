@@ -16,11 +16,13 @@ export const DateRangePickerMapper = (props) => {
     // tabIndex="1" onBlur={handleBlur}
 
     const calendarsIndexes = [...Array(boardsNum).keys()];
-    const marginLeftStyle = boardsNum === 1 ? 
-        {"marginLeft": "255px"} :
-        boardsNum === 2 ?
-        {"marginLeft": 255 / 2 + "px"} :
-        {};
+    let marginLeftStyle = {};
+
+    if (boardsNum === 1) {
+      marginLeftStyle = {"marginLeft": "255px"};
+    } else if (boardsNum === 2) {
+      marginLeftStyle = {"marginLeft": 255 / 2 + "px"};
+    }
 
     return (
     <>{

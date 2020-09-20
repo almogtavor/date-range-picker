@@ -25,6 +25,7 @@ export const MonthDaysElements = (props) => {
 
     
     return monthDays.map((day) => {
+        const key = day + viewedMonth + viewedYear;
         const date = new Date(viewedYear, viewedMonth, day);
         const columnOnGrid = (day + dayToBeginTheMonthFrom + 7) % 7;
         const dayOfWeek = date.getDay();
@@ -42,9 +43,9 @@ export const MonthDaysElements = (props) => {
 
         return (
             <SelectableDayElementContainer
-                key={day + viewedMonth + viewedYear}
+                key={key}
                 id={id}
-                date={new Date(viewedYear, viewedMonth, day)}
+                date={date}
                 isOfCurrentViewedMonth={isOfCurrentViewedMonth}
                 dayOfWeek={dayOfWeek}
                 genericStyle={genericStyle}
@@ -54,3 +55,5 @@ export const MonthDaysElements = (props) => {
         
     });
 };
+
+export default React.memo(MonthDaysElements);

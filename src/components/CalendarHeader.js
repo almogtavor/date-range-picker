@@ -35,22 +35,33 @@ export const CalendarHeader = (props) => {
     }
 
     const choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod);
+    const datesDisplayClassName = `dates-display ${boardsNumClassName}`;
+    const clearButtonClassName = `clear ${boardsNumClassName}`;
+    const clearStyle = {"color": selectedColor};
+    let clearButtonText = "Clear";
+    if (language === "Hebrew") {
+        clearButtonText = "נקה";
+    }
+
+    const handleClearClick = () => {
+        setSelectedDays([]);
+    }
 
     return (
         <div 
             className="selected-dates"
-            style={selectedDaysStyle}
+            style={ selectedDaysStyle }
         >
-            <div className={`dates-display ${boardsNumClassName}`} lang={language}>
+            <div className={datesDisplayClassName} lang={language}>
                 { choosenDates }
             </div>
             <button 
-                className={`clear ${boardsNumClassName}`}
+                className={clearButtonClassName}
                 lang={language}
-                onClick={() => setSelectedDays([])}
-                style={{"color": selectedColor}}
+                onClick={handleClearClick}
+                style={clearStyle}
             >
-                {language === "Hebrew" ? "נקה" : "Clear"}
+                {clearButtonText}
             </button>
         </div>)
 }

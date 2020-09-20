@@ -59,15 +59,15 @@ export const HoverableDayElement = (props) => {
             setHoveredDay(null);
         }
     };
+
+    const className = `hover-div
+        ${isInRange ? "in-range" : "not-in-range"}
+        ${(dayOfWeek === 0 && !isInRange) && "first-day-of-week"}
+        ${(dayOfWeek === 6 && !isInRange) && "last-day-of-week"}`;
     
     return (
         <div 
-            className={`
-                hover-div
-                ${isInRange ? "in-range" : "not-in-range"}
-                ${(dayOfWeek === 0 && !isInRange) && "first-day-of-week"}
-                ${(dayOfWeek === 6 && !isInRange) && "last-day-of-week"}
-            `} 
+            className={className} 
             style={ hoverStyle }
             onMouseEnter={handleEnterHover}
             onMouseLeave={handleOutHover}
@@ -76,3 +76,5 @@ export const HoverableDayElement = (props) => {
         </div>
     )
 }
+
+export default React.memo(HoverableDayElement);

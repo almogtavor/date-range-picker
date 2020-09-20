@@ -1,6 +1,6 @@
 import { setViewedMonth, setViewedYear, setSelectedDays } from '../../actions';
 import { connect } from 'react-redux';
-import { SelectableDayElement } from "../../components/DayElementsComponents/SelectableDayElement";
+import SelectableDayElement from "../../components/DayElementsComponents/SelectableDayElement";
 
 const mapStateToProps = (state, ownProps) => {
     const leftId = ownProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;

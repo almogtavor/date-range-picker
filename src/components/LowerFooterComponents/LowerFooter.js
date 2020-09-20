@@ -1,6 +1,6 @@
 import React from "react";
 import '../../styles/LowerFooterStyles/lower-footer.css';
-import { useColorsPalette, useLanguage, useFormat, usePickMethod } from "../../context/InitialParametersContext";
+import { useLanguage, useFormat, usePickMethod } from "../../context/InitialParametersContext";
 import { choosenDatesCalculation } from '../../utils/utils';
 import SelectAllButtonContainer from "../../containers/LowerFooterContainers/SelectAllButtonContainer";
 import ColorPickerPaletteContainer from "../../containers/LowerFooterContainers/ColorPickerPaletteContainer";

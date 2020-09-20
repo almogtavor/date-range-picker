@@ -17,6 +17,7 @@ export const ColorPickerPalette = (props) => {
 
     const language = useLanguage();
     const colorsPalette = useColorsPalette();
+    const circleStyle = {"backgroundColor": selectedColor};
 
     const changeColor = (color) => () => {
         setSelectedColor(color);
@@ -30,7 +31,7 @@ export const ColorPickerPalette = (props) => {
             !showColorPicker && 
             (<div 
                 className="color-circle" 
-                style={{"backgroundColor": selectedColor}} 
+                style={circleStyle} 
                 onClick={showColorPicker => setShowColorPicker(showColorPicker)}
             />)
         }
@@ -45,11 +46,12 @@ export const ColorPickerPalette = (props) => {
                 onClick={showColorPicker => setShowColorPicker(!showColorPicker)}
             />
             {calendarConfig.pickableColors.map(color => {
+                const selectableCircleStyle = {"backgroundColor": color};
                 return (<div className="color-circle-wrapper" key={color}>
                     <div 
                     key={color} 
                     className="selectable-color-circle"
-                    style={{"backgroundColor": color}}
+                    style={selectableCircleStyle}
                     onClick={changeColor(color)}
                     />
                 </div>)

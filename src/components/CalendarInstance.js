@@ -11,16 +11,18 @@ export const CalendarInstance = (props) => {
     } = props;
 
     const language = useLanguage();
+    let calendarComponentStyle = {
+      "gridColumn": (i + 1) % 3,
+      "gridRow": Math.floor(i / 3) + 1,
+    };
+    if (((i + 1) % 3) === 0) {
+      calendarComponentStyle["gridColumn"] = 3;
+    }
 
     return (
       <div 
         className="calendar-component" 
-        style={{
-          "gridColumn": ((i + 1) % 3) === 0 ? 
-            3 : 
-            (i + 1) % 3,
-          "gridRow": Math.floor(i / 3) + 1 ,
-        }}
+        style={calendarComponentStyle}
       >
         <DatesHeaderContainer 
           id={i}

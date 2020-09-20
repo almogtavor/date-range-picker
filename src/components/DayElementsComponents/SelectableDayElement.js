@@ -117,21 +117,29 @@ export const SelectableDayElement = (props) => {
         }
     };
 
+    const className = `day-element 
+        ${!isOfCurrentViewedMonth && "non-current"}
+        ${isDisabled && "disabled"}
+        ${isToday && "today"}
+        ${isSelected && "selected-day"}`;
+    let style = genericStyle;
+    if (isSelected) {
+        style = {...genericStyle, "background": selectedColor, "borderColor": selectedColor};
+    }
+        
+
     return (
-    <div 
-        className={`
-            day-element 
-            ${!isOfCurrentViewedMonth && "non-current"}
-            ${isDisabled && "disabled"}
-            ${isToday && "today"}
-            ${isSelected && "selected-day"}
-        `}
-        style={isSelected ? {...genericStyle, "background": selectedColor, "borderColor": selectedColor} : genericStyle}
-        onClick={handleClick}
-    >
-        <HoverableDayElementContainer
-            date={date}
-            dayOfWeek={dayOfWeek}
-        />
-    </div>)
+        <div
+            className={className}
+            style={style}
+            onClick={handleClick}
+        >
+            <HoverableDayElementContainer
+                date={date}
+                dayOfWeek={dayOfWeek}
+            />
+        </div>
+    )
 }
+
+export default React.memo(SelectableDayElement);
