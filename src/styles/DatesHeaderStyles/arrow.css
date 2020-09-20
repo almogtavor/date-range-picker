@@ -1,0 +1,9 @@
+.arrow {
+    border-radius: 12px;
+    margin: 10%;
+}
+
+.arrow.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}

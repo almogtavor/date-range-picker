@@ -2,7 +2,7 @@ import React from "react";
 import "../App.css";
 import CalendarContentContainer from '../containers/CalendarContentContainers/CalendarContentContainer';
 import LowerFooterContainer from '../containers/LowerFooterContainers/LowerFooterContainer';
-import DatesHeaderContainer from '../containers/DatesHeaderContainer';
+import DatesHeaderContainer from '../containers/DatesHeaderContainer/DatesHeaderContainer';
 import { useLanguage } from "../context/InitialParametersContext";
 
 export const CalendarInstance = (props) => {

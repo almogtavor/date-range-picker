@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { pick } from "lodash";
 
 const InitialParametersContext = React.createContext();
 
