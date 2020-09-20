@@ -7,7 +7,7 @@ const hoverCheckbox = require('../../images/hover-checkbox.png');
 const clickedCheckbox = require('../../images/clicked-checkbox.png');
 
 function limitDate(mode, nearViewedMonths, side, dateOfCurrentMonth, fixedLimitDate, dateOfYear, dateOfNearMonth, customDateOfNearMonth) {
-    let selectDate, limitBlocks = false;
+    let selectDate, limitBlocks = true;
 
     if (!customDateOfNearMonth) {
         customDateOfNearMonth = dateOfNearMonth;
@@ -104,17 +104,7 @@ export const SelectAllButton = (props) => {
             setCheckboxSrc(clickedCheckbox);
             setHoveredDay(null);
             checkeboxChanged.current = true;
-            let startSelectDate, endSelectDate;
-
-            if (mode === "Days") {
-                [startSelectDate, endSelectDate] = getLimits();
-            } else {
-                if (mode === "Months") {
-                    [startSelectDate, endSelectDate] = getLimits();
-                } else {
-                    [startSelectDate, endSelectDate] = getLimits();
-                }
-            }
+            const [startSelectDate, endSelectDate] = getLimits();
             setSelectedDays([startSelectDate, endSelectDate]);
         } else {
             setCheckboxSrc(hoverCheckbox);
