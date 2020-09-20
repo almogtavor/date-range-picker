@@ -34,7 +34,7 @@ export const HoverableDayElement = (props) => {
         }
     };
 
-    if ((selectedDays.length > 0) && !isInRange) {
+    if (selectedDays.length > 0) {
         if (hoveredDay && selectedDays.length === 1) {
             if ((date >= selectedDays[0] && date <= hoveredDay) || 
                 (date <= selectedDays[0] && date >= hoveredDay)) {
