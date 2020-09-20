@@ -1,6 +1,7 @@
 import React from "react";
-import '../styles/year-selector.css';
-import { useStartDate, useEndDate } from "../context/InitialParametersContext";
+import '../../styles/CalendarContentStyles/year-selector.css';
+import { useStartDate, useEndDate } from "../../context/InitialParametersContext";
+import { selectorsModeStyle } from "../../utils/utils";
 
 
 export const YearSelector = (props) => {
@@ -22,9 +23,11 @@ export const YearSelector = (props) => {
         yearsArray.push(i);
     }
 
-    const selectYearHandler = year => {
-      setMode("Days");
-      setViewedYear(year);
+    const selectYearHandler = (year, validYear) => () => {
+        if (validYear) {
+            setMode("Days");
+            setViewedYear(year);
+        }
     };
 
     return (
@@ -59,18 +62,15 @@ export const YearSelector = (props) => {
                         }
                     }
                 }
+                let style = selectorsModeStyle(year, viewedYear, selectedYear, selectedColor);
+                const className = `selectable-year ${!validYear && "invalid"}`;
+
                 return (
                     <div
                         key={year}
-                        onClick={() => validYear && selectYearHandler(year)}
-                        className={`selectable-year ${!validYear && "invalid"}`}
-                        style={
-                            year === viewedYear ? 
-                            {"backgroundColor": selectedColor + "60"} :
-                            selectedYear ?
-                            {"backgroundColor": selectedColor + "30"} :
-                            {}
-                        }
+                        onClick={selectYearHandler(year, validYear)}
+                        className={className}
+                        style={style}
                     >
                         {year}
                     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.css";
-import { DateRangePicker } from '../components/DateRangePicker';
+import { CalendarInstance } from '../components/CalendarInstance';
 import CalendarHeaderContainer from "../containers/CalendarHeaderContainer";
 
 
@@ -16,11 +16,13 @@ export const DateRangePickerMapper = (props) => {
     // tabIndex="1" onBlur={handleBlur}
 
     const calendarsIndexes = [...Array(boardsNum).keys()];
-    const marginLeftStyle = boardsNum === 1 ? 
-        {"marginLeft": "255px"} :
-        boardsNum === 2 ?
-        {"marginLeft": 255 / 2 + "px"} :
-        {};
+    let marginLeftStyle = {};
+
+    if (boardsNum === 1) {
+      marginLeftStyle = {"marginLeft": "255px"};
+    } else if (boardsNum === 2) {
+      marginLeftStyle = {"marginLeft": 255 / 2 + "px"};
+    }
 
     return (
     <>{
@@ -32,7 +34,7 @@ export const DateRangePickerMapper = (props) => {
           <CalendarHeaderContainer/>
           {calendarsIndexes.map((i) => {
               return (
-              <DateRangePicker
+              <CalendarInstance
                   key={i}
                   i={i}
               />)

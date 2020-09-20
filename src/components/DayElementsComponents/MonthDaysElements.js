@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import DayElementContainer from "../containers/DayElementContainer";
-import { useLanguage } from "../context/InitialParametersContext";
+import SelectableDayElementContainer from "../../containers/DayElementsContainers/SelectableDayElementContainer";
+import { useLanguage } from "../../context/InitialParametersContext";
 
 export const MonthDaysElements = (props) => { 
     const {
@@ -25,29 +25,27 @@ export const MonthDaysElements = (props) => {
 
     
     return monthDays.map((day) => {
+        const key = day + viewedMonth + viewedYear;
         const date = new Date(viewedYear, viewedMonth, day);
         const columnOnGrid = (day + dayToBeginTheMonthFrom + 7) % 7;
         const dayOfWeek = date.getDay();
         const isOfCurrentViewedMonth = !(day <= 0 || day > numOfDaysInMonth);
-        const genericStyle = (language === "English") ? { 
+        const genericStyle = { 
             gridColumn: columnOnGrid === 0 ? 7 : columnOnGrid,
             gridRow: (day < 0 ? 2 :
                 dayOfWeek >= (day % 7 ) ? 
                     Math.floor(day / 7 + 2) : 
                     Math.floor(day / 7 + 3))
-        } : (language === "Hebrew") && { 
-            gridColumn: columnOnGrid === 0 ? 1 : 8 - columnOnGrid,
-            gridRow: (day < 0 ? 2 :
-                dayOfWeek >= (day % 7 ) ? 
-                    Math.floor(day / 7 + 2) : 
-                    Math.floor(day / 7 + 3) )
-        };
+        }
+        if (language === "Hebrew") { 
+            genericStyle["gridColumn"] = columnOnGrid === 0 ? 1 : 8 - columnOnGrid;
+        }
 
         return (
-            <DayElementContainer
-                key={day + viewedMonth + viewedYear}
+            <SelectableDayElementContainer
+                key={key}
                 id={id}
-                date={new Date(viewedYear, viewedMonth, day)}
+                date={date}
                 isOfCurrentViewedMonth={isOfCurrentViewedMonth}
                 dayOfWeek={dayOfWeek}
                 genericStyle={genericStyle}
@@ -57,3 +55,5 @@ export const MonthDaysElements = (props) => {
         
     });
 };
+
+export default React.memo(MonthDaysElements);

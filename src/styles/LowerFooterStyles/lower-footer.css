@@ -1,0 +1,17 @@
+.settings {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pick-button {
+    border-radius: 20px;
+    height: 30px;
+    width: 60px;
+    margin-right: 3%;
+    border-width: 2px;
+    outline: none;    
+}
+
+.pick-button:hover {
+    opacity: 0.8;
+}

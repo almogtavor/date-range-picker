@@ -1,8 +1,9 @@
 import React from "react";
-import {calendarConfig} from '../configuration/config';
-import '../styles/month-selector.css';
-import { useLanguage, useStartDate, useEndDate } from "../context/InitialParametersContext";
-
+import {calendarConfig} from '../../configuration/config';
+// import Perf from 'react-addons-perf';
+import '../../styles/CalendarContentStyles/month-selector.css';
+import { useLanguage, useStartDate, useEndDate } from "../../context/InitialParametersContext";
+import { selectorsModeStyle } from "../../utils/utils";
 
 export const MonthSelector = (props) => {
     const {
@@ -19,12 +20,15 @@ export const MonthSelector = (props) => {
     const startDate = useStartDate();
     const endDate = useEndDate();
     
-    const selectMonthHandler = month => {
-      setMode("Days");
-      setViewedMonth(month);
+    const selectMonthHandler = (month, validMonth) => () => {
+        if (validMonth) {
+            setMode("Days");
+            setViewedMonth(month);
+        }
     };
 
     return (
+
         <div className={`month-selector`} lang={language}>
             {calendarConfig.months[language].map((month, i) => {
                 let validMonth = true;
@@ -59,18 +63,17 @@ export const MonthSelector = (props) => {
                         }
                     }
                 }
+                const style = selectorsModeStyle(i, viewedMonth, selectedMonth, selectedColor);
+
+                const className = `selectable-month ${!validMonth && "invalid"}`;
+                const key = month + viewedYear;
+
                 return (
                     <div
-                        key={month}
-                        onClick={() => validMonth && selectMonthHandler(i)}
-                        className={`selectable-month ${!validMonth && "invalid"}`}
-                        style={
-                            i === viewedMonth ? 
-                            {"backgroundColor": selectedColor + "60"} :
-                            selectedMonth ?
-                            {"backgroundColor": selectedColor + "30"} :
-                            {}
-                        }
+                        key={key}
+                        onClick={selectMonthHandler(i, validMonth)}
+                        className={className}
+                        style={style}
                     >
                         {month}
                     </div>
@@ -80,3 +83,5 @@ export const MonthSelector = (props) => {
       </div>
     );
 }
+
+export default React.memo(MonthSelector);

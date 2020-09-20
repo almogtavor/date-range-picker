@@ -1,10 +1,10 @@
-import { setMode, setViewedMonth } from '../actions';
+import { setMode, setViewedMonth } from '../../actions';
 import { connect } from 'react-redux';
-import { MonthSelector } from '../components/MonthSelector';
+import MonthSelector from '../../components/CalendarContentComponents/MonthSelector';
 
 const mapStateToProps = (state, ownProps) => {
-    const leftId = state.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
-    const rightId = state.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
+    const rightId = ownProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
+    const leftId = ownProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
     return ({
     selectedColor: state.selectedColor,
     showColorPicker: state.showColorPicker[ownProps.id],

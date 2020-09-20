@@ -1,10 +1,10 @@
-import { setSelectedColor, setShowColorPicker, setShowCalendar, setSelectedDays, setHoveredDay } from '../actions';
-import { LowerFooter } from '../components/LowerFooter';
+import { setSelectedColor, setShowColorPicker, setShowCalendar, setSelectedDays, setHoveredDay, setChoosenDates } from '../../actions';
+import { LowerFooter } from '../../components/LowerFooterComponents/LowerFooter';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
-    const leftId = state.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
-    const rightId = state.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
+    const leftId = ownProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
+    const rightId = ownProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
     return ({
         id: ownProps.id,
         selectedColor: state.selectedColor,
@@ -31,6 +31,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     setShowColorPicker: (showColorPicker) => dispatch(setShowColorPicker(ownProps.id, showColorPicker)),
     setShowCalendar: (showCalendar) => dispatch(setShowCalendar(showCalendar)),
     setHoveredDay: (hoveredDay) => dispatch(setHoveredDay(hoveredDay)),
+    setChoosenDates: (choosenDates) => dispatch(setChoosenDates(choosenDates)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LowerFooter);

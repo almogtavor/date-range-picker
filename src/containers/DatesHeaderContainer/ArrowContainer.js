@@ -1,15 +1,16 @@
-import { setSelectedColor, setViewedMonth, setViewedYear, setMode } from '../actions';
-import DatesHeader from '../components/DatesHeader';
+import { setSelectedColor, setViewedMonth, setViewedYear } from '../../actions';
+import Arrow from '../../components/DatesHeaderComponents/Arrow';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
-    const leftId = state.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
-    const rightId = state.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
+    const leftId = ownProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
+    const rightId = ownProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
     return ({
     selectedColor: state.selectedColor,
     viewedYear: state.viewedYear[ownProps.id],
     viewedMonth: state.viewedMonth[ownProps.id],
     selectedDays: state.selectedDays,
+    arrowSide: ownProps.arrowSide,
     
     nearViewedMonths: {
         "right": {
@@ -28,7 +29,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         setSelectedColor: (selectedColor) => dispatch(setSelectedColor(selectedColor)),
         setViewedMonth: (viewedMonth) => dispatch(setViewedMonth(ownProps.id, viewedMonth)),
         setViewedYear: (viewedYear) => dispatch(setViewedYear(ownProps.id, viewedYear)),
-        setMode: (mode) => dispatch(setMode(ownProps.id, mode)),
 })};
 
-export default connect(mapStateToProps, mapDispatchToProps)(DatesHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(Arrow);

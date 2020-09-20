@@ -82,18 +82,3 @@ export const setPickType = pickType => ({
     type: 'SET_PICK_TYPE',
     pickType
 })
-
-export const setColorsPalette = colorsPalette => ({
-    type: 'SET_COLORS_PALETTE',
-    colorsPalette
-})
-
-export const setFormat = format => ({
-    type: 'SET_FORMAT',
-    format
-}) 
-
-export const setSelectAllButton = selectAllButton => ({
-    type: 'SET_SELECT_ALL_BUTTON',
-    selectAllButton
-})

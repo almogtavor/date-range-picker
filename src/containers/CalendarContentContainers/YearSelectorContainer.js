@@ -1,10 +1,10 @@
-import { setMode, setViewedYear } from '../actions';
+import { setMode, setViewedYear } from '../../actions';
 import { connect } from 'react-redux';
-import { YearSelector } from '../components/YearSelector';
+import { YearSelector } from '../../components/CalendarContentComponents/YearSelector';
 
 const mapStateToProps = (state, ownProps) => {
-    const leftId = state.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
-    const rightId = state.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
+    const leftId = ownProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
+    const rightId = ownProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
     return ({
     selectedColor: state.selectedColor,
     showColorPicker: state.showColorPicker[ownProps.id],

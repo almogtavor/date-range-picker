@@ -1,0 +1,27 @@
+.header {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+    margin: 10px 15px;
+}
+
+.header:lang(Hebrew) {
+    flex-direction: row-reverse;
+}
+
+.info-elements {
+    display: flex;
+    font-size: 1.5em;
+}
+
+.header-icons {
+    cursor: pointer;
+    display: flex;
+    padding: 2px 5px;
+}
+
+.header-icons:hover {
+    background: #ffffff3b;
+}

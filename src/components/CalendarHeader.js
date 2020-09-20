@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles/calendar-header.css';
 import { choosenDatesCalculation } from "../utils/utils";
-import { useFormat, useLanguage } from "../context/InitialParametersContext";
+import { useFormat, useLanguage, usePickMethod } from "../context/InitialParametersContext";
 
 export const CalendarHeader = (props) => {
     const {
@@ -14,6 +14,7 @@ export const CalendarHeader = (props) => {
 
     const language = useLanguage();
     const format = useFormat();
+    const pickMethod = usePickMethod();
 
     let selectedDaysStyle = {
         "width": ((boardsNum * 100) > 300 ? 300 : (boardsNum * 100)) + "%", 
@@ -33,23 +34,34 @@ export const CalendarHeader = (props) => {
         boardsNumClassName = "three-boards";
     }
 
-    const choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, format);
+    const choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod);
+    const datesDisplayClassName = `dates-display ${boardsNumClassName}`;
+    const clearButtonClassName = `clear ${boardsNumClassName}`;
+    const clearStyle = {"color": selectedColor};
+    let clearButtonText = "Clear";
+    if (language === "Hebrew") {
+        clearButtonText = "נקה";
+    }
+
+    const handleClearClick = () => {
+        setSelectedDays([]);
+    }
 
     return (
         <div 
             className="selected-dates"
-            style={selectedDaysStyle}
+            style={ selectedDaysStyle }
         >
-            <div className={`dates-display ${boardsNumClassName}`} lang={language}>
+            <div className={datesDisplayClassName} lang={language}>
                 { choosenDates }
             </div>
             <button 
-                className={`clear ${boardsNumClassName}`}
+                className={clearButtonClassName}
                 lang={language}
-                onClick={() => setSelectedDays([])}
-                style={{"color": selectedColor}}
+                onClick={handleClearClick}
+                style={clearStyle}
             >
-                {language === "Hebrew" ? "נקה" : "Clear"}
+                {clearButtonText}
             </button>
         </div>)
 }
