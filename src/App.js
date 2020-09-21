@@ -7,6 +7,11 @@ import ButtonContainer from "./containers/ButtonContainer";
 import { InitialParametersProvider } from "./context/InitialParametersContext";
 
 function App(props) {
+  const style = {
+    "height": `${Math.floor(props.boardsNum / 3) * 292}px`,
+    "gridTemplateRows": `repeat(${Math.floor(props.boardsNum / 3)}, 1fr)`,
+  };
+
   return (
     <div className="App">
       <InitialParametersProvider props={props}>
@@ -15,10 +20,7 @@ function App(props) {
         <div className="date-range-picker-component">
           <div
             className="date-range-picker"
-            style={{
-              "height": `${Math.floor(props.boardsNum / 3) * 292}px`,
-              "gridTemplateRows": `repeat(${Math.floor(props.boardsNum / 3)}, 1fr)`,
-            }}
+            style={style}
           >
               <DateRangePickerMapperContainer 
                 boardsNum={props.boardsNum}

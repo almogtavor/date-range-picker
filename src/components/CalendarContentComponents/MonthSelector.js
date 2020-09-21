@@ -16,6 +16,7 @@ export const MonthSelector = (props) => {
         selectedDays,
     } = props;
 
+    console.log("render");
     const language = useLanguage();
     const startDate = useStartDate();
     const endDate = useEndDate();

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Profiler } from "react";
 import SelectableDayElementContainer from "../../containers/DayElementsContainers/SelectableDayElementContainer";
 import { useLanguage } from "../../context/InitialParametersContext";
 
@@ -14,6 +14,10 @@ export const MonthDaysElements = (props) => {
     const dayToBeginTheMonthFrom = new Date(viewedYear, viewedMonth, 1).getDay();
     const [monthDays, setMonthDays] = useState([]);
 
+    function clockPerformance(profilerId, mode, actualTime, baseTime, startTime, commitTime) {
+        console.log({profilerId, mode, actualTime, baseTime, startTime, commitTime});
+    }
+
     useEffect(() => {
         let tempMonthDaysArray = [];
         const loopStartIndex = dayToBeginTheMonthFrom === 0 ? 7 : dayToBeginTheMonthFrom;
@@ -25,8 +29,8 @@ export const MonthDaysElements = (props) => {
 
     
     return monthDays.map((day) => {
-        const key = day + viewedMonth + viewedYear;
         const date = new Date(viewedYear, viewedMonth, day);
+        const key = String(date) + String(id);
         const columnOnGrid = (day + dayToBeginTheMonthFrom + 7) % 7;
         const dayOfWeek = date.getDay();
         const isOfCurrentViewedMonth = !(day <= 0 || day > numOfDaysInMonth);
@@ -42,15 +46,17 @@ export const MonthDaysElements = (props) => {
         }
 
         return (
-            <SelectableDayElementContainer
-                key={key}
-                id={id}
-                date={date}
-                isOfCurrentViewedMonth={isOfCurrentViewedMonth}
-                dayOfWeek={dayOfWeek}
-                genericStyle={genericStyle}
-                language={language}
-            />
+            <Profiler id="test" onRender={clockPerformance} key={key}>
+                <SelectableDayElementContainer
+                    key={key}
+                    id={id}
+                    date={date}
+                    isOfCurrentViewedMonth={isOfCurrentViewedMonth}
+                    dayOfWeek={dayOfWeek}
+                    genericStyle={genericStyle}
+                    language={language}
+                />
+            </Profiler>
         );
         
     });

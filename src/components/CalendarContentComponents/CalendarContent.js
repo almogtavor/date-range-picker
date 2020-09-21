@@ -1,4 +1,4 @@
-import React, { Profiler } from "react";
+import React from "react";
 import '../../styles/CalendarContentStyles/month.css';
 import '../..//styles/calendar-component.css';
 
@@ -16,11 +16,7 @@ export const CalendarContent = (props) => {
     } = props;
 
     const language = useLanguage();
-
     
-    function clockPerformance(profilerId, mode, actualTime, baseTime, startTime, commitTime) {
-      console.log({profilerId, mode, actualTime, baseTime, startTime, commitTime});
-  }
     return (
     <div className="calendar">
         <WeekDaysNames/>
@@ -28,12 +24,10 @@ export const CalendarContent = (props) => {
           id={id}
         />
         {mode === "Months" ? (
-          <Profiler id="test" onRender={clockPerformance}>
-            <MonthSelectorContainer
-              id={id}
-              language={language}
-            />
-          </Profiler>
+          <MonthSelectorContainer
+            id={id}
+            language={language}
+          />
         ) : mode === "Years" && 
           <YearSelectorContainer
             id={id}

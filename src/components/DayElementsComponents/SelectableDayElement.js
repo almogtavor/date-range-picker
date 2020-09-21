@@ -142,4 +142,11 @@ export const SelectableDayElement = (props) => {
     )
 }
 
+// function areEqual(prevProps, nextProps) {
+
+//     return prevProps.selectedDays === nextProps.selectedDays &&
+//         prevProps.nearViewedMonths === nextProps.nearViewedMonths &&
+//         prevProps.selectedColor === nextProps.selectedColor;;
+//   }
+
 export default React.memo(SelectableDayElement);
