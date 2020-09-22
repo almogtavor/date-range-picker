@@ -42,12 +42,15 @@ export const SelectableDayElement = (props) => {
 
     const nonCurrentDateClick = () => {
         let isNonCurrentCase;
-        if (pickMethod === "range" && selectedDays.length !== 1) {
-            isNonCurrentCase = true;
-        } else if (pickMethod === "date") {
+        let dateOfNearBoard = false;
+        if ((pickMethod === "range" && selectedDays.length !== 1) || pickMethod === "date") {
             isNonCurrentCase = true;
         }
-        if (!isOfCurrentViewedMonth && isNonCurrentCase) {
+        if ((rightViewedMonth === month && rightViewedYear === year) ||
+            (leftViewedMonth === month && leftViewedYear === year)) {
+            dateOfNearBoard = true;
+        }
+        if ((!isOfCurrentViewedMonth && isNonCurrentCase) && !dateOfNearBoard) {
             setViewedMonth(date.getMonth(), date.getFullYear());
             if (rightViewedYear === year && rightViewedMonth === month) {
                 setRightViewedMonth(rightViewedMonth + 1, rightViewedYear);
@@ -69,25 +72,32 @@ export const SelectableDayElement = (props) => {
     }
 
     const rangeSelectionHandling = () => {
-        if (new Date(year, month, 1) < endDate && boardsNum === 2) {
+        const currentDate = new Date(year, month, 1);
+
+        if (currentDate < endDate && boardsNum === 2) {
             if (selectedDays.length === 1) {
                 const firstSelectMonth = selectedDays[0].getMonth();
                 const firstSelectYear = selectedDays[0].getFullYear();
-                const { rightId, leftId } = language === "Hebrew" ? { rightId: 0, leftId: 1 } : { rightId: 1, leftId: 0 };
-    
+                const firstSelectDate = new Date(firstSelectYear, firstSelectMonth, 1);
+                let { rightId, leftId } = { rightId: 1, leftId: 0 };
+                if (language === "Hebrew") {
+                    rightId = 0;
+                    leftId = 1;
+                }
+
                 if (id === leftId) {
-                    if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
+                    if (currentDate > firstSelectDate) {
                         setMonthsOnLeftClick(month, year, firstSelectMonth, firstSelectYear);
                     }
-                    else if (new Date(year, month, 0) < new Date(firstSelectYear, firstSelectMonth, 0)) {
+                    else if (currentDate < firstSelectDate) {
                         setMonthsOnLeftClick(firstSelectMonth, firstSelectYear, month, year);
                     }
                 }
                 else if (id === rightId) {
-                    if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
+                    if (currentDate > firstSelectDate) {
                         setMonthsOnRightClick(month, year, firstSelectMonth, firstSelectYear);
                     }
-                    else if (year === firstSelectYear && month === firstSelectMonth) {
+                    else if (currentDate.toLocaleDateString() === firstSelectDate.toLocaleDateString()) {
                         setMonthsOnRightClick(month + 1, year, month, year);
                     }
                     else {
@@ -117,14 +127,20 @@ export const SelectableDayElement = (props) => {
         }
     };
 
-    const className = `day-element 
-        ${!isOfCurrentViewedMonth && "non-current"}
-        ${isDisabled && "disabled"}
-        ${isToday && "today"}
-        ${isSelected && "selected-day"}`;
+    let className = "day-element";
     let style = genericStyle;
+    if (!isOfCurrentViewedMonth) {
+        className += " non-current";
+    }
+    if (isDisabled) {
+        className += " disabled";
+    }
+    if (isToday) {
+        className += " today";
+    }
     if (isSelected) {
         style = {...genericStyle, "background": selectedColor, "borderColor": selectedColor};
+        className += " selected-day";
     }
         
 
