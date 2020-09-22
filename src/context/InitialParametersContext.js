@@ -14,6 +14,10 @@ export function useEndDate() {
     return useContext(InitialParametersContext).endDate;
 }
 
+export function useDefaultColor() {
+    return useContext(InitialParametersContext).endDate;
+}
+
 export function useFirstDayOfWeekIndex() {
     const language = useLanguage();
     let columnNormalizer = 0;

@@ -42,15 +42,10 @@ export const SelectableDayElement = (props) => {
 
     const nonCurrentDateClick = () => {
         let isNonCurrentCase;
-        let dateOfNearBoard = false;
         if ((pickMethod === "range" && selectedDays.length !== 1) || pickMethod === "date") {
             isNonCurrentCase = true;
         }
-        if ((rightViewedMonth === month && rightViewedYear === year) ||
-            (leftViewedMonth === month && leftViewedYear === year)) {
-            dateOfNearBoard = true;
-        }
-        if ((!isOfCurrentViewedMonth && isNonCurrentCase) && !dateOfNearBoard) {
+        if (!isOfCurrentViewedMonth && isNonCurrentCase) {
             setViewedMonth(date.getMonth(), date.getFullYear());
             if (rightViewedYear === year && rightViewedMonth === month) {
                 setRightViewedMonth(rightViewedMonth + 1, rightViewedYear);
