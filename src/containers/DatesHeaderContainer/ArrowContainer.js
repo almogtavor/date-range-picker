@@ -1,5 +1,5 @@
 import { setSelectedColor, setViewedMonth, setViewedYear } from '../../actions';
-import Arrow from '../../components/DatesHeaderComponents/Arrow';
+import {Arrow} from '../../components/DatesHeaderComponents/Arrow';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {

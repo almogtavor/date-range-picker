@@ -19,7 +19,7 @@ export const ColorPickerPalette = (props) => {
     const colorsPaletteEnabling = useColorsPalette();
     const initialSelectedColor = useInitialSelectedColor();
     let circleStyle = {"backgroundColor": selectedColor};
-    if (selectedColor === initialSelectedColor) {
+    if (initialSelectedColor && selectedColor === initialSelectedColor) {
         circleStyle.backgroundColor = initialSelectedColor;
     }
     

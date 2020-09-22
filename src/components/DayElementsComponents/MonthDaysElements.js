@@ -46,7 +46,7 @@ export const MonthDaysElements = (props) => {
         }
 
         return (
-            <Profiler id="test" onRender={clockPerformance} key={key}>
+            // <Profiler id="test" onRender={clockPerformance} key={key}>
                 <SelectableDayElementContainer
                     key={key}
                     id={id}
@@ -56,10 +56,8 @@ export const MonthDaysElements = (props) => {
                     genericStyle={genericStyle}
                     language={language}
                 />
-            </Profiler>
+            // </Profiler>
         );
         
     });
 };
-
-export default React.memo(MonthDaysElements);

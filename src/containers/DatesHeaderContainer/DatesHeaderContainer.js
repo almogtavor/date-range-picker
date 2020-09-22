@@ -1,5 +1,5 @@
 import { setMode } from '../../actions';
-import DatesHeader from '../../components/DatesHeaderComponents/DatesHeader';
+import { DatesHeader } from '../../components/DatesHeaderComponents/DatesHeader';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {

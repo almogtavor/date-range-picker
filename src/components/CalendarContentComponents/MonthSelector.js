@@ -84,5 +84,3 @@ export const MonthSelector = (props) => {
       </div>
     );
 }
-
-export default React.memo(MonthSelector);

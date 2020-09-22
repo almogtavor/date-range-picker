@@ -33,5 +33,3 @@ export const InfoElement = (props) => {
         </div>
     );
 }
-
-export default React.memo(InfoElement);

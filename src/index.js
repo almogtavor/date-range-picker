@@ -1,4 +1,4 @@
-// import './wdyr';
+import './wdyr';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -22,7 +22,7 @@ ReactDOM.render(
             endDate={new Date(2025, 9, 1)}
             firstDayOfWeekIndex={0}
             pickMethod="range"
-            defaultColor="#ff0000"
+            defaultColor="#178905"
             boardsNum={2}
         />
     </Provider>,

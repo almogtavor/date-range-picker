@@ -153,11 +153,10 @@ export const SelectableDayElement = (props) => {
     )
 }
 
-// function areEqual(prevProps, nextProps) {
+function areEqual(prevProps, nextProps) {
+    return prevProps.selectedDays === nextProps.selectedDays &&
+        prevProps.selectedColor === nextProps.selectedColor &&
+        prevProps.genericStyle === nextProps.genericStyle;
+}
 
-//     return prevProps.selectedDays === nextProps.selectedDays &&
-//         prevProps.nearViewedMonths === nextProps.nearViewedMonths &&
-//         prevProps.selectedColor === nextProps.selectedColor;;
-//   }
-
-export default React.memo(SelectableDayElement);
+export default React.memo(SelectableDayElement, areEqual);

@@ -1,6 +1,6 @@
 import { setHoveredDay } from '../../actions';
 import { connect } from 'react-redux';
-import HoverableDayElement from '../../components/DayElementsComponents/HoverableDayElement';
+import { HoverableDayElement } from '../../components/DayElementsComponents/HoverableDayElement';
 
 const mapStateToProps = (state, ownProps) => {
     return ({

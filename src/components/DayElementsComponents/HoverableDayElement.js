@@ -87,5 +87,3 @@ export const HoverableDayElement = (props) => {
         </div>
     )
 }
-
-export default React.memo(HoverableDayElement);
