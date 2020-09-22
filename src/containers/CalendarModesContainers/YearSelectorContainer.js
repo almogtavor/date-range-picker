@@ -1,6 +1,6 @@
 import { setMode, setViewedYear } from '../../actions';
 import { connect } from 'react-redux';
-import { YearSelector } from '../../components/CalendarContentComponents/YearSelector';
+import { YearSelector } from '../../components/CalendarModesComponents/YearSelector';
 
 const mapStateToProps = (state, ownProps) => {
     const leftId = ownProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;

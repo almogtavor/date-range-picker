@@ -1,7 +1,7 @@
 import React from "react";
 import {calendarConfig} from '../../configuration/config';
 // import Perf from 'react-addons-perf';
-import '../../styles/CalendarContentStyles/month-selector.css';
+import '../../styles/CalendarModesStyles/month-selector.css';
 import { useLanguage, useStartDate, useEndDate } from "../../context/InitialParametersContext";
 import { selectorsModeStyle } from "../../utils/utils";
 

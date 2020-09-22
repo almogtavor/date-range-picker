@@ -1,5 +1,5 @@
 import React from "react";
-import '../../styles/CalendarContentStyles/week.css';
+import '../../styles/CalendarModesStyles/week.css';
 import {calendarConfig} from "../../configuration/config";
 import { useFirstDayOfWeekIndex, useLanguage } from "../../context/InitialParametersContext";
 
