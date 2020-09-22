@@ -43,6 +43,9 @@ export function usePickMethod() {
     return useContext(InitialParametersContext).pickMethod;
 }
 
+export function useInitialSelectedColor() {
+    return useContext(InitialParametersContext).initialSelectedColor;
+}
 
 function valueParse(parmaeter, defaultValue) {
     if (parmaeter) {
@@ -63,6 +66,7 @@ export function InitialParametersProvider({children, props}) {
         pickMethod,
         boardsNum,
         selectAllButton,
+        defaultColor,
       } = props;
 
     const [valueState] = useState({
@@ -73,7 +77,8 @@ export function InitialParametersProvider({children, props}) {
         firstDayOfWeekIndex: valueParse(firstDayOfWeekIndex, 0),
         format: valueParse(format, "DD-MM-YYYY"),
         pickMethod: valueParse(pickMethod, "range"),
-        selectAllButton: valueParse(selectAllButton, "disabled")
+        selectAllButton: valueParse(selectAllButton, "disabled"),
+        initialSelectedColor: defaultColor, // can be undefined, default will be set from config
     })
 
     if (valueState.endDate < valueState.startDate) {

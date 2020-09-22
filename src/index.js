@@ -22,7 +22,7 @@ ReactDOM.render(
             endDate={new Date(2025, 9, 1)}
             firstDayOfWeekIndex={0}
             pickMethod="range"
-            defaultColor="#2196f3"
+            defaultColor="#ff0000"
             boardsNum={2}
         />
     </Provider>,

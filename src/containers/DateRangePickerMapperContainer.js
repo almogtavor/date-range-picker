@@ -1,4 +1,4 @@
-import { setBoardsNum } from '../actions';
+import { setBoardsNum, setSelectedColor } from '../actions';
 import { connect } from 'react-redux';
 import { DateRangePickerMapper } from '../components/DateRangePickerMapper';
 
@@ -17,7 +17,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             throw Object.assign(new Error('"language" prop is undefined'), { code: 403 });
         }
     }
-    return ({})
+    if (ownProps.defaultColor) {
+        dispatch(setSelectedColor(ownProps.defaultColor));
+    }
+    return {}
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DateRangePickerMapper);

@@ -23,6 +23,7 @@ function App(props) {
             style={style}
           >
               <DateRangePickerMapperContainer 
+                defaultColor={props.defaultColor}
                 boardsNum={props.boardsNum}
                 language={props.language}
               />
