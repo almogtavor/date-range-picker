@@ -13,6 +13,7 @@ const initialState = {
 
 function calendarModesReducer (state = initialState, payload) {
   console.log(payload);
+  console.log(state);
   if (payload) {
     const boardsNum = payload.boardsNum ? payload.boardsNum : state.boardsNum;
     const componentIDs = [...Array(boardsNum).keys()];
