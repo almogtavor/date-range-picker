@@ -10,6 +10,8 @@ export const DateRangePickerMapper = (props) => {
       boardsNum,
     } = props;
 
+    console.log("AAAAAAAAAAAAAAAAAAA");
+    console.log(showCalendar, boardsNum);
     // const handleBlur = () => {
     //   setShowCalendar(false);
     // }
