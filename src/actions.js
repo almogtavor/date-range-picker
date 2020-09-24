@@ -63,11 +63,6 @@ export const setHoveredDay = hoveredDay => ({
     hoveredDay
 })
 
-export const setLastChangedId = lastChangedId => ({
-    type: 'SET_LAST_CHANGED_ID',
-    lastChangedId
-})
-
 export const setChoosenDates = choosenDates => ({
     type: 'SET_CHOOSEN_DATES',
     choosenDates
@@ -76,9 +71,4 @@ export const setChoosenDates = choosenDates => ({
 export const setShowCalendar = showCalendar => ({
     type: 'SET_SHOW_CALENDAR',
     showCalendar
-})
-
-export const setPickType = pickType => ({
-    type: 'SET_PICK_TYPE',
-    pickType
 })
