@@ -65,7 +65,7 @@ export const HoverableDayElement = (props) => {
     }
 
     let className = "hover-div";
-    if (!isInRange) {
+    if (!isInRange && pickMethod !== "date") {
         className += " not-in-range";
         if (dayOfWeek === 0) {
             className += " first-day-of-week";
@@ -79,7 +79,7 @@ export const HoverableDayElement = (props) => {
     return (
         <div 
             className={className} 
-            style={ hoverStyle }
+            style={hoverStyle}
             onMouseEnter={handleEnterHover}
             onMouseLeave={handleOutHover}
         >
