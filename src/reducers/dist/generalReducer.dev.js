@@ -1,11 +1,16 @@
-import { createReducer, updateObject } from "./reducersUtils";
+"use strict";
 
-const initialState = {
-    boardsNum: 2,
-    showCalendar: false,
-};
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
 
-// function setBoardsNum(state, payload) {
+var _reducersUtils = require("./reducersUtils");
+
+var initialState = {
+  boardsNum: 2,
+  showCalendar: false
+}; // function setBoardsNum(state, payload) {
 //   console.log(state);
 //   console.log(payload);
 //   let monthsObj = {};
@@ -14,7 +19,6 @@ const initialState = {
 //   let showColorPickerObj = {};
 //   const boardsNum = payload.boardsNum;
 //   const componentIDs = [...Array(boardsNum).keys()];
-
 //   for (let i of componentIDs) {
 //     const index = payload.language === "Hebrew" ? boardsNum - i - 1 : i;
 //     let date = new Date();
@@ -34,16 +38,20 @@ const initialState = {
 // }
 
 function setBoardsNum(state, payload) {
-  return updateObject(state, {boardsNum: payload.boardsNum});
+  return (0, _reducersUtils.updateObject)(state, {
+    boardsNum: payload.boardsNum
+  });
 }
 
 function setShowCalendar(state, payload) {
-  return updateObject(state, {showCalendar: payload.showCalendar});
+  return (0, _reducersUtils.updateObject)(state, {
+    showCalendar: payload.showCalendar
+  });
 }
 
-const generalReducerMapper = createReducer(initialState, {
-    SET_BOARDS_NUM: setBoardsNum,
-    SET_SHOW_CALENDAR: setShowCalendar
-})
-
-export default generalReducerMapper;
+var generalReducerMapper = (0, _reducersUtils.createReducer)(initialState, {
+  SET_BOARDS_NUM: setBoardsNum,
+  SET_SHOW_CALENDAR: setShowCalendar
+});
+var _default = generalReducerMapper;
+exports["default"] = _default;

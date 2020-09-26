@@ -7,20 +7,20 @@ const mapStateToProps = (state, ownProps) => {
     const rightId = ownProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
     return ({
         id: ownProps.id,
-        selectedColor: state.selectedColor,
-        showColorPicker: state.showColorPicker[ownProps.id],
-        mode: state.mode[ownProps.id],
-        selectedDays: state.selectedDays,
-        viewedMonth: state.viewedMonth[ownProps.id],
-        viewedYear: state.viewedYear[ownProps.id],
+        selectedColor: state.lowerFooter.selectedColor,
+        showColorPicker: state.lowerFooter.showColorPicker[ownProps.id],
+        mode: state.calendarModes.mode[ownProps.id],
+        selectedDays: state.dayElements.selectedDays,
+        viewedMonth: state.datesHeader.viewedMonth[ownProps.id],
+        viewedYear: state.datesHeader.viewedYear[ownProps.id],
         nearViewedMonths: {
             "right": {
-                "year": state.viewedYear[rightId], 
-                "month": state.viewedMonth[rightId],
+                "year": state.datesHeader.viewedYear[rightId], 
+                "month": state.datesHeader.viewedMonth[rightId],
             },
             "left": {
-                "year": state.viewedYear[leftId],
-                "month": state.viewedMonth[leftId],
+                "year": state.datesHeader.viewedYear[leftId],
+                "month": state.datesHeader.viewedMonth[leftId],
             },
         }
 })};

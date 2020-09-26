@@ -10,18 +10,22 @@ function setSelectedColor(state, payload) {
 }
 
 function setShowColorPicker(state, payload) {
-    const boardsNum = state.boardsNum;
-    const componentIDs = [...Array(boardsNum).keys()];
-    let stateObj = {};
-    for (let i of componentIDs) {
-      if (payload.id === i) {
-        stateObj[i] = payload.showColorPicker;
-      } else {
-        stateObj[i] = state.showColorPicker[i];
-      }
-    }
-    return updateObject(state, { showColorPicker: stateObj });
+    return updateObject(state, {showColorPicker: payload.showColorPicker});
 }
+
+// function setShowColorPicker(state, payload) {
+//     const boardsNum = state.boardsNum;
+//     const componentIDs = [...Array(boardsNum).keys()];
+//     let stateObj = {};
+//     for (let i of componentIDs) {
+//       if (payload.id === i) {
+//         stateObj[i] = payload.showColorPicker;
+//       } else {
+//         stateObj[i] = state.showColorPicker[i];
+//       }
+//     }
+//     return updateObject(state, { showColorPicker: stateObj });
+// }
   
 const lowerFooterReducerMapper = createReducer(initialState, {
     SET_SELECTED_COLOR: setSelectedColor,

@@ -12,6 +12,8 @@ export const CalendarHeader = (props) => {
         boardsNum,
     } = props;
 
+    console.log(props);
+
     const language = useLanguage();
     const format = useFormat();
     const pickMethod = usePickMethod();

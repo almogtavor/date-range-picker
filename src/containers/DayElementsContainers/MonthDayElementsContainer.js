@@ -3,8 +3,8 @@ import { MonthDaysElements } from "../../components/DayElementsComponents/MonthD
 
 const mapStateToProps = (state, ownProps) => {
     return ({
-        viewedYear: state.viewedYear[ownProps.id],
-        viewedMonth: state.viewedMonth[ownProps.id],
+        viewedYear: state.datesHeader.viewedYear[ownProps.id],
+        viewedMonth: state.datesHeader.viewedMonth[ownProps.id],
         id: ownProps.id,
 })};
 

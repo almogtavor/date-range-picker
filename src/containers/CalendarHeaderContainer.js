@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
     return ({
-        selectedColor: state.selectedColor,
-        selectedDays: state.selectedDays,
-        hoveredDay: state.hoveredDay,
-        boardsNum: state.boardsNum,
+        selectedColor: state.lowerFooter.selectedColor,
+        selectedDays: state.dayElements.selectedDays,
+        hoveredDay: state.dayElements.hoveredDay,
+        boardsNum: state.general.boardsNum,
 })};
 
 const mapDispatchToProps = (dispatch) => {

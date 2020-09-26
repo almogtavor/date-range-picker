@@ -11,13 +11,13 @@ var _reactRedux = require("react-redux");
 
 var _Button = require("../components/Button");
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 var mapStateToProps = function mapStateToProps(state) {
-  return _defineProperty({
-    choosenDates: state.choosenDates,
-    showCalendar: state.showCalendar
-  }, "choosenDates", state.choosenDates);
+  return {
+    choosenDates: state.datesHeader.choosenDates,
+    showCalendar: state.general.showCalendar,
+    selectedDays: state.dayElements.selectedDays,
+    hoveredDay: state.dayElements.hoveredDay
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {

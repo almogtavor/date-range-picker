@@ -13,17 +13,19 @@ var _reactRedux = require("react-redux");
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    selectedColor: state.selectedColor,
-    startDate: state.startDate,
-    endDate: state.endDate,
-    language: state.language,
-    selectedDays: state.selectedDays,
-    boardsNum: state.boardsNum
+    selectedColor: state.lowerFooter.selectedColor,
+    selectedDays: state.dayElements.selectedDays,
+    hoveredDay: state.dayElements.hoveredDay,
+    boardsNum: state.general.boardsNum
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    setSelectedDays: function setSelectedDays(selectedDays) {
+      return dispatch((0, _actions.setSelectedDays)(selectedDays));
+    }
+  };
 };
 
 var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_CalendarHeader.CalendarHeader);

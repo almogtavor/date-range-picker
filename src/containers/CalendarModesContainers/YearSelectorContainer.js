@@ -1,4 +1,4 @@
-import { setMode, setViewedYear } from '../../actions';
+import { setMode, setViewedYear, setModeObject } from '../../actions';
 import { connect } from 'react-redux';
 import { YearSelector } from '../../components/CalendarModesComponents/YearSelector';
 
@@ -6,22 +6,22 @@ const mapStateToProps = (state, ownProps) => {
     const leftId = ownProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
     const rightId = ownProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
     return ({
-    selectedColor: state.selectedColor,
-    showColorPicker: state.showColorPicker[ownProps.id],
-    viewedYear: state.viewedYear[ownProps.id],
-    viewedMonth: state.viewedMonth[ownProps.id],
-    selectedDays: state.selectedDays,
-    nearViewedMonths: {
-        "right": {
-            "year": state.viewedYear[rightId], 
-            "month": state.viewedMonth[rightId],
-        },
-        "left": {
-            "year": state.viewedYear[leftId],
-            "month": state.viewedMonth[leftId],
-        },
-    }
-})};
+        selectedColor: state.lowerFooter.selectedColor,
+        viewedYear: state.datesHeader.viewedYear[ownProps.id],
+        viewedMonth: state.datesHeader.viewedMonth[ownProps.id],
+        selectedDays: state.dayElements.selectedDays,
+        nearViewedMonths: {
+            "right": {
+                "year": state.datesHeader.viewedYear[rightId], 
+                "month": state.datesHeader.viewedMonth[rightId],
+            },
+            "left": {
+                "year": state.datesHeader.viewedYear[leftId],
+                "month": state.datesHeader.viewedMonth[leftId],
+            },
+        }
+    })
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     setViewedYear: (viewedYear) => dispatch(setViewedYear(ownProps.id, viewedYear)),
