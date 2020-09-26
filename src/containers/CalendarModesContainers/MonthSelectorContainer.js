@@ -1,4 +1,4 @@
-import { setMode, setViewedMonth, setModeObject } from '../../actions';
+import { setMode, setViewedMonth } from '../../actions';
 import { connect } from 'react-redux';
 import { MonthSelector } from '../../components/CalendarModesComponents/MonthSelector';
 

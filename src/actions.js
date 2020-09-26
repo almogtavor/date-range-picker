@@ -1,3 +1,5 @@
+import { getUpdatedObject, getInitialObject } from './utils/actionsUtils'; 
+
 export const setShowColorPickerObject = (showColorPicker) => ({
     type: 'SET_SHOW_COLOR_PICKER', 
     showColorPicker
@@ -6,16 +8,7 @@ export const setShowColorPickerObject = (showColorPicker) => ({
 export function setShowColorPicker(id, showColorPicker) {
     return (dispatch, getState) => {
         const stateShowColorPicker = getState().lowerFooter.showColorPicker;
-        const boardsNum = getState().general.boardsNum;
-        const componentIDs = [...Array(boardsNum).keys()];
-        let stateObj = {};
-        for (let i of componentIDs) {
-          if (id === i) {
-            stateObj[i] = showColorPicker;
-          } else {
-            stateObj[i] = stateShowColorPicker[i];
-          }
-        }
+        const stateObj = getUpdatedObject(getState, id, showColorPicker, stateShowColorPicker);
         dispatch(setShowColorPickerObject(stateObj));
     };
 }
@@ -28,16 +21,7 @@ export const setViewedMonthObject = (viewedMonth) => ({
 export function setViewedMonth(id, viewedMonth) {
     return (dispatch, getState) => {
         const stateViewedMonth = getState().datesHeader.viewedMonth;
-        const boardsNum = getState().general.boardsNum;
-        const componentIDs = [...Array(boardsNum).keys()];
-        let stateObj = {};
-        for (let i of componentIDs) {
-          if (id === i) {
-            stateObj[i] = viewedMonth;
-          } else {
-            stateObj[i] = stateViewedMonth[i];
-          }
-        }
+        const stateObj = getUpdatedObject(getState, id, viewedMonth, stateViewedMonth);
         dispatch(setViewedMonthObject(stateObj));
     };
 }
@@ -45,21 +29,12 @@ export function setViewedMonth(id, viewedMonth) {
 export const setViewedYearObject = (viewedYear) => ({
     type: 'SET_VIEWED_YEAR',
     viewedYear
-})  
+})
 
 export function setViewedYear(id, viewedYear) {
     return (dispatch, getState) => {
         const stateViewedYear = getState().datesHeader.viewedYear;
-        const boardsNum = getState().general.boardsNum;
-        const componentIDs = [...Array(boardsNum).keys()];
-        let stateObj = {};
-        for (let i of componentIDs) {
-          if (id === i) {
-            stateObj[i] = viewedYear;
-          } else {
-            stateObj[i] = stateViewedYear[i];
-          }
-        }
+        const stateObj = getUpdatedObject(getState, id, viewedYear, stateViewedYear);
         dispatch(setViewedYearObject(stateObj));
     };
 }
@@ -72,17 +47,7 @@ export const setModeObject = (mode) => ({
 export function setMode(id, mode) {
     return (dispatch, getState) => {
         const stateMode = getState().calendarModes.mode;
-        const boardsNum = getState().general.boardsNum;
-        console.log(getState());
-        const componentIDs = [...Array(boardsNum).keys()];
-        let stateObj = {};
-        for (let i of componentIDs) {
-          if (id === i) {
-            stateObj[i] = mode;
-          } else {
-            stateObj[i] = stateMode[i];
-          }
-        }
+        const stateObj = getUpdatedObject(getState, id, mode, stateMode);
         dispatch(setModeObject(stateObj));
     };
 }
@@ -119,26 +84,17 @@ export const setBoardsNum = (boardsNum) => ({
 
 export function setInitialBoard(boardsNum, language) {
     return (dispatch) => {
-        let monthsObj = {};
-        let yearsObj = {};
-        let modeObj = {};
-        let showColorPickerObj = {};
-        const componentIDs = [...Array(boardsNum).keys()];
-      
-        for (let i of componentIDs) {
-          const index = language === "Hebrew" ? boardsNum - i - 1 : i;
-          let date = new Date();
-          date.setMonth(new Date().getMonth() - (boardsNum - i) + 1); // TODO: simplify
-          monthsObj[index] = date.getMonth() + 1;
-          yearsObj[index] = date.getFullYear();
-          modeObj[index] = "Days";
-          showColorPickerObj[index] = false;
-        }
+        let { 
+          monthsObj, 
+          yearsObj, 
+          modeObj, 
+          showColorPickerObj 
+        } = getInitialObject(boardsNum, language);
         dispatch(setBoardsNum(boardsNum));
-        dispatch(setViewedMonth(monthsObj));
-        dispatch(setViewedYear(yearsObj));
-        dispatch(setMode(modeObj));
-        dispatch(setShowColorPicker(showColorPickerObj));
+        dispatch(setViewedMonthObject(monthsObj));
+        dispatch(setViewedYearObject(yearsObj));
+        dispatch(setModeObject(modeObj));
+        dispatch(setShowColorPickerObject(showColorPickerObj));
     };
   }
 

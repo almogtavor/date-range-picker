@@ -1,4 +1,4 @@
-import { setMode, setViewedYear, setModeObject } from '../../actions';
+import { setMode, setViewedYear } from '../../actions';
 import { connect } from 'react-redux';
 import { YearSelector } from '../../components/CalendarModesComponents/YearSelector';
 

@@ -1,4 +1,4 @@
-import { setBoardsNum, setSelectedColor, setInitialBoard } from '../actions';
+import { setSelectedColor, setInitialBoard } from '../actions';
 import { connect } from 'react-redux';
 import { DateRangePickerMapper } from '../components/DateRangePickerMapper';
 

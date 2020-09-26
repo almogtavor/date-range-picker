@@ -1,5 +1,4 @@
 export function choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod) {
-    console.log(selectedDays, hoveredDay, format, pickMethod);
     if (selectedDays.length) {
         if (selectedDays.length === 2) {
             return placeDateInFormat(selectedDays[0], format) + 

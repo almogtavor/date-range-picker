@@ -21,3 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+dist/
+src/reducers/dist/lowerFooterReducer.dev.js
+src/reducers/dist/generalReducer.dev.js
+src/dist/actions.dev.js
