@@ -39,9 +39,9 @@ export const CalendarHeader = (props) => {
     let choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod);
     if (pickMethod !== "date") {
         if (selectedDays.length === 2) {
-            choosenDates += calculateDaysCount(selectedDays[0], selectedDays[1]);    
-        } else if (hoveredDay !== null) {
-            choosenDates += calculateDaysCount(selectedDays[0], hoveredDay);    
+            choosenDates += calculateDaysCount(selectedDays[0], selectedDays[1], language);    
+        } else if (hoveredDay !== null && selectedDays.length === 1) {
+            choosenDates += calculateDaysCount(selectedDays[0], hoveredDay, language) ;
         }
     }
     const datesDisplayClassName = `dates-display ${boardsNumClassName}`;
@@ -61,7 +61,10 @@ export const CalendarHeader = (props) => {
             className="selected-dates"
             style={ selectedDaysStyle }
         >
-            <div className={datesDisplayClassName} lang={language}>
+            <div 
+                className={datesDisplayClassName} 
+                lang={language}
+            >
                 { choosenDates }
             </div>
             <button 

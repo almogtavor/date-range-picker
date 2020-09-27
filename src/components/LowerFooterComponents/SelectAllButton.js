@@ -6,19 +6,19 @@ const checkbox= require('../../images/checkbox.png');
 const hoverCheckbox = require('../../images/hover-checkbox.png');
 const clickedCheckbox = require('../../images/clicked-checkbox.png');
 
-function limitDate(mode, nearViewedMonths, side, dateOfCurrentMonth, fixedLimitDate, dateOfYear, dateOfNearMonth, customDateOfNearMonth) {
+function limitDate(mode, nearViewedMonths, checkedCalendarSide, dateOfCurrentMonth, fixedLimitDate, dateOfYear, dateOfNearMonth, customDateOfNearMonth) {
     let selectDate, limitBlocks = true;
 
     if (!customDateOfNearMonth) {
         customDateOfNearMonth = dateOfNearMonth;
     }
-    if ((side === "left" && dateOfCurrentMonth > fixedLimitDate) || (side === "right" && dateOfCurrentMonth < fixedLimitDate)) {
+    if ((checkedCalendarSide === "left" && dateOfCurrentMonth > fixedLimitDate) || (checkedCalendarSide === "right" && dateOfCurrentMonth < fixedLimitDate)) {
         limitBlocks = false;
     }
 
-    if (nearViewedMonths[side].year || (!limitBlocks && mode === "Days")) {
+    if (nearViewedMonths[checkedCalendarSide].year || (!limitBlocks && mode === "Days")) {
         if (mode === "Months") {
-            if ((side === "left" && dateOfYear < dateOfNearMonth) || (side === "right" && dateOfYear > dateOfNearMonth)) {
+            if ((checkedCalendarSide === "left" && dateOfYear < dateOfNearMonth) || (checkedCalendarSide === "right" && dateOfYear > dateOfNearMonth)) {
                 selectDate = customDateOfNearMonth;
             }
             else {

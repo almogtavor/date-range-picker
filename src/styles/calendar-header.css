@@ -19,18 +19,26 @@
   width: 210px;
 }
 
+.dates-display:lang(Hebrew) {
+  direction: rtl;
+}
+
 .one-board.dates-display:lang(Hebrew) {
   text-align: end;
-  margin-right: -7%;
+  /* margin-right: -7%; */
+  right: 69%;
+  width: auto;
 }
 
 .one-board.dates-display:lang(English) {
-  margin-left: -7%;
+  margin-left: -4%;
 }
 
 .two-boards.dates-display:lang(Hebrew) {
   text-align: end;
-  margin-right: -38%;
+  /* margin-right: -38%; */
+  right: 35%;
+  width: auto;
 }
 
 .two-boards.dates-display:lang(English) {

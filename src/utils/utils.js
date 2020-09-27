@@ -45,9 +45,11 @@ export function calculateDaysCount(date1, date2, language) {
     const daysNum = difference + 1;
     if (language === "Hebrew") {
         if (daysNum === 1) {
-            return " יום אחד | ";
-        } else if (daysNum > 1) {
-            return " ימים " + daysNum + " | ";
+            return " | יום אחד ";
+        } else if (daysNum === 2) {
+            return " | יומיים ";
+        } else if (daysNum > 2) {
+            return " | " + daysNum + " ימים ";
         }
     } else {
         if (daysNum === 1) {
