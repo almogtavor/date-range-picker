@@ -10,8 +10,9 @@ export const LowerFooter = (props) => {
     const {
         id,
         selectedColor,      
-        setShowCalendar,
         selectedDays,
+        boardsNum,
+        setShowCalendar,
         setChoosenDates,
     } = props;
 
@@ -20,6 +21,7 @@ export const LowerFooter = (props) => {
     const pickMethod = usePickMethod();
     const idIndexes = language === "Hebrew" ? [1, 0] : [0, 1];
     const showPaletteById = id === idIndexes[0];
+    const showPickButton = ((id === idIndexes[idIndexes.length - 1]) || boardsNum === 1);
 
     const handlePickClick = () => {
         setShowCalendar(false);
@@ -40,7 +42,7 @@ export const LowerFooter = (props) => {
             showPaletteById={showPaletteById}
         />
 
-        {id === idIndexes[1] && 
+        {showPickButton && 
             <button 
                 className="pick-button"
                 style={{
