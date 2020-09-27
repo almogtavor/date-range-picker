@@ -110,10 +110,38 @@ export const SelectableDayElement = (props) => {
                 if (selectedDays.length === 2) {
                     setSelectedDays([date]);
                 } else {
-                    setSelectedDays([...selectedDays, date]);
+                    if (selectedDays[0] > date) {
+                        setSelectedDays([date, selectedDays[0]]);
+                    } else {
+                        setSelectedDays([selectedDays[0], date]);
+                    }
                 }
             } else if (pickMethod === "date") {
                 setSelectedDays([date]);
+            } else {
+                let isInRange = false;
+                if (selectedDays) {
+                    for (let i = 0; i < selectedDays.length; i += 2) {
+                        let smallerDate, biggerDate;
+                        if (selectedDays[i] < selectedDays[i + 1]) {
+                            smallerDate = selectedDays[i];
+                            biggerDate = selectedDays[i + 1];
+                        } else {
+                            smallerDate = selectedDays[i + 1];
+                            biggerDate = selectedDays[i];
+                        }
+                        if (smallerDate <= date && date <= biggerDate) {
+                            isInRange = true;
+                        }
+                    }
+                    if (isInRange) {
+                        setSelectedDays([date]);
+                    } else {
+                        setSelectedDays([...selectedDays, date]);
+                    }
+                } else {
+                    setSelectedDays([date]);
+                }
             }
             isSelected = !isSelected;
             nonCurrentDateClick();

@@ -40,13 +40,32 @@ export const HoverableDayElement = (props) => {
     };
 
     if (selectedDays.length > 0) {
-        if (hoveredDay && selectedDays.length === 1) {
-            if (inRangeCheck(date, selectedDays[0], hoveredDay)) {
-                isInRange = true;
-            } 
-        } else if (selectedDays.length === 2) {
-            if (inRangeCheck(date, selectedDays[0], selectedDays[1])) {
-                isInRange = true;
+        if (hoveredDay && selectedDays.length % 2 !== 0) {
+            if (pickMethod === "range") {
+                if (inRangeCheck(date, selectedDays[0], hoveredDay)) {
+                    isInRange = true;
+                }
+            } else {
+                for (let i = 0; i < selectedDays.length - 1; i += 2) {
+                    if (inRangeCheck(date, selectedDays[i], selectedDays[i + 1])) {
+                        isInRange = true;
+                    }
+                }
+                if (inRangeCheck(date, selectedDays[selectedDays.length - 1], hoveredDay)) {
+                    isInRange = true;
+                }
+            }
+        } else if (selectedDays.length % 2 === 0) {
+            if (pickMethod === "range") {
+                if (inRangeCheck(date, selectedDays[0], selectedDays[1])) {
+                    isInRange = true;
+                }
+            } else {
+                for (let i = 0; i < selectedDays.length; i += 2) {
+                    if (inRangeCheck(date, selectedDays[i], selectedDays[i + 1])) {
+                        isInRange = true;
+                    }
+                }
             }
         } else if (selectedDays.length === 1 && date === selectedDays[0]) {
             isInRange = true;
