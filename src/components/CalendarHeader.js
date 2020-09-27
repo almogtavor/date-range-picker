@@ -11,7 +11,7 @@ export const CalendarHeader = (props) => {
         selectedColor,
         boardsNum,
     } = props;
-    
+
     const language = useLanguage();
     const format = useFormat();
     const pickMethod = usePickMethod();
@@ -40,6 +40,8 @@ export const CalendarHeader = (props) => {
             choosenDates += calculateDaysCount(selectedDays[0], selectedDays[1], language);    
         } else if (hoveredDay !== null && selectedDays.length === 1) {
             choosenDates += calculateDaysCount(selectedDays[0], hoveredDay, language) ;
+        } else {
+            
         }
     }
     const datesDisplayClassName = `dates-display ${boardsNumClassName}`;
@@ -79,6 +81,7 @@ export const CalendarHeader = (props) => {
 
 function areEqual(prevProps, nextProps) {
     return nextProps.selectedDays.length === 0 &&
+        prevProps.selectedDays === nextProps.selectedProps &&
         prevProps.selectedColor === nextProps.selectedColor;
 }
 
