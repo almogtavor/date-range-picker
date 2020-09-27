@@ -16,10 +16,6 @@ function limitDate(mode, nearViewedMonths, checkedCalendarSide, dateOfCurrentMon
         (checkedCalendarSide === "right" && dateOfCurrentMonth < fixedLimitDate)) {
         limitBlocks = true;
     }
-    if ((checkedCalendarSide === "left" && fixedLimitDate > dateOfYear) ||
-        (checkedCalendarSide === "right" && fixedLimitDate < dateOfYear)) {
-        limitBlocks = true;
-    }
 
     if (nearViewedMonths[checkedCalendarSide].year || (limitBlocks && mode === "Days")) {
         if (mode === "Months") {
@@ -35,7 +31,9 @@ function limitDate(mode, nearViewedMonths, checkedCalendarSide, dateOfCurrentMon
             selectDate = customDateOfNearMonth;
         }
     } else {
-        if (mode === "Months" && !limitBlocks) {
+        if (mode === "Months" ||
+            !((checkedCalendarSide === "left" && fixedLimitDate > dateOfYear) ||
+            (checkedCalendarSide === "right" && fixedLimitDate < dateOfYear))) {
             selectDate = dateOfYear;
         } else {
             selectDate = fixedLimitDate;

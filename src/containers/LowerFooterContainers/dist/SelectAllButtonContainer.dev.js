@@ -11,24 +11,29 @@ var _reactRedux = require("react-redux");
 
 var _SelectAllButton = require("../../components/LowerFooterComponents/SelectAllButton");
 
+var _selectors = require("../../selectors");
+
+// function getNearViewedMonths(datesHeaderState, rightId, leftId) {
+//     return {
+//         "right": {
+//             "year": datesHeaderState.viewedYear[rightId], 
+//             "month": datesHeaderState.viewedMonth[rightId],
+//         },
+//         "left": {
+//             "year": datesHeaderState.viewedYear[leftId],
+//             "month": datesHeaderState.viewedMonth[leftId],
+//         },
+//     }
+// }
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var leftId = ownProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
   var rightId = ownProps.language === "Hebrew" ? ownProps.id - 1 : ownProps.id + 1;
+  var leftId = ownProps.language === "Hebrew" ? ownProps.id + 1 : ownProps.id - 1;
   return {
     selectedDays: state.dayElements.selectedDays,
     mode: state.calendarModes.mode[ownProps.id],
     viewedMonth: state.datesHeader.viewedMonth[ownProps.id],
     viewedYear: state.datesHeader.viewedYear[ownProps.id],
-    nearViewedMonths: {
-      "right": {
-        "year": state.datesHeader.viewedYear[rightId],
-        "month": state.datesHeader.viewedMonth[rightId]
-      },
-      "left": {
-        "year": state.datesHeader.viewedYear[leftId],
-        "month": state.datesHeader.viewedMonth[leftId]
-      }
-    }
+    nearViewedMonths: (0, _selectors.getNearViewedMonths)(state, rightId, leftId)
   };
 };
 
