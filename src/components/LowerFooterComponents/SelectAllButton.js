@@ -31,7 +31,7 @@ function limitDate(mode, nearViewedMonths, checkedCalendarSide, dateOfCurrentMon
             selectDate = customDateOfNearMonth;
         }
     } else {
-        if (mode === "Months" ||
+        if (mode === "Months" &&
             !((checkedCalendarSide === "left" && fixedLimitDate > dateOfYear) ||
             (checkedCalendarSide === "right" && fixedLimitDate < dateOfYear))) {
             selectDate = dateOfYear;
