@@ -82,14 +82,14 @@ export const setBoardsNum = (boardsNum) => ({
     boardsNum: boardsNum
 })
 
-export function setInitialBoard(boardsNum, language) {
+export function setInitialBoard(boardsNum, language, startDate, endDate) {
     return (dispatch) => {
         let { 
           monthsObj, 
           yearsObj, 
           modeObj, 
-          showColorPickerObj 
-        } = getInitialObject(boardsNum, language);
+          showColorPickerObj,
+        } = getInitialObject(boardsNum, language, startDate, endDate);
         dispatch(setBoardsNum(boardsNum));
         dispatch(setViewedMonthObject(monthsObj));
         dispatch(setViewedYearObject(yearsObj));

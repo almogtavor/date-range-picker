@@ -23,6 +23,8 @@ function App(props) {
             style={style}
           >
               <DateRangePickerMapperContainer 
+                startDate={props.startDate}
+                endDate={props.endDate}
                 defaultColor={props.defaultColor}
                 boardsNum={props.boardsNum}
                 language={props.language}
