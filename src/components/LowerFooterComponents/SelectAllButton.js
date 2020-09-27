@@ -12,13 +12,13 @@ function limitDate(mode, nearViewedMonths, side, dateOfCurrentMonth, fixedLimitD
     if (!customDateOfNearMonth) {
         customDateOfNearMonth = dateOfNearMonth;
     }
-    if (("left" && dateOfCurrentMonth > fixedLimitDate) || ("right" && dateOfCurrentMonth < fixedLimitDate)) {
+    if ((side === "left" && dateOfCurrentMonth > fixedLimitDate) || (side === "right" && dateOfCurrentMonth < fixedLimitDate)) {
         limitBlocks = false;
     }
 
     if (nearViewedMonths[side].year || (!limitBlocks && mode === "Days")) {
         if (mode === "Months") {
-            if (("left" && dateOfYear < dateOfNearMonth) || ("right" && dateOfYear > dateOfNearMonth)) {
+            if ((side === "left" && dateOfYear < dateOfNearMonth) || (side === "right" && dateOfYear > dateOfNearMonth)) {
                 selectDate = customDateOfNearMonth;
             }
             else {

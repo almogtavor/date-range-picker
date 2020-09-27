@@ -21,13 +21,13 @@ ReactDOM.render(
             language="English"
             colorsPalette="enabled"
             format="DD-MM-YYYY"
-            selectAllButton="disabled"
+            selectAllButton="enabled"
             startDate={new Date(1990, 8, 21)} 
             endDate={new Date(2025, 9, 1)}
             firstDayOfWeekIndex={0}
-            pickMethod="date"
+            pickMethod="range"
             defaultColor="#178905"
-            boardsNum={1}
+            boardsNum={2}
         />
     </Provider>,
     document.getElementById('root')

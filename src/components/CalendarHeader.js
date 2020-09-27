@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/calendar-header.css';
-import { choosenDatesCalculation } from "../utils/utils";
+import { choosenDatesCalculation, calculateDaysCount } from "../utils/utils";
 import { useFormat, useLanguage, usePickMethod } from "../context/InitialParametersContext";
 
 export const CalendarHeader = (props) => {
@@ -36,7 +36,14 @@ export const CalendarHeader = (props) => {
         boardsNumClassName = "three-boards";
     }
 
-    const choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod);
+    let choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod);
+    if (pickMethod !== "date") {
+        if (selectedDays.length === 2) {
+            choosenDates += calculateDaysCount(selectedDays[0], selectedDays[1]);    
+        } else if (hoveredDay !== null) {
+            choosenDates += calculateDaysCount(selectedDays[0], hoveredDay);    
+        }
+    }
     const datesDisplayClassName = `dates-display ${boardsNumClassName}`;
     const clearButtonClassName = `clear ${boardsNumClassName}`;
     const clearStyle = {"color": selectedColor};

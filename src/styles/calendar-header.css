@@ -15,7 +15,8 @@
   margin-top: 0.175em;
   font-size: 0.9em;
   font-weight: 500;
-  width: 180px;
+  /* width: 180px; */
+  width: 210px;
 }
 
 .one-board.dates-display:lang(Hebrew) {
