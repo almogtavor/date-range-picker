@@ -2,11 +2,11 @@ import React from "react";
 import "./App.css";
 import "./styles/button.css";
 import "./styles/date-range-picker-component.css"
-import DateRangePickerMapperContainer from './containers/DateRangePickerMapperContainer';
+import DateRangePickerMapperContainer from './containers/MapperContainer';
 import ButtonContainer from "./containers/ButtonContainer";
 import { InitialParametersProvider } from "./context/InitialParametersContext";
 
-function App(props) {
+export function App(props) {
   const style = {
     "height": `${Math.floor(props.boardsNum / 3) * 292}px`,
     "gridTemplateRows": `repeat(${Math.floor(props.boardsNum / 3)}, 1fr)`,

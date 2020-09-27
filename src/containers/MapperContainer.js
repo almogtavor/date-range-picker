@@ -1,6 +1,6 @@
 import { setSelectedColor, setInitialBoard } from '../actions';
 import { connect } from 'react-redux';
-import { DateRangePickerMapper } from '../components/DateRangePickerMapper';
+import { Mapper } from '../components/Mapper';
 
 const mapStateToProps = (state) => {
     return ({
@@ -28,4 +28,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {}
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DateRangePickerMapper);
+export default connect(mapStateToProps, mapDispatchToProps)(Mapper);

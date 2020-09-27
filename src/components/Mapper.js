@@ -1,10 +1,10 @@
 import React, { Profiler } from "react";
 import "../App.css";
-import { CalendarInstance } from '../components/CalendarInstance';
+import { CalendarInstance } from './CalendarInstance';
 import CalendarHeaderContainer from "../containers/CalendarHeaderContainer";
 
 
-export const DateRangePickerMapper = (props) => {
+export const Mapper = (props) => {
     const {
       showCalendar,
       boardsNum,
