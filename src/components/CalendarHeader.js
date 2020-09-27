@@ -11,9 +11,7 @@ export const CalendarHeader = (props) => {
         selectedColor,
         boardsNum,
     } = props;
-
-    console.log(props);
-
+    
     const language = useLanguage();
     const format = useFormat();
     const pickMethod = usePickMethod();
@@ -75,5 +73,13 @@ export const CalendarHeader = (props) => {
             >
                 {clearButtonText}
             </button>
-        </div>)
+        </div>
+    )
 }
+
+function areEqual(prevProps, nextProps) {
+    return nextProps.selectedDays.length === 0 &&
+        prevProps.selectedColor === nextProps.selectedColor;
+}
+
+export default React.memo(CalendarHeader, areEqual);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Profiler } from "react";
+import React, { useState, useEffect } from "react";
 import SelectableDayElementContainer from "../../containers/DayElementsContainers/SelectableDayElementContainer";
 import { useLanguage } from "../../context/InitialParametersContext";
 
@@ -13,10 +13,6 @@ export const MonthDaysElements = (props) => {
     const numOfDaysInMonth = new Date(viewedYear, viewedMonth + 1, 0).getDate();
     const dayToBeginTheMonthFrom = new Date(viewedYear, viewedMonth, 1).getDay();
     const [monthDays, setMonthDays] = useState([]);
-
-    function clockPerformance(profilerId, mode, actualTime, baseTime, startTime, commitTime) {
-        console.log({profilerId, mode, actualTime, baseTime, startTime, commitTime});
-    }
 
     useEffect(() => {
         let tempMonthDaysArray = [];
@@ -46,17 +42,15 @@ export const MonthDaysElements = (props) => {
         }
 
         return (
-            // <Profiler id="test" onRender={clockPerformance} key={key}>
-                <SelectableDayElementContainer
-                    key={key}
-                    id={id}
-                    date={date}
-                    isOfCurrentViewedMonth={isOfCurrentViewedMonth}
-                    dayOfWeek={dayOfWeek}
-                    genericStyle={genericStyle}
-                    language={language}
-                />
-            // </Profiler>
+            <SelectableDayElementContainer
+                key={key}
+                id={id}
+                date={date}
+                isOfCurrentViewedMonth={isOfCurrentViewedMonth}
+                dayOfWeek={dayOfWeek}
+                genericStyle={genericStyle}
+                language={language}
+            />
         );
         
     });
