@@ -118,3 +118,8 @@ export const setShowCalendar = showCalendar => ({
     type: 'SET_SHOW_CALENDAR',
     showCalendar
 })
+
+export const setShowDaysAmountTab = showDaysAmountTab => ({
+    type: 'SET_SHOW_DAYS_AMOUNT_TAB',
+    showDaysAmountTab
+})

@@ -25,6 +25,7 @@ export const Button = (props) => {
     }
 
     return (
+    <>        
         <button className="button" onClick={handleClick}>
             { text }
             <img
@@ -32,5 +33,6 @@ export const Button = (props) => {
                     src={calendarIcon}
                     className="calendar-icon"
             />
-        </button>)
+        </button>
+    </>)
 }
