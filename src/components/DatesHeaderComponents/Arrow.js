@@ -18,7 +18,6 @@ export const Arrow = (props) => {
         arrowSide,
     } = props;
 
-    console.log(nearViewedMonths);
     const arrowSideImg = arrowImages[arrowSide];
     const language = useLanguage();
     const startDate = useStartDate();
