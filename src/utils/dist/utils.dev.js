@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.choosenDatesCalculation = choosenDatesCalculation;
+exports.placeDateInFormat = placeDateInFormat;
 exports.calculateDaysCount = calculateDaysCount;
 exports.selectorsModeStyle = selectorsModeStyle;
 

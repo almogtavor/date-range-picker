@@ -1,6 +1,7 @@
 import React from "react";
 import '../../styles/DayElementsStyles/day.css';
 import { useEndDate, useStartDate, usePickMethod } from "../../context/InitialParametersContext";
+import Tooltip from "../Tooltip";
 
 function inRangeCheck(date, edgeDate1, edgeDate2) {
     return (date >= edgeDate1 && date <= edgeDate2) || 
@@ -102,6 +103,7 @@ export const HoverableDayElement = (props) => {
             onMouseEnter={handleEnterHover}
             onMouseLeave={handleLeaveHover}
         >
+            <Tooltip hoveredDay={date}/>
                 {dayNum}
         </div>
     )

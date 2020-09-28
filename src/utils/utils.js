@@ -28,7 +28,7 @@ export function choosenDatesCalculation(selectedDays, hoveredDay, format, pickMe
     }
 }
 
-function placeDateInFormat(date, format) {
+export function placeDateInFormat(date, format) {
     if (format.includes("YYYY")) {
         format = format.replace("YYYY", date.getFullYear());
     } else if (format.includes("YY")) {

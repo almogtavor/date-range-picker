@@ -22,10 +22,16 @@
     width: 18%;
     height: 35px;
     z-index: -999;
+    box-shadow: 3px 1px 5px 0px #ddd;
   }
 
   .days-amount-icon {
-    margin-top: 6%;
-    margin-left: 12%;
-    height: 28px;
+    margin-top: 9%;
+    margin-left: 15%;
+    height: 25px;
+    opacity: 0.9;
+  }
+
+  .days-amount-icon:hover {
+    opacity: 0.6;
   }
