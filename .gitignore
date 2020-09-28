@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+dist/
+src/reducers/dist/lowerFooterReducer.dev.js
+src/reducers/dist/generalReducer.dev.js
+src/dist/actions.dev.js
+src/containers/LowerFooterContainers/dist/SelectAllButtonContainer.dev.js
+src/containers/DatesHeaderContainer/dist/ArrowContainer.dev.js

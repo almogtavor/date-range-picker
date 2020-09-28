@@ -6,13 +6,14 @@
     width: 350px;
     font-size: 1.2em;
     border-radius: 16px;
-    background-color: rgb(229, 229, 238);
+    background-color: rgb(244, 246, 248);
     position: absolute;
-    outline: none;    
+    outline: none;  
 }
 
 .button:hover {
-	background-color:#c0c0c0;
+    background-color:rgb(226, 225, 225);
+    cursor: pointer;
 }
 
 .calendar-icon {

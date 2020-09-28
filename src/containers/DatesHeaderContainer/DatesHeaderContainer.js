@@ -1,14 +1,15 @@
 import { setMode } from '../../actions';
-import DatesHeader from '../../components/DatesHeaderComponents/DatesHeader';
+import { DatesHeader } from '../../components/DatesHeaderComponents/DatesHeader';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
     return ({
-    selectedColor: state.selectedColor,
-    viewedYear: state.viewedYear[ownProps.id],
-    viewedMonth: state.viewedMonth[ownProps.id],
-    id: ownProps.id,
-})};
+        selectedColor: state.lowerFooter.selectedColor,
+        viewedYear: state.datesHeader.viewedYear[ownProps.id],
+        viewedMonth: state.datesHeader.viewedMonth[ownProps.id],
+        id: ownProps.id,
+    })
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return ({

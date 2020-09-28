@@ -1,7 +1,7 @@
 import React from "react";
 import {calendarConfig} from '../../configuration/config';
 import '../../styles/LowerFooterStyles/color-picker-palette.css';
-import { useLanguage, useColorsPalette } from "../../context/InitialParametersContext";
+import { useLanguage, useColorsPalette, useInitialSelectedColor } from "../../context/InitialParametersContext";
 
 const pointerHandIcon = require('../../images/pointer-hand.png');
 
@@ -16,23 +16,32 @@ export const ColorPickerPalette = (props) => {
     } = props;
 
     const language = useLanguage();
-    const colorsPalette = useColorsPalette();
-    const circleStyle = {"backgroundColor": selectedColor};
+    const colorsPaletteEnabling = useColorsPalette();
+    const initialSelectedColor = useInitialSelectedColor();
+    let circleStyle = {"backgroundColor": selectedColor};
+    if (initialSelectedColor && selectedColor === initialSelectedColor) {
+        circleStyle.backgroundColor = initialSelectedColor;
+    }
+    
 
     const changeColor = (color) => () => {
         setSelectedColor(color);
         setShowColorPicker(false);
     }
 
+    const toggleColorPicker = () => {
+        setShowColorPicker(!showColorPicker);
+    }
+
     return (
     <>
         {showPaletteById && 
-            colorsPalette !== "disabled" && 
+            colorsPaletteEnabling !== "disabled" && 
             !showColorPicker && 
             (<div 
                 className="color-circle" 
                 style={circleStyle} 
-                onClick={showColorPicker => setShowColorPicker(showColorPicker)}
+                onClick={toggleColorPicker}
             />)
         }
 
@@ -43,10 +52,15 @@ export const ColorPickerPalette = (props) => {
                 src={pointerHandIcon}
                 lang={language}
                 className="pointer-hand"
-                onClick={showColorPicker => setShowColorPicker(!showColorPicker)}
+                onClick={toggleColorPicker}
             />
-            {calendarConfig.pickableColors.map(color => {
+            {calendarConfig.pickableColors.map((currentColor, i) => {
+                let color = currentColor;
+                if (initialSelectedColor && i === 0) {
+                    color = initialSelectedColor;
+                }
                 const selectableCircleStyle = {"backgroundColor": color};
+                
                 return (<div className="color-circle-wrapper" key={color}>
                     <div 
                     key={color} 

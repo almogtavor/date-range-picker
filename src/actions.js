@@ -1,26 +1,56 @@
-export const setShowColorPicker = (id, showColorPicker) => ({
-    type: 'SET_SHOW_COLOR_PICKER',
-    id, 
+import { getUpdatedObject, getInitialObject } from './utils/actionsUtils'; 
+
+export const setShowColorPickerObject = (showColorPicker) => ({
+    type: 'SET_SHOW_COLOR_PICKER', 
     showColorPicker
 })
 
-export const setViewedMonth = (id, viewedMonth) => ({
+export function setShowColorPicker(id, showColorPicker) {
+    return (dispatch, getState) => {
+        const stateShowColorPicker = getState().lowerFooter.showColorPicker;
+        const stateObj = getUpdatedObject(getState, id, showColorPicker, stateShowColorPicker);
+        dispatch(setShowColorPickerObject(stateObj));
+    };
+}
+
+export const setViewedMonthObject = (viewedMonth) => ({
     type: 'SET_VIEWED_MONTH',
-    id, 
     viewedMonth
 })
 
-export const setViewedYear = (id, viewedYear) => ({
+export function setViewedMonth(id, viewedMonth) {
+    return (dispatch, getState) => {
+        const stateViewedMonth = getState().datesHeader.viewedMonth;
+        const stateObj = getUpdatedObject(getState, id, viewedMonth, stateViewedMonth);
+        dispatch(setViewedMonthObject(stateObj));
+    };
+}
+
+export const setViewedYearObject = (viewedYear) => ({
     type: 'SET_VIEWED_YEAR',
-    id, 
     viewedYear
 })
 
-export const setMode = (id, mode) => ({
+export function setViewedYear(id, viewedYear) {
+    return (dispatch, getState) => {
+        const stateViewedYear = getState().datesHeader.viewedYear;
+        const stateObj = getUpdatedObject(getState, id, viewedYear, stateViewedYear);
+        dispatch(setViewedYearObject(stateObj));
+    };
+}
+
+export const setModeObject = (mode) => ({
     type: 'SET_MODE',
-    id, 
     mode
 })
+
+export function setMode(id, mode) {
+    return (dispatch, getState) => {
+        const stateMode = getState().calendarModes.mode;
+        const stateObj = getUpdatedObject(getState, id, mode, stateMode);
+        dispatch(setModeObject(stateObj));
+    };
+}
 
 export const setSelectedColor = selectedColor => ({
     type: 'SET_SELECTED_COLOR',
@@ -47,11 +77,27 @@ export const setFirstDayOfWeekIndex = firstDayOfWeekIndex => ({
     firstDayOfWeekIndex
 })
 
-export const setBoardsNum = (boardsNum, language) => ({
+export const setBoardsNum = (boardsNum) => ({
     type: 'SET_BOARDS_NUM',
-    boardsNum: boardsNum,
-    language: language
+    boardsNum: boardsNum
 })
+
+export function setInitialBoard(boardsNum, language, startDate, endDate) {
+    return (dispatch) => {
+        let { 
+          monthsObj, 
+          yearsObj, 
+          modeObj, 
+          showColorPickerObj,
+        } = getInitialObject(boardsNum, language, startDate, endDate);
+        dispatch(setBoardsNum(boardsNum));
+        dispatch(setViewedMonthObject(monthsObj));
+        dispatch(setViewedYearObject(yearsObj));
+        dispatch(setModeObject(modeObj));
+        dispatch(setShowColorPickerObject(showColorPickerObj));
+    };
+  }
+
 
 export const setSelectedDays = selectedDays => ({
     type: 'SET_SELECTED_DAYS',
@@ -63,11 +109,6 @@ export const setHoveredDay = hoveredDay => ({
     hoveredDay
 })
 
-export const setLastChangedId = lastChangedId => ({
-    type: 'SET_LAST_CHANGED_ID',
-    lastChangedId
-})
-
 export const setChoosenDates = choosenDates => ({
     type: 'SET_CHOOSEN_DATES',
     choosenDates
@@ -76,9 +117,4 @@ export const setChoosenDates = choosenDates => ({
 export const setShowCalendar = showCalendar => ({
     type: 'SET_SHOW_CALENDAR',
     showCalendar
-})
-
-export const setPickType = pickType => ({
-    type: 'SET_PICK_TYPE',
-    pickType
 })

@@ -40,9 +40,9 @@ export const calendarConfig = {
         "#ec467d",
         "#fdb241",
         "#d889ac",
-        "#673ab7",
-        "#0078D7",
-        "#43d6c8",
+        "#945cb4",
+        "#2972b6",
+        "#4ebcff",
         "#498205",
     ],
 };

@@ -25,8 +25,8 @@ export const MonthDaysElements = (props) => {
 
     
     return monthDays.map((day) => {
-        const key = day + viewedMonth + viewedYear;
         const date = new Date(viewedYear, viewedMonth, day);
+        const key = String(date) + String(id);
         const columnOnGrid = (day + dayToBeginTheMonthFrom + 7) % 7;
         const dayOfWeek = date.getDay();
         const isOfCurrentViewedMonth = !(day <= 0 || day > numOfDaysInMonth);
@@ -55,5 +55,3 @@ export const MonthDaysElements = (props) => {
         
     });
 };
-
-export default React.memo(MonthDaysElements);

@@ -8,16 +8,16 @@ const mapStateToProps = (state, ownProps) => {
     return ({
         date: ownProps.date,
         id: ownProps.id,
-        selectedDays: state.selectedDays,
-        rightViewedMonth: state.viewedMonth[rightId],
-        rightViewedYear: state.viewedYear[rightId],
-        leftViewedMonth: state.viewedMonth[leftId],
-        leftViewedYear: state.viewedYear[leftId],
-        selectedColor: state.selectedColor,
+        selectedDays: state.dayElements.selectedDays,
+        rightViewedMonth: state.datesHeader.viewedMonth[rightId],
+        rightViewedYear: state.datesHeader.viewedYear[rightId],
+        leftViewedMonth: state.datesHeader.viewedMonth[leftId],
+        leftViewedYear: state.datesHeader.viewedYear[leftId],
+        selectedColor: state.lowerFooter.selectedColor,
         isOfCurrentViewedMonth: ownProps.isOfCurrentViewedMonth,
         dayOfWeek: ownProps.dayOfWeek,
         genericStyle: ownProps.genericStyle,
-        boardsNum: state.boardsNum,
+        boardsNum: state.general.boardsNum,
 })};
 
 const mapDispatchToProps = (dispatch, ownProps) => {

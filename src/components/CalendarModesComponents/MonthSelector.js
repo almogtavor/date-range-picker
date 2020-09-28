@@ -1,7 +1,7 @@
 import React from "react";
 import {calendarConfig} from '../../configuration/config';
 // import Perf from 'react-addons-perf';
-import '../../styles/CalendarContentStyles/month-selector.css';
+import '../../styles/CalendarModesStyles/month-selector.css';
 import { useLanguage, useStartDate, useEndDate } from "../../context/InitialParametersContext";
 import { selectorsModeStyle } from "../../utils/utils";
 
@@ -16,6 +16,7 @@ export const MonthSelector = (props) => {
         selectedDays,
     } = props;
 
+    console.log("render");
     const language = useLanguage();
     const startDate = useStartDate();
     const endDate = useEndDate();
@@ -83,5 +84,3 @@ export const MonthSelector = (props) => {
       </div>
     );
 }
-
-export default React.memo(MonthSelector);

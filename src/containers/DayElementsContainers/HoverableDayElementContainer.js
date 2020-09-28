@@ -5,9 +5,9 @@ import HoverableDayElement from '../../components/DayElementsComponents/Hoverabl
 const mapStateToProps = (state, ownProps) => {
     return ({
         date: ownProps.date,
-        selectedDays: state.selectedDays,
-        selectedColor: state.selectedColor,
-        hoveredDay: state.hoveredDay,
+        selectedDays: state.dayElements.selectedDays,
+        selectedColor: state.lowerFooter.selectedColor,
+        hoveredDay: state.dayElements.hoveredDay,
         dayOfWeek: ownProps.dayOfWeek,
 })};
 

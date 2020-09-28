@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import MonthDaysElements from "../../components/DayElementsComponents/MonthDaysElements";
+import { MonthDaysElements } from "../../components/DayElementsComponents/MonthDaysElements";
 
 const mapStateToProps = (state, ownProps) => {
     return ({
-        viewedYear: state.viewedYear[ownProps.id],
-        viewedMonth: state.viewedMonth[ownProps.id],
+        viewedYear: state.datesHeader.viewedYear[ownProps.id],
+        viewedMonth: state.datesHeader.viewedMonth[ownProps.id],
         id: ownProps.id,
 })};
 

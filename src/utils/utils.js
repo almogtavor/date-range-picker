@@ -1,8 +1,13 @@
-export function choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod) {
+export function choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod, daysCountEnable) {
     if (selectedDays.length) {
         if (selectedDays.length === 2) {
-            return placeDateInFormat(selectedDays[0], format) + 
-                " - " + placeDateInFormat(selectedDays[1], format);
+            if (selectedDays[0] > selectedDays[1]) {
+                return placeDateInFormat(selectedDays[1], format) + 
+                    " - " + placeDateInFormat(selectedDays[0], format);
+            } else {
+                return placeDateInFormat(selectedDays[0], format) + 
+                    " - " + placeDateInFormat(selectedDays[1], format);
+            }
         } else if (hoveredDay) {
             if (selectedDays[0] > hoveredDay) {
                 return placeDateInFormat(hoveredDay, format) + 
@@ -32,6 +37,27 @@ function placeDateInFormat(date, format) {
     format = format.replace("MM", date.getMonth() + 1);
     format = format.replace("DD", date.getDate());
     return format;
+}
+
+export function calculateDaysCount(date1, date2, language) {
+    let difference = Math.abs(date2 - date1);
+    difference = Math.floor(difference / (1000*60*60*24)); // Difference In Days
+    const daysNum = difference + 1;
+    if (language === "Hebrew") {
+        if (daysNum === 1) {
+            return " | יום אחד ";
+        } else if (daysNum === 2) {
+            return " | יומיים ";
+        } else if (daysNum > 2) {
+            return " | " + daysNum + " ימים ";
+        }
+    } else {
+        if (daysNum === 1) {
+            return " | " + daysNum + " day";
+        } else if (daysNum > 1) {
+            return " | " + daysNum + " days";
+        }
+    }
 }
 
 export function selectorsModeStyle(object, viewedObject, isObjectSelected, color) {

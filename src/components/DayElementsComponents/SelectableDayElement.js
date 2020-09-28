@@ -1,5 +1,6 @@
 import React from "react";
 import '../../styles/DayElementsStyles/day.css';
+import '../../styles/DayElementsStyles/selected-day.css';
 import { useLanguage, useEndDate, useStartDate, usePickMethod } from "../../context/InitialParametersContext";
 import HoverableDayElementContainer from "../../containers/DayElementsContainers/HoverableDayElementContainer";
 
@@ -35,16 +36,15 @@ export const SelectableDayElement = (props) => {
     let isSelected = false;
 
     selectedDays.forEach(element => {
-       if (date.toLocaleDateString() === element.toLocaleDateString() && !isSelected) {
+        if (date.toLocaleDateString() === element.toLocaleDateString() &&
+            !isSelected) {
             isSelected = true;
         }
     });
 
     const nonCurrentDateClick = () => {
         let isNonCurrentCase;
-        if (pickMethod === "range" && selectedDays.length !== 1) {
-            isNonCurrentCase = true;
-        } else if (pickMethod === "date") {
+        if ((pickMethod === "range" && selectedDays.length !== 1) || pickMethod === "date") {
             isNonCurrentCase = true;
         }
         if (!isOfCurrentViewedMonth && isNonCurrentCase) {
@@ -69,25 +69,32 @@ export const SelectableDayElement = (props) => {
     }
 
     const rangeSelectionHandling = () => {
-        if (new Date(year, month, 1) < endDate && boardsNum === 2) {
+        const currentDate = new Date(year, month, 1);
+
+        if (currentDate < endDate && boardsNum === 2) {
             if (selectedDays.length === 1) {
                 const firstSelectMonth = selectedDays[0].getMonth();
                 const firstSelectYear = selectedDays[0].getFullYear();
-                const { rightId, leftId } = language === "Hebrew" ? { rightId: 0, leftId: 1 } : { rightId: 1, leftId: 0 };
-    
+                const firstSelectDate = new Date(firstSelectYear, firstSelectMonth, 1);
+                let { rightId, leftId } = { rightId: 1, leftId: 0 };
+                if (language === "Hebrew") {
+                    rightId = 0;
+                    leftId = 1;
+                }
+
                 if (id === leftId) {
-                    if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
+                    if (currentDate > firstSelectDate) {
                         setMonthsOnLeftClick(month, year, firstSelectMonth, firstSelectYear);
                     }
-                    else if (new Date(year, month, 0) < new Date(firstSelectYear, firstSelectMonth, 0)) {
+                    else if (currentDate < firstSelectDate) {
                         setMonthsOnLeftClick(firstSelectMonth, firstSelectYear, month, year);
                     }
                 }
                 else if (id === rightId) {
-                    if (new Date(year, month, 0) > new Date(firstSelectYear, firstSelectMonth, 0)) {
+                    if (currentDate > firstSelectDate) {
                         setMonthsOnRightClick(month, year, firstSelectMonth, firstSelectYear);
                     }
-                    else if (year === firstSelectYear && month === firstSelectMonth) {
+                    else if (currentDate.toLocaleDateString() === firstSelectDate.toLocaleDateString()) {
                         setMonthsOnRightClick(month + 1, year, month, year);
                     }
                     else {
@@ -101,13 +108,41 @@ export const SelectableDayElement = (props) => {
     const handleClick = () => {
         if (!isDisabled) {
             if (pickMethod === "range") {
-                if (selectedDays.length === 2) {
+                if (selectedDays.length === 2 || selectedDays.length === 0) {
                     setSelectedDays([date]);
                 } else {
-                    setSelectedDays([...selectedDays, date]);
+                    if (selectedDays[0] > date) {
+                        setSelectedDays([date, selectedDays[0]]);
+                    } else {
+                        setSelectedDays([selectedDays[0], date]);
+                    }
                 }
             } else if (pickMethod === "date") {
                 setSelectedDays([date]);
+            } else {
+                let isInRange = false;
+                if (selectedDays) {
+                    for (let i = 0; i < selectedDays.length; i += 2) {
+                        let smallerDate, biggerDate;
+                        if (selectedDays[i] < selectedDays[i + 1]) {
+                            smallerDate = selectedDays[i];
+                            biggerDate = selectedDays[i + 1];
+                        } else {
+                            smallerDate = selectedDays[i + 1];
+                            biggerDate = selectedDays[i];
+                        }
+                        if (smallerDate <= date && date <= biggerDate) {
+                            isInRange = true;
+                        }
+                    }
+                    if (isInRange) {
+                        setSelectedDays([date]);
+                    } else {
+                        setSelectedDays([...selectedDays, date]);
+                    }
+                } else {
+                    setSelectedDays([date]);
+                }
             }
             isSelected = !isSelected;
             nonCurrentDateClick();
@@ -117,14 +152,20 @@ export const SelectableDayElement = (props) => {
         }
     };
 
-    const className = `day-element 
-        ${!isOfCurrentViewedMonth && "non-current"}
-        ${isDisabled && "disabled"}
-        ${isToday && "today"}
-        ${isSelected && "selected-day"}`;
+    let className = "day-element";
     let style = genericStyle;
+    if (!isOfCurrentViewedMonth) {
+        className += " non-current";
+    }
+    if (isDisabled) {
+        className += " disabled";
+    }
+    if (isToday) {
+        className += " today";
+    }
     if (isSelected) {
         style = {...genericStyle, "background": selectedColor, "borderColor": selectedColor};
+        className += " selected-day";
     }
         
 
@@ -142,4 +183,10 @@ export const SelectableDayElement = (props) => {
     )
 }
 
-export default React.memo(SelectableDayElement);
+function areEqual(prevProps, nextProps) {
+    return prevProps.selectedDays === nextProps.selectedDays &&
+        prevProps.selectedColor === nextProps.selectedColor &&
+        prevProps.genericStyle === nextProps.genericStyle;
+}
+
+export default React.memo(SelectableDayElement, areEqual);

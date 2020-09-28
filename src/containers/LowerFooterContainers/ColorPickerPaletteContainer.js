@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
     return ({
-        selectedColor: state.selectedColor,
-        showColorPicker: state.showColorPicker[ownProps.id],
+        selectedColor: state.lowerFooter.selectedColor,
+        showColorPicker: state.lowerFooter.showColorPicker[ownProps.id],
         showPaletteById: ownProps.showPaletteById,
 })};
 

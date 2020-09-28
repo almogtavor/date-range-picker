@@ -39,6 +39,9 @@ export function usePickMethod() {
     return useContext(InitialParametersContext).pickMethod;
 }
 
+export function useInitialSelectedColor() {
+    return useContext(InitialParametersContext).initialSelectedColor;
+}
 
 function valueParse(parmaeter, defaultValue) {
     if (parmaeter) {
@@ -59,6 +62,7 @@ export function InitialParametersProvider({children, props}) {
         pickMethod,
         boardsNum,
         selectAllButton,
+        defaultColor,
       } = props;
 
     const [valueState] = useState({
@@ -69,7 +73,8 @@ export function InitialParametersProvider({children, props}) {
         firstDayOfWeekIndex: valueParse(firstDayOfWeekIndex, 0),
         format: valueParse(format, "DD-MM-YYYY"),
         pickMethod: valueParse(pickMethod, "range"),
-        selectAllButton: valueParse(selectAllButton, "disabled")
+        selectAllButton: valueParse(selectAllButton, "disabled"),
+        initialSelectedColor: defaultColor, // can be undefined, default will be set from config
     })
 
     if (valueState.endDate < valueState.startDate) {
@@ -82,11 +87,11 @@ export function InitialParametersProvider({children, props}) {
     }
 
     if (valueState.pickMethod === "date" && valueState.selectAllButton === "enabled") {
-        throw Object.assign(new Error('"pickMethod" date prevents "selectAllButton" option.'), { code: 403 });
+        throw Object.assign(new Error('"pickMethod" valued "date" prevents "selectAllButton" option.'), { code: 403 });
     }
 
     if (boardsNum === 2 && valueState.pickMethod === "date") {
-        throw Object.assign(new Error('"pickMethod" date prevents "boardsNum" bigger than 1.'), { code: 403 });
+        throw Object.assign(new Error('"pickMethod" valued "date" prevents "boardsNum" bigger than 1.'), { code: 403 });
     }
     
     

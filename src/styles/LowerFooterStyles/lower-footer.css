@@ -1,4 +1,4 @@
-.settings {
+.lower-footer {
     display: flex;
     justify-content: space-between;
 }
@@ -9,9 +9,10 @@
     width: 60px;
     margin-right: 3%;
     border-width: 2px;
-    outline: none;    
+    outline: none;
 }
 
 .pick-button:hover {
     opacity: 0.8;
+    cursor: pointer;
 }

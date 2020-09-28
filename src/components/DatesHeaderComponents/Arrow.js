@@ -89,5 +89,3 @@ export const Arrow = (props) => {
             </div>
     );
 }
-
-export default React.memo(Arrow);

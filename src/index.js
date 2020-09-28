@@ -6,15 +6,19 @@ import './index.css';
 import DateRangePicker from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import rootReducer from './reducers/index';
 
-const store = createStore(rootReducer)
+const store = createStore(
+    rootReducer,
+    applyMiddleware(thunk)
+);
 
 ReactDOM.render(
     <Provider store={store}>
         <DateRangePicker
-            language="English"
+            language="Hebrew"
             colorsPalette="enabled"
             format="DD-MM-YYYY"
             selectAllButton="enabled"
@@ -22,6 +26,7 @@ ReactDOM.render(
             endDate={new Date(2025, 9, 1)}
             firstDayOfWeekIndex={0}
             pickMethod="range"
+            // defaultColor="#178905"
             boardsNum={2}
         />
     </Provider>,

@@ -10,8 +10,9 @@ export const LowerFooter = (props) => {
     const {
         id,
         selectedColor,      
-        setShowCalendar,
         selectedDays,
+        boardsNum,
+        setShowCalendar,
         setChoosenDates,
     } = props;
 
@@ -20,6 +21,11 @@ export const LowerFooter = (props) => {
     const pickMethod = usePickMethod();
     const idIndexes = language === "Hebrew" ? [1, 0] : [0, 1];
     const showPaletteById = id === idIndexes[0];
+    const showPickButton = ((id === idIndexes[idIndexes.length - 1]) || boardsNum === 1);
+    let lowerFooterStyle = {};
+    if (id === 1) {
+        lowerFooterStyle = {"flexDirection": "row-reverse"};
+    }
 
     const handlePickClick = () => {
         setShowCalendar(false);
@@ -28,19 +34,15 @@ export const LowerFooter = (props) => {
 
     return (
     <div 
-        className="settings" 
-        style={
-            id === 1 ? 
-            {"flexDirection": "row-reverse"}: 
-            {}
-        }
+        className="lower-footer" 
+        style={lowerFooterStyle}
     >
         <ColorPickerPaletteContainer 
             id={id}
             showPaletteById={showPaletteById}
         />
 
-        {id === idIndexes[1] && 
+        {showPickButton && 
             <button 
                 className="pick-button"
                 style={{

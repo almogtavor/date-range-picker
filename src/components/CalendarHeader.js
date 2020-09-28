@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/calendar-header.css';
-import { choosenDatesCalculation } from "../utils/utils";
+import { choosenDatesCalculation, calculateDaysCount } from "../utils/utils";
 import { useFormat, useLanguage, usePickMethod } from "../context/InitialParametersContext";
 
 export const CalendarHeader = (props) => {
@@ -34,7 +34,16 @@ export const CalendarHeader = (props) => {
         boardsNumClassName = "three-boards";
     }
 
-    const choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod);
+    let choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod);
+    if (pickMethod !== "date") {
+        if (selectedDays.length === 2) {
+            choosenDates += calculateDaysCount(selectedDays[0], selectedDays[1], language);    
+        } else if (hoveredDay !== null && selectedDays.length === 1) {
+            choosenDates += calculateDaysCount(selectedDays[0], hoveredDay, language) ;
+        } else {
+            
+        }
+    }
     const datesDisplayClassName = `dates-display ${boardsNumClassName}`;
     const clearButtonClassName = `clear ${boardsNumClassName}`;
     const clearStyle = {"color": selectedColor};
@@ -52,7 +61,10 @@ export const CalendarHeader = (props) => {
             className="selected-dates"
             style={ selectedDaysStyle }
         >
-            <div className={datesDisplayClassName} lang={language}>
+            <div 
+                className={datesDisplayClassName} 
+                lang={language}
+            >
                 { choosenDates }
             </div>
             <button 
@@ -63,5 +75,14 @@ export const CalendarHeader = (props) => {
             >
                 {clearButtonText}
             </button>
-        </div>)
+        </div>
+    )
 }
+
+function areEqual(prevProps, nextProps) {
+    return nextProps.selectedDays.length === 0 &&
+        prevProps.selectedDays === nextProps.selectedProps &&
+        prevProps.selectedColor === nextProps.selectedColor;
+}
+
+export default React.memo(CalendarHeader, areEqual);
