@@ -36,7 +36,8 @@ export const SelectableDayElement = (props) => {
     let isSelected = false;
 
     selectedDays.forEach(element => {
-       if (date.toLocaleDateString() === element.toLocaleDateString() && !isSelected) {
+        if (date.toLocaleDateString() === element.toLocaleDateString() &&
+            !isSelected) {
             isSelected = true;
         }
     });
@@ -107,7 +108,7 @@ export const SelectableDayElement = (props) => {
     const handleClick = () => {
         if (!isDisabled) {
             if (pickMethod === "range") {
-                if (selectedDays.length === 2) {
+                if (selectedDays.length === 2 || selectedDays.length === 0) {
                     setSelectedDays([date]);
                 } else {
                     if (selectedDays[0] > date) {

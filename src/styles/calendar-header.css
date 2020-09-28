@@ -63,6 +63,7 @@
   margin-top: 0.175em;
   outline: none;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .one-board.clear:lang(Hebrew) {

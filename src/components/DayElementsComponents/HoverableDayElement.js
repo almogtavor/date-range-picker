@@ -33,7 +33,7 @@ export const HoverableDayElement = (props) => {
         }
     };
 
-    const handleOutHover = () => {
+    const handleLeaveHover = () => {
         if (selectedDays.length === 2) {
             setHoveredDay(null);
         }
@@ -100,9 +100,17 @@ export const HoverableDayElement = (props) => {
             className={className} 
             style={hoverStyle}
             onMouseEnter={handleEnterHover}
-            onMouseLeave={handleOutHover}
+            onMouseLeave={handleLeaveHover}
         >
                 {dayNum}
         </div>
     )
 }
+
+function areEqual(prevProps, nextProps) {
+    return prevProps.selectedDays === nextProps.selectedProps &&
+        prevProps.selectedColor === nextProps.selectedColor &&
+        prevProps.hoveredDay === nextProps.hoveredDay;
+}
+
+export default React.memo(HoverableDayElement, areEqual);

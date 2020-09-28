@@ -1,4 +1,3 @@
-
 .checkbox {
     height: 20px;
 }
@@ -10,6 +9,7 @@
     margin-left: 5%;
     font-weight: bold;
     width: 80px;
+    cursor: pointer;
 }
 
 .select-all-text {

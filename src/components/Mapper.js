@@ -1,4 +1,4 @@
-import React, { Profiler } from "react";
+import React from "react";
 import "../App.css";
 import { CalendarInstance } from './CalendarInstance';
 import CalendarHeaderContainer from "../containers/CalendarHeaderContainer";
@@ -23,10 +23,6 @@ export const Mapper = (props) => {
     } else if (boardsNum === 2) {
       marginLeftStyle = {"marginLeft": 255 / 2 + "px"};
     }
-    
-    // function clockPerformance(profilerId, mode, actualTime, baseTime, startTime, commitTime) {
-    //   console.log({mode, actualTime});
-    // }
 
     return (
     <>{
@@ -35,9 +31,7 @@ export const Mapper = (props) => {
           className="date-range-picker" 
           style={marginLeftStyle}
         >
-          {/* <Profiler id="test" onRender={clockPerformance} key={Math.random()}> */}
-            <CalendarHeaderContainer/>
-          {/* </Profiler> */}
+          <CalendarHeaderContainer/>
           {calendarsIndexes.map((i) => {
               return (
               <CalendarInstance
