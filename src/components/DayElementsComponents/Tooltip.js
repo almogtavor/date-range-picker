@@ -10,7 +10,7 @@ export default function Tooltip(props) {
     const format = useFormat();
     const ref = useRef();
     const date = placeDateInFormat(hoveredDay, format);
-    let top, left, timeout, style = {"left": 200 + "%"};
+    let top, left, style = {"left": 200 + "%"};
     const [width, setWidth] = useState();
     if (dateRef && width) {
         let boundingClient = dateRef.getBoundingClientRect();
@@ -23,6 +23,7 @@ export default function Tooltip(props) {
     }
 
     useEffect(() => {
+        let timeout;
         if (!width) {
             timeout = setTimeout(() => {
                 if (ref.current) {
@@ -35,7 +36,7 @@ export default function Tooltip(props) {
                 clearTimeout();
             }
         }
-    }, [ref.current])
+    }, [width])
 
 
     return (ReactDOM.createPortal(

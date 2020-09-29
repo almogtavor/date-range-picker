@@ -1,10 +1,9 @@
 import { connect } from 'react-redux'
-import { DaysAmountTabButton } from "../../components/DaysAmountTabComponents/DaysAmountTabButton";
+import { DaysAmountTab } from "../../components/DaysAmountTabComponents/DaysAmountTab";
 import { setSelectedDays, setShowDaysAmountTab } from '../../actions';
 
 const mapStateToProps = (state) => ({
     selectedColor: state.lowerFooter.selectedColor,
-    showDaysAmountTab: state.daysAmountTab.showDaysAmountTab,
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -14,4 +13,4 @@ const mapDispatchToProps = (dispatch) => {
     })
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DaysAmountTabButton);
+export default connect(mapStateToProps, mapDispatchToProps)(DaysAmountTab);
