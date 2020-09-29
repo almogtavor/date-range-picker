@@ -16,9 +16,11 @@ export const CalendarHeader = (props) => {
     const format = useFormat();
     const pickMethod = usePickMethod();
 
-    let selectedDaysStyle = {
+    const templateStyle = {
         "width": ((boardsNum * 100) > 300 ? 300 : (boardsNum * 100)) + "%", 
-        "backgroundColor": selectedColor + "60",
+    };
+    let selectedDaysStyle = {
+        "backgroundColor": selectedColor + "60"
     };
   
     if (language === "Hebrew") {
@@ -58,23 +60,28 @@ export const CalendarHeader = (props) => {
 
     return (
         <div 
-            className="selected-dates"
-            style={ selectedDaysStyle }
+            class="calendar-header-template"
+            style={ templateStyle }
         >
             <div 
-                className={datesDisplayClassName} 
-                lang={language}
+                className="selected-dates"
+                style={ selectedDaysStyle }
             >
-                { choosenDates }
+                <div 
+                    className={datesDisplayClassName} 
+                    lang={language}
+                >
+                    { choosenDates }
+                </div>
+                <button 
+                    className={clearButtonClassName}
+                    lang={language}
+                    onClick={handleClearClick}
+                    style={clearStyle}
+                >
+                    {clearButtonText}
+                </button>
             </div>
-            <button 
-                className={clearButtonClassName}
-                lang={language}
-                onClick={handleClearClick}
-                style={clearStyle}
-            >
-                {clearButtonText}
-            </button>
         </div>
     )
 }

@@ -1,12 +1,18 @@
-.selected-dates {
-  display: flex;
-  height: 22px;
-  justify-content: space-around;
-  /* background-color: rgb(231, 231, 231); */
+.calendar-header-template {
   background-color: rgb(244, 246, 248);
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-  margin-top: -22px;  
+  height: 22px;
+  margin-top: -22px; 
+}
+
+.selected-dates {
+  display: flex;
+  height: 22px;
+  width: 100%;
+  justify-content: space-around;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
   box-shadow: 3px 1px 5px 0px #ddd;
 }
 
