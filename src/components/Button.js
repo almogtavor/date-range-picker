@@ -3,7 +3,7 @@ import '../styles/button.css';
 import { useFormat, usePickMethod } from "../context/InitialParametersContext";
 import { choosenDatesCalculation } from "../utils/utils";
 
-const calendarIcon = require('../images/calendar-icon5.png');
+const calendarIcon = require('../images/calendar-icon6.png');
 
 export const Button = (props) => {
     const {
