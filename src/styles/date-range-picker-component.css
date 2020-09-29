@@ -15,27 +15,3 @@
     grid-template-columns: repeat(3, 1fr);
     outline: none;
   }
-
-  .days-amount-template {
-    background-color: rgb(244, 246, 248);
-    border-radius: 15%;
-    margin-left: -115%;
-    width: 18%;
-    height: 35px;
-    box-shadow: 3px 1px 5px 0px #ddd;
-  }
-
-  .days-amount-div {
-    
-  }
-
-  .days-amount-icon {
-    margin-top: 9%;
-    margin-left: 15%;
-    height: 25px;
-    opacity: 0.9;
-  }
-
-  .days-amount-icon:hover {
-    opacity: 0.6;
-  }

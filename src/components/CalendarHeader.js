@@ -60,7 +60,7 @@ export const CalendarHeader = (props) => {
 
     return (
         <div 
-            class="calendar-header-template"
+            className="calendar-header-template"
             style={ templateStyle }
         >
             <div 

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import '../../styles/DayElementsStyles/day.css';
 import { useEndDate, useStartDate, usePickMethod } from "../../context/InitialParametersContext";
-import Tooltip from "../Tooltip";
+import Tooltip from "./Tooltip";
 
 function inRangeCheck(date, edgeDate1, edgeDate2) {
     return (date >= edgeDate1 && date <= edgeDate2) || 
@@ -18,6 +18,7 @@ export const HoverableDayElement = (props) => {
         dayOfWeek,
     } = props;
 
+    const dateRef = useRef();
     const startDate = useStartDate();
     const endDate = useEndDate();
     const dayNum = date.getDate();
@@ -102,9 +103,12 @@ export const HoverableDayElement = (props) => {
             style={hoverStyle}
             onMouseEnter={handleEnterHover}
             onMouseLeave={handleLeaveHover}
+            ref={dateRef}
         >
-            <Tooltip hoveredDay={date}/>
-                {dayNum}
+            {hoveredDay && hoveredDay.toLocaleDateString() === date.toLocaleDateString() &&
+                <Tooltip dateRef={dateRef.current} hoveredDay={date}/>
+            }
+            {dayNum}
         </div>
     )
 }

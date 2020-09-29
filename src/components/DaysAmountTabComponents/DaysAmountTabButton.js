@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/DaysAmountTabStyles/days-amount-tab-button.css';
 
 const chooseDaysAmount = require("../../images/choose-days-amount.png");
 
