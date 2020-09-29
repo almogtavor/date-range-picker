@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import '../../styles/DayElementsStyles/day.css';
 import { useEndDate, useStartDate, usePickMethod } from "../../context/InitialParametersContext";
 import Tooltip from "./Tooltip";
@@ -10,6 +10,7 @@ function inRangeCheck(date, edgeDate1, edgeDate2) {
 
 export const HoverableDayElement = (props) => {
     const {
+        id,
         date,
         selectedDays,
         selectedColor,
@@ -23,6 +24,7 @@ export const HoverableDayElement = (props) => {
     const endDate = useEndDate();
     const dayNum = date.getDate();
     const pickMethod = usePickMethod();
+    const [isCurrentDateHovered, setIsCurrentDateHovered] = useState(false);
     const isDisabled = date < startDate || date > endDate;
     let isInRange = false;
 
@@ -30,12 +32,14 @@ export const HoverableDayElement = (props) => {
     const coloredStyle = {"background": selectedColor + "60"};
 
     const handleEnterHover = () => {
+        setIsCurrentDateHovered(true);
         if (!isDisabled && pickMethod !== "date") {
             setHoveredDay(date);
         }
     };
 
     const handleLeaveHover = () => {
+        setIsCurrentDateHovered(false);
         if (selectedDays.length === 2) {
             setHoveredDay(null);
         }
@@ -105,8 +109,13 @@ export const HoverableDayElement = (props) => {
             onMouseLeave={handleLeaveHover}
             ref={dateRef}
         >
-            {hoveredDay && hoveredDay.toLocaleDateString() === date.toLocaleDateString() &&
-                <Tooltip dateRef={dateRef.current} hoveredDay={date}/>
+            {hoveredDay && 
+            isCurrentDateHovered &&
+            hoveredDay.toLocaleDateString() === date.toLocaleDateString() &&
+                <Tooltip 
+                    dateRef={dateRef.current} 
+                    hoveredDay={date} 
+                />
             }
             {dayNum}
         </div>

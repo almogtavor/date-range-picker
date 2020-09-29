@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useFormat } from '../../context/InitialParametersContext';
 import { placeDateInFormat } from "../../utils/utils";
@@ -7,28 +7,43 @@ import "../../styles/DayElementsStyles/tooltip.css";
 export default function Tooltip(props) {
 
     const { hoveredDay, dateRef } = props;
-
-    let top, left, style = {};
-    if (dateRef) {
+    const format = useFormat();
+    const ref = useRef();
+    const date = placeDateInFormat(hoveredDay, format);
+    let top, left, timeout, style = {"left": 200 + "%"};
+    const [width, setWidth] = useState();
+    if (dateRef && width) {
         let boundingClient = dateRef.getBoundingClientRect();
         top = boundingClient.top;
         left = boundingClient.left;
         style = {
-            "marginLeft": left + "px",
-            "top": top + "px"
+            "left": (left - (width / 4)) + "px",
+            "top": (top + 30) + "px"
         };
     }
 
-    console.log(hoveredDay);
-    const format = useFormat();
+    useEffect(() => {
+        if (!width) {
+            timeout = setTimeout(() => {
+                if (ref.current) {
+                    setWidth(ref.current.getBoundingClientRect().width);
+                }
+            } , 1000);
+        }
+        return () => {
+            if (timeout) {
+                clearTimeout();
+            }
+        }
+    }, [ref.current])
 
-    const date = placeDateInFormat(hoveredDay, format);
 
     return (ReactDOM.createPortal(
         <>
             <div
                 className="tooltip"
                 style={style}
+                ref={ref}
             >
                 { date }
             </div>

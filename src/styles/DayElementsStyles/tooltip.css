@@ -1,12 +1,13 @@
 .tooltip {
-    width: 90px;
-    height: 30px;
+    position: relative;
     background-color: black;
     color: white;
     opacity: 0.8;
     border-radius: 10px;
     display: flex;
-    justify-content: center;
-    align-items: center;
     z-index: 999;
+    padding: 1%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    display: inline-block;
 }
