@@ -32,6 +32,9 @@
 
   .days-amount-input {
     width: 30%;
+    border-width: 0px;
+    border-radius: 20%;
+    background-color: rgb(244, 246, 248);
   }
 
   .days-amount-field {

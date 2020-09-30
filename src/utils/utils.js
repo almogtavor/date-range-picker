@@ -69,3 +69,22 @@ export function selectorsModeStyle(object, viewedObject, isObjectSelected, color
     }
     return style;
 }
+
+export function getDefaultRanges(year, month, date) {
+    let currentDate = new Date(year, month, date);
+    let pastWeek = new Date(year, month, date - 6);
+    let past3Months = new Date(year, month - 3, date);
+    let past6Months = new Date(year, month - 6, date);
+    let pastYear = new Date(year - 1, month, date);
+    let past2Years = new Date(year - 2, month, date);
+    const defaultRanges = [
+        [currentDate, currentDate],
+        [pastWeek, currentDate],
+        [past3Months, currentDate],
+        [past6Months, currentDate],
+        [pastYear, currentDate],
+        [past2Years, currentDate],
+    ];
+    return defaultRanges;
+}
+ 

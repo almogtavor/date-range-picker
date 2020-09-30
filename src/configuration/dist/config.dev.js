@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.calendarConfig = void 0;
+exports.daysAmountTabConfig = exports.calendarConfig = void 0;
 var calendarConfig = {
   "months": {
     "English": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
@@ -13,6 +13,11 @@ var calendarConfig = {
     "English": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
     "Hebrew": ["א", "ב", "ג", "ד", "ה", "ו", "ש"].reverse()
   },
-  "pickableColors": ["#5ebaf8", "#ec467d", "#fdb241", "#d889ac", "#673ab7", "#0078D7", "#43d6c8", "#498205"]
+  "pickableColors": [// "#38a1f4"
+  "#2196f3", "#ec467d", "#fdb241", "#d889ac", "#945cb4", "#2972b6", "#4ebcff", "#498205"]
 };
 exports.calendarConfig = calendarConfig;
+var daysAmountTabConfig = {
+  "defualtRangesTexts": ["Today", "Past week", "Past 3 months", "Past 6 months", "Past year", "Past 2 years"]
+};
+exports.daysAmountTabConfig = daysAmountTabConfig;
