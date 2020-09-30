@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Profiler } from 'react';
 import '../../styles/DaysAmountTabStyles/days-amount-tab.css';
 import { daysAmountTabConfig } from '../../configuration/config';
 import { getDefaultRanges } from '../../utils/utils';
@@ -15,23 +15,37 @@ export function DaysAmountTab(props) {
     let date = currentDate.getDate();
     const defaultRanges = getDefaultRanges(year, month, date);
 
-    const handleClick = (dates) => () => {
-        setSelectedDays(dates);
+    function updateCalendar(decresement) {
+        let daysAmountFromNow = new Date(year, month, date - decresement);
+        setSelectedDays([daysAmountFromNow, currentDate]);
     }
 
-    const [daysAmount, setDaysAmount] = useState(null);
+    const [daysAmount, setDaysAmount] = useState("");
 
     const handleChange = (e) => {
-        console.log(e);
-        setDaysAmount(e.target.value);
+        let value = e.target.value;
+        let nonNumericChar = /[^0-9-]+/g;
+        value = value.replace(nonNumericChar, '');
+        let pattern = /([-])?([0-9]+)/g;
+        let matches = value.match(pattern);
+        if (matches){
+            value = matches[0];
+        }
+        setDaysAmount(value);
     }
 
     useEffect(() => {
-        if (daysAmount) {
-            let daysAmountFromNow = new Date(year, month, date - daysAmount + 1);
-            setSelectedDays([daysAmountFromNow, currentDate]);
-            console.log(daysAmount);
-            console.log(daysAmountFromNow);
+        if (daysAmount && 
+            daysAmount !== "0" &&
+            daysAmount[0] !== "-"||
+            (daysAmount[0] === "-" && /\d$/.test(daysAmount[daysAmount.length - 1]))) {
+            if (parseInt(daysAmount) > 0) {
+                updateCalendar(parseInt(daysAmount) - 1);
+            } else {
+                updateCalendar(daysAmount);
+            }
+        } else {
+            setSelectedDays([])
         }
         
     }, [daysAmount])
@@ -45,6 +59,7 @@ export function DaysAmountTab(props) {
             >
                 {defaultRanges.map((range, i) => {
                     return (<DefaultRange 
+                        key={i}
                         range={range}
                         index={i} 
                         setSelectedDays={setSelectedDays}
@@ -54,6 +69,7 @@ export function DaysAmountTab(props) {
                     <input 
                         className="days-amount-input"
                         onChange={e => handleChange(e)}
+                        value={daysAmount}
                     />
                     {" Days From Now"}
                 </div>
