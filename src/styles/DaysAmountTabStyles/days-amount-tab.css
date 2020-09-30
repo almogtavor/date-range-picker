@@ -18,6 +18,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
+    text-align: center;
   }
 
   .pickable-days-amount {
@@ -26,8 +27,14 @@
 
   .pickable-days-amount:hover {
     text-decoration: underline;
+    cursor: pointer;
   }
 
   .days-amount-input {
-    width: 50%;
+    width: 30%;
+  }
+
+  .days-amount-field {
+    margin-left: -10%;
+    width: 80%;
   }

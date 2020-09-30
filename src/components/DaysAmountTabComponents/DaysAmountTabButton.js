@@ -12,10 +12,8 @@ export function DaysAmountTabButton(props) {
     if (showDaysAmountTab) {
         templateClassName += " show-tab"
     }
-    console.log(showDaysAmountTab);
 
     const handleClick = () => {
-        console.log(showDaysAmountTab);
         setShowDaysAmountTab(!showDaysAmountTab);
     }
 
