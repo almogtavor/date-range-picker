@@ -41,9 +41,13 @@ export function DaysAmountTab(props) {
         if (matches){
             value = matches[0];
         }
-        if (value.length > 4) {
-            value = value.substring(0, 4);
+        let daysAmountBackwards = new Date(year, month, date - parseInt(value));
+        if (value.length > 4 || daysAmountBackwards < startDate || daysAmountBackwards > endDate) {
+            value = value.substring(0, value.length - 1);
             errorInput();
+        }
+        if (value === "") {
+            setSelectedDays([]);
         }
         setDaysAmount(value);
     }
@@ -63,10 +67,7 @@ export function DaysAmountTab(props) {
             } else {
                 updateCalendar(daysAmount);
             }
-        } else {
-            setSelectedDays([])
         }
-        
     }, [daysAmount])
 
 

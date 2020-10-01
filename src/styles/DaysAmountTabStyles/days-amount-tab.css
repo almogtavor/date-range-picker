@@ -37,6 +37,7 @@
     border-width: 1px;
     border-color: rgb(244, 246, 248);
     background-color: rgb(244, 246, 248);
+    outline: 0;
   }
 
   .error-input {

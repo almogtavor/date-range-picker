@@ -4,6 +4,16 @@ import '../../styles/DayElementsStyles/selected-day.css';
 import { useLanguage, useEndDate, useStartDate, usePickMethod } from "../../context/InitialParametersContext";
 import HoverableDayElementContainer from "../../containers/DayElementsContainers/HoverableDayElementContainer";
 
+function getIsCurrentlyHovered(date, hoveredDay) {
+    if (hoveredDay) {
+        console.log(date.toLocaleDateString() === hoveredDay.toLocaleDateString());
+        return date.toLocaleDateString() === hoveredDay.toLocaleDateString();
+    } else {
+        return false;
+    }
+}
+
+
 export const SelectableDayElement = (props) => {
     const {
         date,
@@ -15,6 +25,7 @@ export const SelectableDayElement = (props) => {
         leftViewedYear,
         selectedColor,
         isOfCurrentViewedMonth,
+        hoveredDay,
         dayOfWeek,
         genericStyle,
         boardsNum,
@@ -163,12 +174,14 @@ export const SelectableDayElement = (props) => {
     if (isToday) {
         className += " today";
     }
+
+    // if ( hoveredDay) {
+        // if (isSelected || getIsCurrentlyHovered(date, hoveredDay)) {
     if (isSelected) {
         style = {...genericStyle, "background": selectedColor, "borderColor": selectedColor};
         className += " selected-day";
     }
         
-
     return (
         <div
             className={className}

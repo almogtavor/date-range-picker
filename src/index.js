@@ -22,7 +22,7 @@ ReactDOM.render(
             colorsPalette="enabled"
             format="DD-MM-YYYY"
             selectAllButton="enabled"
-            startDate={new Date(1990, 8, 21)} 
+            startDate={new Date(2000, 8, 21)} 
             endDate={new Date(2025, 9, 1)}
             firstDayOfWeekIndex={0}
             pickMethod="range"

@@ -1,6 +1,0 @@
-.calendar {
-    display: grid;
-    height: 70%;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(7, 1fr);
-}

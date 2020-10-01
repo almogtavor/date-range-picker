@@ -24,7 +24,7 @@ export const HoverableDayElement = (props) => {
     const endDate = useEndDate();
     const dayNum = date.getDate();
     const pickMethod = usePickMethod();
-    const [isCurrentDateHovered, setIsCurrentDateHovered] = useState(false);
+    const [isCurrentlyHovered, setIsCurrentlyHovered] = useState(false);
     const isDisabled = date < startDate || date > endDate;
     let isInRange = false;
 
@@ -32,14 +32,14 @@ export const HoverableDayElement = (props) => {
     const coloredStyle = {"background": selectedColor + "60"};
 
     const handleEnterHover = () => {
-        setIsCurrentDateHovered(true);
+        setIsCurrentlyHovered(true);
         if (!isDisabled && pickMethod !== "date") {
             setHoveredDay(date);
         }
     };
 
     const handleLeaveHover = () => {
-        setIsCurrentDateHovered(false);
+        setIsCurrentlyHovered(false);
         if (selectedDays.length === 2) {
             setHoveredDay(null);
         }
@@ -89,7 +89,7 @@ export const HoverableDayElement = (props) => {
         }
     }
 
-    let className = "hover-div";
+    let className = "hoverable-div";
     if (!isInRange && pickMethod !== "date") {
         className += " not-in-range";
         if (dayOfWeek === 0) {
@@ -110,7 +110,7 @@ export const HoverableDayElement = (props) => {
             ref={dateRef}
         >
             {hoveredDay && 
-            isCurrentDateHovered &&
+            isCurrentlyHovered &&
             hoveredDay.toLocaleDateString() === date.toLocaleDateString() &&
                 <Tooltip 
                     dateRef={dateRef.current} 
