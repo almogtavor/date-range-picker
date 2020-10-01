@@ -18,7 +18,7 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={store}>
         <DateRangePicker
-            language="English"
+            language="Hebrew"
             colorsPalette="enabled"
             format="DD-MM-YYYY"
             selectAllButton="enabled"

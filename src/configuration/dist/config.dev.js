@@ -18,6 +18,9 @@ var calendarConfig = {
 };
 exports.calendarConfig = calendarConfig;
 var daysAmountTabConfig = {
-  "defualtRangesTexts": ["Today", "Past week", "Past 3 months", "Past 6 months", "Past year", "Past 2 years"]
+  "defualtRangesTexts": {
+    "English": ["Today", "Past week", "Past 3 months", "Past 6 months", "Past year", "Past 2 years"],
+    "Hebrew": ["היום", "שבוע אחורה", "שלושה חודשים אחורה", "שישה חודשים אחורה", "שנה אחורה", "שנתיים אחורה"]
+  }
 };
 exports.daysAmountTabConfig = daysAmountTabConfig;

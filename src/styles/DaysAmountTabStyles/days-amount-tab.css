@@ -23,6 +23,7 @@
 
   .pickable-days-amount {
     margin-left: -10%;
+    width: 80%;
   }
 
   .pickable-days-amount:hover {
@@ -40,6 +41,7 @@
     outline: 0;
   }
 
+
   .error-input {
     border-width: 1px;
     border-color: red;
@@ -48,4 +50,9 @@
   .days-amount-field {
     margin-left: -10%;
     width: 80%;
+  }
+
+  
+  .days-amount-field:lang(Hebrew) {
+    direction: rtl;
   }

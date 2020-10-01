@@ -2,7 +2,7 @@ import React, { useEffect, useState, Profiler } from 'react';
 import '../../styles/DaysAmountTabStyles/days-amount-tab.css';
 import { daysAmountTabConfig } from '../../configuration/config';
 import { getDefaultRanges } from '../../utils/utils';
-import { useEndDate, useStartDate } from '../../context/InitialParametersContext';
+import { useEndDate, useStartDate, useLanguage } from '../../context/InitialParametersContext';
 
 export function DaysAmountTab(props) {
 
@@ -14,6 +14,11 @@ export function DaysAmountTab(props) {
     const style = {"backgroundColor": selectedColor + '60'};
     const errorClassName = " error-input";
     const defaultClassName = "days-amount-input";
+    const language = useLanguage();
+    let inputText = " Days Backwards";
+    if (language === "Hebrew") {
+        inputText = " ימים אחורה";
+    }
 
     const [inputClassName, setInputClassName] = useState(defaultClassName);
     const startDate = useStartDate();
@@ -86,13 +91,14 @@ export function DaysAmountTab(props) {
                         setSelectedDays={setSelectedDays}
                     />);
                 })}
-                <div className="days-amount-field">
+                <div className="days-amount-field"  lang={language}>
                     <input 
                         className={inputClassName}
                         onChange={e => handleChange(e)}
                         value={daysAmount}
+                       
                     />
-                    {" Days Backwards"}
+                    {inputText}
                 </div>
             </div>
         </div>
@@ -103,6 +109,7 @@ export function DaysAmountTab(props) {
 export default function DefaultRange(props) {
     const { range, index , setSelectedDays} = props;
     const className = "pickable-days-amount";
+    const language = useLanguage();
 
     const handleClick = (dates) => () => {
         setSelectedDays(dates);
@@ -113,7 +120,7 @@ export default function DefaultRange(props) {
             className={className}
             onClick={handleClick(range)}
         >
-            {daysAmountTabConfig.defualtRangesTexts[index]}
+            {daysAmountTabConfig.defualtRangesTexts[language][index]}
         </div>
     )
 }
