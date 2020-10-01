@@ -34,7 +34,14 @@
     width: 30%;
     border-width: 0px;
     border-radius: 20%;
+    border-width: 1px;
+    border-color: rgb(244, 246, 248);
     background-color: rgb(244, 246, 248);
+  }
+
+  .error-input {
+    border-width: 1px;
+    border-color: red;
   }
 
   .days-amount-field {

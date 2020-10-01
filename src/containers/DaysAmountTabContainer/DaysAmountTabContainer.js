@@ -4,6 +4,7 @@ import { setSelectedDays, setShowDaysAmountTab } from '../../actions';
 
 const mapStateToProps = (state) => ({
     selectedColor: state.lowerFooter.selectedColor,
+    selectedDays: state.dayElements.selectedDays,
 })
 
 const mapDispatchToProps = (dispatch) => {
