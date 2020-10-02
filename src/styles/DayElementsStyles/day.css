@@ -11,6 +11,15 @@
     border-radius: 7px;
 }
 
+.currently-hovered {
+    margin-top: -0.15em;
+    margin-bottom: -0.15em;
+    border-width: 0.15em;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    color: white;
+}
+
 .non-current {
     opacity: 0.4;
 }

@@ -1,18 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import '../../styles/DayElementsStyles/day.css';
 import '../../styles/DayElementsStyles/selected-day.css';
 import { useLanguage, useEndDate, useStartDate, usePickMethod } from "../../context/InitialParametersContext";
 import HoverableDayElementContainer from "../../containers/DayElementsContainers/HoverableDayElementContainer";
-
-function getIsCurrentlyHovered(date, hoveredDay) {
-    if (hoveredDay) {
-        console.log(date.toLocaleDateString() === hoveredDay.toLocaleDateString());
-        return date.toLocaleDateString() === hoveredDay.toLocaleDateString();
-    } else {
-        return false;
-    }
-}
-
 
 export const SelectableDayElement = (props) => {
     const {
@@ -25,7 +15,6 @@ export const SelectableDayElement = (props) => {
         leftViewedYear,
         selectedColor,
         isOfCurrentViewedMonth,
-        hoveredDay,
         dayOfWeek,
         genericStyle,
         boardsNum,
@@ -174,14 +163,41 @@ export const SelectableDayElement = (props) => {
     if (isToday) {
         className += " today";
     }
-
-    // if ( hoveredDay) {
-        // if (isSelected || getIsCurrentlyHovered(date, hoveredDay)) {
     if (isSelected) {
         style = {...genericStyle, "background": selectedColor, "borderColor": selectedColor};
         className += " selected-day";
     }
-        
+
+
+
+    // const [className, setClassName] = useState("day-element");
+    // const [style, setStyle] = useState(genericStyle)
+    // // let style = genericStyle;
+    // useEffect(() => {
+    //     if (!isOfCurrentViewedMonth) {
+    //         setClassName(className + " non-current");
+    //     }
+    //     if (isDisabled) {
+    //         setClassName(className + " disabled");
+    //     }
+    //     if (isToday) {
+    //         setClassName(className + " today");
+    //     }
+
+    //     console.log(hoveredDay);
+    //     if (hoveredDay) {
+    //         console.log(date.toLocaleDateString(), hoveredDay.toLocaleDateString());
+    //         if (isSelected || getIsCurrentlyHovered(date, hoveredDay)) {
+    //             // if (isSelected) {
+    //                 setStyle({...genericStyle, 
+    //                     "background": selectedColor, 
+    //                     "borderColor": selectedColor});
+    //                 setClassName(className + " selected-day");
+    //             // }
+    //         }
+    //     }
+    // }, [hoveredDay, isOfCurrentViewedMonth, isToday, isDisabled])
+
     return (
         <div
             className={className}

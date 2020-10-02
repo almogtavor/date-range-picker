@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { MonthDaysElements } from "../../components/DayElementsComponents/MonthDaysElements";
+import { DaysGrid } from "../../components/DayElementsComponents/DaysGrid";
 
 const mapStateToProps = (state, ownProps) => {
     return ({
@@ -8,4 +8,4 @@ const mapStateToProps = (state, ownProps) => {
         id: ownProps.id,
 })};
 
-export default connect(mapStateToProps)(MonthDaysElements);
+export default connect(mapStateToProps)(DaysGrid);

@@ -18,7 +18,7 @@ export default function Tooltip(props) {
         left = boundingClient.left;
         style = {
             "left": (left - (width / 4)) + "px",
-            "top": (top + 30) + "px"
+            "top": (top + 62) + "px"
         };
     }
 

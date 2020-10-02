@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SelectableDayElementContainer from "../../containers/DayElementsContainers/SelectableDayElementContainer";
 import { useLanguage } from "../../context/InitialParametersContext";
 
-export const MonthDaysElements = (props) => { 
+export const DaysGrid = (props) => { 
     const {
         viewedYear, 
         viewedMonth, 

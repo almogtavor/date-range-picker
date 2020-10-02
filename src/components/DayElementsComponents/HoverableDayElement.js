@@ -99,6 +99,10 @@ export const HoverableDayElement = (props) => {
         }
     } else {
         className += " in-range";
+        if (isCurrentlyHovered && selectedDays.length !== 2) {
+            className += " currently-hovered";
+            hoverStyle = {...coloredStyle, "borderColor": selectedColor + "10"};
+        }
     }
     
     return (
@@ -111,7 +115,6 @@ export const HoverableDayElement = (props) => {
         >
             {hoveredDay && 
             isCurrentlyHovered &&
-            hoveredDay.toLocaleDateString() === date.toLocaleDateString() &&
                 <Tooltip 
                     dateRef={dateRef.current} 
                     hoveredDay={date} 

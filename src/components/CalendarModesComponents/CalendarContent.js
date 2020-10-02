@@ -1,7 +1,7 @@
 import React from "react";
 import '../..//styles/calendar-component.css';
 
-import MonthDayElementsContainer from "../../containers/DayElementsContainers/MonthDayElementsContainer";
+import MonthDayElementsContainer from "../../containers/DayElementsContainers/DaysGridContainer";
 import YearSelectorContainer from "../../containers/CalendarModesContainers/YearSelectorContainer";
 import MonthSelectorContainer from "../../containers/CalendarModesContainers/MonthSelectorContainer";
 import { WeekDaysNames } from "./WeekDaysNames";
