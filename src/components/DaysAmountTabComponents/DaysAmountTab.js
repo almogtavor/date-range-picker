@@ -4,13 +4,14 @@ import { daysAmountTabConfig } from '../../configuration/config';
 import { getDefaultRanges } from '../../utils/utils';
 import { useEndDate, useStartDate, useLanguage } from '../../context/InitialParametersContext';
 
+
 export function DaysAmountTab(props) {
 
     const { 
         selectedColor,
         selectedDays, 
         setSelectedDays,
-        allViewedMonth,
+        boardsNum,
         setViewedMonth,
         setViewedYear
     } = props;
@@ -35,12 +36,7 @@ export function DaysAmountTab(props) {
     function updateCalendar(decresement) {
         let daysAmountBackwards = new Date(year, month, date - decresement);
         setSelectedDays([daysAmountBackwards, currentDate]);
-        let boardIDs
-        for (let i = 0; i < allViewedMonth.length; i++) {
-            if (allViewedMonth[i]) {
-
-            }
-        }
+        updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, daysAmountBackwards, currentDate)
     }
 
     const [daysAmount, setDaysAmount] = useState("");
@@ -93,10 +89,13 @@ export function DaysAmountTab(props) {
                 style={style}
             >
                 {defaultRanges.map((range, i) => {
-                    return (<DefaultRange 
+                    return (<DefaultRange
                         key={i}
                         range={range}
-                        index={i} 
+                        index={i}
+                        boardsNum={boardsNum}
+                        setViewedMonth={setViewedMonth}
+                        setViewedYear={setViewedYear}
                         setSelectedDays={setSelectedDays}
                     />);
                 })}
@@ -115,13 +114,35 @@ export function DaysAmountTab(props) {
     )
 }
 
+
+function updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, date1, date2) {
+    let boardIndexes = [0, 1];
+    if (language === "Hebrew") {
+        boardIndexes = [1, 0];
+    }
+    if (boardsNum === 2) {
+        let date1Round = new Date(date1.getFullYear(), date1.getMonth(), 1);
+        let date2Round = new Date(date2.getFullYear(), date2.getMonth(), 1);
+        console.log(date1Round, date2Round);
+        if (date1Round < date2Round) {
+            setViewedMonth(boardIndexes[0], date1.getMonth());
+            setViewedYear(boardIndexes[0], date1.getFullYear());
+            setViewedMonth(boardIndexes[1], date2.getMonth());
+            setViewedYear(boardIndexes[1], date2.getFullYear());
+        }
+
+    }
+}
+
+
 export default function DefaultRange(props) {
-    const { range, index , setSelectedDays} = props;
+    const { range, boardsNum, index, setSelectedDays, setViewedMonth, setViewedYear } = props;
     const className = "pickable-days-amount";
     const language = useLanguage();
 
     const handleClick = (dates) => () => {
         setSelectedDays(dates);
+        updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, dates[0], dates[1])
     }
 
     return (

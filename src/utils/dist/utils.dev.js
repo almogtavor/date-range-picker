@@ -91,8 +91,8 @@ function getDefaultRanges(year, month, date) {
   var pastWeek = new Date(year, month, date - 6);
   var past3Months = new Date(year, month - 3, date);
   var past6Months = new Date(year, month - 6, date);
-  var pastYear = new Date(year - 1, month, date);
-  var past2Years = new Date(year - 2, month, date);
+  var pastYear = new Date(year, month, date - 364);
+  var past2Years = new Date(year, month, date - 729);
   var defaultRanges = [[currentDate, currentDate], [pastWeek, currentDate], [past3Months, currentDate], [past6Months, currentDate], [pastYear, currentDate], [past2Years, currentDate]];
   return defaultRanges;
 }
