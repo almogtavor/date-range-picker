@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Profiler } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../styles/DaysAmountTabStyles/days-amount-tab.css';
 import { daysAmountTabConfig } from '../../configuration/config';
 import { getDefaultRanges } from '../../utils/utils';
@@ -9,7 +9,10 @@ export function DaysAmountTab(props) {
     const { 
         selectedColor,
         selectedDays, 
-        setSelectedDays
+        setSelectedDays,
+        allViewedMonth,
+        setViewedMonth,
+        setViewedYear
     } = props;
     const style = {"backgroundColor": selectedColor + '60'};
     const errorClassName = " error-input";
@@ -32,6 +35,12 @@ export function DaysAmountTab(props) {
     function updateCalendar(decresement) {
         let daysAmountBackwards = new Date(year, month, date - decresement);
         setSelectedDays([daysAmountBackwards, currentDate]);
+        let boardIDs
+        for (let i = 0; i < allViewedMonth.length; i++) {
+            if (allViewedMonth[i]) {
+
+            }
+        }
     }
 
     const [daysAmount, setDaysAmount] = useState("");
