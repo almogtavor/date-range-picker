@@ -107,6 +107,8 @@ export const SelectableDayElement = (props) => {
 
     const handleClick = () => {
         if (!isDisabled) {
+            isSelected = !isSelected;
+            nonCurrentDateClick();
             if (pickMethod === "range") {
                 if (selectedDays.length === 2 || selectedDays.length === 0) {
                     setSelectedDays([date]);
@@ -117,6 +119,7 @@ export const SelectableDayElement = (props) => {
                         setSelectedDays([selectedDays[0], date]);
                     }
                 }
+                rangeSelectionHandling();
             } else if (pickMethod === "date") {
                 setSelectedDays([date]);
             } else {
@@ -144,11 +147,6 @@ export const SelectableDayElement = (props) => {
                     setSelectedDays([date]);
                 }
             }
-            isSelected = !isSelected;
-            nonCurrentDateClick();
-            if (pickMethod === "range") {
-                rangeSelectionHandling(); 
-            }
         }
     };
 
@@ -167,36 +165,6 @@ export const SelectableDayElement = (props) => {
         style = {...genericStyle, "background": selectedColor, "borderColor": selectedColor};
         className += " selected-day";
     }
-
-
-
-    // const [className, setClassName] = useState("day-element");
-    // const [style, setStyle] = useState(genericStyle)
-    // // let style = genericStyle;
-    // useEffect(() => {
-    //     if (!isOfCurrentViewedMonth) {
-    //         setClassName(className + " non-current");
-    //     }
-    //     if (isDisabled) {
-    //         setClassName(className + " disabled");
-    //     }
-    //     if (isToday) {
-    //         setClassName(className + " today");
-    //     }
-
-    //     console.log(hoveredDay);
-    //     if (hoveredDay) {
-    //         console.log(date.toLocaleDateString(), hoveredDay.toLocaleDateString());
-    //         if (isSelected || getIsCurrentlyHovered(date, hoveredDay)) {
-    //             // if (isSelected) {
-    //                 setStyle({...genericStyle, 
-    //                     "background": selectedColor, 
-    //                     "borderColor": selectedColor});
-    //                 setClassName(className + " selected-day");
-    //             // }
-    //         }
-    //     }
-    // }, [hoveredDay, isOfCurrentViewedMonth, isToday, isDisabled])
 
     return (
         <div

@@ -18,7 +18,7 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={store}>
         <DateRangePicker
-            language="English"
+            language="Hebrew"
             colorsPalette="enabled"
             format="DD-MM-YYYY"
             selectAllButton="enabled"
@@ -27,7 +27,7 @@ ReactDOM.render(
             firstDayOfWeekIndex={0}
             pickMethod="range"
             defaultColor="#178905"
-            boardsNum={2}
+            boardsNum={1}
         />
     </Provider>,
     document.getElementById('root')
