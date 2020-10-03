@@ -12,7 +12,7 @@ export const ColorPickerPalette = (props) => {
         setSelectedColor,
         showColorPicker, 
         setShowColorPicker,
-        showPaletteById,
+        showPaletteAllowed,
     } = props;
 
     const language = useLanguage();
@@ -35,7 +35,7 @@ export const ColorPickerPalette = (props) => {
 
     return (
     <>
-        {showPaletteById && 
+        {showPaletteAllowed && 
             colorsPaletteEnabling !== "disabled" && 
             !showColorPicker && 
             (<div 

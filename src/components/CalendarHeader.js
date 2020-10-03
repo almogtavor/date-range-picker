@@ -29,7 +29,7 @@ export const CalendarHeader = (props) => {
         "backgroundColor": selectedColor + "60"
     };
 
-
+    // language not included in funciton call because of the css ltr property of hebrew case
     let choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod);
     if (pickMethod !== "date") {
         if (selectedDays.length === 2) {
@@ -40,6 +40,7 @@ export const CalendarHeader = (props) => {
             
         }
     }
+    console.log(choosenDates)
 
     const handleClearClick = () => {
         setSelectedDays([]);

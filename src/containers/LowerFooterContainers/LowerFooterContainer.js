@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => {
         selectedColor: state.lowerFooter.selectedColor,
         mode: state.calendarModes.mode[ownProps.id],
         selectedDays: state.dayElements.selectedDays,
-        boardsNum: state.boardsNum,
+        boardsNum: state.general.boardsNum,
 })};
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

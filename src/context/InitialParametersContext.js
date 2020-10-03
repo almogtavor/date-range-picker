@@ -93,6 +93,10 @@ export function InitialParametersProvider({children, props}) {
     if (boardsNum === 2 && valueState.pickMethod === "date") {
         throw Object.assign(new Error('"pickMethod" valued "date" prevents "boardsNum" bigger than 1.'), { code: 403 });
     }
+
+    if (boardsNum === 1 && (valueState.selectAllButton === "enabled" && valueState.colorsPalette === "enabled")) {
+        throw Object.assign(new Error('If "boardsNum" === 1, two lower footer properties are not allowed (selectAllButton, colorsPallete).'), { code: 403 });
+    }
     
     
     return (

@@ -1,6 +1,6 @@
 import React from "react";
 import '../../styles/LowerFooterStyles/lower-footer.css';
-import { useLanguage, useFormat, usePickMethod } from "../../context/InitialParametersContext";
+import { useLanguage, useFormat, usePickMethod, useSelectAllButton, useColorsPalette } from "../../context/InitialParametersContext";
 import { choosenDatesCalculation } from '../../utils/utils';
 import SelectAllButtonContainer from "../../containers/LowerFooterContainers/SelectAllButtonContainer";
 import ColorPickerPaletteContainer from "../../containers/LowerFooterContainers/ColorPickerPaletteContainer";
@@ -19,17 +19,22 @@ export const LowerFooter = (props) => {
     const language = useLanguage();
     const format = useFormat();
     const pickMethod = usePickMethod();
+    const selectAllButton = useSelectAllButton();
+    const colorPalette = useColorsPalette();
     const idIndexes = language === "Hebrew" ? [1, 0] : [0, 1];
-    const showPaletteById = id === idIndexes[0];
+    const showPaletteAllowed = id === idIndexes[0] || boardsNum === 1;
     const showPickButton = ((id === idIndexes[idIndexes.length - 1]) || boardsNum === 1);
     let lowerFooterStyle = {};
-    if (id === 1) {
+    if ((language === "Hebrew" && 
+        (!(showPickButton && selectAllButton === "disabled") ||
+        (colorPalette === "enabled" && boardsNum === 1))) || 
+        (id === 1 && selectAllButton === "disabled")) {
         lowerFooterStyle = {"flexDirection": "row-reverse"};
     }
 
     const handlePickClick = () => {
         setShowCalendar(false);
-        setChoosenDates(choosenDatesCalculation(selectedDays, null, format, pickMethod));
+        setChoosenDates(choosenDatesCalculation(selectedDays, null, format, pickMethod, language));
     }
 
     return (
@@ -39,7 +44,12 @@ export const LowerFooter = (props) => {
     >
         <ColorPickerPaletteContainer 
             id={id}
-            showPaletteById={showPaletteById}
+            showPaletteAllowed={showPaletteAllowed}
+        />
+
+        <SelectAllButtonContainer
+            id={id}
+            language={language}
         />
 
         {showPickButton && 
@@ -54,11 +64,6 @@ export const LowerFooter = (props) => {
                 {language === "Hebrew" ? "בחר" : "Pick"}
             </button>
         }
-
-        <SelectAllButtonContainer
-            id={id}
-            language={language}
-        />
     </div>
     );
 }

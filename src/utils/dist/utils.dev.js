@@ -9,19 +9,19 @@ exports.calculateDaysCount = calculateDaysCount;
 exports.selectorsModeStyle = selectorsModeStyle;
 exports.getDefaultRanges = getDefaultRanges;
 
-function choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod, daysCountEnable) {
+function choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod, language) {
   if (selectedDays.length) {
     if (selectedDays.length === 2) {
       if (selectedDays[0] > selectedDays[1]) {
-        return placeDateInFormat(selectedDays[1], format) + " - " + placeDateInFormat(selectedDays[0], format);
+        return getFormattedString(selectedDays[1], selectedDays[0], format, language);
       } else {
-        return placeDateInFormat(selectedDays[0], format) + " - " + placeDateInFormat(selectedDays[1], format);
+        return getFormattedString(selectedDays[0], selectedDays[1], format, language);
       }
     } else if (hoveredDay) {
       if (selectedDays[0] > hoveredDay) {
-        return placeDateInFormat(hoveredDay, format) + " - " + placeDateInFormat(selectedDays[0], format);
+        return getFormattedString(hoveredDay, selectedDays[0], format, language);
       } else {
-        return placeDateInFormat(selectedDays[0], format) + " - " + placeDateInFormat(hoveredDay, format);
+        return getFormattedString(selectedDays[0], hoveredDay, format, language);
       }
     } else {
       return placeDateInFormat(selectedDays[0], format);
@@ -33,6 +33,17 @@ function choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod, d
       return format + " - " + format;
     }
   }
+}
+
+function getFormattedString(date1, date2, format, language) {
+  console.log(language);
+
+  if (language === "Hebrew") {
+    console.log(placeDateInFormat(date2, format) + " - " + placeDateInFormat(date1, format));
+    return placeDateInFormat(date2, format) + " - " + placeDateInFormat(date1, format);
+  }
+
+  return placeDateInFormat(date1, format) + " - " + placeDateInFormat(date2, format);
 }
 
 function placeDateInFormat(date, format) {
