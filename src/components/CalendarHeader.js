@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import '../styles/calendar-header.css';
 import { choosenDatesCalculation, calculateDaysCount } from "../utils/utils";
 import { useFormat, useLanguage, usePickMethod } from "../context/InitialParametersContext";
@@ -15,7 +15,7 @@ export const CalendarHeader = (props) => {
     const language = useLanguage();
     const format = useFormat();
     const pickMethod = usePickMethod();
-    const datesDisplayClassName = "dates-display";
+    const [selectedDatesCount, setSelectedDatesCount] = useState("");
     const clearButtonClassName = "clear";
     const clearStyle = {"color": selectedColor};
     let clearButtonText = "Clear";
@@ -45,6 +45,12 @@ export const CalendarHeader = (props) => {
     const handleClearClick = () => {
         setSelectedDays([]);
     }
+    
+    useEffect(() => {
+        if (selectedDays.length === 2) {
+            setSelectedDatesCount(1);
+        }
+    }, [selectedDatesCount, selectedDays])
 
     return (
         <div 
@@ -60,9 +66,15 @@ export const CalendarHeader = (props) => {
                     lang={language}
                 >
                     <div 
-                        className={datesDisplayClassName} 
+                        className="dates-display" 
                         lang={language}
                     >
+                        { pickMethod === "ranges" && 
+                            <div className="selected-dates-count">
+                                {console.log(":aejfiefw")}
+                                {selectedDatesCount}
+                            </div> 
+                        }
                         { choosenDates }
                     </div>
                     <button 

@@ -10,15 +10,16 @@ export default function Tooltip(props) {
     const format = useFormat();
     const ref = useRef();
     const date = placeDateInFormat(hoveredDay, format);
-    let top, left, style = {"left": 200 + "%"};
+    let top, left, height, style = {"left": 200 + "%"};
     const [width, setWidth] = useState();
     if (dateRef && width) {
         let boundingClient = dateRef.getBoundingClientRect();
+        height = boundingClient.height;
         top = boundingClient.top;
         left = boundingClient.left;
         style = {
             "left": (left - (width / 4)) + "px",
-            "top": (top + 62) + "px"
+            "top": (top + 1.15 * height) + "px"
         };
     }
 

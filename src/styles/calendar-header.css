@@ -27,16 +27,28 @@
 }
 
 .dates-display {
+  display: flex;
   position: relative;
   margin-top: 0.175em;
   font-size: 0.9em;
   font-weight: 500;
-  /* width: 180px; */
-  width: 210px;
+  /* width: 210px; */
+  width: 80%;
 }
 
 .dates-display:lang(Hebrew) {
   direction: rtl;
+}
+
+.selected-dates-count {
+  background-color: orange;
+  display: flex;
+  justify-content: space-around;
+  padding-left: 4%;
+  padding-right: 4%;
+  border-radius: 50%;
+  margin-left: 2%;
+  margin-right: 2%;
 }
 
 .clear {
