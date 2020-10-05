@@ -40,13 +40,34 @@
   direction: rtl;
 }
 
-.selected-dates-count {
+.dates-display-portal {
   background-color: orange;
+  display: inline-flex;
+  /* position: relative; */
+  font-size: 0.9em;
+  font-weight: 500;
+  /* width: 210px; */
+  width: 50%;
+  /* height: 500%; */
+
+  z-index: 9999;
+}
+
+.dates-display-portal:lang(Hebrew) {
+  direction: rtl;
+}
+
+.selected-dates-count {
   display: flex;
   justify-content: space-around;
-  padding-left: 4%;
-  padding-right: 4%;
+  align-items: center;
+  color: white;
+  background-color: rgb(185, 131, 131);
   border-radius: 50%;
+  min-width: 22px;
+  min-height: 20px;
+  margin-top: -2px;
+  padding-bottom: 2px;
   margin-left: 2%;
   margin-right: 2%;
 }

@@ -109,7 +109,7 @@ export const SelectableDayElement = (props) => {
         if (!isDisabled) {
             isSelected = !isSelected;
             nonCurrentDateClick();
-            if (pickMethod === "range") {
+            if (pickMethod !== "date") {
                 if (selectedDays.length === 2 || selectedDays.length === 0) {
                     setSelectedDays([date]);
                 } else {
@@ -120,33 +120,33 @@ export const SelectableDayElement = (props) => {
                     }
                 }
                 rangeSelectionHandling();
-            } else if (pickMethod === "date") {
-                setSelectedDays([date]);
             } else {
-                let isInRange = false;
-                if (selectedDays) {
-                    for (let i = 0; i < selectedDays.length; i += 2) {
-                        let smallerDate, biggerDate;
-                        if (selectedDays[i] < selectedDays[i + 1]) {
-                            smallerDate = selectedDays[i];
-                            biggerDate = selectedDays[i + 1];
-                        } else {
-                            smallerDate = selectedDays[i + 1];
-                            biggerDate = selectedDays[i];
-                        }
-                        if (smallerDate <= date && date <= biggerDate) {
-                            isInRange = true;
-                        }
-                    }
-                    if (isInRange) {
-                        setSelectedDays([date]);
-                    } else {
-                        setSelectedDays([...selectedDays, date]);
-                    }
-                } else {
-                    setSelectedDays([date]);
-                }
-            }
+                setSelectedDays([date]);
+            } // else {
+            //     let isInRange = false;
+            //     if (selectedDays) {
+            //         for (let i = 0; i < selectedDays.length; i += 2) {
+            //             let smallerDate, biggerDate;
+            //             if (selectedDays[i] < selectedDays[i + 1]) {
+            //                 smallerDate = selectedDays[i];
+            //                 biggerDate = selectedDays[i + 1];
+            //             } else {
+            //                 smallerDate = selectedDays[i + 1];
+            //                 biggerDate = selectedDays[i];
+            //             }
+            //             if (smallerDate <= date && date <= biggerDate) {
+            //                 isInRange = true;
+            //             }
+            //         }
+            //         if (isInRange) {
+            //             setSelectedDays([date]);
+            //         } else {
+            //             setSelectedDays([...selectedDays, date]);
+            //         }
+            //     } else {
+            //         setSelectedDays([date]);
+            //     }
+            // }
         }
     };
 
