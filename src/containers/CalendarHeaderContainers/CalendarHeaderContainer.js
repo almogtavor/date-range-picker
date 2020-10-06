@@ -1,5 +1,5 @@
-import { setSelectedDays } from '../actions';
-import CalendarHeader from '../components/CalendarHeader';
+import { setSelectedDays } from '../../actions';
+import CalendarHeader from '../../components/CalendarHeaderComponents/CalendarHeader';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {

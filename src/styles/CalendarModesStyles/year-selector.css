@@ -16,7 +16,14 @@
     width: 7px;
     border-radius: 4px;
     background-color: rgb(228, 228, 228);
+  }
 
+  .year-selector::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(175, 175, 175);
+  }
+
+  .year-selector::-webkit-scrollbar-thumb:active {
+    background-color: rgb(134, 131, 131);
   }
    
   .year-selector::-webkit-scrollbar-thumb {

@@ -1,0 +1,43 @@
+.calendar-header-template {
+  background-color: rgb(244, 246, 248);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  height: 22px;
+  margin-top: -22px; 
+}
+
+.calendar-header-background {
+  height: 22px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  box-shadow: 3px 1px 5px 0px #ddd;
+}
+
+.calendar-header-elements-wrap {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+}
+
+.calendar-header-elements-wrap:lang(Hebrew) {
+  flex-direction: row-reverse;
+}
+
+.clear {
+  background-color: rgb(244, 246, 248);
+  border-style: hidden;
+  color: white;
+  border-radius: 15px;
+  height: 17px;
+  margin-top: 0.175em;
+  outline: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.clear:hover {
+    opacity: 0.8;
+}

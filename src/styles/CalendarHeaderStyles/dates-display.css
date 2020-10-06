@@ -1,0 +1,88 @@
+
+.dates-display {
+    display: flex;
+    position: relative;
+    margin-top: 0.175em;
+    font-size: 0.9em;
+    font-weight: 500;
+    /* width: 210px; */
+    width: 80%;
+  }
+  
+  .dates-display:lang(Hebrew) {
+    direction: rtl;
+  }
+  
+  .dates-display-portal {
+    margin-top: 0.175em;
+    background-color: rgb(244, 246, 248);
+    display: inline-flex;
+    font-size: 0.9em;
+    font-weight: 500;
+    width: 50%;
+    height: 450%;
+    border-radius: 12px;
+    z-index: 999;
+  }
+  
+  .choosen-date-item {
+    /* background-color: palevioletred; */
+    display: flex;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+  
+  .choosen-date-item {
+    /* background-color: green; */
+    /* width: 50%; */
+    direction: rtl;
+  
+    /* display: inline-flex; */
+    /* flex-direction: row; */
+  }
+  
+  .hoverable-choosen-dates {
+    height: 100%;
+    overflow-y: auto;
+    width: 100%;
+    direction: ltr;
+    border-radius: 12px;
+  }
+  
+  .hoverable-choosen-dates::-webkit-scrollbar {
+    width: 7px;
+    border-radius: 4px;
+    background-color: rgb(228, 228, 228);
+  }
+  
+  .hoverable-choosen-dates::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(175, 175, 175);
+  }
+  
+  .hoverable-choosen-dates::-webkit-scrollbar-thumb:active {
+    background-color: rgb(134, 131, 131);
+  }
+   
+  .hoverable-choosen-dates::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgb(190, 187, 187);
+  }
+  
+  .dates-display-portal:lang(Hebrew) {
+    direction: rtl;
+  }
+  
+  .selected-dates-count {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    background-color: rgb(185, 131, 131);
+    border-radius: 50%;
+    min-width: 22px;
+    min-height: 20px;
+    margin-top: -2px;
+    padding-bottom: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+  }
