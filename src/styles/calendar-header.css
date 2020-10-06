@@ -53,6 +53,11 @@
   z-index: 9999;
 }
 
+.choosen-dates {
+  display: flex;
+  flex-direction: row;
+}
+
 .dates-display-portal:lang(Hebrew) {
   direction: rtl;
 }

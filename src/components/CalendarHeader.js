@@ -17,6 +17,7 @@ export const CalendarHeader = (props) => {
     const pickMethod = usePickMethod();
     const [selectedDatesCount, setSelectedDatesCount] = useState(0);
     const [storedDates, setStoredDates] = useState([]);
+    const [choosenDatesList, setChoosenDatesList] = useState([])
     const updated = useRef(false);
     const clearButtonClassName = "clear";
     const clearStyle = {"color": selectedColor};
@@ -59,12 +60,13 @@ export const CalendarHeader = (props) => {
     useEffect(() => {
         if (selectedDays.length === 2 && updated.current === false) {
             setStoredDates([...storedDates, selectedDays]);
+            setChoosenDatesList([...choosenDatesList, choosenDates]);
             setSelectedDatesCount(selectedDatesCount + 1);
             updated.current = true;
         } else {
             updated.current = false;
         }
-    }, [selectedDatesCount, selectedDays, storedDates])
+    }, [selectedDatesCount, selectedDays, storedDates, choosenDatesList])
 
     const style = isCurrentlyHovered ? "dates-display-portal" : "dates-display";
     return (
@@ -91,9 +93,10 @@ export const CalendarHeader = (props) => {
                                 className="selected-dates-count"
                             >
                                 {selectedDatesCount}
-                            </div> 
+                            </div>
                         }
-                        { choosenDates }
+                        {/* { choosenDates } */}
+                        {choosenDatesList.map((x) => { return <div key={Math.random()} className="choosen-dates">{x}</div>})}
                     </div>
 
                     <button 
