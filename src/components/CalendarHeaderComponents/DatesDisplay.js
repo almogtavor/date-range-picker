@@ -10,7 +10,6 @@ export function DatesDisplay(props) {
     } = props;
 
     const [isCurrentlyHovered, setIsCurrentlyHovered] = useState(false);
-    const [selectedDatesCount, setSelectedDatesCount] = useState(0);
     const [storedDates, setStoredDates] = useState([]);
     const [choosenDatesList, setChoosenDatesList] = useState([])
     const updated = useRef(false);
@@ -27,7 +26,6 @@ export function DatesDisplay(props) {
         if (selectedDays.length === 2 && updated.current === false) {
             setStoredDates([selectedDays, ...storedDates]);
             setChoosenDatesList([choosenDates, ...choosenDatesList]);
-            setSelectedDatesCount(selectedDatesCount + 1);
             updated.current = true;
         } else {
             updated.current = false;
@@ -37,7 +35,7 @@ export function DatesDisplay(props) {
             //     setSelectedDatesCount(selectedDatesCount + 1);
             // }
         }
-    }, [selectedDatesCount, selectedDays, storedDates, choosenDatesList])
+    }, [selectedDays, storedDates, choosenDatesList])
 
 
     return (
@@ -56,13 +54,13 @@ export function DatesDisplay(props) {
                 <div 
                     className="hoverable-choosen-dates"
                     style={ selectedDaysStyle }
-                >{choosenDatesList.map((x) => {
+                >{choosenDatesList.map((x, i) => {
 
                     return <div className="choosen-date-item">
                         <div 
                             className="selected-dates-count"
                         >
-                            {selectedDatesCount}
+                            {i + 1}
                         </div>
                         <div 
                             key={Math.random()} 

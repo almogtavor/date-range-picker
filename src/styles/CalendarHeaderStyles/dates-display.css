@@ -32,14 +32,10 @@
     margin-bottom: 2%;
   }
   
-  .choosen-date-item {
-    /* background-color: green; */
-    /* width: 50%; */
+  .choosen-date-item:lang(Hebrew) {
     direction: rtl;
-  
-    /* display: inline-flex; */
-    /* flex-direction: row; */
   }
+
   
   .hoverable-choosen-dates {
     height: 100%;
