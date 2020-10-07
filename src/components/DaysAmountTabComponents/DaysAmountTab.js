@@ -131,12 +131,15 @@ function updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, 
             setViewedYear(boardIndexes[0], date1.getFullYear());
             setViewedMonth(boardIndexes[1], date2.getMonth());
             setViewedYear(boardIndexes[1], date2.getFullYear());
+        } else {
+            setViewedMonth(boardIndexes[0], date1.getMonth());
+            setViewedYear(boardIndexes[0], date1.getFullYear());
         }
     }
 }
 
 
-export default function DefaultRange(props) {
+export function DefaultRange(props) {
     const { range, boardsNum, index, setSelectedDays, setViewedMonth, setViewedYear } = props;
     const className = "pickable-days-amount";
     const language = useLanguage();

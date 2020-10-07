@@ -44,7 +44,7 @@ export const SelectableDayElement = (props) => {
 
     const nonCurrentDateClick = () => {
         let isNonCurrentCase;
-        if ((pickMethod === "range" && selectedDays.length !== 1) || pickMethod === "date") {
+        if ((pickMethod !== "date" && selectedDays.length !== 1) || pickMethod === "date") {
             isNonCurrentCase = true;
         }
         if (!isOfCurrentViewedMonth && isNonCurrentCase) {
