@@ -2,11 +2,11 @@
 .dates-display {
     display: flex;
     position: relative;
-    margin-top: 0.175em;
+    margin-top: 0.15em;
     font-size: 0.9em;
     font-weight: 500;
     /* width: 210px; */
-    width: 80%;
+    width: 50%;
   }
   
   .dates-display:lang(Hebrew) {
@@ -14,7 +14,7 @@
   }
   
   .dates-display-portal {
-    /* margin-top: 0.175em; */
+    margin-top: 0.15em;
     background-color: rgb(244, 246, 248);
     display: inline-flex;
     font-size: 0.9em;
@@ -24,19 +24,7 @@
     border-radius: 12px;
     z-index: 999;
   }
-  
-  .choosen-date-item {
-    /* background-color: palevioletred; */
-    display: flex;
-    margin-top: 2%;
-    margin-bottom: 2%;
-  }
-  
-  .choosen-date-item:lang(Hebrew) {
-    direction: rtl;
-  }
-
-  
+    
   .hoverable-choosen-dates {
     height: 100%;
     overflow-y: auto;
@@ -66,19 +54,4 @@
   
   .dates-display-portal:lang(Hebrew) {
     direction: rtl;
-  }
-  
-  .selected-dates-count {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    color: white;
-    background-color: rgb(185, 131, 131);
-    border-radius: 50%;
-    min-width: 22px;
-    min-height: 20px;
-    margin-top: -2px;
-    padding-bottom: 2px;
-    margin-left: 2px;
-    margin-right: 2px;
   }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useLanguage, usePickMethod } from "../../context/InitialParametersContext";
 import '../../styles/CalendarHeaderStyles/dates-display.css';
+import { ChoosenDatesItem } from "./ChoosenDatesItem";
 
 export function DatesDisplay(props) {
     const {
@@ -48,33 +49,30 @@ export function DatesDisplay(props) {
             { pickMethod !== "ranges" && choosenDates}
             { pickMethod === "ranges" &&
                 !isCurrentlyHovered && 
-                    (choosenDatesList.length === 0 ? choosenDates : choosenDateItem(choosenDatesList[0], 0))}
+                    (choosenDatesList.length === 0 ? 
+                        <ChoosenDatesItem 
+                            choosenDates={choosenDates}
+                            count={-1}
+                        /> : 
+                        <ChoosenDatesItem 
+                            choosenDates={choosenDatesList[0]}
+                            count={choosenDatesList.length - 1}
+                        />
+                    )}
             { pickMethod === "ranges" && isCurrentlyHovered && 
                 <div 
                     className="hoverable-choosen-dates"
                     style={ selectedDaysStyle }
-                >{choosenDatesList.map((x, i) => {
-                        return choosenDateItem(x, i)
-                    })
-                }
+                >
+                    {choosenDatesList.map((listItem, i) => {
+                        return <ChoosenDatesItem 
+                                key={Math.random()}
+                                choosenDates={listItem}
+                                count={i}
+                            />
+                    })}
                 </div>
             }
         </div>
     )
 }
-function choosenDateItem(x, i) {
-    return <div className="choosen-date-item">
-        <div
-            className="selected-dates-count"
-        >
-            {i + 1}
-        </div>
-        <div
-            key={Math.random()}
-            className="choosen-date"
-        >
-            {x}
-        </div>
-    </div>;
-}
-
