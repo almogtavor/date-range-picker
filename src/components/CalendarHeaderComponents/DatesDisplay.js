@@ -1,18 +1,22 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useLanguage, usePickMethod } from "../../context/InitialParametersContext";
 import '../../styles/CalendarHeaderStyles/dates-display.css';
-import { ChoosenDatesItem } from "./ChoosenDatesItem";
+import ChoosenDatesItemContainer from "../../containers/CalendarHeaderContainers/ChoosenDatesItemContainer";
+import { removeItemFromArray } from "../../utils/utils";
 
-export function DatesDisplay(props) {
+export default function DatesDisplay(props) {
     const {
         selectedDays,
         choosenDates,
+        choosenDatesList,
+        storedDates,
+        setStoredDates,
+        setChoosenDatesList,
+        selectedColor,
         selectedDaysStyle,
     } = props;
 
     const [isCurrentlyHovered, setIsCurrentlyHovered] = useState(false);
-    const [storedDates, setStoredDates] = useState([]);
-    const [choosenDatesList, setChoosenDatesList] = useState([])
     const updated = useRef(false);
     const language = useLanguage();
     const pickMethod = usePickMethod();
@@ -25,19 +29,23 @@ export function DatesDisplay(props) {
     
     useEffect(() => {
         if (selectedDays.length === 2 && updated.current === false) {
-            setStoredDates([selectedDays, ...storedDates]);
-            setChoosenDatesList([choosenDates, ...choosenDatesList]);
+            let isAlreadyInArray = false;
+            console.log(choosenDatesList);
+            let clearedChoosenDatesList = removeItemFromArray(choosenDatesList, choosenDates);
+            console.log(choosenDates, ...clearedChoosenDatesList)
+
+            let clearedStoredDates = removeItemFromArray(storedDates, selectedDays);
+            setStoredDates([selectedDays, ...clearedStoredDates]);
+            setChoosenDatesList([choosenDates, ...clearedChoosenDatesList]);
             updated.current = true;
         } else {
-            updated.current = false;
-            // if (selectedDays.length === 0) {
-            //     setStoredDates([selectedDays, ...storedDates]);
-            //     setChoosenDatesList([...choosenDatesList].);
-            //     setSelectedDatesCount(selectedDatesCount + 1);
-            // }
+            if (selectedDays.length !== 2) {
+                updated.current = false;
+            }
         }
-    }, [selectedDays, storedDates, choosenDatesList])
-
+    }, [selectedDays, storedDates, choosenDatesList, choosenDates, setChoosenDatesList, setStoredDates])
+    
+    console.log(choosenDatesList.length);
 
     return (
         <div 
@@ -50,13 +58,15 @@ export function DatesDisplay(props) {
             { pickMethod === "ranges" &&
                 !isCurrentlyHovered && 
                     (choosenDatesList.length === 0 ? 
-                        <ChoosenDatesItem 
+                        <ChoosenDatesItemContainer 
                             choosenDates={choosenDates}
                             count={-1}
+                            isDatesDisplayHovered={isCurrentlyHovered}
                         /> : 
-                        <ChoosenDatesItem 
+                        <ChoosenDatesItemContainer 
                             choosenDates={choosenDatesList[0]}
                             count={choosenDatesList.length - 1}
+                            isDatesDisplayHovered={isCurrentlyHovered}
                         />
                     )}
             { pickMethod === "ranges" && isCurrentlyHovered && 
@@ -65,11 +75,12 @@ export function DatesDisplay(props) {
                     style={ selectedDaysStyle }
                 >
                     {choosenDatesList.map((listItem, i) => {
-                        return <ChoosenDatesItem 
-                                key={Math.random()}
+                        return <ChoosenDatesItemContainer
+                                key={listItem + i}
                                 choosenDates={listItem}
                                 count={i}
-                            />
+                                isDatesDisplayHovered={isCurrentlyHovered}
+                        />
                     })}
                 </div>
             }

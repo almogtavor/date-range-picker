@@ -8,6 +8,7 @@ exports.placeDateInFormat = placeDateInFormat;
 exports.calculateDaysCount = calculateDaysCount;
 exports.selectorsModeStyle = selectorsModeStyle;
 exports.getDefaultRanges = getDefaultRanges;
+exports.removeItemFromArray = removeItemFromArray;
 
 function choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod, language) {
   if (selectedDays.length) {
@@ -36,8 +37,6 @@ function choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod, l
 }
 
 function getFormattedString(date1, date2, format, language) {
-  console.log(language);
-
   if (language === "Hebrew") {
     console.log(placeDateInFormat(date2, format) + " - " + placeDateInFormat(date1, format));
     return placeDateInFormat(date2, format) + " - " + placeDateInFormat(date1, format);
@@ -100,10 +99,20 @@ function selectorsModeStyle(object, viewedObject, isObjectSelected, color) {
 function getDefaultRanges(year, month, date) {
   var currentDate = new Date(year, month, date);
   var pastWeek = new Date(year, month, date - 6);
+  var pastMonth = new Date(year, month - 1, date);
   var past3Months = new Date(year, month - 3, date);
   var past6Months = new Date(year, month - 6, date);
   var pastYear = new Date(year, month, date - 364);
-  var past2Years = new Date(year, month, date - 729);
-  var defaultRanges = [[currentDate, currentDate], [pastWeek, currentDate], [past3Months, currentDate], [past6Months, currentDate], [pastYear, currentDate], [past2Years, currentDate]];
+  var defaultRanges = [[currentDate, currentDate], [pastWeek, currentDate], [pastMonth, currentDate], [past3Months, currentDate], [past6Months, currentDate], [pastYear, currentDate]];
   return defaultRanges;
+}
+
+function removeItemFromArray(arr, value) {
+  var index = arr.indexOf(value);
+
+  if (index > -1) {
+    arr.splice(index, 1);
+  }
+
+  return arr;
 }

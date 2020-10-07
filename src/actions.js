@@ -123,3 +123,13 @@ export const setShowDaysAmountTab = showDaysAmountTab => ({
     type: 'SET_SHOW_DAYS_AMOUNT_TAB',
     showDaysAmountTab
 })
+
+export const setChoosenDatesList = choosenDatesList => ({
+    type: 'SET_CHOOSEN_DATES_LIST',
+    choosenDatesList
+})
+
+export const setStoredDates = storedDates => ({
+    type: 'SET_STORED_DATES',
+    storedDates
+})

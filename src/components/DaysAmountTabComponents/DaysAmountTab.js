@@ -134,6 +134,13 @@ function updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, 
         } else {
             setViewedMonth(boardIndexes[0], date1.getMonth());
             setViewedYear(boardIndexes[0], date1.getFullYear());
+            if (date1.getMonth() + 1 === 12) {
+                setViewedMonth(boardIndexes[1], 0);
+                setViewedYear(boardIndexes[1], date1.getFullYear() + 1);  
+            } else {
+                setViewedMonth(boardIndexes[1], date1.getMonth() + 1);
+                setViewedYear(boardIndexes[1], date1.getFullYear());
+            }
         }
     }
 }

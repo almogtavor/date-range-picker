@@ -2,13 +2,13 @@
   .choosen-dates-count {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    /* align-items: center; */
     color: white;
     background-color: rgb(185, 131, 131);
     border-radius: 50%;
     min-width: 18px;
     height: 18px;
-    padding-bottom: 0px;
+    padding-bottom: 1px;
     margin-left: 3px;
     margin-right: 3px;
   }
@@ -26,6 +26,12 @@
     display: flex;
     flex-direction: row;
     justify-items: flex-start;
+  }
+
+  .choosen-dates-wrap:hover {
+    border-radius: 12px;
+    padding-left: 1%;
+    padding-right: 1%;
   }
   
   .choosen-dates-item:lang(Hebrew) {
@@ -46,4 +52,8 @@
     opacity: 0.4;
     margin-left: 5%;
     position: static;
+  }
+
+  .x-icon:hover {
+    opacity: 0.8;
   }

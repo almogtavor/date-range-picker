@@ -25,7 +25,6 @@ export function choosenDatesCalculation(selectedDays, hoveredDay, format, pickMe
 }
 
 function getFormattedString(date1, date2, format, language) {
-    console.log(language);
     if (language === "Hebrew") {
         console.log(placeDateInFormat(date2, format) +
         " - " + placeDateInFormat(date1, format));
@@ -96,3 +95,11 @@ export function getDefaultRanges(year, month, date) {
     return defaultRanges;
 }
  
+
+export function removeItemFromArray(arr, value) {
+    let index = arr.indexOf(value);
+    if (index > -1) {
+      arr.splice(index, 1);
+    }
+    return arr;
+}

@@ -1,8 +1,8 @@
 import React from "react";
 import '../../styles/CalendarHeaderStyles/calendar-header.css';
-import { choosenDatesCalculation, calculateDaysCount } from "../../utils/utils";
+import { choosenDatesCalculation, calculateDaysCount, removeItemFromArray } from "../../utils/utils";
 import { useFormat, useLanguage, usePickMethod } from "../../context/InitialParametersContext";
-import { DatesDisplay } from "./DatesDisplay";
+import DatesDisplayContainer from "../../containers/CalendarHeaderContainers/DatesDisplayContainer";
 
 export const CalendarHeader = (props) => {
     const {
@@ -11,6 +11,8 @@ export const CalendarHeader = (props) => {
         hoveredDay, 
         selectedColor,
         boardsNum,
+        choosenDatesList,
+        setChoosenDatesList,
     } = props;
 
     const language = useLanguage();
@@ -39,9 +41,13 @@ export const CalendarHeader = (props) => {
             
         }
     }
-
+ 
     const handleClearClick = () => {
         setSelectedDays([]);
+        if (pickMethod === "ranges") {
+            let newArray = removeItemFromArray(choosenDatesList, choosenDates);
+            setChoosenDatesList(newArray);
+        }
     }
     
     return (
@@ -57,8 +63,7 @@ export const CalendarHeader = (props) => {
                     className="calendar-header-elements-wrap"
                     lang={language}
                 >
-                    <DatesDisplay
-                        selectedDays={selectedDays}
+                    <DatesDisplayContainer
                         choosenDates={choosenDates}
                         selectedDaysStyle={selectedDaysStyle}
                     />
