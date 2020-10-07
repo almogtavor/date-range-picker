@@ -14,7 +14,7 @@
   }
   
   .dates-display-portal {
-    margin-top: 0.175em;
+    /* margin-top: 0.175em; */
     background-color: rgb(244, 246, 248);
     display: inline-flex;
     font-size: 0.9em;

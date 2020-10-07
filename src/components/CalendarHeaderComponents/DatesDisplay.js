@@ -46,28 +46,15 @@ export function DatesDisplay(props) {
             lang={language}
         >
             { pickMethod !== "ranges" && choosenDates}
-            {/* { choosenDates} */}
-            {/* { pickMethod !== "ranges" ? choosenDates : 
+            { pickMethod === "ranges" &&
                 !isCurrentlyHovered && 
-                    (choosenDatesList.length === 0 ? choosenDates : choosenDatesList[0])} */}
+                    (choosenDatesList.length === 0 ? choosenDates : choosenDateItem(choosenDatesList[0], 0))}
             { pickMethod === "ranges" && isCurrentlyHovered && 
                 <div 
                     className="hoverable-choosen-dates"
                     style={ selectedDaysStyle }
                 >{choosenDatesList.map((x, i) => {
-
-                    return <div className="choosen-date-item">
-                        <div 
-                            className="selected-dates-count"
-                        >
-                            {i + 1}
-                        </div>
-                        <div 
-                            key={Math.random()} 
-                            className="choosen-date">
-                                {x}
-                        </div>
-                    </div>
+                        return choosenDateItem(x, i)
                     })
                 }
                 </div>
@@ -75,3 +62,19 @@ export function DatesDisplay(props) {
         </div>
     )
 }
+function choosenDateItem(x, i) {
+    return <div className="choosen-date-item">
+        <div
+            className="selected-dates-count"
+        >
+            {i + 1}
+        </div>
+        <div
+            key={Math.random()}
+            className="choosen-date"
+        >
+            {x}
+        </div>
+    </div>;
+}
+
