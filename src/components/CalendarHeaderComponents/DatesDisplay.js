@@ -29,11 +29,7 @@ export default function DatesDisplay(props) {
     
     useEffect(() => {
         if (selectedDays.length === 2 && updated.current === false) {
-            let isAlreadyInArray = false;
-            console.log(choosenDatesList);
             let clearedChoosenDatesList = removeItemFromArray(choosenDatesList, choosenDates);
-            console.log(choosenDates, ...clearedChoosenDatesList)
-
             let clearedStoredDates = removeItemFromArray(storedDates, selectedDays);
             setStoredDates([selectedDays, ...clearedStoredDates]);
             setChoosenDatesList([choosenDates, ...clearedChoosenDatesList]);

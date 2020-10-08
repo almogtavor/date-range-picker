@@ -41,7 +41,11 @@ export default function ChoosenDatesItem(props) {
     const handleXClick = () => {
         let newArray = removeItemFromArray(choosenDatesList, choosenDates);
         setChoosenDatesList(newArray);
-        setSelectedDays([])
+        if (storedDates.length < 1) {
+            setSelectedDays([]);
+        } else {
+            setSelectedDays(storedDates[0]);
+        }
     }
 
     const handleDatesClick = () => {

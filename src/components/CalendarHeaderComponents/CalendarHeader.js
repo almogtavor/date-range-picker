@@ -11,8 +11,10 @@ export const CalendarHeader = (props) => {
         hoveredDay, 
         selectedColor,
         boardsNum,
+        storedDates,
         choosenDatesList,
         setChoosenDatesList,
+        setStoredDates,
     } = props;
 
     const language = useLanguage();
@@ -43,10 +45,18 @@ export const CalendarHeader = (props) => {
     }
  
     const handleClearClick = () => {
-        setSelectedDays([]);
         if (pickMethod === "ranges") {
-            let newArray = removeItemFromArray(choosenDatesList, choosenDates);
-            setChoosenDatesList(newArray);
+            let clearedChoosenDatesList = removeItemFromArray(choosenDatesList, choosenDates);
+            let clearedStoredDates = removeItemFromArray(storedDates, selectedDays);
+            setChoosenDatesList(clearedChoosenDatesList);
+            setStoredDates(clearedStoredDates);
+            if (storedDates.length < 1) {
+                setSelectedDays([]);
+            } else {
+                setSelectedDays(storedDates[0]);
+            }
+        } else {
+            setSelectedDays([]);
         }
     }
     
