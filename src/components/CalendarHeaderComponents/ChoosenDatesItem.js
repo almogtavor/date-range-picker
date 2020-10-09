@@ -7,7 +7,7 @@ const xIcon = require('../../images/x-icon.png');
 export default function ChoosenDatesItem(props) {
     const { 
         choosenDates,
-        count,
+        index,
         isDatesDisplayHovered,
         choosenDatesList,
         selectedColor,
@@ -17,7 +17,7 @@ export default function ChoosenDatesItem(props) {
         setSelectedDays,
     } = props;
 
-    let initialState = isDatesDisplayHovered && count === 0;
+    let initialState = isDatesDisplayHovered && index === 0;
     const [isCurrentlyHovered, setIsCurrentlyHovered] = useState(initialState);
     const [isWrapCurrentlyHovered, setIsWrapCurrentlyHovered] = useState(initialState);
 
@@ -40,24 +40,24 @@ export default function ChoosenDatesItem(props) {
 
     const handleXClick = () => {
         let clearedChoosenDatesList = removeItemFromArray(choosenDatesList, choosenDates);
-        setChoosenDatesList(clearedChoosenDatesList);
-        let clearedStoredDates = removeItemFromArray(storedDates, storedDates[count]);
-        setStoredDates(clearedStoredDates);
-        if (storedDates.length === 1) {
+        let clearedStoredDates = removeItemFromArray(storedDates, storedDates[index]);
+        if (clearedStoredDates.length < 1) {
             setSelectedDays([]);
         } else {
-            setSelectedDays(storedDates[0]);
+            setSelectedDays(clearedStoredDates[0]);
         }
+        setChoosenDatesList(clearedChoosenDatesList);
+        setStoredDates(clearedStoredDates);
     }
 
     const handleDatesClick = () => {
-        let selectedDays = storedDates[count];
+        let selectedDays = storedDates[index];
         console.log(choosenDates);
         let clearedChoosenDatesList = removeItemFromArray(choosenDatesList, choosenDates);
         let clearedStoredDates = removeItemFromArray(storedDates, selectedDays);
+        setSelectedDays(selectedDays);
         setStoredDates([selectedDays, ...clearedStoredDates]);
         setChoosenDatesList([choosenDates, ...clearedChoosenDatesList]);
-        // setSelectedDays(selectedDays);
     }
 
     return <div 
@@ -75,10 +75,10 @@ export default function ChoosenDatesItem(props) {
             <div
                 className="choosen-dates-count"
             >
-                {count + 1}
+                {index + 1}
             </div>
             <div
-                key={choosenDates + count}
+                key={choosenDates + index}
                 className="choosen-dates"
             >
                 {choosenDates}

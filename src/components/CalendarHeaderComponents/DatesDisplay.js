@@ -35,9 +35,7 @@ export default function DatesDisplay(props) {
             setChoosenDatesList([choosenDates, ...clearedChoosenDatesList]);
             updated.current = true;
         } else {
-            if (selectedDays.length !== 2) {
-                updated.current = false;
-            }
+            updated.current = false;
         }
     }, [selectedDays, storedDates, choosenDatesList, choosenDates, setChoosenDatesList, setStoredDates])
     
@@ -56,12 +54,12 @@ export default function DatesDisplay(props) {
                     (choosenDatesList.length === 0 ? 
                         <ChoosenDatesItemContainer 
                             choosenDates={choosenDates}
-                            count={-1}
+                            index={-1}
                             isDatesDisplayHovered={isCurrentlyHovered}
                         /> : 
                         <ChoosenDatesItemContainer 
                             choosenDates={choosenDatesList[0]}
-                            count={choosenDatesList.length - 1}
+                            index={choosenDatesList.length - 1}
                             isDatesDisplayHovered={isCurrentlyHovered}
                         />
                     )}
@@ -74,7 +72,7 @@ export default function DatesDisplay(props) {
                         return <ChoosenDatesItemContainer
                                 key={listItem + i}
                                 choosenDates={listItem}
-                                count={i}
+                                index={i}
                                 isDatesDisplayHovered={isCurrentlyHovered}
                         />
                     })}
