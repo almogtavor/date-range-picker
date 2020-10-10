@@ -11,6 +11,7 @@ export default function ChoosenDatesItem(props) {
         isDatesDisplayHovered,
         choosenDatesList,
         selectedColor,
+        setSelectedColor,
         storedDates,
         setStoredDates,
         setChoosenDatesList,
@@ -46,8 +47,8 @@ export default function ChoosenDatesItem(props) {
         } else {
             setSelectedDays(clearedStoredDates[0]);
         }
-        setChoosenDatesList(clearedChoosenDatesList);
-        setStoredDates(clearedStoredDates);
+        setChoosenDatesList([...clearedChoosenDatesList]);
+        setStoredDates([...clearedStoredDates]);
     }
 
     const handleDatesClick = () => {

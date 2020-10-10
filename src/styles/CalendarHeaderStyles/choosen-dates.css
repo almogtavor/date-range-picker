@@ -45,6 +45,22 @@
     overflow: hidden;
   }
 
+  @keyframes swing-in-top-fwd {
+    0% {
+      -webkit-transform: rotateX(-100deg);
+              transform: rotateX(-100deg);
+      -webkit-transform-origin: top;
+              transform-origin: top;
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: rotateX(0deg);
+              transform: rotateX(0deg);
+      -webkit-transform-origin: top;
+              transform-origin: top;
+    }
+  }
+  
   .x-icon {
     margin-top: 3px;
     height: 14px;
@@ -53,6 +69,7 @@
     opacity: 0.4;
     margin-left: 5%;
     position: static;
+    animation: swing-in-top-fwd 1s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
   }
 
   .x-icon:hover {

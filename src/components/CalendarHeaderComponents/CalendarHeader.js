@@ -48,8 +48,8 @@ export const CalendarHeader = (props) => {
         if (pickMethod === "ranges") {
             let clearedChoosenDatesList = removeItemFromArray(choosenDatesList, choosenDates);
             let clearedStoredDates = removeItemFromArray(storedDates, selectedDays);
-            setChoosenDatesList(clearedChoosenDatesList);
-            setStoredDates(clearedStoredDates);
+            setChoosenDatesList([...clearedChoosenDatesList]);
+            setStoredDates([...clearedStoredDates]);
             if (storedDates.length < 1) {
                 setSelectedDays([]);
             } else {

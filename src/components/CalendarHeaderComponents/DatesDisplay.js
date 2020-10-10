@@ -17,7 +17,7 @@ export default function DatesDisplay(props) {
     } = props;
 
     const [isCurrentlyHovered, setIsCurrentlyHovered] = useState(false);
-    const updated = useRef(false);
+    const prevSelectedDays = useRef([]);
     const language = useLanguage();
     const pickMethod = usePickMethod();
     
@@ -28,14 +28,12 @@ export default function DatesDisplay(props) {
     const templateDateDisplayClassName = isCurrentlyHovered ? "dates-display-portal-template" : "dates-display";
     
     useEffect(() => {
-        if (selectedDays.length === 2 && updated.current === false) {
+        if (selectedDays.length === 2 && selectedDays !== prevSelectedDays.current) {
+            prevSelectedDays.current = selectedDays;
             let clearedChoosenDatesList = removeItemFromArray(choosenDatesList, choosenDates);
             let clearedStoredDates = removeItemFromArray(storedDates, selectedDays);
             setStoredDates([selectedDays, ...clearedStoredDates]);
             setChoosenDatesList([choosenDates, ...clearedChoosenDatesList]);
-            updated.current = true;
-        } else {
-            updated.current = false;
         }
     }, [selectedDays, storedDates, choosenDatesList, choosenDates, setChoosenDatesList, setStoredDates])
     
