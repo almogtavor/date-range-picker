@@ -2,6 +2,7 @@ import React from "react";
 import '../../styles/CalendarHeaderStyles/calendar-header.css';
 import { choosenDatesCalculation, calculateDaysCount, removeItemFromArray } from "../../utils/utils";
 import { useFormat, useLanguage, usePickMethod } from "../../context/InitialParametersContext";
+import { updateViewedMonths } from '../../utils/utils';
 import DatesDisplayContainer from "../../containers/CalendarHeaderContainers/DatesDisplayContainer";
 
 export const CalendarHeader = (props) => {
@@ -15,6 +16,8 @@ export const CalendarHeader = (props) => {
         choosenDatesList,
         setChoosenDatesList,
         setStoredDates,
+        setViewedMonth,
+        setViewedYear,
     } = props;
 
     const language = useLanguage();
@@ -54,6 +57,7 @@ export const CalendarHeader = (props) => {
                 setSelectedDays([]);
             } else {
                 setSelectedDays(storedDates[0]);
+                updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, storedDates[0][0], storedDates[0][1])
             }
         } else {
             setSelectedDays([]);

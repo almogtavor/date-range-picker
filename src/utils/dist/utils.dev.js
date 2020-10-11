@@ -9,6 +9,7 @@ exports.calculateDaysCount = calculateDaysCount;
 exports.selectorsModeStyle = selectorsModeStyle;
 exports.getDefaultRanges = getDefaultRanges;
 exports.removeItemFromArray = removeItemFromArray;
+exports.updateViewedMonths = updateViewedMonths;
 
 function choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod, language) {
   if (selectedDays.length) {
@@ -115,4 +116,39 @@ function removeItemFromArray(arr, value) {
   }
 
   return arr;
+}
+
+function updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, date1, date2) {
+  var boardIndexes = [0, 1];
+
+  if (language === "Hebrew") {
+    boardIndexes = boardIndexes.reverse();
+  }
+
+  if (boardsNum === 2) {
+    var date1Round = new Date(date1.getFullYear(), date1.getMonth(), 1);
+    var date2Round = new Date(date2.getFullYear(), date2.getMonth(), 1);
+
+    if (date1Round.toLocaleDateString() !== date2Round.toLocaleDateString()) {
+      if (date2Round < date1Round) {
+        boardIndexes = boardIndexes.reverse();
+      }
+
+      setViewedMonth(boardIndexes[0], date1.getMonth());
+      setViewedYear(boardIndexes[0], date1.getFullYear());
+      setViewedMonth(boardIndexes[1], date2.getMonth());
+      setViewedYear(boardIndexes[1], date2.getFullYear());
+    } else {
+      setViewedMonth(boardIndexes[0], date1.getMonth());
+      setViewedYear(boardIndexes[0], date1.getFullYear());
+
+      if (date1.getMonth() + 1 === 12) {
+        setViewedMonth(boardIndexes[1], 0);
+        setViewedYear(boardIndexes[1], date1.getFullYear() + 1);
+      } else {
+        setViewedMonth(boardIndexes[1], date1.getMonth() + 1);
+        setViewedYear(boardIndexes[1], date1.getFullYear());
+      }
+    }
+  }
 }

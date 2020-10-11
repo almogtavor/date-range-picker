@@ -1,4 +1,4 @@
-import { setSelectedDays, setChoosenDatesList, setStoredDates } from '../../actions';
+import { setSelectedDays, setChoosenDatesList, setStoredDates, setViewedMonth, setViewedYear } from '../../actions';
 import CalendarHeader from '../../components/CalendarHeaderComponents/CalendarHeader';
 import { connect } from 'react-redux';
 
@@ -17,6 +17,8 @@ const mapDispatchToProps = (dispatch) => {
         setSelectedDays: (selectedDays) => dispatch(setSelectedDays(selectedDays)),
         setChoosenDatesList: (choosenDatesList) => dispatch(setChoosenDatesList(choosenDatesList)),
         setStoredDates: (storedDates) => dispatch(setStoredDates(storedDates)),
+        setViewedMonth: (id, viewedMonth) => dispatch(setViewedMonth(id, viewedMonth)),
+        setViewedYear: (id, viewedYear) => dispatch(setViewedYear(id, viewedYear)),
     })};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarHeader);

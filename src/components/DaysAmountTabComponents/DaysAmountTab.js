@@ -3,6 +3,7 @@ import '../../styles/DaysAmountTabStyles/days-amount-tab.css';
 import { daysAmountTabConfig } from '../../configuration/config';
 import { getDefaultRanges } from '../../utils/utils';
 import { useEndDate, useStartDate, useLanguage } from '../../context/InitialParametersContext';
+import { updateViewedMonths } from '../../utils/utils';
 
 
 export function DaysAmountTab(props) {
@@ -113,38 +114,6 @@ export function DaysAmountTab(props) {
     </>
     )
 }
-
-
-function updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, date1, date2) {
-    let boardIndexes = [0, 1];
-    if (language === "Hebrew") {
-        boardIndexes = boardIndexes.reverse();
-    }
-    if (boardsNum === 2) {
-        let date1Round = new Date(date1.getFullYear(), date1.getMonth(), 1);
-        let date2Round = new Date(date2.getFullYear(), date2.getMonth(), 1);
-        if (date1Round.toLocaleDateString() !== date2Round.toLocaleDateString()) {
-            if (date2Round < date1Round) {
-                boardIndexes = boardIndexes.reverse();
-            }
-            setViewedMonth(boardIndexes[0], date1.getMonth());
-            setViewedYear(boardIndexes[0], date1.getFullYear());
-            setViewedMonth(boardIndexes[1], date2.getMonth());
-            setViewedYear(boardIndexes[1], date2.getFullYear());
-        } else {
-            setViewedMonth(boardIndexes[0], date1.getMonth());
-            setViewedYear(boardIndexes[0], date1.getFullYear());
-            if (date1.getMonth() + 1 === 12) {
-                setViewedMonth(boardIndexes[1], 0);
-                setViewedYear(boardIndexes[1], date1.getFullYear() + 1);  
-            } else {
-                setViewedMonth(boardIndexes[1], date1.getMonth() + 1);
-                setViewedYear(boardIndexes[1], date1.getFullYear());
-            }
-        }
-    }
-}
-
 
 export function DefaultRange(props) {
     const { range, boardsNum, index, setSelectedDays, setViewedMonth, setViewedYear } = props;

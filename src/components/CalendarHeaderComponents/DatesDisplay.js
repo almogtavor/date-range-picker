@@ -30,8 +30,14 @@ export default function DatesDisplay(props) {
     useEffect(() => {
         if (selectedDays.length === 2 && selectedDays !== prevSelectedDays.current) {
             prevSelectedDays.current = selectedDays;
+            storedDates.map((storedRange) => {
+                if (storedRange[0] > storedRange[1]) {
+                    if (storedRange[0] > selectedDays)
+                }
+            })
             let clearedChoosenDatesList = removeItemFromArray(choosenDatesList, choosenDates);
             let clearedStoredDates = removeItemFromArray(storedDates, selectedDays);
+
             setStoredDates([selectedDays, ...clearedStoredDates]);
             setChoosenDatesList([choosenDates, ...clearedChoosenDatesList]);
         }

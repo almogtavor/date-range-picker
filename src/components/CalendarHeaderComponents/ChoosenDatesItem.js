@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import '../../styles/CalendarHeaderStyles/choosen-dates.css';
 import { removeItemFromArray } from '../../utils/utils';
+import { updateViewedMonths } from '../../utils/utils';
+import { useLanguage } from '../../context/InitialParametersContext';
+
 
 const xIcon = require('../../images/x-icon.png');
 
@@ -11,13 +14,16 @@ export default function ChoosenDatesItem(props) {
         isDatesDisplayHovered,
         choosenDatesList,
         selectedColor,
-        setSelectedColor,
+        boardsNum,
         storedDates,
         setStoredDates,
         setChoosenDatesList,
         setSelectedDays,
+        setViewedMonth,
+        setViewedYear,
     } = props;
 
+    const language = useLanguage();
     let initialState = isDatesDisplayHovered && index === 0;
     const [isCurrentlyHovered, setIsCurrentlyHovered] = useState(initialState);
     const [isWrapCurrentlyHovered, setIsWrapCurrentlyHovered] = useState(initialState);
@@ -46,6 +52,7 @@ export default function ChoosenDatesItem(props) {
             setSelectedDays([]);
         } else {
             setSelectedDays(clearedStoredDates[0]);
+            updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, clearedStoredDates[0][0], clearedStoredDates[0][1])
         }
         setChoosenDatesList([...clearedChoosenDatesList]);
         setStoredDates([...clearedStoredDates]);
@@ -59,6 +66,7 @@ export default function ChoosenDatesItem(props) {
         setSelectedDays(selectedDays);
         setStoredDates([selectedDays, ...clearedStoredDates]);
         setChoosenDatesList([choosenDates, ...clearedChoosenDatesList]);
+        updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, selectedDays[0], selectedDays[1])
     }
 
     return <div 
