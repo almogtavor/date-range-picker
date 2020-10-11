@@ -30,13 +30,22 @@ export default function DatesDisplay(props) {
     useEffect(() => {
         if (selectedDays.length === 2 && selectedDays !== prevSelectedDays.current) {
             prevSelectedDays.current = selectedDays;
-            storedDates.map((storedRange) => {
-                if (storedRange[0] > storedRange[1]) {
-                    if (storedRange[0] > selectedDays)
+            const [ biggerSelectedDate, smallerSelectedDate ] = getDates(selectedDays);
+            console.log(biggerSelectedDate, smallerSelectedDate);
+            let clearedChoosenDatesList = [];
+            let clearedStoredDates = [];
+            storedDates.map((storedRange, i) => {
+                console.log(storedRange, i);
+                if (storedRange) {
+                    const [ biggerStoredDate, smallerStoredDate ] = getDates(storedRange);
+                    console.log(biggerStoredDate, smallerStoredDate);
+                    if ((smallerSelectedDate < smallerStoredDate && biggerSelectedDate < biggerStoredDate) ||
+                        (smallerSelectedDate > smallerStoredDate && biggerSelectedDate > biggerStoredDate)) {
+                        clearedChoosenDatesList.push(choosenDatesList[i]);
+                        clearedStoredDates.push(storedRange);
+                    }
                 }
-            })
-            let clearedChoosenDatesList = removeItemFromArray(choosenDatesList, choosenDates);
-            let clearedStoredDates = removeItemFromArray(storedDates, selectedDays);
+            });
 
             setStoredDates([selectedDays, ...clearedStoredDates]);
             setChoosenDatesList([choosenDates, ...clearedChoosenDatesList]);
@@ -84,4 +93,14 @@ export default function DatesDisplay(props) {
             }
         </div>
     )
+}
+
+function getDates(range) {
+    const date1 = range[0].valueOf();
+    const date2 = range[1].valueOf();
+    if (date1 > date2) {
+        return [date1, date2];
+    } else {
+        return [date2, date1];
+    }
 }
