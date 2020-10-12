@@ -10,6 +10,7 @@ export const Button = (props) => {
         showCalendar,
         setShowCalendar,
         choosenDates,
+        choosenDatesList,
     } = props;
 
     const language = useLanguage();
@@ -19,7 +20,10 @@ export const Button = (props) => {
     let text = choosenDates;
     if (!text) {
         text = formatPattern;
-     };
+    };
+    if (pickMethod === "ranges") {
+        text = choosenDatesCalculation([choosenDatesList[0], choosenDatesList[choosenDatesList.length -1]], format, pickMethod, language);
+    }
 
     const handleClick = () => {
         setShowCalendar(!showCalendar)
@@ -30,9 +34,9 @@ export const Button = (props) => {
         <button className="button" onClick={handleClick}>
             { text }
             <img
-                    alt=""
-                    src={calendarIcon}
-                    className="calendar-icon"
+                alt=""
+                src={calendarIcon}
+                className="calendar-icon"
             />
         </button>
     </>)
