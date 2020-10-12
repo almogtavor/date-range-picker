@@ -17,7 +17,7 @@ var mapStateToProps = function mapStateToProps(state) {
     showCalendar: state.general.showCalendar,
     selectedDays: state.dayElements.selectedDays,
     hoveredDay: state.dayElements.hoveredDay,
-    choosenDatesList: state.calendarHeader.choosenDatesList
+    storedDates: state.calendarHeader.storedDates
   };
 };
 

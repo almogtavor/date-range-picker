@@ -10,7 +10,7 @@ export const Button = (props) => {
         showCalendar,
         setShowCalendar,
         choosenDates,
-        choosenDatesList,
+        storedDates,
     } = props;
 
     const language = useLanguage();
@@ -21,8 +21,25 @@ export const Button = (props) => {
     if (!text) {
         text = formatPattern;
     };
-    if (pickMethod === "ranges") {
-        text = choosenDatesCalculation([choosenDatesList[0], choosenDatesList[choosenDatesList.length -1]], format, pickMethod, language);
+    if (pickMethod === "ranges" && storedDates.length > 0) {
+        let minDate = storedDates[0][0], maxDate = storedDates[0][0];
+        for (let i = 0; i < storedDates.length; i++) {
+            console.log(storedDates[i]);
+            for (let j = 0; j < storedDates[i].length; j++) {
+                console.log(storedDates[i][j]);
+                if (storedDates[i][j] < minDate) {
+                    minDate = storedDates[i][j];
+                } else if (storedDates[i][j] > maxDate) {
+                    maxDate = storedDates[i][j];
+                }
+            }
+        }
+        text = choosenDatesCalculation(
+            [minDate, maxDate],
+            null, 
+            format, 
+            pickMethod, 
+            language);
     }
 
     const handleClick = () => {
