@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/DaysAmountTabStyles/days-amount-tab.css';
 import { daysAmountTabConfig } from '../../configuration/config';
-import { getDefaultRanges } from '../../utils/utils';
+import { getDefaultRanges } from '../../utils/daysAmountTabUtils';
 import { useEndDate, useStartDate, useLanguage } from '../../context/InitialParametersContext';
-import { updateViewedMonths } from '../../utils/utils';
+import { updateViewedMonths } from '../../utils/generalUtils';
 
 
 export function DaysAmountTab(props) {
 
     const { 
         selectedColor,
-        selectedDays, 
         setSelectedDays,
         boardsNum,
         setViewedMonth,
@@ -33,13 +32,6 @@ export function DaysAmountTab(props) {
     let month = currentDate.getMonth();
     let date = currentDate.getDate();
     const defaultRanges = getDefaultRanges(year, month, date);
-
-    function updateCalendar(decresement) {
-        let daysAmountBackwards = new Date(year, month, date - decresement);
-        setSelectedDays([daysAmountBackwards, currentDate]);
-        updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, daysAmountBackwards, currentDate)
-    }
-
     const [daysAmount, setDaysAmount] = useState("");
 
     const handleChange = (e) => {
@@ -71,6 +63,12 @@ export function DaysAmountTab(props) {
     }
 
     useEffect(() => {
+        function updateCalendar(decresement) {
+            let daysAmountBackwards = new Date(year, month, date - decresement);
+            setSelectedDays([daysAmountBackwards, currentDate]);
+            updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, daysAmountBackwards, currentDate)
+        }
+
         if ((daysAmount && daysAmount[0] !== "-")||
             (daysAmount[0] === "-" && !isNaN(daysAmount[daysAmount.length - 1]))) {
             if (parseInt(daysAmount) > 0) {
@@ -79,7 +77,7 @@ export function DaysAmountTab(props) {
                 updateCalendar(daysAmount);
             }
         }
-    }, [daysAmount])
+    }, [daysAmount, year, month, date, boardsNum, language, setViewedMonth, setViewedYear, currentDate, setSelectedDays])
 
 
     return (

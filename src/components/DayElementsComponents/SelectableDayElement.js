@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import '../../styles/DayElementsStyles/day.css';
 import '../../styles/DayElementsStyles/selected-day.css';
 import { useLanguage, useEndDate, useStartDate, usePickMethod } from "../../context/InitialParametersContext";
@@ -122,31 +122,7 @@ export const SelectableDayElement = (props) => {
                 rangeSelectionHandling();
             } else {
                 setSelectedDays([date]);
-            } // else {
-            //     let isInRange = false;
-            //     if (selectedDays) {
-            //         for (let i = 0; i < selectedDays.length; i += 2) {
-            //             let smallerDate, biggerDate;
-            //             if (selectedDays[i] < selectedDays[i + 1]) {
-            //                 smallerDate = selectedDays[i];
-            //                 biggerDate = selectedDays[i + 1];
-            //             } else {
-            //                 smallerDate = selectedDays[i + 1];
-            //                 biggerDate = selectedDays[i];
-            //             }
-            //             if (smallerDate <= date && date <= biggerDate) {
-            //                 isInRange = true;
-            //             }
-            //         }
-            //         if (isInRange) {
-            //             setSelectedDays([date]);
-            //         } else {
-            //             setSelectedDays([...selectedDays, date]);
-            //         }
-            //     } else {
-            //         setSelectedDays([date]);
-            //     }
-            // }
+            }
         }
     };
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../../styles/CalendarHeaderStyles/choosen-dates.css';
-import { removeItemFromArray } from '../../utils/utils';
-import { updateViewedMonths } from '../../utils/utils';
+import { removeItemFromArray } from '../../utils/generalUtils';
+import { updateViewedMonths } from '../../utils/generalUtils';
 import { useLanguage } from '../../context/InitialParametersContext';
 
 

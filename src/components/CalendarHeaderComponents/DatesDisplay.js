@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { useLanguage, usePickMethod } from "../../context/InitialParametersContext";
 import '../../styles/CalendarHeaderStyles/dates-display.css';
 import ChoosenDatesItemContainer from "../../containers/CalendarHeaderContainers/ChoosenDatesItemContainer";
-import { removeItemFromArray } from "../../utils/utils";
 
 export default function DatesDisplay(props) {
     const {
@@ -12,7 +11,6 @@ export default function DatesDisplay(props) {
         storedDates,
         setStoredDates,
         setChoosenDatesList,
-        selectedColor,
         selectedDaysStyle,
     } = props;
 
@@ -32,7 +30,7 @@ export default function DatesDisplay(props) {
             const [ biggerSelectedDate, smallerSelectedDate ] = getDates(selectedDays);
             let clearedChoosenDatesList = [];
             let clearedStoredDates = [];
-            storedDates.map((storedRange, i) => {
+            storedDates.each((storedRange, i) => {
                 if (storedRange) {
                     const [ biggerStoredDate, smallerStoredDate ] = getDates(storedRange);
                     if ((biggerSelectedDate < smallerStoredDate) || (smallerSelectedDate > biggerStoredDate)) {

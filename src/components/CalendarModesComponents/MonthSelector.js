@@ -3,7 +3,7 @@ import {calendarConfig} from '../../configuration/config';
 // import Perf from 'react-addons-perf';
 import '../../styles/CalendarModesStyles/month-selector.css';
 import { useLanguage, useStartDate, useEndDate } from "../../context/InitialParametersContext";
-import { selectorsModeStyle } from "../../utils/utils";
+import { selectorsModeStyle } from "../../utils/generalUtils";
 
 export const MonthSelector = (props) => {
     const {

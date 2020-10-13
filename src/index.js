@@ -18,14 +18,14 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={store}>
         <DateRangePicker
-            language="Hebrew"
+            language="English"
             colorsPalette="enabled"
             format="DD-MM-YYYY"
             selectAllButton="enabled"
             startDate={new Date(2000, 8, 21)} 
             endDate={new Date(2025, 9, 1)}
             firstDayOfWeekIndex={0}
-            pickMethod="ranges"
+            pickMethod="range"
             defaultColor="#178905"
             boardsNum={2}
         />

@@ -1,8 +1,8 @@
 import React from "react";
 import '../../styles/CalendarHeaderStyles/calendar-header.css';
-import { choosenDatesCalculation, calculateDaysCount, removeItemFromArray } from "../../utils/utils";
+import { choosenDatesCalculation, calculateDaysCount, removeItemFromArray } from "../../utils/generalUtils";
 import { useFormat, useLanguage, usePickMethod } from "../../context/InitialParametersContext";
-import { updateViewedMonths } from '../../utils/utils';
+import { updateViewedMonths } from '../../utils/generalUtils';
 import DatesDisplayContainer from "../../containers/CalendarHeaderContainers/DatesDisplayContainer";
 
 export const CalendarHeader = (props) => {

@@ -98,7 +98,6 @@ export function setInitialBoard(boardsNum, language, startDate, endDate) {
     };
   }
 
-
 export const setSelectedDays = selectedDays => ({
     type: 'SET_SELECTED_DAYS',
     selectedDays

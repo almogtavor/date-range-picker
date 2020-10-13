@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles/button.css';
 import { useFormat, usePickMethod, useLanguage } from "../context/InitialParametersContext";
-import { choosenDatesCalculation } from "../utils/utils";
+import { choosenDatesCalculation } from "../utils/generalUtils";
 
 const calendarIcon = require('../images/calendar-icon6.png');
 
