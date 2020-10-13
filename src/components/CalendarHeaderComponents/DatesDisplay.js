@@ -30,7 +30,7 @@ export default function DatesDisplay(props) {
             const [ biggerSelectedDate, smallerSelectedDate ] = getDates(selectedDays);
             let clearedChoosenDatesList = [];
             let clearedStoredDates = [];
-            storedDates.each((storedRange, i) => {
+            storedDates.forEach((storedRange, i) => {
                 if (storedRange) {
                     const [ biggerStoredDate, smallerStoredDate ] = getDates(storedRange);
                     if ((biggerSelectedDate < smallerStoredDate) || (smallerSelectedDate > biggerStoredDate)) {
