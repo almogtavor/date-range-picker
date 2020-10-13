@@ -25,22 +25,17 @@ export default function DatesDisplay(props) {
         setIsCurrentlyHovered(!isCurrentlyHovered);
     };
     const dateDisplayClassName = isCurrentlyHovered ? "dates-display-portal" : "dates-display";
-    const templateDateDisplayClassName = isCurrentlyHovered ? "dates-display-portal-template" : "dates-display";
     
     useEffect(() => {
         if (selectedDays.length === 2 && selectedDays !== prevSelectedDays.current) {
             prevSelectedDays.current = selectedDays;
             const [ biggerSelectedDate, smallerSelectedDate ] = getDates(selectedDays);
-            console.log(biggerSelectedDate, smallerSelectedDate);
             let clearedChoosenDatesList = [];
             let clearedStoredDates = [];
             storedDates.map((storedRange, i) => {
-                console.log(storedRange, i);
                 if (storedRange) {
                     const [ biggerStoredDate, smallerStoredDate ] = getDates(storedRange);
-                    console.log(biggerStoredDate, smallerStoredDate);
-                    if ((smallerSelectedDate < smallerStoredDate && biggerSelectedDate < biggerStoredDate) ||
-                        (smallerSelectedDate > smallerStoredDate && biggerSelectedDate > biggerStoredDate)) {
+                    if ((biggerSelectedDate < smallerStoredDate) || (smallerSelectedDate > biggerStoredDate)) {
                         clearedChoosenDatesList.push(choosenDatesList[i]);
                         clearedStoredDates.push(storedRange);
                     }
@@ -52,8 +47,6 @@ export default function DatesDisplay(props) {
         }
     }, [selectedDays, storedDates, choosenDatesList, choosenDates, setChoosenDatesList, setStoredDates])
     
-    console.log(choosenDatesList.length);
-
     return (
         <div 
             className={dateDisplayClassName}
