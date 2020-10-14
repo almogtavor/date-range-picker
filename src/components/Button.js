@@ -21,6 +21,7 @@ export const Button = (props) => {
     if (!text) {
         text = formatPattern;
     };
+    
     if (pickMethod === "ranges" && storedDates.length > 0) {
         let minDate = storedDates[0][0], maxDate = storedDates[0][0];
         for (let i = 0; i < storedDates.length; i++) {

@@ -25,16 +25,16 @@ export default function ChoosenDatesItem(props) {
 
     const language = useLanguage();
     let initialState = isDatesDisplayHovered && index === 0;
-    const [isCurrentlyHovered, setIsCurrentlyHovered] = useState(initialState);
+    const [isXCurrentlyHovered, setIsXCurrentlyHovered] = useState(initialState);
     const [isWrapCurrentlyHovered, setIsWrapCurrentlyHovered] = useState(initialState);
 
 
     const handleEnter = () => {
-        setIsCurrentlyHovered(true);
+        setIsXCurrentlyHovered(true);
     };
 
     const handleLeave = () => {
-        setIsCurrentlyHovered(false);
+        setIsXCurrentlyHovered(false);
     };
 
     const handleWrapEnter = () => {
@@ -93,7 +93,7 @@ export default function ChoosenDatesItem(props) {
                 {choosenDates}
             </div>
         </div>
-        { isCurrentlyHovered &&
+        { isXCurrentlyHovered &&
             <img 
                 alt="" 
                 src={xIcon} 
