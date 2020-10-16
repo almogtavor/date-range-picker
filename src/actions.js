@@ -113,6 +113,11 @@ export const setChoosenDates = choosenDates => ({
     choosenDates
 })
 
+export const setButtonDatesText = buttonDatesText => ({
+    type: 'SET_BUTTON_DATES_TEXT',
+    buttonDatesText
+})
+
 export const setShowCalendar = showCalendar => ({
     type: 'SET_SHOW_CALENDAR',
     showCalendar
