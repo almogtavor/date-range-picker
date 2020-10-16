@@ -20,14 +20,15 @@ ReactDOM.render(
         <DateRangePicker
             language="English"
             colorsPalette="enabled"
-            format="DD-MM-YYYY"
-            selectAllButton="enabled"
+            format="YY-MM-DD"
+            selectAllButton="disabled"
             startDate={new Date(2000, 8, 21)} 
             endDate={new Date(2025, 9, 1)}
             firstDayOfWeekIndex={0}
             pickMethod="range"
             defaultColor="#178905"
-            boardsNum={2}
+            daysAmountTab="disabled"
+            boardsNum={1}
         />
     </Provider>,
     document.getElementById('root')

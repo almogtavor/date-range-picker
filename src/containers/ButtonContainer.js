@@ -4,7 +4,7 @@ import { Button } from "../components/Button";
 
 const mapStateToProps = (state) => {
     return ({
-        choosenDates: state.calendarHeader.choosenDates,
+        buttonDatesText: state.general.buttonDatesText,
         showCalendar: state.general.showCalendar,
         selectedDays: state.dayElements.selectedDays, 
         hoveredDay: state.dayElements.hoveredDay,

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import '../../styles/DaysAmountTabStyles/days-amount-tab.css';
 import { daysAmountTabConfig } from '../../configuration/config';
 import { getDefaultRanges } from '../../utils/daysAmountTabUtils';
@@ -32,14 +32,18 @@ export function DaysAmountTab(props) {
     let month = currentDate.getMonth();
     let date = currentDate.getDate();
     const defaultRanges = getDefaultRanges(year, month, date);
-    const [daysAmount, setDaysAmount] = useState("");
+    const daysAmount = useRef("");
+    const updateCalendar = useCallback((decresement) => {
+        let daysAmountBackwards = new Date(year, month, date - decresement);
+        setSelectedDays([daysAmountBackwards, currentDate]);
+        updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, daysAmountBackwards, currentDate)
+    }, [year, month, date, currentDate, boardsNum, language, setSelectedDays, setViewedMonth, setViewedYear])
 
     const handleChange = (e) => {
         let value = e.target.value;
         let nonNumericChar = /[^0-9-]+/g;
         let pattern = /([-])?([0-9]+)/g;
         let matches = value.match(pattern);
-
         value = value.replace(nonNumericChar, '');
         if (matches){
             value = matches[0];
@@ -52,7 +56,7 @@ export function DaysAmountTab(props) {
         if (value === "") {
             setSelectedDays([]);
         }
-        setDaysAmount(value);
+        daysAmount.current = value;
     }
 
     function errorInput() {
@@ -62,22 +66,19 @@ export function DaysAmountTab(props) {
         }, 3000);
     }
 
-    useEffect(() => {
-        function updateCalendar(decresement) {
-            let daysAmountBackwards = new Date(year, month, date - decresement);
-            setSelectedDays([daysAmountBackwards, currentDate]);
-            updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, daysAmountBackwards, currentDate)
-        }
-
-        if ((daysAmount && daysAmount[0] !== "-")||
-            (daysAmount[0] === "-" && !isNaN(daysAmount[daysAmount.length - 1]))) {
-            if (parseInt(daysAmount) > 0) {
-                updateCalendar(parseInt(daysAmount) - 1);
+    useEffect(() => {      
+        console.log("faefa");  
+        console.log((daysAmount[0] === "-" && !isNaN(daysAmount[daysAmount.length - 1])));
+        console.log((daysAmount && daysAmount[0] !== "-"));
+        if ((daysAmount.current && daysAmount.current[0] !== "-") ||
+            (daysAmount.current[0] === "-" && !isNaN(daysAmount.current[daysAmount.current.length - 1]))) {
+            if (parseInt(daysAmount.current) > 0) {
+                updateCalendar(parseInt(daysAmount.current) - 1);
             } else {
-                updateCalendar(daysAmount);
+                updateCalendar(daysAmount.current);
             }
         }
-    }, [daysAmount, year, month, date, boardsNum, language, setViewedMonth, setViewedYear, currentDate, setSelectedDays])
+    }, [updateCalendar])
 
 
     return (
@@ -102,8 +103,7 @@ export function DaysAmountTab(props) {
                     <input 
                         className={inputClassName}
                         onChange={e => handleChange(e)}
-                        value={daysAmount}
-                       
+                        value={daysAmount.current}
                     />
                     {inputText}
                 </div>
@@ -114,7 +114,14 @@ export function DaysAmountTab(props) {
 }
 
 export function DefaultRange(props) {
-    const { range, boardsNum, index, setSelectedDays, setViewedMonth, setViewedYear } = props;
+    const { 
+        range, 
+        boardsNum, 
+        index, 
+        setSelectedDays, 
+        setViewedMonth, 
+        setViewedYear 
+    } = props;
     const className = "pickable-days-amount";
     const language = useLanguage();
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useLanguage, usePickMethod } from "../../context/InitialParametersContext";
 import '../../styles/CalendarHeaderStyles/dates-display.css';
 import ChoosenDatesItemContainer from "../../containers/CalendarHeaderContainers/ChoosenDatesItemContainer";
+import { getDates } from "../../utils/generalUtils";
 
 export default function DatesDisplay(props) {
     const {
@@ -22,7 +23,10 @@ export default function DatesDisplay(props) {
     const toggleHover = () => {
         setIsCurrentlyHovered(!isCurrentlyHovered);
     };
-    const dateDisplayClassName = isCurrentlyHovered ? "dates-display-portal" : "dates-display";
+    let dateDisplayClassName = "dates-display";
+    if (isCurrentlyHovered && pickMethod === "ranges") {
+        dateDisplayClassName = "dates-display-list";
+    }
     
     useEffect(() => {
         if (selectedDays.length === 2 && selectedDays !== prevSelectedDays.current) {
@@ -84,14 +88,4 @@ export default function DatesDisplay(props) {
             }
         </div>
     )
-}
-
-function getDates(range) {
-    const date1 = range[0].valueOf();
-    const date2 = range[1].valueOf();
-    if (date1 > date2) {
-        return [date1, date2];
-    } else {
-        return [date2, date1];
-    }
 }

@@ -12,8 +12,9 @@ export const LowerFooter = (props) => {
         selectedColor,      
         selectedDays,
         boardsNum,
+        storedDates,
         setShowCalendar,
-        setChoosenDates,
+        setButtonDatesText,
     } = props;
 
     const language = useLanguage();
@@ -34,7 +35,29 @@ export const LowerFooter = (props) => {
 
     const handlePickClick = () => {
         setShowCalendar(false);
-        setChoosenDates(choosenDatesCalculation(selectedDays, null, format, pickMethod, language));
+        
+        if (pickMethod === "ranges" && storedDates.length > 0) {
+            let minDate = storedDates[0][0], maxDate = storedDates[0][0];
+            for (let i = 0; i < storedDates.length; i++) {
+                console.log(storedDates[i]);
+                for (let j = 0; j < storedDates[i].length; j++) {
+                    console.log(storedDates[i][j]);
+                    if (storedDates[i][j] < minDate) {
+                        minDate = storedDates[i][j];
+                    } else if (storedDates[i][j] > maxDate) {
+                        maxDate = storedDates[i][j];
+                    }
+                }
+            }
+            setButtonDatesText(choosenDatesCalculation(
+                [minDate, maxDate],
+                null, 
+                format, 
+                pickMethod, 
+                language));
+        } else {
+            setButtonDatesText(choosenDatesCalculation(selectedDays, null, format, pickMethod, language));
+        }
     }
 
     return (

@@ -86,12 +86,22 @@ export function removeItemFromArray(arr, value) {
     return arr;
 }
 
+export function getDates(range) {
+    const date1 = range[0].valueOf();
+    const date2 = range[1].valueOf();
+    if (date1 > date2) {
+        return [date1, date2];
+    } else {
+        return [date2, date1];
+    }
+}
 
 export function updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, date1, date2) {
     let boardIndexes = [0, 1];
     if (language === "Hebrew") {
         boardIndexes = boardIndexes.reverse();
     }
+    console.log("ajkfaef");
     if (boardsNum === 2) {
         let date1Round = new Date(date1.getFullYear(), date1.getMonth(), 1);
         let date2Round = new Date(date2.getFullYear(), date2.getMonth(), 1);

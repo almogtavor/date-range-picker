@@ -6,14 +6,14 @@
     font-size: 0.9em;
     font-weight: 500;
     /* width: 210px; */
-    width: 50%;
+    width: 80%;
   }
   
   .dates-display:lang(Hebrew) {
     direction: rtl;
   }
   
-  .dates-display-portal {
+  .dates-display-list {
     margin-top: 0.15em;
     background-color: rgb(244, 246, 248);
     display: inline-flex;
@@ -24,7 +24,11 @@
     border-radius: 12px;
     z-index: 999;
   }
-    
+     
+  .dates-display-list:lang(Hebrew) {
+    direction: rtl;
+  }
+
   .hoverable-choosen-dates {
     height: 100%;
     overflow-y: auto;
@@ -51,7 +55,4 @@
     border-radius: 4px;
     background-color: rgb(190, 187, 187);
   }
-  
-  .dates-display-portal:lang(Hebrew) {
-    direction: rtl;
-  }
+ 

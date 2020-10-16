@@ -7,7 +7,11 @@ const chooseDaysAmount = require("../../images/choose-days-amount.png");
 
 export function DaysAmountTabButton(props) {
 
-    const { selectedColor, showDaysAmountTab, setShowDaysAmountTab } = props;
+    const { 
+        selectedColor, 
+        showDaysAmountTab, 
+        setShowDaysAmountTab
+    } = props;
     const language = useLanguage();
     const style = {"backgroundColor": selectedColor + '60'};
     let templateClassName = "days-amount-tab-button-template";
