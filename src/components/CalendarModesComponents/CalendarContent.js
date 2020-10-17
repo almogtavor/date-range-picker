@@ -1,8 +1,7 @@
 import React from "react";
-import '../../styles/CalendarModesStyles/month.css';
 import '../..//styles/calendar-component.css';
 
-import MonthDayElementsContainer from "../../containers/DayElementsContainers/MonthDayElementsContainer";
+import MonthDayElementsContainer from "../../containers/DayElementsContainers/DaysGridContainer";
 import YearSelectorContainer from "../../containers/CalendarModesContainers/YearSelectorContainer";
 import MonthSelectorContainer from "../../containers/CalendarModesContainers/MonthSelectorContainer";
 import { WeekDaysNames } from "./WeekDaysNames";
@@ -18,7 +17,7 @@ export const CalendarContent = (props) => {
     const language = useLanguage();
     
     return (
-    <div className="calendar">
+    <div className="month-grid">
         <WeekDaysNames/>
         <MonthDayElementsContainer 
           id={id}

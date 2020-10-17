@@ -4,22 +4,26 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.choosenDatesCalculation = choosenDatesCalculation;
+exports.placeDateInFormat = placeDateInFormat;
 exports.calculateDaysCount = calculateDaysCount;
 exports.selectorsModeStyle = selectorsModeStyle;
+exports.getDefaultRanges = getDefaultRanges;
+exports.removeItemFromArray = removeItemFromArray;
+exports.updateViewedMonths = updateViewedMonths;
 
-function choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod, daysCountEnable) {
+function choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod, language) {
   if (selectedDays.length) {
     if (selectedDays.length === 2) {
       if (selectedDays[0] > selectedDays[1]) {
-        return placeDateInFormat(selectedDays[1], format) + " - " + placeDateInFormat(selectedDays[0], format);
+        return getFormattedString(selectedDays[1], selectedDays[0], format, language);
       } else {
-        return placeDateInFormat(selectedDays[0], format) + " - " + placeDateInFormat(selectedDays[1], format);
+        return getFormattedString(selectedDays[0], selectedDays[1], format, language);
       }
     } else if (hoveredDay) {
       if (selectedDays[0] > hoveredDay) {
-        return placeDateInFormat(hoveredDay, format) + " - " + placeDateInFormat(selectedDays[0], format);
+        return getFormattedString(hoveredDay, selectedDays[0], format, language);
       } else {
-        return placeDateInFormat(selectedDays[0], format) + " - " + placeDateInFormat(hoveredDay, format);
+        return getFormattedString(selectedDays[0], hoveredDay, format, language);
       }
     } else {
       return placeDateInFormat(selectedDays[0], format);
@@ -31,6 +35,15 @@ function choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod, d
       return format + " - " + format;
     }
   }
+}
+
+function getFormattedString(date1, date2, format, language) {
+  if (language === "Hebrew") {
+    console.log(placeDateInFormat(date2, format) + " - " + placeDateInFormat(date1, format));
+    return placeDateInFormat(date2, format) + " - " + placeDateInFormat(date1, format);
+  }
+
+  return placeDateInFormat(date1, format) + " - " + placeDateInFormat(date2, format);
 }
 
 function placeDateInFormat(date, format) {
@@ -82,4 +95,60 @@ function selectorsModeStyle(object, viewedObject, isObjectSelected, color) {
   }
 
   return style;
+}
+
+function getDefaultRanges(year, month, date) {
+  var currentDate = new Date(year, month, date);
+  var pastWeek = new Date(year, month, date - 6);
+  var pastMonth = new Date(year, month - 1, date);
+  var past3Months = new Date(year, month - 3, date);
+  var past6Months = new Date(year, month - 6, date);
+  var pastYear = new Date(year, month, date - 364);
+  var defaultRanges = [[currentDate, currentDate], [pastWeek, currentDate], [pastMonth, currentDate], [past3Months, currentDate], [past6Months, currentDate], [pastYear, currentDate]];
+  return defaultRanges;
+}
+
+function removeItemFromArray(arr, value) {
+  var index = arr.indexOf(value);
+
+  if (index > -1) {
+    arr.splice(index, 1);
+  }
+
+  return arr;
+}
+
+function updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, date1, date2) {
+  var boardIndexes = [0, 1];
+
+  if (language === "Hebrew") {
+    boardIndexes = boardIndexes.reverse();
+  }
+
+  if (boardsNum === 2) {
+    var date1Round = new Date(date1.getFullYear(), date1.getMonth(), 1);
+    var date2Round = new Date(date2.getFullYear(), date2.getMonth(), 1);
+
+    if (date1Round.toLocaleDateString() !== date2Round.toLocaleDateString()) {
+      if (date2Round < date1Round) {
+        boardIndexes = boardIndexes.reverse();
+      }
+
+      setViewedMonth(boardIndexes[0], date1.getMonth());
+      setViewedYear(boardIndexes[0], date1.getFullYear());
+      setViewedMonth(boardIndexes[1], date2.getMonth());
+      setViewedYear(boardIndexes[1], date2.getFullYear());
+    } else {
+      setViewedMonth(boardIndexes[0], date1.getMonth());
+      setViewedYear(boardIndexes[0], date1.getFullYear());
+
+      if (date1.getMonth() + 1 === 12) {
+        setViewedMonth(boardIndexes[1], 0);
+        setViewedYear(boardIndexes[1], date1.getFullYear() + 1);
+      } else {
+        setViewedMonth(boardIndexes[1], date1.getMonth() + 1);
+        setViewedYear(boardIndexes[1], date1.getFullYear());
+      }
+    }
+  }
 }

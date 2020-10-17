@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import '../../styles/DayElementsStyles/day.css';
 import { useEndDate, useStartDate, usePickMethod } from "../../context/InitialParametersContext";
+import Tooltip from "./Tooltip";
 
 function inRangeCheck(date, edgeDate1, edgeDate2) {
     return (date >= edgeDate1 && date <= edgeDate2) || 
@@ -17,10 +18,12 @@ export const HoverableDayElement = (props) => {
         dayOfWeek,
     } = props;
 
+    const dateRef = useRef();
     const startDate = useStartDate();
     const endDate = useEndDate();
     const dayNum = date.getDate();
     const pickMethod = usePickMethod();
+    const [isCurrentlyHovered, setIsCurrentlyHovered] = useState(false);
     const isDisabled = date < startDate || date > endDate;
     let isInRange = false;
 
@@ -28,12 +31,14 @@ export const HoverableDayElement = (props) => {
     const coloredStyle = {"background": selectedColor + "60"};
 
     const handleEnterHover = () => {
+        setIsCurrentlyHovered(true);
         if (!isDisabled && pickMethod !== "date") {
             setHoveredDay(date);
         }
     };
 
     const handleLeaveHover = () => {
+        setIsCurrentlyHovered(false);
         if (selectedDays.length === 2) {
             setHoveredDay(null);
         }
@@ -83,7 +88,7 @@ export const HoverableDayElement = (props) => {
         }
     }
 
-    let className = "hover-div";
+    let className = "hoverable-div";
     if (!isInRange && pickMethod !== "date") {
         className += " not-in-range";
         if (dayOfWeek === 0) {
@@ -93,6 +98,10 @@ export const HoverableDayElement = (props) => {
         }
     } else {
         className += " in-range";
+        if (isCurrentlyHovered && selectedDays.length !== 2) {
+            className += " currently-hovered";
+            hoverStyle = {...coloredStyle, "borderColor": selectedColor + "10"};
+        }
     }
     
     return (
@@ -101,8 +110,16 @@ export const HoverableDayElement = (props) => {
             style={hoverStyle}
             onMouseEnter={handleEnterHover}
             onMouseLeave={handleLeaveHover}
+            ref={dateRef}
         >
-                {dayNum}
+            {hoveredDay && 
+            isCurrentlyHovered &&
+                <Tooltip 
+                    dateRef={dateRef.current} 
+                    hoveredDay={date} 
+                />
+            }
+            {dayNum}
         </div>
     )
 }

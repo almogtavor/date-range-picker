@@ -14,6 +14,7 @@ const mapStateToProps = (state, ownProps) => {
         leftViewedMonth: state.datesHeader.viewedMonth[leftId],
         leftViewedYear: state.datesHeader.viewedYear[leftId],
         selectedColor: state.lowerFooter.selectedColor,
+        hoveredDay: state.dayElements.hoveredDay,
         isOfCurrentViewedMonth: ownProps.isOfCurrentViewedMonth,
         dayOfWeek: ownProps.dayOfWeek,
         genericStyle: ownProps.genericStyle,

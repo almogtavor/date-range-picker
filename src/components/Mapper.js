@@ -1,8 +1,8 @@
 import React from "react";
 import "../App.css";
 import { CalendarInstance } from './CalendarInstance';
-import CalendarHeaderContainer from "../containers/CalendarHeaderContainer";
-
+import CalendarHeaderContainer from "../containers/CalendarHeaderContainers/CalendarHeaderContainer";
+import DaysAmountButtonTabContainer from "../containers/DaysAmountTabContainer/DaysAmountTabButtonContainer";
 
 export const Mapper = (props) => {
     const {
@@ -39,6 +39,7 @@ export const Mapper = (props) => {
                   i={i}
               />)
             })}
+          <DaysAmountButtonTabContainer/>
         </div>
       }</>
     );

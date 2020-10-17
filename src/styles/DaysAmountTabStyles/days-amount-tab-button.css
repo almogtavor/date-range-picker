@@ -1,0 +1,29 @@
+.days-amount-tab-button-template {
+  background-color: rgb(244, 246, 248);
+  border-radius: 15%;
+  margin-left: -112%;
+  width: 18%;
+  height: 50px;
+  box-shadow: 3px 1px 5px 0px #ddd;
+  z-index: -2;
+}
+
+.show-tab {
+  margin-left: -152%;
+}
+
+.days-amount-tab-button-div {
+  border-radius: 15%;
+  height: 100%;
+}
+
+.days-amount-icon {
+  margin-top: 25%;
+  margin-left: 10%;
+  height: 25px;
+  opacity: 0.9;
+}
+
+.days-amount-icon:hover {
+  opacity: 0.6;
+}

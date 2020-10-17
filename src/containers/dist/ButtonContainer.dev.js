@@ -13,10 +13,11 @@ var _Button = require("../components/Button");
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    choosenDates: state.datesHeader.choosenDates,
+    choosenDates: state.calendarHeader.choosenDates,
     showCalendar: state.general.showCalendar,
     selectedDays: state.dayElements.selectedDays,
-    hoveredDay: state.dayElements.hoveredDay
+    hoveredDay: state.dayElements.hoveredDay,
+    storedDates: state.calendarHeader.storedDates
   };
 };
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SelectableDayElementContainer from "../../containers/DayElementsContainers/SelectableDayElementContainer";
 import { useLanguage } from "../../context/InitialParametersContext";
 
-export const MonthDaysElements = (props) => { 
+export const DaysGrid = (props) => { 
     const {
         viewedYear, 
         viewedMonth, 
@@ -24,9 +24,9 @@ export const MonthDaysElements = (props) => {
     }, [viewedMonth, viewedYear, dayToBeginTheMonthFrom]);
 
     
-    return monthDays.map((day) => {
+    return monthDays.map((day, i) => {
         const date = new Date(viewedYear, viewedMonth, day);
-        const key = String(date) + String(id);
+        const key = date.toLocaleDateString() + String(id) + i;
         const columnOnGrid = (day + dayToBeginTheMonthFrom + 7) % 7;
         const dayOfWeek = date.getDay();
         const isOfCurrentViewedMonth = !(day <= 0 || day > numOfDaysInMonth);

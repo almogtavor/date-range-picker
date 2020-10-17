@@ -4,10 +4,11 @@ import { Button } from "../components/Button";
 
 const mapStateToProps = (state) => {
     return ({
-        choosenDates: state.datesHeader.choosenDates,
+        buttonDatesText: state.general.buttonDatesText,
         showCalendar: state.general.showCalendar,
         selectedDays: state.dayElements.selectedDays, 
         hoveredDay: state.dayElements.hoveredDay,
+        storedDates: state.calendarHeader.storedDates,
 })};
 
 const mapDispatchToProps = (dispatch) => {

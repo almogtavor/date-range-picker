@@ -44,7 +44,7 @@ export const SelectableDayElement = (props) => {
 
     const nonCurrentDateClick = () => {
         let isNonCurrentCase;
-        if ((pickMethod === "range" && selectedDays.length !== 1) || pickMethod === "date") {
+        if ((pickMethod !== "date" && selectedDays.length !== 1) || pickMethod === "date") {
             isNonCurrentCase = true;
         }
         if (!isOfCurrentViewedMonth && isNonCurrentCase) {
@@ -107,7 +107,9 @@ export const SelectableDayElement = (props) => {
 
     const handleClick = () => {
         if (!isDisabled) {
-            if (pickMethod === "range") {
+            isSelected = !isSelected;
+            nonCurrentDateClick();
+            if (pickMethod !== "date") {
                 if (selectedDays.length === 2 || selectedDays.length === 0) {
                     setSelectedDays([date]);
                 } else {
@@ -117,37 +119,9 @@ export const SelectableDayElement = (props) => {
                         setSelectedDays([selectedDays[0], date]);
                     }
                 }
-            } else if (pickMethod === "date") {
-                setSelectedDays([date]);
+                rangeSelectionHandling();
             } else {
-                let isInRange = false;
-                if (selectedDays) {
-                    for (let i = 0; i < selectedDays.length; i += 2) {
-                        let smallerDate, biggerDate;
-                        if (selectedDays[i] < selectedDays[i + 1]) {
-                            smallerDate = selectedDays[i];
-                            biggerDate = selectedDays[i + 1];
-                        } else {
-                            smallerDate = selectedDays[i + 1];
-                            biggerDate = selectedDays[i];
-                        }
-                        if (smallerDate <= date && date <= biggerDate) {
-                            isInRange = true;
-                        }
-                    }
-                    if (isInRange) {
-                        setSelectedDays([date]);
-                    } else {
-                        setSelectedDays([...selectedDays, date]);
-                    }
-                } else {
-                    setSelectedDays([date]);
-                }
-            }
-            isSelected = !isSelected;
-            nonCurrentDateClick();
-            if (pickMethod === "range") {
-                rangeSelectionHandling(); 
+                setSelectedDays([date]);
             }
         }
     };
@@ -167,7 +141,6 @@ export const SelectableDayElement = (props) => {
         style = {...genericStyle, "background": selectedColor, "borderColor": selectedColor};
         className += " selected-day";
     }
-        
 
     return (
         <div

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import '../../styles/DatesHeaderStyles/arrow.css';
 import { useEndDate, useStartDate, useLanguage } from "../../context/InitialParametersContext";
+import { getOpacityColorStyle } from "../../utils/generalUtils";
 
 const arrowImages = {
     "leftArrow": require('../../images/arrow-left.png'),
@@ -65,16 +66,18 @@ export const Arrow = (props) => {
         setIsHover(hasEntered)
     }
 
-    if ((language === "Hebrew" && arrowSide === "leftArrow") || (language !== "Hebrew" && arrowSide === "rightArrow")) {
+    if ((language === "Hebrew" && arrowSide === "leftArrow") || 
+        (language !== "Hebrew" && arrowSide === "rightArrow")) {
         changeMonth = increaseMonth;
         canChange = canIncrease;
     } else {
         changeMonth = decreaseMonth;
         canChange = canDecrease;
     }
-    const style = isHover && canChange() ?
-            {"backgroundColor": selectedColor + "60"} : 
-            {};
+    let style = {};
+    if (isHover && canChange()) {
+        style = getOpacityColorStyle(selectedColor, 60);
+    }
     const arrowClassName = `arrow ${!canChange() && "disabled"}`;
 
     return (

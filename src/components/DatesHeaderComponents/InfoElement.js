@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import '../../styles/DatesHeaderStyles/info-element.css';
+import { getOpacityColorStyle } from "../../utils/generalUtils";
 
 export const InfoElement = (props) => {
     const {
@@ -11,8 +12,11 @@ export const InfoElement = (props) => {
     } = props;
 
     const [isHover, setIsHover] = useState(false);
-    const style = isHover ? {"backgroundColor": selectedColor + "60"} : {};
-
+    let style = {};
+    if (isHover) {
+        style = getOpacityColorStyle(selectedColor, 60);
+    }
+    
     const clickHandler = () => {
         setMode(changeMode);
     };

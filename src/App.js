@@ -15,7 +15,6 @@ export function App(props) {
   return (
     <div className="App">
       <InitialParametersProvider props={props}>
-        {/* <h1>Date Range Picker Example</h1> */}
         <ButtonContainer />
         <div className="date-range-picker-component">
           <div

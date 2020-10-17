@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _reactRedux = require("react-redux");
 
-var _MonthDaysElements = require("../../components/DayElementsComponents/MonthDaysElements");
+var _MonthGridElements = require("../../components/DayElementsComponents/MonthGridElements");
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
@@ -17,6 +17,6 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   };
 };
 
-var _default = (0, _reactRedux.connect)(mapStateToProps)(_MonthDaysElements.MonthDaysElements);
+var _default = (0, _reactRedux.connect)(mapStateToProps)(_MonthGridElements.MonthDaysElements);
 
 exports["default"] = _default;

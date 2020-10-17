@@ -98,7 +98,6 @@ export function setInitialBoard(boardsNum, language, startDate, endDate) {
     };
   }
 
-
 export const setSelectedDays = selectedDays => ({
     type: 'SET_SELECTED_DAYS',
     selectedDays
@@ -114,7 +113,27 @@ export const setChoosenDates = choosenDates => ({
     choosenDates
 })
 
+export const setButtonDatesText = buttonDatesText => ({
+    type: 'SET_BUTTON_DATES_TEXT',
+    buttonDatesText
+})
+
 export const setShowCalendar = showCalendar => ({
     type: 'SET_SHOW_CALENDAR',
     showCalendar
+})
+
+export const setShowDaysAmountTab = showDaysAmountTab => ({
+    type: 'SET_SHOW_DAYS_AMOUNT_TAB',
+    showDaysAmountTab
+})
+
+export const setChoosenDatesList = choosenDatesList => ({
+    type: 'SET_CHOOSEN_DATES_LIST',
+    choosenDatesList
+})
+
+export const setStoredDates = storedDates => ({
+    type: 'SET_STORED_DATES',
+    storedDates
 })

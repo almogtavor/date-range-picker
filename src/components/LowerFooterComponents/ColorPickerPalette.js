@@ -2,6 +2,7 @@ import React from "react";
 import {calendarConfig} from '../../configuration/config';
 import '../../styles/LowerFooterStyles/color-picker-palette.css';
 import { useLanguage, useColorsPalette, useInitialSelectedColor } from "../../context/InitialParametersContext";
+import { getOpacityColorStyle } from "../../utils/generalUtils";
 
 const pointerHandIcon = require('../../images/pointer-hand.png');
 
@@ -12,17 +13,16 @@ export const ColorPickerPalette = (props) => {
         setSelectedColor,
         showColorPicker, 
         setShowColorPicker,
-        showPaletteById,
+        showPaletteAllowed,
     } = props;
 
     const language = useLanguage();
     const colorsPaletteEnabling = useColorsPalette();
     const initialSelectedColor = useInitialSelectedColor();
-    let circleStyle = {"backgroundColor": selectedColor};
+    let circleStyle = getOpacityColorStyle(selectedColor, "ff");
     if (initialSelectedColor && selectedColor === initialSelectedColor) {
         circleStyle.backgroundColor = initialSelectedColor;
     }
-    
 
     const changeColor = (color) => () => {
         setSelectedColor(color);
@@ -35,7 +35,7 @@ export const ColorPickerPalette = (props) => {
 
     return (
     <>
-        {showPaletteById && 
+        {showPaletteAllowed && 
             colorsPaletteEnabling !== "disabled" && 
             !showColorPicker && 
             (<div 
@@ -59,7 +59,7 @@ export const ColorPickerPalette = (props) => {
                 if (initialSelectedColor && i === 0) {
                     color = initialSelectedColor;
                 }
-                const selectableCircleStyle = {"backgroundColor": color};
+                const selectableCircleStyle = getOpacityColorStyle(color, "ff");
                 
                 return (<div className="color-circle-wrapper" key={color}>
                     <div 

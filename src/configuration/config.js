@@ -1,6 +1,5 @@
 export const calendarConfig = {
-    "months": 
-    {
+    "months": {
         "English": [
             "January",
             "February",
@@ -46,3 +45,24 @@ export const calendarConfig = {
         "#498205",
     ],
 };
+
+export const daysAmountTabConfig = {
+    "defualtRangesTexts": {
+        "English": [
+            "Today",
+            "Past week",
+            "Past month",
+            "Past 3 months",
+            "Past 6 months",
+            "Past year",
+        ],
+        "Hebrew": [
+            "היום",
+            "שבוע אחורה",
+            "חודש אחורה",
+            "שלושה חודשים אחורה",
+            "שישה חודשים אחורה",
+            "שנה אחורה",
+        ]
+    }
+}

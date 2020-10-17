@@ -6,7 +6,7 @@ const mapStateToProps = (state, ownProps) => {
     return ({
         selectedColor: state.lowerFooter.selectedColor,
         showColorPicker: state.lowerFooter.showColorPicker[ownProps.id],
-        showPaletteById: ownProps.showPaletteById,
+        showPaletteAllowed: ownProps.showPaletteAllowed,
 })};
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
