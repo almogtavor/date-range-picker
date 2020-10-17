@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import '../../styles/DaysAmountTabStyles/days-amount-tab.css';
 import { getDefaultRanges } from '../../utils/daysAmountTabUtils';
 import { useEndDate, useStartDate, useLanguage } from '../../context/InitialParametersContext';
@@ -28,17 +28,20 @@ export function DaysAmountTab(props) {
     const startDate = useStartDate();
     const endDate = useEndDate();
     let currentDate = new Date();
-    let year = currentDate.getFullYear();
-    let month = currentDate.getMonth();
-    let date = currentDate.getDate();
-    const defaultRanges = getDefaultRanges(year, month, date);
+    const defaultRanges = getDefaultRanges(
+        currentDate.getFullYear(), 
+        currentDate.getMonth(), 
+        currentDate.getDate()
+    );
     const [fieldValue, setFieldValue] = useState("");
 
     const updateCalendar = useCallback((decresement) => {
-        let daysAmountBackwards = new Date(year, month, date - decresement);
+        let currentDate = new Date();
+        let daysAmountBackwards = new Date();
+        daysAmountBackwards.setDate(daysAmountBackwards.getDate() - decresement);
         setSelectedDays([daysAmountBackwards, currentDate]);
         updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, daysAmountBackwards, currentDate)
-    }, [year, month, date, currentDate, boardsNum, language, setSelectedDays, setViewedMonth, setViewedYear])
+    }, [boardsNum, language, setSelectedDays, setViewedMonth, setViewedYear])
 
     const handleChange = (e) => {
         let value = e.target.value;
@@ -49,7 +52,8 @@ export function DaysAmountTab(props) {
         if (matches){
             value = matches[0];
         }
-        let daysAmountBackwards = new Date(year, month, date - parseInt(value));
+        let daysAmountBackwards = new Date();
+        daysAmountBackwards.setDate(daysAmountBackwards.getDate() - parseInt(value));
         value = valueValidation(value, daysAmountBackwards);
         if (value === "") {
             setSelectedDays([]);

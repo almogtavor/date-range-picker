@@ -31,22 +31,12 @@ export const CalendarHeader = (props) => {
     if (language === "Hebrew") {
         clearButtonText = "נקה";
     }
-    const templateStyle = {
-        "width": widthPercentage + "%", 
-    };
+    const templateStyle = {"width": widthPercentage + "%"};
     const selectedDaysStyle = getOpacityColorStyle(selectedColor, 60);
 
     // language not included in funciton call because of the css ltr property of hebrew case
     let choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod);
-    if (pickMethod !== "date") {
-        if (selectedDays.length === 2) {
-            choosenDates += calculateDaysCount(selectedDays[0], selectedDays[1], language);    
-        } else if (hoveredDay !== null && selectedDays.length === 1) {
-            choosenDates += calculateDaysCount(selectedDays[0], hoveredDay, language) ;
-        } else {
-            
-        }
-    }
+    choosenDates = addDatesCount(pickMethod, selectedDays, choosenDates, language, hoveredDay);
  
     const handleClearClick = () => {
         if (pickMethod === "ranges") {
@@ -94,6 +84,17 @@ export const CalendarHeader = (props) => {
             </div>
         </div>
     )
+}
+
+function addDatesCount(pickMethod, selectedDays, choosenDates, language, hoveredDay) {
+    if (pickMethod !== "date") {
+        if (selectedDays.length === 2) {
+            choosenDates += calculateDaysCount(selectedDays[0], selectedDays[1], language);
+        } else if (hoveredDay !== null && selectedDays.length === 1) {
+            choosenDates += calculateDaysCount(selectedDays[0], hoveredDay, language);
+        }
+    }
+    return choosenDates;
 }
 
 function areEqual(prevProps, nextProps) {

@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { DaysAmountTab } from "../components/DaysAmountTabComponents/DaysAmountTab";
 
 const InitialParametersContext = React.createContext();
 
