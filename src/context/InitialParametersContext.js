@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { DaysAmountTab } from "../components/DaysAmountTabComponents/DaysAmountTab";
 
 const InitialParametersContext = React.createContext();
 
@@ -39,6 +40,10 @@ export function usePickMethod() {
     return useContext(InitialParametersContext).pickMethod;
 }
 
+export function useDaysAmountTab() {
+    return useContext(InitialParametersContext).daysAmountTab;
+}
+
 export function useInitialSelectedColor() {
     return useContext(InitialParametersContext).initialSelectedColor;
 }
@@ -63,6 +68,7 @@ export function InitialParametersProvider({children, props}) {
         boardsNum,
         selectAllButton,
         defaultColor,
+        daysAmountTab,
       } = props;
 
     const [valueState] = useState({
@@ -75,6 +81,7 @@ export function InitialParametersProvider({children, props}) {
         pickMethod: valueParse(pickMethod, "range"),
         selectAllButton: valueParse(selectAllButton, "disabled"),
         initialSelectedColor: defaultColor, // can be undefined, default will be set from config
+        daysAmountTab: valueParse(daysAmountTab, "disabled"),
     })
 
     if (valueState.endDate < valueState.startDate) {
@@ -98,6 +105,13 @@ export function InitialParametersProvider({children, props}) {
         throw Object.assign(new Error('If "boardsNum" === 1, two lower footer properties are not allowed (selectAllButton, colorsPallete).'), { code: 403 });
     }
     
+    if (boardsNum === 1 && (valueState.selectAllButton === "enabled" && valueState.colorsPalette === "enabled")) {
+        throw Object.assign(new Error('If "boardsNum" === 1, two lower footer properties are not allowed (selectAllButton, colorsPallete).'), { code: 403 });
+    }
+
+    if (valueState.pickMethod === "date" && valueState.daysAmountTab === "enabled") {
+        throw Object.assign(new Error('"pickMethod" valued "date" prevents enabled days amount tab.'), { code: 403 });
+    }
     
     return (
         <InitialParametersContext.Provider 

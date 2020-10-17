@@ -70,11 +70,15 @@ export function calculateDaysCount(date1, date2, language) {
 export function selectorsModeStyle(object, viewedObject, isObjectSelected, color) {
     let style = {};
     if (object === viewedObject) {
-        style = {"backgroundColor": color + "60"};
+        style = getOpacityColorStyle(color, 60);
     } else if (isObjectSelected) {
-        style = {"backgroundColor": color + "30"};
+        style = getOpacityColorStyle(color, 30);
     }
     return style;
+}
+
+export function getOpacityColorStyle(color, opacity) {
+    return {"backgroundColor": color + `${opacity}`};
 }
  
 
@@ -101,7 +105,6 @@ export function updateViewedMonths(boardsNum, language, setViewedMonth, setViewe
     if (language === "Hebrew") {
         boardIndexes = boardIndexes.reverse();
     }
-    console.log("ajkfaef");
     if (boardsNum === 2) {
         let date1Round = new Date(date1.getFullYear(), date1.getMonth(), 1);
         let date2Round = new Date(date2.getFullYear(), date2.getMonth(), 1);

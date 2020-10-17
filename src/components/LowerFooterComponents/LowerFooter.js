@@ -25,6 +25,10 @@ export const LowerFooter = (props) => {
     const idIndexes = language === "Hebrew" ? [1, 0] : [0, 1];
     const showPaletteAllowed = id === idIndexes[0] || boardsNum === 1;
     const showPickButton = ((id === idIndexes[idIndexes.length - 1]) || boardsNum === 1);
+    const pickButtonStyle = {
+        "backgroundColor": selectedColor + "80",
+        "borderColor": selectedColor + "20",
+    };
     let lowerFooterStyle = {};
     if ((language === "Hebrew" && 
         (!(showPickButton && selectAllButton === "disabled") ||
@@ -39,9 +43,7 @@ export const LowerFooter = (props) => {
         if (pickMethod === "ranges" && storedDates.length > 0) {
             let minDate = storedDates[0][0], maxDate = storedDates[0][0];
             for (let i = 0; i < storedDates.length; i++) {
-                console.log(storedDates[i]);
                 for (let j = 0; j < storedDates[i].length; j++) {
-                    console.log(storedDates[i][j]);
                     if (storedDates[i][j] < minDate) {
                         minDate = storedDates[i][j];
                     } else if (storedDates[i][j] > maxDate) {
@@ -78,10 +80,7 @@ export const LowerFooter = (props) => {
         {showPickButton && 
             <button 
                 className="pick-button"
-                style={{
-                    "backgroundColor": selectedColor + "80",
-                    "borderColor": selectedColor + "20",
-                }}
+                style={pickButtonStyle}
                 onClick={handlePickClick}
             >
                 {language === "Hebrew" ? "בחר" : "Pick"}

@@ -1,6 +1,6 @@
 import React from "react";
 import '../../styles/CalendarHeaderStyles/calendar-header.css';
-import { choosenDatesCalculation, calculateDaysCount, removeItemFromArray } from "../../utils/generalUtils";
+import { choosenDatesCalculation, calculateDaysCount, removeItemFromArray, getOpacityColorStyle } from "../../utils/generalUtils";
 import { useFormat, useLanguage, usePickMethod } from "../../context/InitialParametersContext";
 import { updateViewedMonths } from '../../utils/generalUtils';
 import DatesDisplayContainer from "../../containers/CalendarHeaderContainers/DatesDisplayContainer";
@@ -25,15 +25,16 @@ export const CalendarHeader = (props) => {
     const pickMethod = usePickMethod();
     const clearButtonClassName = "clear";
     const clearStyle = {"color": selectedColor};
+    const widthPercentage = ((boardsNum * 100) > 300 ? 300 : (boardsNum * 100));
     
     let clearButtonText = "Clear";
     if (language === "Hebrew") {
         clearButtonText = "נקה";
     }
     const templateStyle = {
-        "width": ((boardsNum * 100) > 300 ? 300 : (boardsNum * 100)) + "%", 
+        "width": widthPercentage + "%", 
     };
-    const selectedDaysStyle = {"backgroundColor": selectedColor + "60"};
+    const selectedDaysStyle = getOpacityColorStyle(selectedColor, 60);
 
     // language not included in funciton call because of the css ltr property of hebrew case
     let choosenDates = choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod);

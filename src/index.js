@@ -27,8 +27,8 @@ ReactDOM.render(
             firstDayOfWeekIndex={0}
             pickMethod="range"
             defaultColor="#178905"
-            daysAmountTab="disabled"
-            boardsNum={1}
+            daysAmountTab="enabled"
+            boardsNum={2}
         />
     </Provider>,
     document.getElementById('root')

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../../styles/CalendarHeaderStyles/choosen-dates.css';
-import { removeItemFromArray } from '../../utils/generalUtils';
+import { getOpacityColorStyle, removeItemFromArray } from '../../utils/generalUtils';
 import { updateViewedMonths } from '../../utils/generalUtils';
 import { useLanguage } from '../../context/InitialParametersContext';
 
@@ -27,6 +27,10 @@ export default function ChoosenDatesItem(props) {
     let initialState = isDatesDisplayHovered && index === 0;
     const [isXCurrentlyHovered, setIsXCurrentlyHovered] = useState(initialState);
     const [isWrapCurrentlyHovered, setIsWrapCurrentlyHovered] = useState(initialState);
+    let wrapStyle = {};
+    if (isWrapCurrentlyHovered) {
+        wrapStyle = getOpacityColorStyle(selectedColor, 50);
+    }
 
 
     const handleEnter = () => {
@@ -60,7 +64,6 @@ export default function ChoosenDatesItem(props) {
 
     const handleDatesClick = () => {
         let selectedDays = storedDates[index];
-        console.log(choosenDates);
         let clearedChoosenDatesList = removeItemFromArray(choosenDatesList, choosenDates);
         let clearedStoredDates = removeItemFromArray(storedDates, selectedDays);
         setSelectedDays(selectedDays);
@@ -79,7 +82,7 @@ export default function ChoosenDatesItem(props) {
             onClick={handleDatesClick}
             onMouseEnter={handleWrapEnter}
             onMouseLeave={handleWrapLeave}
-            style={isWrapCurrentlyHovered ? {"backgroundColor": selectedColor + '50'}: {}}
+            style={wrapStyle}
         >
             <div
                 className="choosen-dates-count"

@@ -24,9 +24,9 @@ export const DaysGrid = (props) => {
     }, [viewedMonth, viewedYear, dayToBeginTheMonthFrom]);
 
     
-    return monthDays.map((day) => {
+    return monthDays.map((day, i) => {
         const date = new Date(viewedYear, viewedMonth, day);
-        const key = String(date) + String(id);
+        const key = date.toLocaleDateString() + String(id) + i;
         const columnOnGrid = (day + dayToBeginTheMonthFrom + 7) % 7;
         const dayOfWeek = date.getDay();
         const isOfCurrentViewedMonth = !(day <= 0 || day > numOfDaysInMonth);

@@ -1,3 +1,16 @@
+@keyframes slide-in-left {
+    0% {
+      -webkit-transform: translateX(-15px);
+              transform: translateX(-15px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
 .day-element {
     height: 80%;
     width: 90%;
@@ -9,6 +22,7 @@
 .hoverable-div {
     height: 100%;
     border-radius: 7px;
+    animation: slide-in-left 0.25s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 .currently-hovered {
