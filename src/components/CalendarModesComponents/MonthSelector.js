@@ -31,8 +31,8 @@ export const MonthSelector = (props) => {
 
         <div className={`month-selector`} lang={language}>
             {calendarConfig.months[language].map((month, i) => {
-                let validMonth = getValidMonth(nearViewedMonths, viewedYear, i, validMonth, endDate, startDate);
-                let selectedMonth = getSelectedMonth(selectedDays, viewedYear, i, selectedMonth);
+                let validMonth = getValidMonth(nearViewedMonths, viewedYear, i, endDate, startDate);
+                let selectedMonth = getSelectedMonth(selectedDays, viewedYear, i);
                 const style = selectorsModeStyle(i, viewedMonth, selectedMonth, selectedColor);
 
                 const className = `selectable-month ${!validMonth && "invalid"}`;

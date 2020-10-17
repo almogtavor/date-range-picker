@@ -81,7 +81,7 @@ export function InitialParametersProvider({children, props}) {
         pickMethod: valueParse(pickMethod, "range"),
         selectAllButton: valueParse(selectAllButton, "disabled"),
         initialSelectedColor: defaultColor, // can be undefined, default will be set from config
-        daysAmountTab: valueParse(daysAmountTab, "disabled"),
+        daysAmountTab: valueParse(daysAmountTab, "enabled"),
     })
 
     if (valueState.endDate < valueState.startDate) {
@@ -112,6 +112,19 @@ export function InitialParametersProvider({children, props}) {
     if (valueState.pickMethod === "date" && valueState.daysAmountTab === "enabled") {
         throw Object.assign(new Error('"pickMethod" valued "date" prevents enabled days amount tab.'), { code: 403 });
     }
+
+    let endDateMinusMonth = new Date(valueState.endDate.getFullYear(), valueState.endDate.getMonth() - 1, valueState.endDate.getDate());
+    if (valueState.startDate.valueOf() > endDateMinusMonth.valueOf()) {
+        throw Object.assign(new Error('Difference between limit dates must be bigger than a month.'), { code: 403 });
+    }
+
+    // if (valueState.pickMethod === "range" && valueState.startDate - valueState.endDate) {
+    //     throw Object.assign(new Error('"pickMethod" valued "date" prevents enabled days amount tab.'), { code: 403 });
+    // }
+
+    checkValidInput(valueState.colorsPalette);
+    checkValidInput(valueState.selectAllButton);
+    checkValidInput(valueState.daysAmountTab);
     
     return (
         <InitialParametersContext.Provider 
@@ -120,4 +133,10 @@ export function InitialParametersProvider({children, props}) {
             {children}
         </InitialParametersContext.Provider>
     )
+
+    function checkValidInput(parmaeter) {
+        if (parmaeter !== "enabled" && parmaeter !== "disabled") {
+            throw Object.assign(new Error('A paramter from the type of "enabled/disabled" has a different value.'), { code: 403 });
+        }
+    }
 }
