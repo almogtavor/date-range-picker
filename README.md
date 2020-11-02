@@ -6,6 +6,16 @@
 ![](public/example-image.png)
 
 
+### Usage
+```javascript
+function MyComponent() {
+    return (
+      <DateRangePicker />
+    )
+  }
+}
+```
+
 ### Options
 
 Property                             | Type      | Allowed Values   | Default Value        | Description
