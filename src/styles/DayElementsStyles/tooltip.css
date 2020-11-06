@@ -1,5 +1,5 @@
 .tooltip {
-    position: relative;
+    position: fixed;
     background-color: black;
     color: white;
     opacity: 0.8;
