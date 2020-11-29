@@ -15,13 +15,12 @@ export const MonthSelector = (props) => {
         datesHeaderStateDispatch,
         nearViewedMonths,
         id,
-        nearViewedMonths,
-        selectedDays,
     } = props;
 
     const selectedColor = lowerfooterState.selectedColor;
     const viewedMonth = datesHeaderState.viewedMonth;
     const viewedYear = datesHeaderState.viewedYear;
+    const selectedDays = dayElementsState.selectedDays;
     const language = useLanguage();
     const startDate = useStartDate();
     const endDate = useEndDate();
@@ -37,7 +36,7 @@ export const MonthSelector = (props) => {
 
         <div className={`month-selector`} lang={language}>
             {calendarConfig.months[language].map((month, i) => {
-                let validMonth = getValidMonth(nearViewedMonths, viewedYear, i, endDate, startDate);
+                let validMonth = getValidMonth(nearViewedMonths(id), viewedYear, i, endDate, startDate);
                 let selectedMonth = getSelectedMonth(selectedDays, viewedYear, i);
                 const style = selectorsModeStyle(i, viewedMonth, selectedMonth, selectedColor);
 

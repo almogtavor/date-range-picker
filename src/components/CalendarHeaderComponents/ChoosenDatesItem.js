@@ -9,20 +9,21 @@ const xIcon = require('../../images/x-icon.png');
 
 export default function ChoosenDatesItem(props) {
     const { 
+        lowerfooterState,
+        dayElementsStateDispatch,
+        datesHeaderStateDispatch,
+        calendarHeaderState,
+        calendarHeaderStateDispatch,
+        generalState,
         choosenDates,
         index,
         isDatesDisplayHovered,
-        choosenDatesList,
-        selectedColor,
-        boardsNum,
-        storedDates,
-        setStoredDates,
-        setChoosenDatesList,
-        setSelectedDays,
-        setViewedMonth,
-        setViewedYear,
     } = props;
 
+    const selectedColor = lowerfooterState.selectedColor;
+    const storedDates = calendarHeaderState.storedDates;
+    const choosenDatesList = calendarHeaderState.choosenDatesList;
+    const boardsNum = generalState.boardsNum;
     const language = useLanguage();
     let initialState = isDatesDisplayHovered && index === 0;
     const [isXCurrentlyHovered, setIsXCurrentlyHovered] = useState(initialState);
@@ -53,23 +54,23 @@ export default function ChoosenDatesItem(props) {
         let clearedChoosenDatesList = removeItemFromArray(choosenDatesList, choosenDates);
         let clearedStoredDates = removeItemFromArray(storedDates, storedDates[index]);
         if (clearedStoredDates.length < 1) {
-            setSelectedDays([]);
+            dayElementsStateDispatch(setSelectedDays([]));
         } else {
-            setSelectedDays(clearedStoredDates[0]);
-            updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, clearedStoredDates[0][0], clearedStoredDates[0][1])
+            dayElementsStateDispatch(setSelectedDays(clearedStoredDates[0]));
+            updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, clearedStoredDates[0][0], clearedStoredDates[0][1])
         }
-        setChoosenDatesList([...clearedChoosenDatesList]);
-        setStoredDates([...clearedStoredDates]);
+        calendarHeaderStateDispatch(setChoosenDatesList([...clearedChoosenDatesList]));
+        calendarHeaderStateDispatch(setStoredDates([...clearedStoredDates]));
     }
 
     const handleDatesClick = () => {
         let selectedDays = storedDates[index];
         let clearedChoosenDatesList = removeItemFromArray(choosenDatesList, choosenDates);
         let clearedStoredDates = removeItemFromArray(storedDates, selectedDays);
-        setSelectedDays(selectedDays);
-        setStoredDates([selectedDays, ...clearedStoredDates]);
-        setChoosenDatesList([choosenDates, ...clearedChoosenDatesList]);
-        updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, selectedDays[0], selectedDays[1])
+        dayElementsStateDispatch(setSelectedDays(selectedDays));
+        calendarHeaderStateDispatch(setStoredDates([selectedDays, ...clearedStoredDates]));
+        calendarHeaderStateDispatch(setChoosenDatesList([choosenDates, ...clearedChoosenDatesList]));
+        updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, selectedDays[0], selectedDays[1])
     }
 
     return <div 

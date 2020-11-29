@@ -3,18 +3,25 @@ import { useLanguage, usePickMethod } from "../../context/InitialParametersConte
 import '../../styles/CalendarHeaderStyles/dates-display.css';
 import ChoosenDatesItemContainer from "../../containers/CalendarHeaderContainers/ChoosenDatesItemContainer";
 import { getDates } from "../../utils/generalUtils";
+import { setChoosenDatesList, setStoredDates } from "../../actions";
+import ChoosenDatesItem from "./ChoosenDatesItem";
 
 export default function DatesDisplay(props) {
     const {
-        selectedDays,
+        lowerfooterState,
+        dayElementsState,
+        dayElementsStateDispatch,
+        datesHeaderStateDispatch,
+        calendarHeaderState,
+        calendarHeaderStateDispatch,
         choosenDates,
-        choosenDatesList,
-        storedDates,
-        setStoredDates,
-        setChoosenDatesList,
+        generalState,
         selectedDaysStyle,
     } = props;
 
+    const selectedDays = dayElementsState.selectedDays;
+    const storedDates = calendarHeaderState.storedDates;
+    const choosenDatesList = calendarHeaderState.choosenDatesList;
     const [isCurrentlyHovered, setIsCurrentlyHovered] = useState(false);
     const prevSelectedDays = useRef([]);
     const language = useLanguage();
@@ -23,6 +30,7 @@ export default function DatesDisplay(props) {
     const toggleHover = () => {
         setIsCurrentlyHovered(!isCurrentlyHovered);
     };
+    
     let dateDisplayClassName = "dates-display";
     if (isCurrentlyHovered && pickMethod === "ranges") {
         dateDisplayClassName = "dates-display-list";
@@ -44,8 +52,8 @@ export default function DatesDisplay(props) {
                 }
             });
 
-            setStoredDates([selectedDays, ...clearedStoredDates]);
-            setChoosenDatesList([choosenDates, ...clearedChoosenDatesList]);
+            calendarHeaderStateDispatch(setStoredDates([selectedDays, ...clearedStoredDates]));
+            calendarHeaderStateDispatch(setChoosenDatesList([choosenDates, ...clearedChoosenDatesList]));
         }
     }, [selectedDays, storedDates, choosenDatesList, choosenDates, setChoosenDatesList, setStoredDates])
     
@@ -60,12 +68,24 @@ export default function DatesDisplay(props) {
             { pickMethod === "ranges" &&
                 !isCurrentlyHovered && 
                     (choosenDatesList.length === 0 ? 
-                        <ChoosenDatesItemContainer 
+                        <ChoosenDatesItem 
+                            lowerfooterState={lowerfooterState}
+                            dayElementsStateDispatch={dayElementsStateDispatch}
+                            datesHeaderStateDispatch={datesHeaderStateDispatch}
+                            calendarHeaderState={calendarHeaderState}
+                            calendarHeaderStateDispatch={calendarHeaderStateDispatch}
+                            generalState={generalState}    
                             choosenDates={choosenDates}
                             index={-1}
                             isDatesDisplayHovered={isCurrentlyHovered}
                         /> : 
-                        <ChoosenDatesItemContainer 
+                        <ChoosenDatesItem
+                            lowerfooterState={lowerfooterState}
+                            dayElementsStateDispatch={dayElementsStateDispatch}
+                            datesHeaderStateDispatch={datesHeaderStateDispatch}
+                            calendarHeaderState={calendarHeaderState}
+                            calendarHeaderStateDispatch={calendarHeaderStateDispatch}
+                            generalState={generalState}
                             choosenDates={choosenDatesList[0]}
                             index={choosenDatesList.length - 1}
                             isDatesDisplayHovered={isCurrentlyHovered}
@@ -77,7 +97,13 @@ export default function DatesDisplay(props) {
                     style={ selectedDaysStyle }
                 >
                     {choosenDatesList.map((listItem, i) => {
-                        return <ChoosenDatesItemContainer
+                        return <ChoosenDatesItem
+                                lowerfooterState={lowerfooterState}
+                                dayElementsStateDispatch={dayElementsStateDispatch}
+                                datesHeaderStateDispatch={datesHeaderStateDispatch}
+                                calendarHeaderState={calendarHeaderState}
+                                calendarHeaderStateDispatch={calendarHeaderStateDispatch}
+                                generalState={generalState}
                                 key={listItem + i}
                                 choosenDates={listItem}
                                 index={i}

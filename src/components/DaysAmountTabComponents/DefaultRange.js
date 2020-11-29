@@ -1,4 +1,5 @@
 import React from 'react';
+import { setSelectedDays } from '../../actions';
 import { daysAmountTabConfig } from '../../configuration/config';
 import { useLanguage } from '../../context/InitialParametersContext';
 import { updateViewedMonths } from '../../utils/generalUtils';
@@ -6,18 +7,19 @@ import { updateViewedMonths } from '../../utils/generalUtils';
 export function DefaultRange(props) {
     const { 
         range, 
-        boardsNum, 
+        generalState, 
         index, 
-        setSelectedDays, 
-        setViewedMonth, 
-        setViewedYear 
+        dayElementsStateDispatch, 
+        datesHeaderStateDispatch, 
     } = props;
+
+    const boardsNum = generalState.boardsNum;
     const className = "pickable-days-amount";
     const language = useLanguage();
 
     const handleClick = (dates) => () => {
-        setSelectedDays(dates);
-        updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, dates[0], dates[1])
+        dayElementsStateDispatch(setSelectedDays(dates));
+        updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, dates[0], dates[1])
     }
 
     return (

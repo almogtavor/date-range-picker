@@ -2,19 +2,25 @@ import React from "react";
 import '../../styles/CalendarModesStyles/year-selector.css';
 import { useStartDate, useEndDate } from "../../context/InitialParametersContext";
 import { selectorsModeStyle } from "../../utils/generalUtils";
+import { setMode, setViewedYear } from "../../actions";
 
 
 export const YearSelector = (props) => {
     const {
-        selectedColor, 
-        setViewedYear, 
-        viewedYear,
-        viewedMonth,
-        setMode,
+        lowerfooterState,
+        datesHeaderState,
+        dayElementsState,
+        calendarModesStateDispatch,
+        datesHeaderStateDispatch,
         nearViewedMonths,
-        selectedDays,
+        id
     } = props;
 
+    const selectedColor = lowerfooterState.selectedColor;
+    const viewedMonth = datesHeaderState.viewedMonth;
+    const viewedYear = datesHeaderState.viewedYear;
+    const selectedDays = dayElementsState.selectedDays;
+    const nearViewedMonths = nearViewedMonths(id);
     const startDate = useStartDate();
     const endDate = useEndDate();
     
@@ -25,8 +31,8 @@ export const YearSelector = (props) => {
 
     const selectYearHandler = (year, validYear) => () => {
         if (validYear) {
-            setMode("Days");
-            setViewedYear(year);
+            calendarModesStateDispatch(setMode("Days"));
+            datesHeaderStateDispatch(setViewedYear(year));
         }
     };
 

@@ -4,17 +4,21 @@ import { getDefaultRanges } from '../../utils/daysAmountTabUtils';
 import { useEndDate, useStartDate, useLanguage } from '../../context/InitialParametersContext';
 import { getOpacityColorStyle, updateViewedMonths } from '../../utils/generalUtils';
 import DefaultRangeContainer from '../../containers/DaysAmountTabContainer/DefaultRangeContainer';
+import { DefaultRange } from './DefaultRange';
+import { setSelectedDays } from '../../actions';
 
 
 export function DaysAmountTab(props) {
 
     const { 
-        selectedColor,
-        setSelectedDays,
-        boardsNum,
-        setViewedMonth,
-        setViewedYear
+        lowerfooterState,
+        dayElementsStateDispatch,
+        generalState,
+        datesHeaderStateDispatch
     } = props;
+
+    const selectedColor = lowerfooterState.selectedColor;
+    const boardsNum = generalState.boardsNum;
     const style = getOpacityColorStyle(selectedColor, 60);
     const errorClassName = " error-input";
     const defaultClassName = "days-amount-input";
@@ -39,9 +43,9 @@ export function DaysAmountTab(props) {
         let currentDate = new Date();
         let daysAmountBackwards = new Date();
         daysAmountBackwards.setDate(daysAmountBackwards.getDate() - decresement);
-        setSelectedDays([daysAmountBackwards, currentDate]);
-        updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, daysAmountBackwards, currentDate)
-    }, [boardsNum, language, setSelectedDays, setViewedMonth, setViewedYear])
+        dayElementsStateDispatch(setSelectedDates([daysAmountBackwards, currentDate]));
+        updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, daysAmountBackwards, currentDate)
+    }, [boardsNum, language, dayElementsStateDispatch, setSelectedDays, datesHeaderStateDispatch])
 
     const handleChange = (e) => {
         let value = e.target.value;
@@ -56,7 +60,7 @@ export function DaysAmountTab(props) {
         daysAmountBackwards.setDate(daysAmountBackwards.getDate() - parseInt(value));
         value = valueValidation(value, daysAmountBackwards);
         if (value === "") {
-            setSelectedDays([]);
+            dayElementsStateDispatch(setSelectedDays([]));
         }
         updateOnChange(value);
     }
@@ -96,11 +100,13 @@ export function DaysAmountTab(props) {
                 style={style}
             >
                 {defaultRanges.map((range, i) => {
-                    return (<DefaultRangeContainer
+                    return (<DefaultRange
                         key={i}
                         range={range}
                         index={i}
-                        boardsNum={boardsNum}
+                        generalState={generalState}
+                        datesHeaderStateDispatch={datesHeaderStateDispatch}
+                        dayElementsStateDispatch={dayElementsStateDispatch}
                     />);
                 })}
                 <div className="days-amount-field"  lang={language}>

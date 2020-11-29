@@ -38,7 +38,6 @@ export const SelectableDayElement = (props) => {
         lowerfooterState,
         dayElementsState,
         dayElementsStateDispatch,
-        datesHeaderState,
         datesHeaderStateDispatch,
         nearViewedMonths,
         generalState,

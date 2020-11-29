@@ -102,7 +102,7 @@ export function getDates(range) {
     }
 }
 
-export function updateViewedMonths(boardsNum, language, calendarHeaderStateDispatch, date1, date2) {
+export function updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, date1, date2) {
     let boardIndexes = [0, 1];
     if (language === "Hebrew") {
         boardIndexes = boardIndexes.reverse();
@@ -114,19 +114,19 @@ export function updateViewedMonths(boardsNum, language, calendarHeaderStateDispa
             if (date2Round < date1Round) {
                 boardIndexes = boardIndexes.reverse();
             }
-            calendarHeaderStateDispatch(setViewedMonth(boardIndexes[0], date1.getMonth()));
-            calendarHeaderStateDispatch(setViewedYear(boardIndexes[0], date1.getFullYear()));
-            calendarHeaderStateDispatch(setViewedMonth(boardIndexes[1], date2.getMonth()));
-            calendarHeaderStateDispatch(setViewedYear(boardIndexes[1], date2.getFullYear()));
+            datesHeaderStateDispatch(setViewedMonth(boardIndexes[0], date1.getMonth()));
+            datesHeaderStateDispatch(setViewedYear(boardIndexes[0], date1.getFullYear()));
+            datesHeaderStateDispatch(setViewedMonth(boardIndexes[1], date2.getMonth()));
+            datesHeaderStateDispatch(setViewedYear(boardIndexes[1], date2.getFullYear()));
         } else {
-            calendarHeaderStateDispatch(setViewedMonth(boardIndexes[0], date1.getMonth()));
-            calendarHeaderStateDispatch(setViewedYear(boardIndexes[0], date1.getFullYear()));
+            datesHeaderStateDispatch(setViewedMonth(boardIndexes[0], date1.getMonth()));
+            datesHeaderStateDispatch(setViewedYear(boardIndexes[0], date1.getFullYear()));
             if (date1.getMonth() + 1 === 12) {
-                calendarHeaderStateDispatch(setViewedMonth(boardIndexes[1], 0));
-                calendarHeaderStateDispatch(setViewedYear(boardIndexes[1], date1.getFullYear() + 1));  
+                datesHeaderStateDispatch(setViewedMonth(boardIndexes[1], 0));
+                datesHeaderStateDispatch(setViewedYear(boardIndexes[1], date1.getFullYear() + 1));  
             } else {
-                calendarHeaderStateDispatch(setViewedMonth(boardIndexes[1], date1.getMonth() + 1));
-                calendarHeaderStateDispatch(setViewedYear(boardIndexes[1], date1.getFullYear()));
+                datesHeaderStateDispatch(setViewedMonth(boardIndexes[1], date1.getMonth() + 1));
+                datesHeaderStateDispatch(setViewedYear(boardIndexes[1], date1.getFullYear()));
             }
         }
     }

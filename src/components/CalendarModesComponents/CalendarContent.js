@@ -14,26 +14,19 @@ import { YearSelector } from "./YearSelector";
 export const CalendarContent = (props) => {
     const {
       lowerfooterState,
-      lowerfooterStateDispatch,
       dayElementsState,
       dayElementsStateDispatch,
-      calendarModesState,
       calendarModesStateDispatch,
-      daysAmountState,
-      daysAmountStateDispatch,
       datesHeaderState,
       datesHeaderStateDispatch,
-      calendarHeaderState,
-      calendarHeaderStateDispatch,
       generalState,
       datesHeaderState,
       nearViewedMonths,
-      setMode,
       mode, 
       id,
     } = props;
 
-    const language = useLanguage();
+    // const language = useLanguage();
 
     return (
     <div className="month-grid">
@@ -60,9 +53,13 @@ export const CalendarContent = (props) => {
           />
         ) : mode === "Years" && 
           <YearSelector
+            lowerfooterState={lowerfooterState}
+            dayElementsState={dayElementsState}
+            calendarModesStateDispatch={calendarModesStateDispatch}
+            datesHeaderState={datesHeaderState}
+            datesHeaderStateDispatch={datesHeaderStateDispatch}
+            nearViewedMonths={nearViewedMonths}
             id={id}
-            language={language}
-            setMode={setMode}
           />
         }
     </div>)

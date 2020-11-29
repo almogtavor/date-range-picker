@@ -1,12 +1,13 @@
 import React from "react";
 import "../App.css";
 import { CalendarInstance } from './CalendarInstance';
-import {CalendarHeader} from "../components/CalendarHeaderComponents/CalendarHeaderContainer";
+// import {CalendarHeader} from "./CalendarHeaderComponents/CalendarHeaderContainer";
 // import DaysAmountButtonTabContainer from "../containers/DaysAmountTabContainer/DaysAmountTabButtonContainer";
-import { DaysAmountTabButton } from "../../components/DaysAmountTabComponents/DaysAmountTabButton";
 import { DaysAmountTab } from "../../components/DaysAmountTabComponents/DaysAmountTab";
 import { useLanguage } from "../context/InitialParametersContext";
 import { updateObject } from "../reducers/reducersUtils";
+import { CalendarHeader } from "./CalendarHeaderComponents/CalendarHeader";
+import { DaysAmountTabButton } from "./DaysAmountTabComponents/DaysAmountTabButton";
 
 const lowerFooterInitialState = {
   selectedColor: "#2196f3",
@@ -145,18 +146,14 @@ function calendarHeaderReducerMapper(state, payload) {
   }
 }
 
-const getDatesHeader = (state) => {
-  return state.datesHeader;
-};
-
-const getIDs = (state, language, id) => {
+const getIDs = (language, id) => {
   const rightId = language === "Hebrew" ? id - 1 : id + 1;
   const leftId = language === "Hebrew" ? id + 1 : id - 1;
   return { rightId, leftId };
 };
 
 export const getNearViewedMonths = (datesHeaderState, language, id) => {
-    const { rightId, leftId } = getIDs(datesHeaderState, language, id);
+    const { rightId, leftId } = getIDs(language, id);
     return {
         "right": {
             "year": datesHeaderState.viewedYear[rightId], 
@@ -240,7 +237,6 @@ export const Mapper = (props) => {
             nearViewedMonths={nearViewedMonths}
             generalStateDispatch={generalStateDispatch}
             generalState={generalState}
-            boardsNum={boardsNum}
           />
           {calendarsIndexes.map((i) => {
               return (
@@ -267,29 +263,11 @@ export const Mapper = (props) => {
             })}
           <DaysAmountTabButton
             lowerfooterState={lowerfooterState}
-            lowerfooterStateDispatch={lowerfooterStateDispatch}
-            dayElementsState={dayElementsState}
             dayElementsStateDispatch={dayElementsStateDispatch}
-            calendarModesState={calendarModesState}
-            calendarModesStateDispatch={calendarModesStateDispatch}
             daysAmountState={daysAmountState}
             daysAmountStateDispatch={daysAmountStateDispatch}
-            datesHeaderState={datesHeaderState}
             datesHeaderStateDispatch={datesHeaderStateDispatch}
-            calendarHeaderState={calendarHeaderState}
-            calendarHeaderStateDispatch={calendarHeaderStateDispatch}
             generalState={generalState}
-            nearViewedMonths={nearViewedMonths}
-          // selectedColor: state.lowerFooter.selectedColor,
-          // showDaysAmountTab: state.daysAmountTab.showDaysAmountTab,
-          //     setSelectedDays: (selectedDays) => dispatch(setSelectedDays(selectedDays)),
-          //     setShowDaysAmountTab: (showDaysAmountTab) => dispatch(setShowDaysAmountTab(showDaysAmountTab)),
-              
-          // boardsNum={boardsNum}
-          //     setSelectedDays: (selectedDays) => dispatch(setSelectedDays(selectedDays)),
-          //         setShowDaysAmountTab: (showDaysAmountTab) => dispatch(setShowDaysAmountTab(showDaysAmountTab)),
-          //         setViewedMonth: (id, viewedMonth) => dispatch(setViewedMonth(id, viewedMonth)),
-          //         setViewedYear: (id, viewedYear) => dispatch(setViewedYear(id, viewedYear)),
           />
         </div>
       }</>
