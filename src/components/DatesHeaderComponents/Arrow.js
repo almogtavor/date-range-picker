@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import '../../styles/DatesHeaderStyles/arrow.css';
 import { useEndDate, useStartDate, useLanguage } from "../../context/InitialParametersContext";
 import { getOpacityColorStyle } from "../../utils/generalUtils";
+import { setViewedMonth, setViewedYear } from "../../actions";
 
 const arrowImages = {
     "leftArrow": require('../../images/arrow-left.png'),
@@ -11,14 +12,16 @@ const arrowImages = {
 export const Arrow = (props) => {
     const {
         nearViewedMonths,
-        viewedMonth,
-        viewedYear,
-        setViewedMonth,
-        setViewedYear,
-        selectedColor, 
+        datesHeaderState,
+        datesHeaderStateDispatch,
+        lowerfooterState,
+        nearViewedMonths,
         arrowSide,
     } = props;
 
+    const viewedMonth = datesHeaderState.viewedMonth;
+    const viewedYear = datesHeaderState.viewedYear;
+    const selectedColor = lowerfooterState.selectedColor;
     const arrowSideImg = arrowImages[arrowSide];
     const language = useLanguage();
     const startDate = useStartDate();
@@ -47,18 +50,18 @@ export const Arrow = (props) => {
     const decreaseMonth = () => {
         if (canDecrease()) {
             if (viewedMonth === 0) {
-                setViewedYear((viewedYear - 1));   
+                datesHeaderStateDispatch(setViewedYear((viewedYear - 1)));
             }
-            setViewedMonth(Math.abs((viewedMonth + 12 - 1) % 12));
+            datesHeaderStateDispatch(setViewedMonth(Math.abs((viewedMonth + 12 - 1) % 12)));
         }
     };
     
     const increaseMonth = () => {
         if (canIncrease()) {
             if (viewedMonth === 11) {
-                setViewedYear((viewedYear + 1));
+                datesHeaderStateDispatch(setViewedYear((viewedYear + 1)));
             }
-            setViewedMonth(Math.abs((viewedMonth + 1) % 12));
+            datesHeaderStateDispatch(setViewedMonth(Math.abs((viewedMonth + 1) % 12)));
         }
     };
 

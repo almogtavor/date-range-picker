@@ -1,16 +1,18 @@
 import React, { useState } from "react";
+import { setMode } from "../../actions";
 import '../../styles/DatesHeaderStyles/info-element.css';
 import { getOpacityColorStyle } from "../../utils/generalUtils";
 
 export const InfoElement = (props) => {
     const {
-        selectedColor, 
+        lowerfooterState,
+        calendarModesStateDispatch,
         element,
         value, 
-        setMode,
         changeMode, 
     } = props;
 
+    const selectedColor = lowerfooterState.selectedColor;
     const [isHover, setIsHover] = useState(false);
     let style = {};
     if (isHover) {
@@ -18,7 +20,7 @@ export const InfoElement = (props) => {
     }
     
     const clickHandler = () => {
-        setMode(changeMode);
+        calendarModesStateDispatch(setMode(changeMode));
     };
 
     const hoverHandle = (hasEntered) => () => {

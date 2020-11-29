@@ -5,26 +5,27 @@ import LowerFooterContainer from '../containers/LowerFooterContainers/LowerFoote
 import DatesHeaderContainer from '../containers/DatesHeaderContainer/DatesHeaderContainer';
 import { useLanguage } from "../context/InitialParametersContext";
 import { updateObject } from "../reducers/reducersUtils";
+import { DatesHeader } from "./DatesHeaderComponents/DatesHeader";
 //import { getUpdatedObject } from "../utils/actionsUtils";
 
-const initialState = {
-  mode: {'0': "Days", '1': "Days", },
-};
+// const initialState = {
+//   mode: {'0': "Days", '1': "Days", },
+// };
 
-export function getUpdatedObject(id, parameter, parameterState) {
-  const boardsNum = 2;
-  const componentIDs = [...Array(boardsNum).keys()];
-  let stateObj = {};
-  for (let i of componentIDs) {
-    if (id === i) {
-      stateObj[i] = parameter;
-    }
-    else {
-      stateObj[i] = parameterState[i];
-    }
-  }
-  return stateObj;
-}
+// export function getUpdatedObject(id, parameter, parameterState) {
+//   const boardsNum = 2;
+//   const componentIDs = [...Array(boardsNum).keys()];
+//   let stateObj = {};
+//   for (let i of componentIDs) {
+//     if (id === i) {
+//       stateObj[i] = parameter;
+//     }
+//     else {
+//       stateObj[i] = parameterState[i];
+//     }
+//   }
+//   return stateObj;
+// }
 
 // export const setMode = (mode) =>{ 
 //   console.log("jaifejaifjeaf");
@@ -32,12 +33,12 @@ export function getUpdatedObject(id, parameter, parameterState) {
 //   type: 'SET_MODE',
 //   mode
 // })};
-export const setMode = (mode) => {
-  console.log(mode);
-  return ({
-  type: 'SET_MODE',
-  mode
-})}
+// export const setMode = (mode) => {
+//   console.log(mode);
+//   return ({
+//   type: 'SET_MODE',
+//   mode
+// })}
 
 
 // export function setMode(id, mode) {
@@ -53,14 +54,14 @@ export const setMode = (mode) => {
 //     dispatch(setModeObject(stateObj));
 // }
 
-function reducer(state, payload) {
-  if (payload.type === "SET_MODE") {
-    console.log("jaifejaifjeaf");
-    return updateObject(state, {mode: payload.mode});
-  } else {
-    return state;
-  }
-}
+// function reducer(state, payload) {
+//   if (payload.type === "SET_MODE") {
+//     console.log("jaifejaifjeaf");
+//     return updateObject(state, {mode: payload.mode});
+//   } else {
+//     return state;
+//   }
+// }
 
 export const CalendarInstance = (props) => {
     const {
@@ -76,11 +77,10 @@ export const CalendarInstance = (props) => {
       datesHeaderStateDispatch,
       calendarHeaderState,
       calendarHeaderStateDispatch,
+      nearViewedMonths,
       i,
     } = props;
 
-    const [state, dispatch] = useReducer(reducer, initialState);
-    console.log(state);
     const language = useLanguage();
     let calendarComponentStyle = {
       "gridColumn": (i + 1) % 3,
@@ -95,20 +95,13 @@ export const CalendarInstance = (props) => {
         className="calendar-component" 
         style={calendarComponentStyle}
       >
-        {/* {state.mode} */}
-        <button onClick={() => dispatch(setMode(getUpdatedObject(0, "Months", state)))}>
-          -
-        </button>
         <DatesHeader
           id={i}
-          language={language}
-          mode={state.mode}
-          selectedColor={}//: state.lowerFooter.selectedColor,
-        viewedYear//: state.datesHeader.viewedYear[ownProps.id],
-        viewedMonth//: state.datesHeader.viewedMonth[ownProps.id],
-        setMode
-          dispatchMode={dispatch}
-          modeState={state}
+          lowerfooterState={lowerfooterState}
+          calendarModesStateDispatch={calendarModesStateDispatch}
+          datesHeaderState={datesHeaderState}
+          datesHeaderStateDispatch={datesHeaderStateDispatch}
+          nearViewedMonths={nearViewedMonths}
         />
         <CalendarContent
           id={i}

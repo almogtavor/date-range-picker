@@ -2,18 +2,22 @@ import React from "react";
 import {calendarConfig} from '../../configuration/config';
 import '../../styles/DatesHeaderStyles/dates-header.css';
 import { useLanguage } from "../../context/InitialParametersContext";
-import ArrowConatiner from "../../containers/DatesHeaderContainer/ArrowContainer";
+// import ArrowConatiner from "../../containers/DatesHeaderContainer/ArrowContainer";
 import { InfoElement } from "./InfoElement";
+import { Arrow } from "./Arrow";
 
 export const DatesHeader = (props) => {
     const {
+        lowerfooterState,
+        calendarModesStateDispatch,
+        datesHeaderState,
+        datesHeaderStateDispatch,
+        nearViewedMonths,
         id,
-        selectedColor, 
-        viewedMonth, 
-        viewedYear, 
-        setMode, 
     } = props;
 
+    const viewedMonth = datesHeaderState.viewedMonth;
+    const viewedYear = datesHeaderState.viewedYear;
     const language = useLanguage();
     const monthsElementValue = calendarConfig.months[language][viewedMonth];
 
@@ -21,30 +25,36 @@ export const DatesHeader = (props) => {
     <div className="header" lang={language}>
         <div className="info-elements">
                 <InfoElement
-                    selectedColor={selectedColor}
                     element={"month"}
                     value={monthsElementValue}
-                    setMode={setMode}
                     changeMode={"Months"}
+                    lowerfooterState={lowerfooterState}
+                    calendarModesStateDispatch={calendarModesStateDispatch}
                 />
                 <InfoElement
-                    selectedColor={selectedColor}
                     element={"year"}
                     value={viewedYear}
-                    setMode={setMode}
                     changeMode={"Years"}
+                    lowerfooterState={lowerfooterState}
+                    calendarModesStateDispatch={calendarModesStateDispatch}
                 />
             </div>
             <div className="header-icons">
-                <ArrowConatiner 
+                <Arrow 
+                    nearViewedMonths={nearViewedMonths}
+                    datesHeaderState={datesHeaderState}
+                    datesHeaderStateDispatch={datesHeaderStateDispatch}
+                    lowerfooterState={lowerfooterState}
                     id={id}
-                    language={language}
                     arrowSide={"leftArrow"}
                 />
 
-                <ArrowConatiner
+                <Arrow
+                    nearViewedMonths={nearViewedMonths}
+                    datesHeaderState={datesHeaderState}
+                    datesHeaderStateDispatch={datesHeaderStateDispatch}
+                    lowerfooterState={lowerfooterState}
                     id={id}
-                    language={language}
                     arrowSide={"rightArrow"}
                 />
             </div>
