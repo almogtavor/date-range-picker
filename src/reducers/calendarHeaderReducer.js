@@ -18,10 +18,10 @@ function setStoredDates(state, payload) {
     return updateObject(state, {storedDates: payload.storedDates});
 }
 
-const datesHeaderReducerMapper = createReducer(initialState, {
+const calendarHeaderReducerMapper = createReducer(initialState, {
     SET_CHOOSEN_DATES: setChoosenDates,
     SET_CHOOSEN_DATES_LIST: setChoosenDatesList,
     SET_STORED_DATES: setStoredDates,
 })
   
-export default datesHeaderReducerMapper;
+export default calendarHeaderReducerMapper;

@@ -9,6 +9,7 @@ export const LowerFooter = (props) => {
 
     const {
         id,
+        mode,
         selectedColor,      
         selectedDays,
         boardsNum,
@@ -75,6 +76,7 @@ export const LowerFooter = (props) => {
         <SelectAllButtonContainer
             id={id}
             language={language}
+            mode={mode}
         />
 
         {showPickButton && 

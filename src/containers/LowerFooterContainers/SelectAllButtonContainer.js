@@ -9,7 +9,7 @@ const makeMapStateToProps = () => {
     const mapStateToProps = (state, ownProps) => {
         return ({
             selectedDays: state.dayElements.selectedDays,
-            mode: state.calendarModes.mode[ownProps.id],
+            mode: ownProps.mode[ownProps.id],
             viewedMonth: state.datesHeader.viewedMonth[ownProps.id],
             viewedYear: state.datesHeader.viewedYear[ownProps.id],
             nearViewedMonths: getNearViewedMonths(state, ownProps.language, ownProps.id)

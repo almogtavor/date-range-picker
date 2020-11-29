@@ -13,9 +13,9 @@ function setSelectedDays(state, payload) {
     return updateObject(state, {selectedDays: payload.selectedDays});
 }
   
-const lowerFooterReducerMapper = createReducer(initialState, {
+const dayElementsReducerMapper = createReducer(initialState, {
     SET_SELECTED_DAYS: setSelectedDays,
     SET_HOVERED_DAY: setHoveredDay
 })
 
-export default lowerFooterReducerMapper;
+export default dayElementsReducerMapper;

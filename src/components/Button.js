@@ -1,5 +1,6 @@
 import React from "react";
 import '../styles/button.css';
+import { setShowCalendar } from '../../actions';
 import { useFormat, usePickMethod, useLanguage } from "../context/InitialParametersContext";
 import { choosenDatesCalculation } from "../utils/generalUtils";
 
@@ -7,11 +8,12 @@ const calendarIcon = require('../images/calendar-icon6.png');
 
 export const Button = (props) => {
     const {
-        showCalendar,
-        setShowCalendar,
-        buttonDatesText,
+        generalStateDispatch,
+        generalState,
     } = props;
 
+    const showCalendar = generalState.showCalendar;
+    const buttonDatesText = generalState.buttonDatesText;
     const language = useLanguage();
     const format = useFormat();
     const pickMethod = usePickMethod();
@@ -22,7 +24,7 @@ export const Button = (props) => {
     };
     
     const handleClick = () => {
-        setShowCalendar(!showCalendar)
+        generalStateDispatch(setShowCalendar(!showCalendar))
     }
 
     return (

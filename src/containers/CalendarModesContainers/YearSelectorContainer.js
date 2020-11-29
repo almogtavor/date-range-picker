@@ -20,7 +20,7 @@ const makeMapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     setViewedYear: (viewedYear) => dispatch(setViewedYear(ownProps.id, viewedYear)),
-    setMode: (mode) => dispatch(setMode(ownProps.id, mode)),
+    setMode: (mode) => ownProps.setMode(ownProps.id, mode),
 });
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(YearSelector);

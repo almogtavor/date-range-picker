@@ -14,3 +14,17 @@
     border-bottom-style: solid;
     color: white;
 }
+
+.enabled {
+    animation: fadein 0.7s;
+}
+
+
+@keyframes fadein {
+    from {
+        opacity:0.5;
+    }
+    to {
+        opacity:1;
+    }
+}

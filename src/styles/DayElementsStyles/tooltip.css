@@ -10,4 +10,14 @@
     padding-top: 0.5%;
     padding-bottom: 0.5%;
     display: inline-block;
+    animation: tooltip-fadein 4s;
+}
+
+@keyframes tooltip-fadein {
+    from {
+        opacity:0.2;
+    }
+    to {
+        opacity:1;
+    }
 }

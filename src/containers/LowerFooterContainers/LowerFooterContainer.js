@@ -6,7 +6,7 @@ const mapStateToProps = (state, ownProps) => {
     return ({
         id: ownProps.id,
         selectedColor: state.lowerFooter.selectedColor,
-        mode: state.calendarModes.mode[ownProps.id],
+        mode: ownProps.mode,
         selectedDays: state.dayElements.selectedDays,
         boardsNum: state.general.boardsNum,
         storedDates: state.calendarHeader.storedDates,

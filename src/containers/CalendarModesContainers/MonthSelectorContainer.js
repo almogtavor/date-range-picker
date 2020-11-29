@@ -19,7 +19,7 @@ const makeMapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     setViewedMonth: (viewedMonth) => dispatch(setViewedMonth(ownProps.id, viewedMonth)),
-    setMode: (mode) => dispatch(setMode(ownProps.id, mode)),
+    setMode: (mode) => ownProps.setMode(mode),
 });
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(MonthSelector);

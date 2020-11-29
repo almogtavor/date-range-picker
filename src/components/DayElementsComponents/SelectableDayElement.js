@@ -3,6 +3,33 @@ import '../../styles/DayElementsStyles/day.css';
 import '../../styles/DayElementsStyles/selected-day.css';
 import { useLanguage, useEndDate, useStartDate, usePickMethod } from "../../context/InitialParametersContext";
 import HoverableDayElementContainer from "../../containers/DayElementsContainers/HoverableDayElementContainer";
+import { getNearViewedMonths } from "../Mapper";
+
+function customSetter(language, id) {
+    const rightId = language === "Hebrew" ? id - 1 : id + 1;
+    const leftId = language === "Hebrew" ? id + 1 : id - 1;
+    
+    const setMonthById = (viewedMonth, id, viewedYear) => {
+        let yearIncreasement = 0;
+        let newMonth = viewedMonth;
+        if (viewedMonth > 11) {
+            yearIncreasement = 1;
+            newMonth = 0;
+        } else if (viewedMonth < 0) {
+            yearIncreasement = -1;
+            newMonth = 11;
+        }
+        dispatch(setViewedMonth(id, newMonth));
+        dispatch(setViewedYear(id, viewedYear + yearIncreasement));
+    }
+    
+    return ({ 
+        setRightViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, rightId, viewedYear),
+        setLeftViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, leftId, viewedYear),
+        setViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, id, viewedYear),
+    })
+}
+
 
 export const SelectableDayElement = (props) => {
     const {
@@ -24,10 +51,14 @@ export const SelectableDayElement = (props) => {
         setViewedMonth,
     } = props;
 
-
     const startDate = useStartDate();
     const endDate = useEndDate();
     const language = useLanguage();
+    
+    const rightViewedMonth = getNearViewedMonths(language, id);
+    const rightViewedYear = getNearViewedMonths(language, id);
+    const leftViewedMonth = getNearViewedMonths(language, id);
+    const leftViewedYear = getNearViewedMonths(language, id);
     const month = date.getMonth();
     const year = date.getFullYear();
     const pickMethod = usePickMethod();
@@ -140,6 +171,9 @@ export const SelectableDayElement = (props) => {
     if (isSelected) {
         style = {...genericStyle, "background": selectedColor, "borderColor": selectedColor};
         className += " selected-day";
+    }
+    if (isSelected && isOfCurrentViewedMonth) {
+        className += " enabled";
     }
 
     return (

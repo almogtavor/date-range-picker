@@ -10,12 +10,13 @@ import { useLanguage } from "../../context/InitialParametersContext";
 
 export const CalendarContent = (props) => {
     const {
+      setMode,
       mode, 
       id,
     } = props;
 
     const language = useLanguage();
-    
+
     return (
     <div className="month-grid">
         <WeekDaysNames/>
@@ -26,11 +27,13 @@ export const CalendarContent = (props) => {
           <MonthSelectorContainer
             id={id}
             language={language}
+            setMode={setMode}
           />
         ) : mode === "Years" && 
           <YearSelectorContainer
             id={id}
             language={language}
+            setMode={setMode}
           />
         }
     </div>)

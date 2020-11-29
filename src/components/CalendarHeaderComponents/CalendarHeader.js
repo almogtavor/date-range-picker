@@ -4,28 +4,37 @@ import { choosenDatesCalculation, calculateDaysCount, removeItemFromArray, getOp
 import { useFormat, useLanguage, usePickMethod } from "../../context/InitialParametersContext";
 import { updateViewedMonths } from '../../utils/generalUtils';
 import DatesDisplayContainer from "../../containers/CalendarHeaderContainers/DatesDisplayContainer";
+import { setChoosenDatesList } from "../../actions";
 
 export const CalendarHeader = (props) => {
     const {
-        setSelectedDays,
-        selectedDays, 
-        hoveredDay, 
-        selectedColor,
-        boardsNum,
-        storedDates,
-        choosenDatesList,
-        setChoosenDatesList,
-        setStoredDates,
-        setViewedMonth,
-        setViewedYear,
+        lowerfooterState,
+        lowerfooterStateDispatch,
+        dayElementsState,
+        dayElementsStateDispatch,
+        calendarModesState,
+        calendarModesStateDispatch,
+        daysAmountState,
+        daysAmountStateDispatch,
+        datesHeaderState,
+        datesHeaderStateDispatch,
+        calendarHeaderState,
+        calendarHeaderStateDispatch,
+        boardsNum
     } = props;
 
+    // const setSelectedDays = lowerfooterState.setSelectedDays;
+    const selectedDays = dayElementsState.selectedDays;
+    const hoveredDay = dayElementsState.hoveredDay;
+    const selectedColor = lowerfooterState.selectedColor;
+    const storedDates = datesHeaderState.storedDates;
+    const choosenDatesList = datesHeaderState.choosenDatesList;
     const language = useLanguage();
     const format = useFormat();
     const pickMethod = usePickMethod();
     const clearButtonClassName = "clear";
     const clearStyle = {"color": selectedColor};
-    const widthPercentage = ((boardsNum * 100) > 300 ? 300 : (boardsNum * 100));
+    const widthPercentage = (boardsNum * 100) > 300 ? 300 : (boardsNum * 100);
     
     let clearButtonText = "Clear";
     if (language === "Hebrew") {
@@ -42,13 +51,13 @@ export const CalendarHeader = (props) => {
         if (pickMethod === "ranges") {
             let clearedChoosenDatesList = removeItemFromArray(choosenDatesList, choosenDates);
             let clearedStoredDates = removeItemFromArray(storedDates, selectedDays);
-            setChoosenDatesList([...clearedChoosenDatesList]);
-            setStoredDates([...clearedStoredDates]);
+            datesHeaderStateDispatch(setChoosenDatesList([...clearedChoosenDatesList]));
+            datesHeaderStateDispatch(setStoredDates([...clearedStoredDates]));
             if (storedDates.length < 1) {
                 setSelectedDays([]);
             } else {
                 setSelectedDays(storedDates[0]);
-                updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, storedDates[0][0], storedDates[0][1])
+                updateViewedMonths(boardsNum, language, calendarHeaderStateDispatch, storedDates[0][0], storedDates[0][1])
             }
         } else {
             setSelectedDays([]);
@@ -98,8 +107,7 @@ function addDatesCount(pickMethod, selectedDays, choosenDates, language, hovered
 }
 
 function areEqual(prevProps, nextProps) {
-    return nextProps.selectedDays.length === 0 &&
-        prevProps.selectedDays === nextProps.selectedProps &&
+    return prevProps.selectedDays === nextProps.selectedProps &&
         prevProps.selectedColor === nextProps.selectedColor;
 }
 

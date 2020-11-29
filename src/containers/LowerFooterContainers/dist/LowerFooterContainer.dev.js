@@ -15,9 +15,10 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     id: ownProps.id,
     selectedColor: state.lowerFooter.selectedColor,
-    mode: state.calendarModes.mode[ownProps.id],
+    mode: ownProps.mode,
     selectedDays: state.dayElements.selectedDays,
-    boardsNum: state.general.boardsNum
+    boardsNum: state.general.boardsNum,
+    storedDates: state.calendarHeader.storedDates
   };
 };
 
@@ -40,6 +41,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     },
     setChoosenDates: function setChoosenDates(choosenDates) {
       return dispatch((0, _actions.setChoosenDates)(choosenDates));
+    },
+    setButtonDatesText: function setButtonDatesText(buttonDatesText) {
+      return dispatch((0, _actions.setButtonDatesText)(buttonDatesText));
     }
   };
 };
