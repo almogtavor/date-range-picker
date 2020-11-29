@@ -6,10 +6,28 @@ import YearSelectorContainer from "../../containers/CalendarModesContainers/Year
 import MonthSelectorContainer from "../../containers/CalendarModesContainers/MonthSelectorContainer";
 import { WeekDaysNames } from "./WeekDaysNames";
 import { useLanguage } from "../../context/InitialParametersContext";
+import { DaysGrid } from "../DayElementsComponents/DaysGrid";
+import { MonthSelector } from "./MonthSelector";
+import { YearSelector } from "./YearSelector";
 
 
 export const CalendarContent = (props) => {
     const {
+      lowerfooterState,
+      lowerfooterStateDispatch,
+      dayElementsState,
+      dayElementsStateDispatch,
+      calendarModesState,
+      calendarModesStateDispatch,
+      daysAmountState,
+      daysAmountStateDispatch,
+      datesHeaderState,
+      datesHeaderStateDispatch,
+      calendarHeaderState,
+      calendarHeaderStateDispatch,
+      generalState,
+      datesHeaderState,
+      nearViewedMonths,
       setMode,
       mode, 
       id,
@@ -20,17 +38,28 @@ export const CalendarContent = (props) => {
     return (
     <div className="month-grid">
         <WeekDaysNames/>
-        <MonthDayElementsContainer 
+        <DaysGrid 
+          lowerfooterState={lowerfooterState}
+          dayElementsState={dayElementsState}
+          dayElementsStateDispatch={dayElementsStateDispatch}
+          datesHeaderState={datesHeaderState}
+          datesHeaderStateDispatch={datesHeaderStateDispatch}
+          nearViewedMonths={nearViewedMonths}
+          generalState={generalState}
           id={id}
         />
         {mode === "Months" ? (
-          <MonthSelectorContainer
+          <MonthSelector
+            lowerfooterState={lowerfooterState}
+            dayElementsState={dayElementsState}
+            calendarModesStateDispatch={calendarModesStateDispatch}
+            datesHeaderState={datesHeaderState}
+            datesHeaderStateDispatch={datesHeaderStateDispatch}
+            nearViewedMonths={nearViewedMonths}
             id={id}
-            language={language}
-            setMode={setMode}
           />
         ) : mode === "Years" && 
-          <YearSelectorContainer
+          <YearSelector
             id={id}
             language={language}
             setMode={setMode}

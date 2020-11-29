@@ -4,26 +4,32 @@ import {calendarConfig} from '../../configuration/config';
 import '../../styles/CalendarModesStyles/month-selector.css';
 import { useLanguage, useStartDate, useEndDate } from "../../context/InitialParametersContext";
 import { selectorsModeStyle } from "../../utils/generalUtils";
+import { setMode, setViewedMonth } from "../../actions";
 
 export const MonthSelector = (props) => {
     const {
-        selectedColor, 
-        viewedMonth, 
-        setViewedMonth, 
-        viewedYear, 
-        setMode,
+        lowerfooterState,
+        dayElementsState,
+        calendarModesStateDispatch,
+        datesHeaderState,
+        datesHeaderStateDispatch,
+        nearViewedMonths,
+        id,
         nearViewedMonths,
         selectedDays,
     } = props;
 
+    const selectedColor = lowerfooterState.selectedColor;
+    const viewedMonth = datesHeaderState.viewedMonth;
+    const viewedYear = datesHeaderState.viewedYear;
     const language = useLanguage();
     const startDate = useStartDate();
     const endDate = useEndDate();
     
     const selectMonthHandler = (month, validMonth) => () => {
         if (validMonth) {
-            setMode("Days");
-            setViewedMonth(month);
+            calendarModesStateDispatch(setMode("Days"));
+            datesHeaderStateDispatch(setViewedMonth(month));
         }
     };
 

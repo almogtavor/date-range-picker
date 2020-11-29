@@ -11,13 +11,15 @@ function inRangeCheck(date, edgeDate1, edgeDate2) {
 export const HoverableDayElement = (props) => {
     const {
         date,
-        selectedDays,
-        selectedColor,
-        hoveredDay,
-        setHoveredDay,
         dayOfWeek,
+        dayElementsState,
+        dayElementsStateDispatch,
+        lowerfooterState
     } = props;
 
+    const selectedColor = lowerfooterState.selectedColor;
+    const selectedDays = dayElementsState.selectedDays;
+    const hoveredDay = dayElementsState.hoveredDay;
     const dateRef = useRef();
     const startDate = useStartDate();
     const endDate = useEndDate();
@@ -33,14 +35,14 @@ export const HoverableDayElement = (props) => {
     const handleEnterHover = () => {
         setIsCurrentlyHovered(true);
         if (!isDisabled && pickMethod !== "date") {
-            setHoveredDay(date);
+            dayElementsStateDispatch(setHoveredDay(date));
         }
     };
 
     const handleLeaveHover = () => {
         setIsCurrentlyHovered(false);
         if (selectedDays.length === 2) {
-            setHoveredDay(null);
+            dayElementsStateDispatch(setHoveredDay(null));
         }
     };
 

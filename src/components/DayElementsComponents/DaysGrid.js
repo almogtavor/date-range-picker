@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
 import SelectableDayElementContainer from "../../containers/DayElementsContainers/SelectableDayElementContainer";
 import { useLanguage } from "../../context/InitialParametersContext";
+import { SelectableDayElement } from "./SelectableDayElement";
 
 export const DaysGrid = (props) => { 
     const {
-        viewedYear, 
-        viewedMonth, 
+        lowerfooterState,
+        dayElementsState,
+        dayElementsStateDispatch,
+        datesHeaderState,
+        generalState,
+        nearViewedMonths,
         id,
     } = props;
 
+    const viewedMonth = datesHeaderState.viewedMonth;
+    const viewedYear = datesHeaderState.viewedYear;
     const language = useLanguage();
     const numOfDaysInMonth = new Date(viewedYear, viewedMonth + 1, 0).getDate();
     const dayToBeginTheMonthFrom = new Date(viewedYear, viewedMonth, 1).getDay();
@@ -42,16 +49,19 @@ export const DaysGrid = (props) => {
         }
 
         return (
-            <SelectableDayElementContainer
+            <SelectableDayElement
+                lowerfooterState={lowerfooterState}
+                dayElementsState={dayElementsState}
+                dayElementsStateDispatch={dayElementsStateDispatch}
+                nearViewedMonths={nearViewedMonths}
+                generalState={generalState}
                 key={key}
                 id={id}
                 date={date}
                 isOfCurrentViewedMonth={isOfCurrentViewedMonth}
                 dayOfWeek={dayOfWeek}
                 genericStyle={genericStyle}
-                language={language}
             />
         );
-        
     });
 };

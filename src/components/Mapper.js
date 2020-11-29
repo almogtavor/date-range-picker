@@ -238,6 +238,8 @@ export const Mapper = (props) => {
             calendarHeaderState={calendarHeaderState}
             calendarHeaderStateDispatch={calendarHeaderStateDispatch}
             nearViewedMonths={nearViewedMonths}
+            generalStateDispatch={generalStateDispatch}
+            generalState={generalState}
             boardsNum={boardsNum}
           />
           {calendarsIndexes.map((i) => {
@@ -256,6 +258,8 @@ export const Mapper = (props) => {
                   calendarHeaderState={calendarHeaderState}
                   calendarHeaderStateDispatch={calendarHeaderStateDispatch}
                   nearViewedMonths={nearViewedMonths}
+                  generalStateDispatch={generalStateDispatch}
+                  generalState={generalState}
                   boardsNum={boardsNum}
                   key={i}
                   i={i}
@@ -274,12 +278,14 @@ export const Mapper = (props) => {
             datesHeaderStateDispatch={datesHeaderStateDispatch}
             calendarHeaderState={calendarHeaderState}
             calendarHeaderStateDispatch={calendarHeaderStateDispatch}
+            generalState={generalState}
             nearViewedMonths={nearViewedMonths}
           // selectedColor: state.lowerFooter.selectedColor,
           // showDaysAmountTab: state.daysAmountTab.showDaysAmountTab,
           //     setSelectedDays: (selectedDays) => dispatch(setSelectedDays(selectedDays)),
           //     setShowDaysAmountTab: (showDaysAmountTab) => dispatch(setShowDaysAmountTab(showDaysAmountTab)),
-              boardsNum={boardsNum}
+              
+          // boardsNum={boardsNum}
           //     setSelectedDays: (selectedDays) => dispatch(setSelectedDays(selectedDays)),
           //         setShowDaysAmountTab: (showDaysAmountTab) => dispatch(setShowDaysAmountTab(showDaysAmountTab)),
           //         setViewedMonth: (id, viewedMonth) => dispatch(setViewedMonth(id, viewedMonth)),

@@ -4,8 +4,10 @@ import '../../styles/DayElementsStyles/selected-day.css';
 import { useLanguage, useEndDate, useStartDate, usePickMethod } from "../../context/InitialParametersContext";
 import HoverableDayElementContainer from "../../containers/DayElementsContainers/HoverableDayElementContainer";
 import { getNearViewedMonths } from "../Mapper";
+import { setSelectedDays, setViewedMonth, setViewedYear } from "../../actions";
+import { HoverableDayElement } from "./HoverableDayElement";
 
-function customSetter(language, id) {
+function customSetters(datesHeaderStateDispatch, language, id) {
     const rightId = language === "Hebrew" ? id - 1 : id + 1;
     const leftId = language === "Hebrew" ? id + 1 : id - 1;
     
@@ -19,46 +21,52 @@ function customSetter(language, id) {
             yearIncreasement = -1;
             newMonth = 11;
         }
-        dispatch(setViewedMonth(id, newMonth));
-        dispatch(setViewedYear(id, viewedYear + yearIncreasement));
+        datesHeaderStateDispatch(setViewedMonth(id, newMonth));
+        datesHeaderStateDispatch(setViewedYear(id, viewedYear + yearIncreasement));
     }
     
     return ({ 
         setRightViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, rightId, viewedYear),
         setLeftViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, leftId, viewedYear),
-        setViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, id, viewedYear),
+        setViewedMonthCustom: (viewedMonth, viewedYear) => setMonthById(viewedMonth, id, viewedYear),
     })
 }
 
 
 export const SelectableDayElement = (props) => {
     const {
+        lowerfooterState,
+        dayElementsState,
+        dayElementsStateDispatch,
+        datesHeaderState,
+        datesHeaderStateDispatch,
+        nearViewedMonths,
+        generalState,
         date,
         id,
-        selectedDays,
-        rightViewedMonth,
-        rightViewedYear,
-        leftViewedMonth,
-        leftViewedYear,
-        selectedColor,
         isOfCurrentViewedMonth,
         dayOfWeek,
         genericStyle,
-        boardsNum,
-        setSelectedDays,
-        setRightViewedMonth,
-        setLeftViewedMonth,
-        setViewedMonth,
     } = props;
 
     const startDate = useStartDate();
     const endDate = useEndDate();
     const language = useLanguage();
     
-    const rightViewedMonth = getNearViewedMonths(language, id);
-    const rightViewedYear = getNearViewedMonths(language, id);
-    const leftViewedMonth = getNearViewedMonths(language, id);
-    const leftViewedYear = getNearViewedMonths(language, id);
+    const rightViewedMonth = nearViewedMonths(id).right.month;
+    const rightViewedYear = nearViewedMonths(id).right.year;
+    const leftViewedMonth = nearViewedMonths(id).left.month;
+    const leftViewedYear = nearViewedMonths(id).left.year;
+
+    const {
+        setViewedMonthCustom, 
+        setRightViewedMonth, 
+        setLeftViewedMonth 
+    } = customSetters(datesHeaderStateDispatch, language, id);
+
+    const boardsNum = generalState.boardsNum;
+    const selectedColor = lowerfooterState.selectedColor;
+    const selectedDays = dayElementsState.selectedDays;
     const month = date.getMonth();
     const year = date.getFullYear();
     const pickMethod = usePickMethod();
@@ -79,7 +87,7 @@ export const SelectableDayElement = (props) => {
             isNonCurrentCase = true;
         }
         if (!isOfCurrentViewedMonth && isNonCurrentCase) {
-            setViewedMonth(date.getMonth(), date.getFullYear());
+            setViewedMonthCustom(date.getMonth(), date.getFullYear());
             if (rightViewedYear === year && rightViewedMonth === month) {
                 setRightViewedMonth(rightViewedMonth + 1, rightViewedYear);
             }
@@ -91,11 +99,11 @@ export const SelectableDayElement = (props) => {
 
     const setMonthsOnLeftClick = (rightMonth, rightYear, leftMonth, leftYear) => {
         setRightViewedMonth(rightMonth, rightYear);
-        setViewedMonth(leftMonth, leftYear);
+        setViewedMonthCustom(leftMonth, leftYear);
     }
     
     const setMonthsOnRightClick = (rightMonth, rightYear, leftMonth, leftYear) => {
-        setViewedMonth(rightMonth, rightYear);
+        setViewedMonthCustom(rightMonth, rightYear);
         setLeftViewedMonth(leftMonth, leftYear);
     }
 
@@ -142,17 +150,17 @@ export const SelectableDayElement = (props) => {
             nonCurrentDateClick();
             if (pickMethod !== "date") {
                 if (selectedDays.length === 2 || selectedDays.length === 0) {
-                    setSelectedDays([date]);
+                    dayElementsStateDispatch(setSelectedDays([date]));
                 } else {
                     if (selectedDays[0] > date) {
-                        setSelectedDays([date, selectedDays[0]]);
+                        dayElementsStateDispatch(setSelectedDays([date, selectedDays[0]]));
                     } else {
-                        setSelectedDays([selectedDays[0], date]);
+                        dayElementsStateDispatch(setSelectedDays([selectedDays[0], date]));
                     }
                 }
                 rangeSelectionHandling();
             } else {
-                setSelectedDays([date]);
+                dayElementsStateDispatch(setSelectedDays([date]));
             }
         }
     };
@@ -182,7 +190,10 @@ export const SelectableDayElement = (props) => {
             style={style}
             onClick={handleClick}
         >
-            <HoverableDayElementContainer
+            <HoverableDayElement
+                dayElementsState={dayElementsState}
+                dayElementsStateDispatch={dayElementsStateDispatch}
+                lowerfooterState={lowerfooterState}
                 date={date}
                 dayOfWeek={dayOfWeek}
             />

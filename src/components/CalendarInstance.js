@@ -6,6 +6,8 @@ import DatesHeaderContainer from '../containers/DatesHeaderContainer/DatesHeader
 import { useLanguage } from "../context/InitialParametersContext";
 import { updateObject } from "../reducers/reducersUtils";
 import { DatesHeader } from "./DatesHeaderComponents/DatesHeader";
+import { CalendarContent } from "./CalendarModesComponents/CalendarContent";
+
 //import { getUpdatedObject } from "../utils/actionsUtils";
 
 // const initialState = {
@@ -77,6 +79,8 @@ export const CalendarInstance = (props) => {
       datesHeaderStateDispatch,
       calendarHeaderState,
       calendarHeaderStateDispatch,
+      generalStateDispatch,
+      generalState,
       nearViewedMonths,
       i,
     } = props;
@@ -104,6 +108,20 @@ export const CalendarInstance = (props) => {
           nearViewedMonths={nearViewedMonths}
         />
         <CalendarContent
+          lowerfooterState={lowerfooterState}
+          lowerfooterStateDispatch={lowerfooterStateDispatch}
+          dayElementsState={dayElementsState}
+          dayElementsStateDispatch={dayElementsStateDispatch}
+          calendarModesState={calendarModesState}
+          calendarModesStateDispatch={calendarModesStateDispatch}
+          daysAmountState={daysAmountState}
+          daysAmountStateDispatch={daysAmountStateDispatch}
+          datesHeaderState={datesHeaderState}
+          datesHeaderStateDispatch={datesHeaderStateDispatch}
+          calendarHeaderState={calendarHeaderState}
+          calendarHeaderStateDispatch={calendarHeaderStateDispatch}
+          nearViewedMonths={nearViewedMonths}
+          generalState={generalState}
           id={i}
           mode={state.mode}
           dispatchMode={dispatch}
