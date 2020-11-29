@@ -243,6 +243,19 @@ export const Mapper = (props) => {
           {calendarsIndexes.map((i) => {
               return (
               <CalendarInstance
+                  lowerfooterState={lowerfooterState}
+                  lowerfooterStateDispatch={lowerfooterStateDispatch}
+                  dayElementsState={dayElementsState}
+                  dayElementsStateDispatch={dayElementsStateDispatch}
+                  calendarModesState={calendarModesState}
+                  calendarModesStateDispatch={calendarModesStateDispatch}
+                  daysAmountState={daysAmountState}
+                  daysAmountStateDispatch={daysAmountStateDispatch}
+                  datesHeaderState={datesHeaderState}
+                  datesHeaderStateDispatch={datesHeaderStateDispatch}
+                  calendarHeaderState={calendarHeaderState}
+                  calendarHeaderStateDispatch={calendarHeaderStateDispatch}
+                  nearViewedMonths={nearViewedMonths}
                   boardsNum={boardsNum}
                   key={i}
                   i={i}
@@ -253,16 +266,14 @@ export const Mapper = (props) => {
             lowerfooterStateDispatch={lowerfooterStateDispatch}
             dayElementsState={dayElementsState}
             dayElementsStateDispatch={dayElementsStateDispatch}
-            lowerfooterState={lowerfooterState}
-            lowerfooterStateDispatch={lowerfooterStateDispatch}
-            dayElementsState={dayElementsState}
-            dayElementsStateDispatch={dayElementsStateDispatch}
             calendarModesState={calendarModesState}
             calendarModesStateDispatch={calendarModesStateDispatch}
             daysAmountState={daysAmountState}
             daysAmountStateDispatch={daysAmountStateDispatch}
             datesHeaderState={datesHeaderState}
             datesHeaderStateDispatch={datesHeaderStateDispatch}
+            calendarHeaderState={calendarHeaderState}
+            calendarHeaderStateDispatch={calendarHeaderStateDispatch}
             nearViewedMonths={nearViewedMonths}
           // selectedColor: state.lowerFooter.selectedColor,
           // showDaysAmountTab: state.daysAmountTab.showDaysAmountTab,

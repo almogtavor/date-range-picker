@@ -12,7 +12,6 @@ const initialState = {
 };
 
 export function getUpdatedObject(id, parameter, parameterState) {
-  console.log("fejaifeja");
   const boardsNum = 2;
   const componentIDs = [...Array(boardsNum).keys()];
   let stateObj = {};
@@ -65,6 +64,18 @@ function reducer(state, payload) {
 
 export const CalendarInstance = (props) => {
     const {
+      lowerfooterState,
+      lowerfooterStateDispatch,
+      dayElementsState,
+      dayElementsStateDispatch,
+      calendarModesState,
+      calendarModesStateDispatch,
+      daysAmountState,
+      daysAmountStateDispatch,
+      datesHeaderState,
+      datesHeaderStateDispatch,
+      calendarHeaderState,
+      calendarHeaderStateDispatch,
       i,
     } = props;
 
