@@ -3,6 +3,7 @@ import '../../styles/CalendarModesStyles/year-selector.css';
 import { useStartDate, useEndDate } from "../../context/InitialParametersContext";
 import { selectorsModeStyle } from "../../utils/generalUtils";
 import { setMode, setViewedYear } from "../../actions";
+import { getUpdatedObject } from "../../utils/actionsUtils";
 
 
 export const YearSelector = (props) => {
@@ -12,10 +13,12 @@ export const YearSelector = (props) => {
         dayElementsState,
         calendarModesStateDispatch,
         datesHeaderStateDispatch,
+        generalState,
         nearViewedMonthsfunction,
         id
     } = props;
 
+    const boardsNum = generalState.boardsNum;
     const selectedColor = lowerfooterState.selectedColor;
     const viewedMonth = datesHeaderState.viewedMonth[id];
     const viewedYear = datesHeaderState.viewedYear[id];
@@ -23,7 +26,8 @@ export const YearSelector = (props) => {
     const nearViewedMonths = nearViewedMonthsfunction(id);
     const startDate = useStartDate();
     const endDate = useEndDate();
-    
+    let yearState;
+
     let yearsArray = [];
     for (let i = endDate.getFullYear(); i > startDate.getFullYear() - 1; i--) {
         yearsArray.push(i);
@@ -32,7 +36,8 @@ export const YearSelector = (props) => {
     const selectYearHandler = (year, validYear) => () => {
         if (validYear) {
             calendarModesStateDispatch(setMode("Days"));
-            datesHeaderStateDispatch(setViewedYear(year));
+            yearState = getUpdatedObject(boardsNum, id, year, datesHeaderState.viewedYear);
+            datesHeaderStateDispatch(setViewedYear(yearState));
         }
     };
 

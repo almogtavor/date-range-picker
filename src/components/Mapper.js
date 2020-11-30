@@ -102,8 +102,9 @@ function setViewedYear(state, payload) {
   return updateObject(state, {viewedYear: payload.viewedYear});
 }
 
-function datesHeaderReducerMapper(state, payload) {
+function datesHeaderReducerMapper(state, payload, datesHeaderState, boardsNum) {
   if (payload.type === "SET_VIEWED_MONTH") {
+    payload.viewedMonth = getUpdatedObject(boardsNum, payload.id, payload.viewedMonth, datesHeaderState.viewedMonth);
     return setViewedMonth(state, payload);
   } else if (payload.type === "SET_VIEWED_YEAR") {
     return setViewedYear(state, payload);
