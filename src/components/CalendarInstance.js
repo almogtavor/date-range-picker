@@ -7,6 +7,7 @@ import { useLanguage } from "../context/InitialParametersContext";
 import { updateObject } from "../reducers/reducersUtils";
 import { DatesHeader } from "./DatesHeaderComponents/DatesHeader";
 import { CalendarContent } from "./CalendarModesComponents/CalendarContent";
+import { LowerFooter } from "./LowerFooterComponents/LowerFooter";
 
 //import { getUpdatedObject } from "../utils/actionsUtils";
 
@@ -123,13 +124,19 @@ export const CalendarInstance = (props) => {
           nearViewedMonths={nearViewedMonths}
           generalState={generalState}
           id={i}
-          mode={state.mode}
-          dispatchMode={dispatch}
         />
         <LowerFooter
+          lowerfooterState={lowerfooterState}
+          lowerfooterStateDispatch={lowerfooterStateDispatch}
+          dayElementsState={dayElementsState}
+          calendarModesState={calendarModesState}
+          calendarHeaderState={calendarHeaderState}
+          datesHeaderState={datesHeaderState}
+          nearViewedMonths={nearViewedMonths}
+          dayElementsStateDispatch={dayElementsStateDispatch}
+          generalState={generalState}
           id={i}
-          language={language}
-          mode={state.mode}
+          generalStateDispatch={generalStateDispatch}
         />
       </div>
       );

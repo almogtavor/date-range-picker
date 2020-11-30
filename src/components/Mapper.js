@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useReducer } from "react";
 import "../App.css";
 import { CalendarInstance } from './CalendarInstance';
 // import {CalendarHeader} from "./CalendarHeaderComponents/CalendarHeaderContainer";
 // import DaysAmountButtonTabContainer from "../containers/DaysAmountTabContainer/DaysAmountTabButtonContainer";
 import { DaysAmountTab } from "../../components/DaysAmountTabComponents/DaysAmountTab";
-import { useLanguage } from "../context/InitialParametersContext";
+import { useEndDate, useLanguage } from "../context/InitialParametersContext";
 import { updateObject } from "../reducers/reducersUtils";
 import { CalendarHeader } from "./CalendarHeaderComponents/CalendarHeader";
 import { DaysAmountTabButton } from "./DaysAmountTabComponents/DaysAmountTabButton";
+import { setInitialBoard } from "../actions";
 
 const lowerFooterInitialState = {
   selectedColor: "#2196f3",
@@ -21,11 +22,6 @@ function setSelectedColor(state, payload) {
 function setShowColorPicker(state, payload) {
   return updateObject(state, {showColorPicker: payload.showColorPicker});
 }
-
-const lowerFooterReducerMapper = createReducer(initialState, {
-  SET_SELECTED_COLOR: setSelectedColor,
-  SET_SHOW_COLOR_PICKER: setShowColorPicker
-})
 
 function lowerFooterReducerMapper(state, payload) {
   if (payload.type === "SET_SELECTED_COLOR") {
@@ -170,6 +166,9 @@ export const Mapper = (props) => {
     const {
       showCalendar,
       boardsNum,
+      startDate,
+      endDate,
+      defaultColor,
       generalStateDispatch,
       generalState,
     } = props;
@@ -183,21 +182,22 @@ export const Mapper = (props) => {
     
     
     const language = useLanguage();
+    
     const nearViewedMonths = (id) => getNearViewedMonths(datesHeaderState, language, id);
 
     if (language) {
-        dispatch(setInitialBoard(
-            ownProps.boardsNum, 
-            ownProps.language, 
-            ownProps.startDate, 
-            ownProps.endDate
+        generalStateDispatch(setInitialBoard(
+            generalState.boardsNum, 
+            language, 
+            startDate, 
+            endDate
         ));
     } else {
         throw Object.assign(new Error('"language" prop is undefined'), { code: 403 });
     }
 
-    if (ownProps.defaultColor) {
-        dispatch(setSelectedColor(ownProps.defaultColor));
+    if (defaultColor) {
+      lowerfooterStateDispatch(setSelectedColor(defaultColor));
     }
 
     // const handleBlur = () => {

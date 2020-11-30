@@ -3,6 +3,7 @@ import '../../styles/CalendarHeaderStyles/choosen-dates.css';
 import { getOpacityColorStyle, removeItemFromArray } from '../../utils/generalUtils';
 import { updateViewedMonths } from '../../utils/generalUtils';
 import { useLanguage } from '../../context/InitialParametersContext';
+import { setChoosenDatesList, setSelectedDays, setStoredDates } from '../../actions';
 
 
 const xIcon = require('../../images/x-icon.png');

@@ -3,18 +3,20 @@ import {calendarConfig} from '../../configuration/config';
 import '../../styles/LowerFooterStyles/color-picker-palette.css';
 import { useLanguage, useColorsPalette, useInitialSelectedColor } from "../../context/InitialParametersContext";
 import { getOpacityColorStyle } from "../../utils/generalUtils";
+import { setSelectedColor, setShowColorPicker } from "../../actions";
 
 const pointerHandIcon = require('../../images/pointer-hand.png');
 
 export const ColorPickerPalette = (props) => {
 
     const {
-        selectedColor,
-        setSelectedColor,
-        showColorPicker, 
-        setShowColorPicker,
+        lowerfooterState,
+        lowerfooterStateDispatch,
         showPaletteAllowed,
     } = props;
+
+    const selectedColor = lowerfooterState.selectedColor;
+    const showColorPicker = lowerfooterState.showColorPicker;
 
     const language = useLanguage();
     const colorsPaletteEnabling = useColorsPalette();
@@ -25,12 +27,12 @@ export const ColorPickerPalette = (props) => {
     }
 
     const changeColor = (color) => () => {
-        setSelectedColor(color);
-        setShowColorPicker(false);
+        lowerfooterStateDispatch(setSelectedColor(color));
+        lowerfooterStateDispatch(setShowColorPicker(false));
     }
 
     const toggleColorPicker = () => {
-        setShowColorPicker(!showColorPicker);
+        lowerfooterStateDispatch(setShowColorPicker(!showColorPicker));
     }
 
     return (

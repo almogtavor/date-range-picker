@@ -1,9 +1,5 @@
 import React from "react";
 import '../..//styles/calendar-component.css';
-
-import MonthDayElementsContainer from "../../containers/DayElementsContainers/DaysGridContainer";
-import YearSelectorContainer from "../../containers/CalendarModesContainers/YearSelectorContainer";
-import MonthSelectorContainer from "../../containers/CalendarModesContainers/MonthSelectorContainer";
 import { WeekDaysNames } from "./WeekDaysNames";
 import { useLanguage } from "../../context/InitialParametersContext";
 import { DaysGrid } from "../DayElementsComponents/DaysGrid";
@@ -17,7 +13,6 @@ export const CalendarContent = (props) => {
       dayElementsState,
       dayElementsStateDispatch,
       calendarModesStateDispatch,
-      datesHeaderState,
       datesHeaderStateDispatch,
       generalState,
       datesHeaderState,
@@ -48,7 +43,7 @@ export const CalendarContent = (props) => {
             calendarModesStateDispatch={calendarModesStateDispatch}
             datesHeaderState={datesHeaderState}
             datesHeaderStateDispatch={datesHeaderStateDispatch}
-            nearViewedMonths={nearViewedMonths}
+            nearViewedMonthsfunction={nearViewedMonths}
             id={id}
           />
         ) : mode === "Years" && 
@@ -58,7 +53,7 @@ export const CalendarContent = (props) => {
             calendarModesStateDispatch={calendarModesStateDispatch}
             datesHeaderState={datesHeaderState}
             datesHeaderStateDispatch={datesHeaderStateDispatch}
-            nearViewedMonths={nearViewedMonths}
+            nearViewedMonthsfunction={nearViewedMonths}
             id={id}
           />
         }

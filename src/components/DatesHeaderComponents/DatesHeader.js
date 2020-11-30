@@ -41,7 +41,7 @@ export const DatesHeader = (props) => {
             </div>
             <div className="header-icons">
                 <Arrow 
-                    nearViewedMonths={nearViewedMonths}
+                    nearViewedMonthsfunction={nearViewedMonths}
                     datesHeaderState={datesHeaderState}
                     datesHeaderStateDispatch={datesHeaderStateDispatch}
                     lowerfooterState={lowerfooterState}
@@ -50,7 +50,7 @@ export const DatesHeader = (props) => {
                 />
 
                 <Arrow
-                    nearViewedMonths={nearViewedMonths}
+                    nearViewedMonthsfunction={nearViewedMonths}
                     datesHeaderState={datesHeaderState}
                     datesHeaderStateDispatch={datesHeaderStateDispatch}
                     lowerfooterState={lowerfooterState}

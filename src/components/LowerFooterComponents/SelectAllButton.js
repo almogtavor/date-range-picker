@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import '../../styles/LowerFooterStyles/select-all-button.css';
 import { useLanguage, useEndDate, useStartDate, useSelectAllButton } from "../../context/InitialParametersContext";
+import { setHoveredDay, setSelectedDays } from "../../actions";
 
 const checkbox= require('../../images/checkbox.png');
 const hoverCheckbox = require('../../images/hover-checkbox.png');
@@ -45,15 +46,19 @@ function limitDate(mode, nearViewedMonths, checkedCalendarSide, dateOfCurrentMon
 export const SelectAllButton = (props) => {
 
     const {
-        selectedDays,
-        mode,
-        viewedMonth,
-        viewedYear,
-        nearViewedMonths,
-        setSelectedDays,
-        setHoveredDay,
+        dayElementsState,
+        calendarModesState,
+        datesHeaderState,
+        nearViewedMonthsFunction,
+        id,
+        dayElementsStateDispatch,
     } = props;
 
+    const selectedDays = dayElementsState.selectedDays;
+    const mode = calendarModesState.mode;
+    const viewedMonth = datesHeaderState.viewedMonth;
+    const viewedYear = datesHeaderState.viewedYear;
+    const nearViewedMonths = nearViewedMonthsFunction(id);
     const startDate = useStartDate();
     const endDate = useEndDate();
     const language = useLanguage();
@@ -107,13 +112,13 @@ export const SelectAllButton = (props) => {
     const handleSelectAllClick = () => {
         if (checkboxSrc !== clickedCheckbox) {
             setCheckboxSrc(clickedCheckbox);
-            setHoveredDay(null);
+            dayElementsStateDispatch(setHoveredDay(null));
             checkeboxChanged.current = true;
             const [startSelectDate, endSelectDate] = getLimits();
-            setSelectedDays([startSelectDate, endSelectDate]);
+            dayElementsStateDispatch(setSelectedDays([startSelectDate, endSelectDate]));
         } else {
             setCheckboxSrc(hoverCheckbox);
-            setSelectedDays([]);
+            dayElementsStateDispatch(setSelectedDays([]));
         }
         
     }

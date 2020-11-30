@@ -11,18 +11,19 @@ const arrowImages = {
 
 export const Arrow = (props) => {
     const {
-        nearViewedMonths,
         datesHeaderState,
         datesHeaderStateDispatch,
         lowerfooterState,
-        nearViewedMonths,
+        nearViewedMonthsfunction,
         arrowSide,
+        id
     } = props;
 
     const viewedMonth = datesHeaderState.viewedMonth;
     const viewedYear = datesHeaderState.viewedYear;
     const selectedColor = lowerfooterState.selectedColor;
     const arrowSideImg = arrowImages[arrowSide];
+    const nearViewedMonths = nearViewedMonthsfunction(id);
     const language = useLanguage();
     const startDate = useStartDate();
     const endDate = useEndDate();

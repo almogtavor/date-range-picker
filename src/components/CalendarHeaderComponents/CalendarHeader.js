@@ -4,7 +4,7 @@ import { choosenDatesCalculation, calculateDaysCount, removeItemFromArray, getOp
 import { useFormat, useLanguage, usePickMethod } from "../../context/InitialParametersContext";
 import { updateViewedMonths } from '../../utils/generalUtils';
 import DatesDisplayContainer from "../../containers/CalendarHeaderContainers/DatesDisplayContainer";
-import { setChoosenDatesList } from "../../actions";
+import { setChoosenDatesList, setSelectedDays, setStoredDates } from "../../actions";
 import DatesDisplay from "./DatesDisplay";
 
 export const CalendarHeader = (props) => {
@@ -18,7 +18,6 @@ export const CalendarHeader = (props) => {
         generalState
     } = props;
 
-    // const setSelectedDays = lowerfooterState.setSelectedDays;
     const selectedDays = dayElementsState.selectedDays;
     const hoveredDay = dayElementsState.hoveredDay;
     const selectedColor = lowerfooterState.selectedColor;
@@ -50,13 +49,13 @@ export const CalendarHeader = (props) => {
             calendarHeaderStateDispatch(setChoosenDatesList([...clearedChoosenDatesList]));
             calendarHeaderStateDispatch(setStoredDates([...clearedStoredDates]));
             if (storedDates.length < 1) {
-                setSelectedDays([]);
+                dayElementsStateDispatch(setSelectedDays([]));
             } else {
-                setSelectedDays(storedDates[0]);
+                dayElementsStateDispatch(setSelectedDays(storedDates[0]));
                 updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, storedDates[0][0], storedDates[0][1])
             }
         } else {
-            setSelectedDays([]);
+            dayElementsStateDispatch(setSelectedDays([]));
         }
     }
     

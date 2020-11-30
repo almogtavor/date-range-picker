@@ -5,7 +5,7 @@ import { useEndDate, useStartDate, useLanguage } from '../../context/InitialPara
 import { getOpacityColorStyle, updateViewedMonths } from '../../utils/generalUtils';
 import DefaultRangeContainer from '../../containers/DaysAmountTabContainer/DefaultRangeContainer';
 import { DefaultRange } from './DefaultRange';
-import { setSelectedDays } from '../../actions';
+import { setSelectedDays, setSelectedDates } from '../actions';
 
 
 export function DaysAmountTab(props) {

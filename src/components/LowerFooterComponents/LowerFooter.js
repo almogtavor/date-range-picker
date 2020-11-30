@@ -4,20 +4,31 @@ import { useLanguage, useFormat, usePickMethod, useSelectAllButton, useColorsPal
 import { choosenDatesCalculation } from '../../utils/generalUtils';
 import SelectAllButtonContainer from "../../containers/LowerFooterContainers/SelectAllButtonContainer";
 import ColorPickerPaletteContainer from "../../containers/LowerFooterContainers/ColorPickerPaletteContainer";
+import { setButtonDatesText, setShowCalendar } from "../../actions";
+import { ColorPickerPalette } from "./ColorPickerPalette";
+import { SelectAllButton } from "./SelectAllButton";
 
 export const LowerFooter = (props) => {
 
     const {
+        lowerfooterState,
+        lowerfooterStateDispatch,
+        dayElementsState,
+        calendarModesState,
+        calendarHeaderState,
+        datesHeaderState,
+        nearViewedMonths,
+        dayElementsStateDispatch,
+        generalState,
         id,
-        mode,
-        selectedColor,      
-        selectedDays,
-        boardsNum,
-        storedDates,
-        setShowCalendar,
-        setButtonDatesText,
+        generalStateDispatch,
     } = props;
 
+    const selectedDays = dayElementsState.selectedDays;
+    const mode = calendarModesState.mode;
+    const selectedColor = lowerfooterState.selectedColor;
+    const storedDates = calendarHeaderState.storedDates;
+    const boardsNum = generalState.boardsNum;
     const language = useLanguage();
     const format = useFormat();
     const pickMethod = usePickMethod();
@@ -39,7 +50,7 @@ export const LowerFooter = (props) => {
     }
 
     const handlePickClick = () => {
-        setShowCalendar(false);
+        generalStateDispatch(setShowCalendar(false));
         
         if (pickMethod === "ranges" && storedDates.length > 0) {
             let minDate = storedDates[0][0], maxDate = storedDates[0][0];
@@ -52,14 +63,14 @@ export const LowerFooter = (props) => {
                     }
                 }
             }
-            setButtonDatesText(choosenDatesCalculation(
+            generalStateDispatch(setButtonDatesText(choosenDatesCalculation(
                 [minDate, maxDate],
                 null, 
                 format, 
                 pickMethod, 
-                language));
+                language)));
         } else {
-            setButtonDatesText(choosenDatesCalculation(selectedDays, null, format, pickMethod, language));
+            generalStateDispatch(setButtonDatesText(choosenDatesCalculation(selectedDays, null, format, pickMethod, language)));
         }
     }
 
@@ -68,12 +79,18 @@ export const LowerFooter = (props) => {
         className="lower-footer" 
         style={lowerFooterStyle}
     >
-        <ColorPickerPaletteContainer 
-            id={id}
+        <ColorPickerPalette
+            lowerfooterState={lowerfooterState}
+            lowerfooterStateDispatch={lowerfooterStateDispatch}
             showPaletteAllowed={showPaletteAllowed}
         />
 
-        <SelectAllButtonContainer
+        <SelectAllButton
+            dayElementsState={dayElementsState}
+            calendarModesState={calendarModesState}
+            datesHeaderState={datesHeaderState}
+            nearViewedMonthsFunction={nearViewedMonths}
+            dayElementsStateDispatch={dayElementsStateDispatch}
             id={id}
             language={language}
             mode={mode}

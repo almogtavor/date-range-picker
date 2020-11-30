@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/button.css';
-import { setShowCalendar } from '../../actions';
+import { setShowCalendar } from '../actions';
 import { useFormat, usePickMethod, useLanguage } from "../context/InitialParametersContext";
 import { choosenDatesCalculation } from "../utils/generalUtils";
 

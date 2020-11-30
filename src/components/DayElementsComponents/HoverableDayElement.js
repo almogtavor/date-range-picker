@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import '../../styles/DayElementsStyles/day.css';
 import { useEndDate, useStartDate, usePickMethod } from "../../context/InitialParametersContext";
 import Tooltip from "./Tooltip";
+import { setHoveredDay } from "../../actions";
 
 function inRangeCheck(date, edgeDate1, edgeDate2) {
     return (date >= edgeDate1 && date <= edgeDate2) || 
