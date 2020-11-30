@@ -13,44 +13,59 @@ export function setShowColorPicker(id, showColorPicker) {
     };
 }
 
-export const setViewedMonthObject = (viewedMonth) => ({
+// export const setViewedMonthObject = (viewedMonth) => ({
+//     type: 'SET_VIEWED_MONTH',
+//     viewedMonth
+// })
+
+// export function setViewedMonth(id, viewedMonth) {
+//     return (dispatch, getState) => {
+//         const stateViewedMonth = getState().datesHeader.viewedMonth;
+//         const stateObj = getUpdatedObject(getState, id, viewedMonth, stateViewedMonth);
+//         dispatch(setViewedMonthObject(stateObj));
+//     };
+// }
+
+export const setViewedMonth = (viewedMonth) => ({
     type: 'SET_VIEWED_MONTH',
     viewedMonth
 })
 
-export function setViewedMonth(id, viewedMonth) {
-    return (dispatch, getState) => {
-        const stateViewedMonth = getState().datesHeader.viewedMonth;
-        const stateObj = getUpdatedObject(getState, id, viewedMonth, stateViewedMonth);
-        dispatch(setViewedMonthObject(stateObj));
-    };
-}
-
-export const setViewedYearObject = (viewedYear) => ({
+export const setViewedYear = (viewedYear) => ({
     type: 'SET_VIEWED_YEAR',
     viewedYear
 })
 
-export function setViewedYear(id, viewedYear) {
-    return (dispatch, getState) => {
-        const stateViewedYear = getState().datesHeader.viewedYear;
-        const stateObj = getUpdatedObject(getState, id, viewedYear, stateViewedYear);
-        dispatch(setViewedYearObject(stateObj));
-    };
-}
+// export const setViewedYearObject = (viewedYear) => ({
+//     type: 'SET_VIEWED_YEAR',
+//     viewedYear
+// })
 
-export const setModeObject = (mode) => ({
+// export function setViewedYear(id, viewedYear) {
+//     return (dispatch, getState) => {
+//         const stateViewedYear = getState().datesHeader.viewedYear;
+//         const stateObj = getUpdatedObject(getState, id, viewedYear, stateViewedYear);
+//         dispatch(setViewedYearObject(stateObj));
+//     };
+// }
+
+// export const setModeObject = (mode) => ({
+//     type: 'SET_MODE',
+//     mode
+// })
+
+export const setMode = (mode) => ({
     type: 'SET_MODE',
     mode
 })
 
-export function setMode(id, mode) {
-    return (dispatch, getState) => {
-        const stateMode = getState().calendarModes.mode;
-        const stateObj = getUpdatedObject(getState, id, mode, stateMode);
-        dispatch(setModeObject(stateObj));
-    };
-}
+// export function setMode(id, mode) {
+//     return (dispatch, getState) => {
+//         const stateMode = getState().calendarModes.mode;
+//         const stateObj = getUpdatedObject(getState, id, mode, stateMode);
+//         dispatch(setModeObject(stateObj));
+//     };
+// }
 
 export const setSelectedColor = selectedColor => ({
     type: 'SET_SELECTED_COLOR',
@@ -91,9 +106,9 @@ export function setInitialBoard(boardsNum, language, startDate, endDate) {
           showColorPickerObj,
         } = getInitialObject(boardsNum, language, startDate, endDate);
         dispatch(setBoardsNum(boardsNum));
-        dispatch(setViewedMonthObject(monthsObj));
-        dispatch(setViewedYearObject(yearsObj));
-        dispatch(setModeObject(modeObj));
+        dispatch(setViewedMonth(monthsObj));
+        dispatch(setViewedYear(yearsObj));
+        dispatch(setMode(modeObj));
         dispatch(setShowColorPickerObject(showColorPickerObj));
     };
   }

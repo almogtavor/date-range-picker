@@ -106,6 +106,7 @@ export const CalendarInstance = (props) => {
           calendarModesStateDispatch={calendarModesStateDispatch}
           datesHeaderState={datesHeaderState}
           datesHeaderStateDispatch={datesHeaderStateDispatch}
+          generalState={generalState}
           nearViewedMonths={nearViewedMonths}
         />
         <CalendarContent

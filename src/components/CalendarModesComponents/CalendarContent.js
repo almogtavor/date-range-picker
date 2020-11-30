@@ -44,6 +44,7 @@ export const CalendarContent = (props) => {
             datesHeaderState={datesHeaderState}
             datesHeaderStateDispatch={datesHeaderStateDispatch}
             nearViewedMonthsfunction={nearViewedMonths}
+            generalState={generalState}
             id={id}
           />
         ) : mode === "Years" && 

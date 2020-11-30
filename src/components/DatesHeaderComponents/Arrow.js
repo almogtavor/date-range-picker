@@ -3,6 +3,7 @@ import '../../styles/DatesHeaderStyles/arrow.css';
 import { useEndDate, useStartDate, useLanguage } from "../../context/InitialParametersContext";
 import { getOpacityColorStyle } from "../../utils/generalUtils";
 import { setViewedMonth, setViewedYear } from "../../actions";
+import { getUpdatedObject } from "../../utils/actionsUtils";
 
 const arrowImages = {
     "leftArrow": require('../../images/arrow-left.png'),
@@ -15,10 +16,12 @@ export const Arrow = (props) => {
         datesHeaderStateDispatch,
         lowerfooterState,
         nearViewedMonthsfunction,
+        generalState,
         arrowSide,
         id
     } = props;
 
+    const boardsNum = generalState.boardsNum;
     const viewedMonth = datesHeaderState.viewedMonth[id];
     const viewedYear = datesHeaderState.viewedYear[id];
     const selectedColor = lowerfooterState.selectedColor;
@@ -28,7 +31,8 @@ export const Arrow = (props) => {
     const startDate = useStartDate();
     const endDate = useEndDate();
     const [isHover, setIsHover] = useState(false);
-    let changeMonth, canChange;
+    let changeMonth, canChange, monthState, yearState;
+    console.log(viewedMonth)
 
     const canIncrease = () => {
         const isNearMonthNotBlocks = (nearViewedMonths.right.year) ?            
@@ -50,19 +54,24 @@ export const Arrow = (props) => {
 
     const decreaseMonth = () => {
         if (canDecrease()) {
+            console.log("almog")
             if (viewedMonth === 0) {
-                datesHeaderStateDispatch(setViewedYear((viewedYear - 1)));
+                yearState = getUpdatedObject(boardsNum, id, viewedYear - 1, datesHeaderState.viewedYear);
+                datesHeaderStateDispatch(setViewedYear(yearState));
             }
-            datesHeaderStateDispatch(setViewedMonth(Math.abs((viewedMonth + 12 - 1) % 12)));
+            monthState = getUpdatedObject(boardsNum, id, Math.abs((viewedMonth + 12 - 1) % 12), datesHeaderState.viewedMonth);
+            datesHeaderStateDispatch(setViewedMonth(monthState));
         }
     };
     
     const increaseMonth = () => {
         if (canIncrease()) {
             if (viewedMonth === 11) {
-                datesHeaderStateDispatch(setViewedYear((viewedYear + 1)));
+                yearState = getUpdatedObject(boardsNum, id, viewedYear + 1, datesHeaderState.viewedYear);
+                datesHeaderStateDispatch(setViewedYear(yearState));
             }
-            datesHeaderStateDispatch(setViewedMonth(Math.abs((viewedMonth + 1) % 12)));
+            monthState = getUpdatedObject(boardsNum, id, Math.abs((viewedMonth + 1) % 12), datesHeaderState.viewedMonth);
+            datesHeaderStateDispatch(setViewedMonth(monthState));
         }
     };
 

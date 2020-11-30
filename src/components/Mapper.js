@@ -8,6 +8,7 @@ import { updateObject } from "../reducers/reducersUtils";
 import { CalendarHeader } from "./CalendarHeaderComponents/CalendarHeader";
 import { DaysAmountTabButton } from "./DaysAmountTabComponents/DaysAmountTabButton";
 import { setInitialBoard, setSelectedColor } from "../actions";
+import { getUpdatedObject } from "../utils/actionsUtils";
 
 const lowerFooterInitialState = {
   selectedColor: "#2196f3",

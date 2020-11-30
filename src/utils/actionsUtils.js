@@ -1,17 +1,32 @@
-export function getUpdatedObject(getState, id, parameter, parameterState) {
-    const boardsNum = getState().general.boardsNum;
-    const componentIDs = [...Array(boardsNum).keys()];
-    let stateObj = {};
-    for (let i of componentIDs) {
-      if (id === i) {
-        stateObj[i] = parameter;
-      }
-      else {
-        stateObj[i] = parameterState[i];
-      }
+export function getUpdatedObject(boardsNum, id, parameter, parameterState) {
+  const componentIDs = [...Array(boardsNum).keys()];
+  let stateObj = {};
+  for (let i of componentIDs) {
+    if (id === i) {
+      stateObj[i] = parameter;
     }
-    return stateObj;
+    else {
+      stateObj[i] = parameterState[i];
+    }
   }
+  return stateObj;
+}
+
+
+// export function getUpdatedObject(getState, id, parameter, parameterState) {
+//     const boardsNum = getState().general.boardsNum;
+//     const componentIDs = [...Array(boardsNum).keys()];
+//     let stateObj = {};
+//     for (let i of componentIDs) {
+//       if (id === i) {
+//         stateObj[i] = parameter;
+//       }
+//       else {
+//         stateObj[i] = parameterState[i];
+//       }
+//     }
+//     return stateObj;
+//   }
 
   
 export function getInitialObject(boardsNum, language, startDate, endDate) {

@@ -5,6 +5,7 @@ import '../../styles/CalendarModesStyles/month-selector.css';
 import { useLanguage, useStartDate, useEndDate } from "../../context/InitialParametersContext";
 import { selectorsModeStyle } from "../../utils/generalUtils";
 import { setMode, setViewedMonth } from "../../actions";
+import { getUpdatedObject } from "../../utils/actionsUtils";
 
 export const MonthSelector = (props) => {
     const {
@@ -13,10 +14,12 @@ export const MonthSelector = (props) => {
         calendarModesStateDispatch,
         datesHeaderState,
         datesHeaderStateDispatch,
+        generalState,
         nearViewedMonthsfunction,
         id,
     } = props;
 
+    const boardsNum = generalState.boardsNum;
     const selectedColor = lowerfooterState.selectedColor;
     const viewedMonth = datesHeaderState.viewedMonth[id];
     const viewedYear = datesHeaderState.viewedYear[id];
@@ -25,11 +28,13 @@ export const MonthSelector = (props) => {
     const language = useLanguage();
     const startDate = useStartDate();
     const endDate = useEndDate();
-    
+    let monthState;
+
     const selectMonthHandler = (month, validMonth) => () => {
         if (validMonth) {
             calendarModesStateDispatch(setMode("Days"));
-            datesHeaderStateDispatch(setViewedMonth(month));
+            monthState = getUpdatedObject(boardsNum, id, month, datesHeaderState.viewedMonth);
+            datesHeaderStateDispatch(setViewedMonth(monthState));
         }
     };
 

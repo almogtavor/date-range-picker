@@ -13,6 +13,7 @@ export const DatesHeader = (props) => {
         datesHeaderState,
         datesHeaderStateDispatch,
         nearViewedMonths,
+        generalState,
         id,
     } = props;
 
@@ -45,6 +46,7 @@ export const DatesHeader = (props) => {
                     datesHeaderState={datesHeaderState}
                     datesHeaderStateDispatch={datesHeaderStateDispatch}
                     lowerfooterState={lowerfooterState}
+                    generalState={generalState}
                     id={id}
                     arrowSide={"leftArrow"}
                 />
@@ -54,6 +56,7 @@ export const DatesHeader = (props) => {
                     datesHeaderState={datesHeaderState}
                     datesHeaderStateDispatch={datesHeaderStateDispatch}
                     lowerfooterState={lowerfooterState}
+                    generalState={generalState}
                     id={id}
                     arrowSide={"rightArrow"}
                 />
