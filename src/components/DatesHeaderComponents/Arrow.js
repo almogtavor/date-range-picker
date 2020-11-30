@@ -19,8 +19,8 @@ export const Arrow = (props) => {
         id
     } = props;
 
-    const viewedMonth = datesHeaderState.viewedMonth;
-    const viewedYear = datesHeaderState.viewedYear;
+    const viewedMonth = datesHeaderState.viewedMonth[id];
+    const viewedYear = datesHeaderState.viewedYear[id];
     const selectedColor = lowerfooterState.selectedColor;
     const arrowSideImg = arrowImages[arrowSide];
     const nearViewedMonths = nearViewedMonthsfunction(id);

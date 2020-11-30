@@ -16,8 +16,8 @@ export const DatesHeader = (props) => {
         id,
     } = props;
 
-    const viewedMonth = datesHeaderState.viewedMonth;
-    const viewedYear = datesHeaderState.viewedYear;
+    const viewedMonth = datesHeaderState.viewedMonth[id];
+    const viewedYear = datesHeaderState.viewedYear[id];
     const language = useLanguage();
     const monthsElementValue = calendarConfig.months[language][viewedMonth];
 

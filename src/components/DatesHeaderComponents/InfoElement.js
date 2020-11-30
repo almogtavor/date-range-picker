@@ -18,7 +18,7 @@ export const InfoElement = (props) => {
     if (isHover) {
         style = getOpacityColorStyle(selectedColor, 60);
     }
-    
+    console.log(value);
     const clickHandler = () => {
         calendarModesStateDispatch(setMode(changeMode));
     };

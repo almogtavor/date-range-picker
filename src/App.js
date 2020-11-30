@@ -45,6 +45,7 @@ export function App(props) {
     "height": `${Math.floor(props.boardsNum / 3) * 292}px`,
     "gridTemplateRows": `repeat(${Math.floor(props.boardsNum / 3)}, 1fr)`,
   };
+  
   return (
     <div className="App">
       <InitialParametersProvider props={props}>

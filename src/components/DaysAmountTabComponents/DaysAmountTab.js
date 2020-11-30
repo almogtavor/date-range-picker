@@ -5,7 +5,7 @@ import { useEndDate, useStartDate, useLanguage } from '../../context/InitialPara
 import { getOpacityColorStyle, updateViewedMonths } from '../../utils/generalUtils';
 import DefaultRangeContainer from '../../containers/DaysAmountTabContainer/DefaultRangeContainer';
 import { DefaultRange } from './DefaultRange';
-import { setSelectedDays, setSelectedDates } from '../actions';
+import { setSelectedDays } from '../../actions';
 
 
 export function DaysAmountTab(props) {
@@ -43,7 +43,7 @@ export function DaysAmountTab(props) {
         let currentDate = new Date();
         let daysAmountBackwards = new Date();
         daysAmountBackwards.setDate(daysAmountBackwards.getDate() - decresement);
-        dayElementsStateDispatch(setSelectedDates([daysAmountBackwards, currentDate]));
+        dayElementsStateDispatch(setSelectedDays([daysAmountBackwards, currentDate]));
         updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, daysAmountBackwards, currentDate)
     }, [boardsNum, language, dayElementsStateDispatch, setSelectedDays, datesHeaderStateDispatch])
 

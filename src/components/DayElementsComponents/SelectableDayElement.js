@@ -66,6 +66,7 @@ export const SelectableDayElement = (props) => {
     const boardsNum = generalState.boardsNum;
     const selectedColor = lowerfooterState.selectedColor;
     const selectedDays = dayElementsState.selectedDays;
+    console.log(selectedDays);
     const month = date.getMonth();
     const year = date.getFullYear();
     const pickMethod = usePickMethod();

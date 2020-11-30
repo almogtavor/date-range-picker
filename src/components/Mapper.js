@@ -1,21 +1,20 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import "../App.css";
 import { CalendarInstance } from './CalendarInstance';
 // import {CalendarHeader} from "./CalendarHeaderComponents/CalendarHeaderContainer";
 // import DaysAmountButtonTabContainer from "../containers/DaysAmountTabContainer/DaysAmountTabButtonContainer";
-import { DaysAmountTab } from "../../components/DaysAmountTabComponents/DaysAmountTab";
 import { useEndDate, useLanguage } from "../context/InitialParametersContext";
 import { updateObject } from "../reducers/reducersUtils";
 import { CalendarHeader } from "./CalendarHeaderComponents/CalendarHeader";
 import { DaysAmountTabButton } from "./DaysAmountTabComponents/DaysAmountTabButton";
-import { setInitialBoard } from "../actions";
+import { setInitialBoard, setSelectedColor } from "../actions";
 
 const lowerFooterInitialState = {
   selectedColor: "#2196f3",
   showColorPicker: {"0": false,"1": false,},
 };
 
-function setSelectedColor(state, payload) {
+function setSelectedColorFunction(state, payload) {
   return updateObject(state, {selectedColor: payload.selectedColor});
 }
 
@@ -25,7 +24,7 @@ function setShowColorPicker(state, payload) {
 
 function lowerFooterReducerMapper(state, payload) {
   if (payload.type === "SET_SELECTED_COLOR") {
-    return setSelectedColor(state, payload);
+    return setSelectedColorFunction(state, payload);
   } else if (payload.type === "SET_SHOW_COLOR_PICKER") {
     return setShowColorPicker(state, payload);
   } else {
@@ -48,9 +47,9 @@ function setSelectedDays(state, payload) {
 
 function dayElementsReducerMapper(state, payload) {
   if (payload.type === "SET_SELECTED_DAYS") {
-    return setHoveredDay(state, payload);
-  } else if (payload.type === "SET_HOVERED_DAY") {
     return setSelectedDays(state, payload);
+  } else if (payload.type === "SET_HOVERED_DAY") {
+    return setHoveredDay(state, payload);
   } else {
     return state;
   }
@@ -164,7 +163,6 @@ export const getNearViewedMonths = (datesHeaderState, language, id) => {
 
 export const Mapper = (props) => {
     const {
-      showCalendar,
       boardsNum,
       startDate,
       endDate,
@@ -182,23 +180,27 @@ export const Mapper = (props) => {
     
     
     const language = useLanguage();
-    
+    const showCalendar = generalState.showCalendar;
     const nearViewedMonths = (id) => getNearViewedMonths(datesHeaderState, language, id);
 
-    if (language) {
+    useEffect(() => {
+      if (language) {
         generalStateDispatch(setInitialBoard(
             generalState.boardsNum, 
             language, 
             startDate, 
             endDate
         ));
-    } else {
-        throw Object.assign(new Error('"language" prop is undefined'), { code: 403 });
-    }
+      } else {
+          throw Object.assign(new Error('"language" prop is undefined'), { code: 403 });
+      }
 
-    if (defaultColor) {
-      lowerfooterStateDispatch(setSelectedColor(defaultColor));
-    }
+      if (defaultColor) {
+        lowerfooterStateDispatch(setSelectedColor(defaultColor));
+      }
+  
+    }, [])
+  
 
     // const handleBlur = () => {
     //   setShowCalendar(false);

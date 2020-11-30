@@ -8,14 +8,15 @@ export const DaysGrid = (props) => {
         lowerfooterState,
         dayElementsState,
         dayElementsStateDispatch,
+        datesHeaderStateDispatch,
         datesHeaderState,
         generalState,
         nearViewedMonths,
         id,
     } = props;
 
-    const viewedMonth = datesHeaderState.viewedMonth;
-    const viewedYear = datesHeaderState.viewedYear;
+    const viewedMonth = datesHeaderState.viewedMonth[id];
+    const viewedYear = datesHeaderState.viewedYear[id];
     const language = useLanguage();
     const numOfDaysInMonth = new Date(viewedYear, viewedMonth + 1, 0).getDate();
     const dayToBeginTheMonthFrom = new Date(viewedYear, viewedMonth, 1).getDay();
@@ -53,6 +54,7 @@ export const DaysGrid = (props) => {
                 lowerfooterState={lowerfooterState}
                 dayElementsState={dayElementsState}
                 dayElementsStateDispatch={dayElementsStateDispatch}
+                datesHeaderStateDispatch={datesHeaderStateDispatch}
                 nearViewedMonths={nearViewedMonths}
                 generalState={generalState}
                 key={key}

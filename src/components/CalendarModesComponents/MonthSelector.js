@@ -18,8 +18,8 @@ export const MonthSelector = (props) => {
     } = props;
 
     const selectedColor = lowerfooterState.selectedColor;
-    const viewedMonth = datesHeaderState.viewedMonth;
-    const viewedYear = datesHeaderState.viewedYear;
+    const viewedMonth = datesHeaderState.viewedMonth[id];
+    const viewedYear = datesHeaderState.viewedYear[id];
     const selectedDays = dayElementsState.selectedDays;
     const nearViewedMonths = nearViewedMonthsfunction(id);
     const language = useLanguage();
