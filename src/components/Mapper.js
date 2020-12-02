@@ -217,6 +217,7 @@ export const Mapper = (props) => {
                   lowerfooterState={lowerfooterState}
                   lowerfooterStateDispatch={lowerfooterStateDispatch}
                   dayElementsState={dayElementsState}
+                  dayElementsStateDispatch={dayElementsStateDispatch}
                   daysAmountState={daysAmountState}
                   daysAmountStateDispatch={daysAmountStateDispatch}
                   datesHeaderState={datesHeaderState}
