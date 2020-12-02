@@ -3,7 +3,6 @@ import '../../styles/CalendarHeaderStyles/calendar-header.css';
 import { choosenDatesCalculation, calculateDaysCount, removeItemFromArray, getOpacityColorStyle } from "../../utils/generalUtils";
 import { useFormat, useLanguage, usePickMethod } from "../../context/InitialParametersContext";
 import { updateViewedMonths } from '../../utils/generalUtils';
-import DatesDisplayContainer from "../../containers/CalendarHeaderContainers/DatesDisplayContainer";
 import { setChoosenDatesList, setSelectedDays, setStoredDates } from "../../actions";
 import DatesDisplay from "./DatesDisplay";
 

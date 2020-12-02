@@ -57,24 +57,6 @@ function dayElementsReducerMapper(state, payload) {
   }
 }
 
-const calendarModesInitialState = {
-  mode: {'0': "Days", '1': "Days", },
-};
-
-function setMode(state, payload) {
-  return updateObject(state, {mode: payload.mode});
-}
-
-function calendarModesReducerMapper(state, payload) {
-  if (payload.type === "SET_MODE") {
-    payload.mode = getUpdatedObject(payload.boardsNum, payload.id, payload.mode, state.mode);
-    return setMode(state, payload);
-  } else {
-    return state;
-  }
-}
-
-
 const daysAmountInitialState = {
   showDaysAmountTab: false,
 };
@@ -146,26 +128,6 @@ function calendarHeaderReducerMapper(state, payload) {
   }
 }
 
-const getIDs = (language, id) => {
-  const rightId = language === "Hebrew" ? id - 1 : id + 1;
-  const leftId = language === "Hebrew" ? id + 1 : id - 1;
-  return { rightId, leftId };
-};
-
-export const getNearViewedMonths = (datesHeaderState, language, id) => {
-    const { rightId, leftId } = getIDs(language, id);
-    return {
-        "right": {
-            "year": datesHeaderState.viewedYear[rightId], 
-            "month": datesHeaderState.viewedMonth[rightId],
-        },
-        "left": {
-            "year": datesHeaderState.viewedYear[leftId],
-            "month": datesHeaderState.viewedMonth[leftId],
-        },
-    }
-}
-
 export const Mapper = (props) => {
     const {
       boardsNum,
@@ -195,13 +157,11 @@ export const Mapper = (props) => {
 
     const [lowerfooterState, lowerfooterStateDispatch] = useReducer(lowerFooterReducerMapper, lowerFooterInitialState);
     const [dayElementsState, dayElementsStateDispatch] = useReducer(dayElementsReducerMapper, dayElementsInitialState);
-    const [calendarModesState, calendarModesStateDispatch] = useReducer(calendarModesReducerMapper, calendarModesInitialState);
     const [daysAmountState, daysAmountStateDispatch] = useReducer(daysAmountReducerMapper, daysAmountInitialState);
     const [datesHeaderState, datesHeaderStateDispatch] = useReducer(datesHeaderReducerMapper, datesHeaderInitialState);
     const [calendarHeaderState, calendarHeaderStateDispatch] = useReducer(calendarHeaderReducerMapper, calendarHeaderInitialState);
 
     const showCalendar = generalState.showCalendar;
-    const nearViewedMonths = (id) => getNearViewedMonths(datesHeaderState, language, id);
 
     useEffect(() => {
       if (language) {
@@ -244,19 +204,11 @@ export const Mapper = (props) => {
         >
           <CalendarHeader
             lowerfooterState={lowerfooterState}
-            lowerfooterStateDispatch={lowerfooterStateDispatch}
             dayElementsState={dayElementsState}
             dayElementsStateDispatch={dayElementsStateDispatch}
-            calendarModesState={calendarModesState}
-            calendarModesStateDispatch={calendarModesStateDispatch}
-            daysAmountState={daysAmountState}
-            daysAmountStateDispatch={daysAmountStateDispatch}
-            datesHeaderState={datesHeaderState}
             datesHeaderStateDispatch={datesHeaderStateDispatch}
             calendarHeaderState={calendarHeaderState}
             calendarHeaderStateDispatch={calendarHeaderStateDispatch}
-            nearViewedMonths={nearViewedMonths}
-            generalStateDispatch={generalStateDispatch}
             generalState={generalState}
           />
           {calendarsIndexes.map((i) => {
@@ -265,19 +217,13 @@ export const Mapper = (props) => {
                   lowerfooterState={lowerfooterState}
                   lowerfooterStateDispatch={lowerfooterStateDispatch}
                   dayElementsState={dayElementsState}
-                  dayElementsStateDispatch={dayElementsStateDispatch}
-                  calendarModesState={calendarModesState}
-                  calendarModesStateDispatch={calendarModesStateDispatch}
                   daysAmountState={daysAmountState}
                   daysAmountStateDispatch={daysAmountStateDispatch}
                   datesHeaderState={datesHeaderState}
                   datesHeaderStateDispatch={datesHeaderStateDispatch}
                   calendarHeaderState={calendarHeaderState}
-                  calendarHeaderStateDispatch={calendarHeaderStateDispatch}
-                  nearViewedMonths={nearViewedMonths}
                   generalStateDispatch={generalStateDispatch}
                   generalState={generalState}
-                  boardsNum={boardsNum}
                   key={i}
                   i={i}
               />)

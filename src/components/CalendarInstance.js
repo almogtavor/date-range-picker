@@ -1,70 +1,49 @@
 import React, { useReducer } from "react";
 import "../App.css";
-import CalendarContentContainer from '../containers/CalendarModesContainers/CalendarContentContainer';
-import LowerFooterContainer from '../containers/LowerFooterContainers/LowerFooterContainer';
-import DatesHeaderContainer from '../containers/DatesHeaderContainer/DatesHeaderContainer';
-import { useLanguage } from "../context/InitialParametersContext";
 import { updateObject } from "../reducers/reducersUtils";
 import { DatesHeader } from "./DatesHeaderComponents/DatesHeader";
 import { CalendarContent } from "./CalendarModesComponents/CalendarContent";
 import { LowerFooter } from "./LowerFooterComponents/LowerFooter";
-
-//import { getUpdatedObject } from "../utils/actionsUtils";
-
-// const initialState = {
-//   mode: {'0': "Days", '1': "Days", },
-// };
-
-// export function getUpdatedObject(id, parameter, parameterState) {
-//   const boardsNum = 2;
-//   const componentIDs = [...Array(boardsNum).keys()];
-//   let stateObj = {};
-//   for (let i of componentIDs) {
-//     if (id === i) {
-//       stateObj[i] = parameter;
-//     }
-//     else {
-//       stateObj[i] = parameterState[i];
-//     }
-//   }
-//   return stateObj;
-// }
-
-// export const setMode = (mode) =>{ 
-//   console.log("jaifejaifjeaf");
-//   return  ({
-//   type: 'SET_MODE',
-//   mode
-// })};
-// export const setMode = (mode) => {
-//   console.log(mode);
-//   return ({
-//   type: 'SET_MODE',
-//   mode
-// })}
+import { getUpdatedObject } from "../utils/actionsUtils";
+import { useLanguage } from "../context/InitialParametersContext";
 
 
-// export function setMode(id, mode) {
-//   return (dispatch, getState) => {
-//       console.log(getState());
-//       const stateMode = getState().mode;
-//       const stateObj = getUpdatedObject(getState, id, mode, stateMode);
-//       dispatch(setModeObject(stateObj));
-//   };
-// }
-// export function setMode(id, mode, state, dispatch) {
-//     const stateObj = getUpdatedObject(id, mode, state);
-//     dispatch(setModeObject(stateObj));
-// }
+const calendarModesInitialState = {
+  mode: {'0': "Days", '1': "Days", },
+};
 
-// function reducer(state, payload) {
-//   if (payload.type === "SET_MODE") {
-//     console.log("jaifejaifjeaf");
-//     return updateObject(state, {mode: payload.mode});
-//   } else {
-//     return state;
-//   }
-// }
+function setMode(state, payload) {
+  return updateObject(state, {mode: payload.mode});
+}
+
+function calendarModesReducerMapper(state, payload) {
+  if (payload.type === "SET_MODE") {
+    payload.mode = getUpdatedObject(payload.boardsNum, payload.id, payload.mode, state.mode);
+    return setMode(state, payload);
+  } else {
+    return state;
+  }
+}
+
+const getIDs = (language, id) => {
+  const rightId = language === "Hebrew" ? id - 1 : id + 1;
+  const leftId = language === "Hebrew" ? id + 1 : id - 1;
+  return { rightId, leftId };
+};
+
+export const getNearViewedMonths = (datesHeaderState, language, id) => {
+    const { rightId, leftId } = getIDs(language, id);
+    return {
+        "right": {
+            "year": datesHeaderState.viewedYear[rightId], 
+            "month": datesHeaderState.viewedMonth[rightId],
+        },
+        "left": {
+            "year": datesHeaderState.viewedYear[leftId],
+            "month": datesHeaderState.viewedMonth[leftId],
+        },
+    }
+}
 
 export const CalendarInstance = (props) => {
     const {
@@ -72,21 +51,19 @@ export const CalendarInstance = (props) => {
       lowerfooterStateDispatch,
       dayElementsState,
       dayElementsStateDispatch,
-      calendarModesState,
-      calendarModesStateDispatch,
       daysAmountState,
       daysAmountStateDispatch,
       datesHeaderState,
       datesHeaderStateDispatch,
       calendarHeaderState,
-      calendarHeaderStateDispatch,
       generalStateDispatch,
       generalState,
-      nearViewedMonths,
       i,
     } = props;
 
     const language = useLanguage();
+    const [calendarModesState, calendarModesStateDispatch] = useReducer(calendarModesReducerMapper, calendarModesInitialState);
+    const nearViewedMonths = (id) => getNearViewedMonths(datesHeaderState, language, id);
     let calendarComponentStyle = {
       "gridColumn": (i + 1) % 3,
       "gridRow": Math.floor(i / 3) + 1,
@@ -111,7 +88,6 @@ export const CalendarInstance = (props) => {
         />
         <CalendarContent
           lowerfooterState={lowerfooterState}
-          lowerfooterStateDispatch={lowerfooterStateDispatch}
           dayElementsState={dayElementsState}
           dayElementsStateDispatch={dayElementsStateDispatch}
           calendarModesState={calendarModesState}
@@ -120,8 +96,6 @@ export const CalendarInstance = (props) => {
           daysAmountStateDispatch={daysAmountStateDispatch}
           datesHeaderState={datesHeaderState}
           datesHeaderStateDispatch={datesHeaderStateDispatch}
-          calendarHeaderState={calendarHeaderState}
-          calendarHeaderStateDispatch={calendarHeaderStateDispatch}
           nearViewedMonths={nearViewedMonths}
           generalState={generalState}
           id={i}
