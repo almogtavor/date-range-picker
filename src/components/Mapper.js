@@ -96,11 +96,6 @@ let datesHeaderInitialState = {
   viewedYear: {'0': new Date().getFullYear(), '1': new Date().getFullYear(), },
 }
 
-if (datesHeaderInitialState.viewedMonth['1'] === 12) {
-  datesHeaderInitialState.viewedMonth['1'] = 0;
-  datesHeaderInitialState.viewedYear['1'] = datesHeaderInitialState.viewedYear['1'] + 1;
-}
-
 function setViewedMonth(state, payload) {
   return updateObject(state, {viewedMonth: payload.viewedMonth});
 }
@@ -180,16 +175,31 @@ export const Mapper = (props) => {
       generalStateDispatch,
       generalState,
     } = props;
-    
+        
+    const language = useLanguage();
+
+    useEffect(() => {
+      if (datesHeaderInitialState.viewedMonth['1'] === 12) {
+        datesHeaderInitialState.viewedMonth['1'] = 0;
+        datesHeaderInitialState.viewedYear['1'] = datesHeaderInitialState.viewedYear['1'] + 1;
+      }
+      if (language === "Hebrew") {
+        let leftBoardMonth = datesHeaderInitialState.viewedMonth['0'];
+        let leftBoardYear = datesHeaderInitialState.viewedYear['0'];
+        datesHeaderInitialState.viewedMonth['0'] = datesHeaderInitialState.viewedMonth['1'];
+        datesHeaderInitialState.viewedYear['0'] = datesHeaderInitialState.viewedYear['1'];
+        datesHeaderInitialState.viewedMonth['1'] = leftBoardMonth;
+        datesHeaderInitialState.viewedYear['1'] = leftBoardYear;
+      }
+    }, [language]);
+
     const [lowerfooterState, lowerfooterStateDispatch] = useReducer(lowerFooterReducerMapper, lowerFooterInitialState);
     const [dayElementsState, dayElementsStateDispatch] = useReducer(dayElementsReducerMapper, dayElementsInitialState);
     const [calendarModesState, calendarModesStateDispatch] = useReducer(calendarModesReducerMapper, calendarModesInitialState);
     const [daysAmountState, daysAmountStateDispatch] = useReducer(daysAmountReducerMapper, daysAmountInitialState);
     const [datesHeaderState, datesHeaderStateDispatch] = useReducer(datesHeaderReducerMapper, datesHeaderInitialState);
     const [calendarHeaderState, calendarHeaderStateDispatch] = useReducer(calendarHeaderReducerMapper, calendarHeaderInitialState);
-    
-    
-    const language = useLanguage();
+
     const showCalendar = generalState.showCalendar;
     const nearViewedMonths = (id) => getNearViewedMonths(datesHeaderState, language, id);
 
@@ -210,9 +220,6 @@ export const Mapper = (props) => {
       }
   
     }, [])
-
-    console.log(calendarModesState);
-  
 
     // const handleBlur = () => {
     //   setShowCalendar(false);
