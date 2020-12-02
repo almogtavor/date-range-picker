@@ -91,9 +91,14 @@ function daysAmountReducerMapper(state, payload) {
   }
 }
 
-const datesHeaderInitialState = {
-  viewedMonth: {"0": new Date().getMonth(), "1": new Date().getMonth() + 1, },
+let datesHeaderInitialState = {
+  viewedMonth: {'0': new Date().getMonth(), '1': new Date().getMonth() + 1, },
   viewedYear: {'0': new Date().getFullYear(), '1': new Date().getFullYear(), },
+}
+
+if (datesHeaderInitialState.viewedMonth['1'] === 12) {
+  datesHeaderInitialState.viewedMonth['1'] = 0;
+  datesHeaderInitialState.viewedYear['1'] = datesHeaderInitialState.viewedYear['1'] + 1;
 }
 
 function setViewedMonth(state, payload) {

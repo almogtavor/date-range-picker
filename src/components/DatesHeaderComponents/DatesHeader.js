@@ -54,7 +54,6 @@ export const DatesHeader = (props) => {
                     id={id}
                     arrowSide={"leftArrow"}
                 />
-
                 <Arrow
                     nearViewedMonthsfunction={nearViewedMonths}
                     datesHeaderState={datesHeaderState}

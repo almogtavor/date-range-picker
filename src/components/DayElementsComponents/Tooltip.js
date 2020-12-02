@@ -5,7 +5,6 @@ import { placeDateInFormat } from "../../utils/generalUtils";
 import "../../styles/DayElementsStyles/tooltip.css";
 
 export default function Tooltip(props) {
-
     const { 
         hoveredDay, 
         dateRef 

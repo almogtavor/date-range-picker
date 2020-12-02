@@ -2,12 +2,10 @@ import React from "react";
 import '../../styles/DayElementsStyles/day.css';
 import '../../styles/DayElementsStyles/selected-day.css';
 import { useLanguage, useEndDate, useStartDate, usePickMethod } from "../../context/InitialParametersContext";
-import HoverableDayElementContainer from "../../containers/DayElementsContainers/HoverableDayElementContainer";
-import { getNearViewedMonths } from "../Mapper";
 import { setSelectedDays, setViewedMonth, setViewedYear } from "../../actions";
 import { HoverableDayElement } from "./HoverableDayElement";
 
-function customSetters(datesHeaderStateDispatch, language, id) {
+function customSetters(datesHeaderStateDispatch, language, id, boardsNum) {
     const rightId = language === "Hebrew" ? id - 1 : id + 1;
     const leftId = language === "Hebrew" ? id + 1 : id - 1;
     
@@ -21,8 +19,8 @@ function customSetters(datesHeaderStateDispatch, language, id) {
             yearIncreasement = -1;
             newMonth = 11;
         }
-        datesHeaderStateDispatch(setViewedMonth(id, newMonth));
-        datesHeaderStateDispatch(setViewedYear(id, viewedYear + yearIncreasement));
+        datesHeaderStateDispatch(setViewedMonth(boardsNum, id, newMonth));
+        datesHeaderStateDispatch(setViewedYear(boardsNum, id, viewedYear + yearIncreasement));
     }
     
     return ({ 
@@ -57,12 +55,6 @@ export const SelectableDayElement = (props) => {
     const leftViewedMonth = nearViewedMonths(id).left.month;
     const leftViewedYear = nearViewedMonths(id).left.year;
 
-    const {
-        setViewedMonthCustom, 
-        setRightViewedMonth, 
-        setLeftViewedMonth 
-    } = customSetters(datesHeaderStateDispatch, language, id);
-
     const boardsNum = generalState.boardsNum;
     const selectedColor = lowerfooterState.selectedColor;
     const selectedDays = dayElementsState.selectedDays;
@@ -72,6 +64,13 @@ export const SelectableDayElement = (props) => {
     const isToday = date.toLocaleDateString() === new Date().toLocaleDateString() ?  true : false;
     const isDisabled = date < startDate || date > endDate;
     let isSelected = false;
+    
+    const {
+        setViewedMonthCustom, 
+        setRightViewedMonth, 
+        setLeftViewedMonth 
+    } = customSetters(datesHeaderStateDispatch, language, id, boardsNum);
+
 
     selectedDays.forEach(element => {
         if (date.toLocaleDateString() === element.toLocaleDateString() &&

@@ -41,10 +41,10 @@ export const HoverableDayElement = (props) => {
     };
 
     const handleLeaveHover = () => {
-        // setIsCurrentlyHovered(false);
-        // if (selectedDays.length === 2) {
-        //     dayElementsStateDispatch(setHoveredDay(null));
-        // }
+        setIsCurrentlyHovered(false);
+        if (selectedDays.length === 2) {
+            dayElementsStateDispatch(setHoveredDay(null));
+        }
     };
 
     if (selectedDays.length > 0) {

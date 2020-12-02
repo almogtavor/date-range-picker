@@ -15,7 +15,7 @@
 
 @keyframes tooltip-fadein {
     from {
-        opacity:0.2;
+        opacity:0.1;
     }
     to {
         opacity:1;
