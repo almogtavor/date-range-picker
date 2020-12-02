@@ -10,17 +10,19 @@ export const InfoElement = (props) => {
         element,
         value, 
         changeMode, 
+        generalState,
+        id
     } = props;
 
+    const boardsNum = generalState.boardsNum;
     const selectedColor = lowerfooterState.selectedColor;
     const [isHover, setIsHover] = useState(false);
     let style = {};
     if (isHover) {
         style = getOpacityColorStyle(selectedColor, 60);
     }
-    console.log(value);
     const clickHandler = () => {
-        calendarModesStateDispatch(setMode(changeMode));
+        calendarModesStateDispatch(setMode(boardsNum, id, changeMode));
     };
 
     const hoverHandle = (hasEntered) => () => {

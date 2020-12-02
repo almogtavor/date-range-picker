@@ -83,6 +83,8 @@ export const LowerFooter = (props) => {
             lowerfooterState={lowerfooterState}
             lowerfooterStateDispatch={lowerfooterStateDispatch}
             showPaletteAllowed={showPaletteAllowed}
+            id={id}
+            generalState={generalState}
         />
 
         <SelectAllButton

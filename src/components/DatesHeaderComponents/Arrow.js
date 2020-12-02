@@ -31,7 +31,7 @@ export const Arrow = (props) => {
     const startDate = useStartDate();
     const endDate = useEndDate();
     const [isHover, setIsHover] = useState(false);
-    let changeMonth, canChange, monthState, yearState;
+    let changeMonth, canChange;
     console.log(viewedMonth)
 
     const canIncrease = () => {
@@ -54,24 +54,19 @@ export const Arrow = (props) => {
 
     const decreaseMonth = () => {
         if (canDecrease()) {
-            console.log("almog")
             if (viewedMonth === 0) {
-                yearState = getUpdatedObject(boardsNum, id, viewedYear - 1, datesHeaderState.viewedYear);
-                datesHeaderStateDispatch(setViewedYear(yearState));
+                datesHeaderStateDispatch(setViewedYear(boardsNum, id, viewedYear - 1));
             }
-            monthState = getUpdatedObject(boardsNum, id, Math.abs((viewedMonth + 12 - 1) % 12), datesHeaderState.viewedMonth);
-            datesHeaderStateDispatch(setViewedMonth(monthState));
+            datesHeaderStateDispatch(setViewedMonth(boardsNum, id, Math.abs((viewedMonth + 12 - 1) % 12)));
         }
     };
     
     const increaseMonth = () => {
         if (canIncrease()) {
             if (viewedMonth === 11) {
-                yearState = getUpdatedObject(boardsNum, id, viewedYear + 1, datesHeaderState.viewedYear);
-                datesHeaderStateDispatch(setViewedYear(yearState));
+                datesHeaderStateDispatch(setViewedYear(boardsNum, id, viewedYear + 1));
             }
-            monthState = getUpdatedObject(boardsNum, id, Math.abs((viewedMonth + 1) % 12), datesHeaderState.viewedMonth);
-            datesHeaderStateDispatch(setViewedMonth(monthState));
+            datesHeaderStateDispatch(setViewedMonth(boardsNum, id, Math.abs((viewedMonth + 1) % 12)));
         }
     };
 

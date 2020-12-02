@@ -30,14 +30,18 @@ export const DatesHeader = (props) => {
                     value={monthsElementValue}
                     changeMode={"Months"}
                     lowerfooterState={lowerfooterState}
+                    generalState={generalState}
                     calendarModesStateDispatch={calendarModesStateDispatch}
+                    id={id}
                 />
                 <InfoElement
                     element={"year"}
                     value={viewedYear}
                     changeMode={"Years"}
                     lowerfooterState={lowerfooterState}
+                    generalState={generalState}
                     calendarModesStateDispatch={calendarModesStateDispatch}
+                    id={id}
                 />
             </div>
             <div className="header-icons">

@@ -8,13 +8,15 @@ import { setSelectedColor, setShowColorPicker } from "../../actions";
 const pointerHandIcon = require('../../images/pointer-hand.png');
 
 export const ColorPickerPalette = (props) => {
-
     const {
         lowerfooterState,
         lowerfooterStateDispatch,
+        generalState,
         showPaletteAllowed,
+        id
     } = props;
 
+    const boardsNum = generalState.boardsNum;
     const selectedColor = lowerfooterState.selectedColor;
     const showColorPicker = lowerfooterState.showColorPicker;
 
@@ -28,11 +30,11 @@ export const ColorPickerPalette = (props) => {
 
     const changeColor = (color) => () => {
         lowerfooterStateDispatch(setSelectedColor(color));
-        lowerfooterStateDispatch(setShowColorPicker(false));
+        lowerfooterStateDispatch(setShowColorPicker(boardsNum, id, false));
     }
 
     const toggleColorPicker = () => {
-        lowerfooterStateDispatch(setShowColorPicker(!showColorPicker));
+        lowerfooterStateDispatch(setShowColorPicker(boardsNum, id, !showColorPicker));
     }
 
     return (

@@ -1,17 +1,19 @@
 import { getUpdatedObject, getInitialObject } from './utils/actionsUtils'; 
 
-export const setShowColorPickerObject = (showColorPicker) => ({
-    type: 'SET_SHOW_COLOR_PICKER', 
-    showColorPicker
+export const setShowColorPicker = (boardsNum, id, showColorPicker) => ({
+    type: 'SET_SHOW_COLOR_PICKER',
+    showColorPicker: showColorPicker,
+    id: id,
+    boardsNum: boardsNum
 })
 
-export function setShowColorPicker(id, showColorPicker) {
-    return (dispatch, getState) => {
-        const stateShowColorPicker = getState().lowerFooter.showColorPicker;
-        const stateObj = getUpdatedObject(getState, id, showColorPicker, stateShowColorPicker);
-        dispatch(setShowColorPickerObject(stateObj));
-    };
-}
+// export function setShowColorPicker(id, showColorPicker) {
+//     return (dispatch, getState) => {
+//         const stateShowColorPicker = getState().lowerFooter.showColorPicker;
+//         const stateObj = getUpdatedObject(getState, id, showColorPicker, stateShowColorPicker);
+//         dispatch(setShowColorPickerObject(stateObj));
+//     };
+// }
 
 // export const setViewedMonthObject = (viewedMonth) => ({
 //     type: 'SET_VIEWED_MONTH',
@@ -26,14 +28,18 @@ export function setShowColorPicker(id, showColorPicker) {
 //     };
 // }
 
-export const setViewedMonth = (viewedMonth) => ({
+export const setViewedMonth = (boardsNum, id, viewedMonth) => ({
     type: 'SET_VIEWED_MONTH',
-    viewedMonth
+    viewedMonth: viewedMonth,
+    id: id,
+    boardsNum: boardsNum
 })
 
-export const setViewedYear = (viewedYear) => ({
+export const setViewedYear = (boardsNum, id, viewedYear) => ({
     type: 'SET_VIEWED_YEAR',
-    viewedYear
+    viewedYear: viewedYear,
+    id: id,
+    boardsNum: boardsNum
 })
 
 // export const setViewedYearObject = (viewedYear) => ({
@@ -54,9 +60,11 @@ export const setViewedYear = (viewedYear) => ({
 //     mode
 // })
 
-export const setMode = (mode) => ({
+export const setMode = (boardsNum, id, mode) => ({
     type: 'SET_MODE',
-    mode
+    mode: mode,
+    id: id,
+    boardsNum: boardsNum
 })
 
 // export function setMode(id, mode) {
@@ -105,11 +113,13 @@ export function setInitialBoard(boardsNum, language, startDate, endDate) {
           modeObj, 
           showColorPickerObj,
         } = getInitialObject(boardsNum, language, startDate, endDate);
-        dispatch(setBoardsNum(boardsNum));
-        dispatch(setViewedMonth(monthsObj));
-        dispatch(setViewedYear(yearsObj));
-        dispatch(setMode(modeObj));
-        dispatch(setShowColorPickerObject(showColorPickerObj));
+        for (let id = 0; id < boardsNum; id++) {
+            dispatch(setBoardsNum(boardsNum));
+            dispatch(setViewedMonth(boardsNum, id, monthsObj));
+            dispatch(setViewedYear(boardsNum, id, yearsObj));
+            dispatch(setMode(boardsNum, id, modeObj));
+            dispatch(setShowColorPicker(boardsNum, id, showColorPickerObj));
+        }
     };
   }
 

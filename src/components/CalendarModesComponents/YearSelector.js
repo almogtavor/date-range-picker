@@ -26,7 +26,6 @@ export const YearSelector = (props) => {
     const nearViewedMonths = nearViewedMonthsfunction(id);
     const startDate = useStartDate();
     const endDate = useEndDate();
-    let yearState;
 
     let yearsArray = [];
     for (let i = endDate.getFullYear(); i > startDate.getFullYear() - 1; i--) {
@@ -35,9 +34,8 @@ export const YearSelector = (props) => {
 
     const selectYearHandler = (year, validYear) => () => {
         if (validYear) {
-            calendarModesStateDispatch(setMode("Days"));
-            yearState = getUpdatedObject(boardsNum, id, year, datesHeaderState.viewedYear);
-            datesHeaderStateDispatch(setViewedYear(yearState));
+            calendarModesStateDispatch(setMode(boardsNum, id, "Days"));
+            datesHeaderStateDispatch(setViewedYear(boardsNum, id, year));
         }
     };
 

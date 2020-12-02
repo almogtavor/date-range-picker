@@ -27,6 +27,7 @@ function lowerFooterReducerMapper(state, payload) {
   if (payload.type === "SET_SELECTED_COLOR") {
     return setSelectedColorFunction(state, payload);
   } else if (payload.type === "SET_SHOW_COLOR_PICKER") {
+    payload.showColorPicker = getUpdatedObject(payload.boardsNum, payload.id, payload.showColorPicker, state.showColorPicker);
     return setShowColorPicker(state, payload);
   } else {
     return state;
@@ -66,6 +67,7 @@ function setMode(state, payload) {
 
 function calendarModesReducerMapper(state, payload) {
   if (payload.type === "SET_MODE") {
+    payload.mode = getUpdatedObject(payload.boardsNum, payload.id, payload.mode, state.mode);
     return setMode(state, payload);
   } else {
     return state;
@@ -102,11 +104,12 @@ function setViewedYear(state, payload) {
   return updateObject(state, {viewedYear: payload.viewedYear});
 }
 
-function datesHeaderReducerMapper(state, payload, datesHeaderState, boardsNum) {
+function datesHeaderReducerMapper(state, payload) {
   if (payload.type === "SET_VIEWED_MONTH") {
-    payload.viewedMonth = getUpdatedObject(boardsNum, payload.id, payload.viewedMonth, datesHeaderState.viewedMonth);
+    payload.viewedMonth = getUpdatedObject(payload.boardsNum, payload.id, payload.viewedMonth, state.viewedMonth);
     return setViewedMonth(state, payload);
   } else if (payload.type === "SET_VIEWED_YEAR") {
+    payload.viewedYear = getUpdatedObject(payload.boardsNum, payload.id, payload.viewedYear, state.viewedYear);
     return setViewedYear(state, payload);
   } else {
     return state;

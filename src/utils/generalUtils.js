@@ -114,19 +114,19 @@ export function updateViewedMonths(boardsNum, language, datesHeaderStateDispatch
             if (date2Round < date1Round) {
                 boardIndexes = boardIndexes.reverse();
             }
-            datesHeaderStateDispatch(setViewedMonth(boardIndexes[0], date1.getMonth()));
-            datesHeaderStateDispatch(setViewedYear(boardIndexes[0], date1.getFullYear()));
-            datesHeaderStateDispatch(setViewedMonth(boardIndexes[1], date2.getMonth()));
-            datesHeaderStateDispatch(setViewedYear(boardIndexes[1], date2.getFullYear()));
+            datesHeaderStateDispatch(setViewedMonth(boardsNum, boardIndexes[0], date1.getMonth()));
+            datesHeaderStateDispatch(setViewedYear(boardsNum, boardIndexes[0], date1.getFullYear()));
+            datesHeaderStateDispatch(setViewedMonth(boardsNum, boardIndexes[1], date2.getMonth()));
+            datesHeaderStateDispatch(setViewedYear(boardsNum, boardIndexes[1], date2.getFullYear()));
         } else {
-            datesHeaderStateDispatch(setViewedMonth(boardIndexes[0], date1.getMonth()));
-            datesHeaderStateDispatch(setViewedYear(boardIndexes[0], date1.getFullYear()));
+            datesHeaderStateDispatch(setViewedMonth(boardsNum, boardIndexes[0], date1.getMonth()));
+            datesHeaderStateDispatch(setViewedYear(boardsNum, boardIndexes[0], date1.getFullYear()));
             if (date1.getMonth() + 1 === 12) {
-                datesHeaderStateDispatch(setViewedMonth(boardIndexes[1], 0));
-                datesHeaderStateDispatch(setViewedYear(boardIndexes[1], date1.getFullYear() + 1));  
+                datesHeaderStateDispatch(setViewedMonth(boardsNum, boardIndexes[1], 0));
+                datesHeaderStateDispatch(setViewedYear(boardsNum, boardIndexes[1], date1.getFullYear() + 1));  
             } else {
-                datesHeaderStateDispatch(setViewedMonth(boardIndexes[1], date1.getMonth() + 1));
-                datesHeaderStateDispatch(setViewedYear(boardIndexes[1], date1.getFullYear()));
+                datesHeaderStateDispatch(setViewedMonth(boardsNum, boardIndexes[1], date1.getMonth() + 1));
+                datesHeaderStateDispatch(setViewedYear(boardsNum, boardIndexes[1], date1.getFullYear()));
             }
         }
     }

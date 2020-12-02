@@ -28,13 +28,11 @@ export const MonthSelector = (props) => {
     const language = useLanguage();
     const startDate = useStartDate();
     const endDate = useEndDate();
-    let monthState;
 
     const selectMonthHandler = (month, validMonth) => () => {
         if (validMonth) {
-            calendarModesStateDispatch(setMode("Days"));
-            monthState = getUpdatedObject(boardsNum, id, month, datesHeaderState.viewedMonth);
-            datesHeaderStateDispatch(setViewedMonth(monthState));
+            calendarModesStateDispatch(setMode(boardsNum, id, "Days"));
+            datesHeaderStateDispatch(setViewedMonth(boardsNum, id, month));
         }
     };
 
