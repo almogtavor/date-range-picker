@@ -3,7 +3,6 @@ import '../../styles/DaysAmountTabStyles/days-amount-tab.css';
 import { getDefaultRanges } from '../../utils/daysAmountTabUtils';
 import { useEndDate, useStartDate, useLanguage } from '../../context/InitialParametersContext';
 import { getOpacityColorStyle, updateViewedMonths } from '../../utils/generalUtils';
-import DefaultRangeContainer from '../../containers/DaysAmountTabContainer/DefaultRangeContainer';
 import { DefaultRange } from './DefaultRange';
 import { setSelectedDays } from '../../actions';
 

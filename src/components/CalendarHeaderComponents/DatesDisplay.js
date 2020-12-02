@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useLanguage, usePickMethod } from "../../context/InitialParametersContext";
 import '../../styles/CalendarHeaderStyles/dates-display.css';
-import ChoosenDatesItemContainer from "../../containers/CalendarHeaderContainers/ChoosenDatesItemContainer";
 import { getDates } from "../../utils/generalUtils";
 import { setChoosenDatesList, setStoredDates } from "../../actions";
 import ChoosenDatesItem from "./ChoosenDatesItem";

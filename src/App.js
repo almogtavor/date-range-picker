@@ -2,12 +2,10 @@ import React, { useReducer } from "react";
 import "./App.css";
 import "./styles/button.css";
 import "./styles/date-range-picker-component.css"
-import DateRangePickerMapperContainer from './containers/MapperContainer';
-import ButtonContainer from "./containers/ButtonContainer";
 import { InitialParametersProvider } from "./context/InitialParametersContext";
 import { Mapper } from './components/Mapper';
 import { Button } from "./components/Button";
-import { updateObject } from "./reducers/reducersUtils";
+import { updateObject } from "./utils/reducerUtils";
 
 const initialState = {
   boardsNum: 2,

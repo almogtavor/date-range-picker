@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../styles/DaysAmountTabStyles/days-amount-tab-button.css';
-import DaysAmountTabContainer from '../../containers/DaysAmountTabContainer/DaysAmountTabContainer';
 import { useDaysAmountTab, useLanguage } from '../../context/InitialParametersContext';
 import { getOpacityColorStyle } from '../../utils/generalUtils';
 import { DaysAmountTab } from './DaysAmountTab';

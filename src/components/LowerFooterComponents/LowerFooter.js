@@ -2,8 +2,6 @@ import React from "react";
 import '../../styles/LowerFooterStyles/lower-footer.css';
 import { useLanguage, useFormat, usePickMethod, useSelectAllButton, useColorsPalette } from "../../context/InitialParametersContext";
 import { choosenDatesCalculation } from '../../utils/generalUtils';
-import SelectAllButtonContainer from "../../containers/LowerFooterContainers/SelectAllButtonContainer";
-import ColorPickerPaletteContainer from "../../containers/LowerFooterContainers/ColorPickerPaletteContainer";
 import { setButtonDatesText, setShowCalendar } from "../../actions";
 import { ColorPickerPalette } from "./ColorPickerPalette";
 import { SelectAllButton } from "./SelectAllButton";

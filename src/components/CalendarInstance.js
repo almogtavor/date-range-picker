@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 import "../App.css";
-import { updateObject } from "../reducers/reducersUtils";
+import { updateObject } from "../utils/reducerUtils";
 import { DatesHeader } from "./DatesHeaderComponents/DatesHeader";
 import { CalendarContent } from "./CalendarModesComponents/CalendarContent";
 import { LowerFooter } from "./LowerFooterComponents/LowerFooter";

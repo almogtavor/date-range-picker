@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import SelectableDayElementContainer from "../../containers/DayElementsContainers/SelectableDayElementContainer";
 import { useLanguage } from "../../context/InitialParametersContext";
 import { SelectableDayElement } from "./SelectableDayElement";
 

@@ -1,10 +1,8 @@
 import React, { useEffect, useReducer } from "react";
 import "../App.css";
 import { CalendarInstance } from './CalendarInstance';
-// import {CalendarHeader} from "./CalendarHeaderComponents/CalendarHeaderContainer";
-// import DaysAmountButtonTabContainer from "../containers/DaysAmountTabContainer/DaysAmountTabButtonContainer";
-import { useEndDate, useLanguage } from "../context/InitialParametersContext";
-import { updateObject } from "../reducers/reducersUtils";
+import { useLanguage } from "../context/InitialParametersContext";
+import { updateObject } from "../utils/reducerUtils";
 import { CalendarHeader } from "./CalendarHeaderComponents/CalendarHeader";
 import { DaysAmountTabButton } from "./DaysAmountTabComponents/DaysAmountTabButton";
 import { setInitialBoard, setSelectedColor } from "../actions";

@@ -2,7 +2,6 @@ import React from "react";
 import {calendarConfig} from '../../configuration/config';
 import '../../styles/DatesHeaderStyles/dates-header.css';
 import { useLanguage } from "../../context/InitialParametersContext";
-// import ArrowConatiner from "../../containers/DatesHeaderContainer/ArrowContainer";
 import { InfoElement } from "./InfoElement";
 import { Arrow } from "./Arrow";
 
