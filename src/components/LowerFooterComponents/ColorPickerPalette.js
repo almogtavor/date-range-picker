@@ -18,7 +18,7 @@ export const ColorPickerPalette = (props) => {
 
     const boardsNum = generalState.boardsNum;
     const selectedColor = lowerfooterState.selectedColor;
-    const showColorPicker = lowerfooterState.showColorPicker;
+    const showColorPicker = lowerfooterState.showColorPicker[id];
 
     const language = useLanguage();
     const colorsPaletteEnabling = useColorsPalette();

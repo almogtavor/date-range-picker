@@ -25,7 +25,6 @@ export const LowerFooter = (props) => {
     } = props;
 
     const selectedDays = dayElementsState.selectedDays;
-    const mode = calendarModesState.mode;
     const selectedColor = lowerfooterState.selectedColor;
     const storedDates = calendarHeaderState.storedDates;
     const boardsNum = generalState.boardsNum;
@@ -95,7 +94,6 @@ export const LowerFooter = (props) => {
             dayElementsStateDispatch={dayElementsStateDispatch}
             id={id}
             language={language}
-            mode={mode}
         />
 
         {showPickButton && 

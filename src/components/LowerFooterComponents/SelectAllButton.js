@@ -55,7 +55,7 @@ export const SelectAllButton = (props) => {
     } = props;
 
     const selectedDays = dayElementsState.selectedDays;
-    const mode = calendarModesState.mode;
+    const mode = calendarModesState.mode[id];
     const viewedMonth = datesHeaderState.viewedMonth[id];
     const viewedYear = datesHeaderState.viewedYear[id];
     const nearViewedMonths = nearViewedMonthsFunction(id);

@@ -205,6 +205,8 @@ export const Mapper = (props) => {
       }
   
     }, [])
+
+    console.log(calendarModesState);
   
 
     // const handleBlur = () => {

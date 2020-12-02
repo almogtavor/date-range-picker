@@ -12,16 +12,16 @@ export const CalendarContent = (props) => {
       lowerfooterState,
       dayElementsState,
       dayElementsStateDispatch,
+      calendarModesState,
       calendarModesStateDispatch,
       datesHeaderStateDispatch,
       generalState,
       datesHeaderState,
-      nearViewedMonths,
-      mode, 
+      nearViewedMonths, 
       id,
     } = props;
 
-    // const language = useLanguage();
+    const mode = calendarModesState.mode[id];
 
     return (
     <div className="month-grid">

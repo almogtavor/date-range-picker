@@ -37,7 +37,6 @@ export const MonthSelector = (props) => {
     };
 
     return (
-
         <div className={`month-selector`} lang={language}>
             {calendarConfig.months[language].map((month, i) => {
                 let validMonth = getValidMonth(nearViewedMonths, viewedYear, i, endDate, startDate);
