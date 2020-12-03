@@ -139,18 +139,22 @@ export const Mapper = (props) => {
     const language = useLanguage();
 
     useEffect(() => {
+      console.log(datesHeaderInitialState);
       if (datesHeaderInitialState.viewedMonth['1'] === 12) {
         datesHeaderInitialState.viewedMonth['1'] = 0;
         datesHeaderInitialState.viewedYear['1'] = datesHeaderInitialState.viewedYear['1'] + 1;
       }
       if (language === "Hebrew") {
-        let leftBoardMonth = datesHeaderInitialState.viewedMonth['0'];
-        let leftBoardYear = datesHeaderInitialState.viewedYear['0'];
-        datesHeaderInitialState.viewedMonth['0'] = datesHeaderInitialState.viewedMonth['1'];
-        datesHeaderInitialState.viewedYear['0'] = datesHeaderInitialState.viewedYear['1'];
-        datesHeaderInitialState.viewedMonth['1'] = leftBoardMonth;
-        datesHeaderInitialState.viewedYear['1'] = leftBoardYear;
+        console.log(language);
+//         let leftBoardMonth = datesHeaderInitialState.viewedMonth['0'];
+//         let leftBoardYear = datesHeaderInitialState.viewedYear['0'];
+// console.log(leftBoardMonth);
+//         datesHeaderInitialState.viewedMonth['0'] = datesHeaderInitialState.viewedMonth['1'];
+//         datesHeaderInitialState.viewedYear['0'] = datesHeaderInitialState.viewedYear['1'];
+//         datesHeaderInitialState.viewedMonth['1'] = leftBoardMonth;
+//         datesHeaderInitialState.viewedYear['1'] = leftBoardYear;
       }
+      console.log(datesHeaderInitialState);
     }, [language]);
 
     const [lowerfooterState, lowerfooterStateDispatch] = useReducer(lowerFooterReducerMapper, lowerFooterInitialState);

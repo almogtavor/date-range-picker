@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import "./App.css";
 import "./styles/button.css";
 import "./styles/date-range-picker-component.css"
@@ -6,6 +6,7 @@ import { InitialParametersProvider } from "./context/InitialParametersContext";
 import { Mapper } from './components/Mapper';
 import { Button } from "./components/Button";
 import { updateObject } from "./utils/reducerUtils";
+import { setBoardsNum } from "./actions";
 
 const initialState = {
   boardsNum: 2,
@@ -13,7 +14,7 @@ const initialState = {
   buttonDatesText: null,
 };
 
-function setBoardsNum(state, payload) {
+function setBoardsNumFunc(state, payload) {
   return updateObject(state, {boardsNum: payload.boardsNum});
 }
 
@@ -27,7 +28,7 @@ function setButtonDatesText(state, payload) {
 
 function generalReducerMapper(state, payload) {
   if (payload.type === "SET_BOARDS_NUM") {
-    return setBoardsNum(state, payload);
+    return setBoardsNumFunc(state, payload);
   } else if (payload.type === "SET_SHOW_CALENDAR") {
     return setShowCalendar(state, payload);
   } else if (payload.type === "SET_BUTTON_DATES_TEXT") {
@@ -38,12 +39,21 @@ function generalReducerMapper(state, payload) {
 }
 
 export function App(props) {
+  const {
+    boardsNum,
+    startDate,
+    endDate,
+    defaultColor
+  } = props;
+
   const [generalState, generalStateDispatch] = useReducer(generalReducerMapper, initialState);
-  const style = {
-    "height": `${Math.floor(props.boardsNum / 3) * 292}px`,
-    "gridTemplateRows": `repeat(${Math.floor(props.boardsNum / 3)}, 1fr)`,
-  };
-  
+
+  useEffect(() => {
+    if (boardsNum) {
+      generalStateDispatch(setBoardsNum(props.boardsNum));
+    }
+  }, [])
+
   return (
     <div className="App">
       <InitialParametersProvider props={props}>
@@ -51,24 +61,48 @@ export function App(props) {
           generalState={generalState}
           generalStateDispatch={generalStateDispatch}
         />
-        <div className="date-range-picker-component">
-          <div
-            className="date-range-picker"
-            style={style}
-          >
-              <Mapper 
-                startDate={props.startDate}
-                endDate={props.endDate}
-                defaultColor={props.defaultColor}
-                boardsNum={props.boardsNum}
-                generalState={generalState}
-                generalStateDispatch={generalStateDispatch}
-              />
-          </div>
-        </div>
+        <CalendarComponent 
+          startDate={startDate}
+          endDate={endDate}
+          defaultColor={defaultColor}
+          generalState={generalState} 
+          generalStateDispatch={generalStateDispatch}
+        />
       </InitialParametersProvider>
     </div>
   );
 }
 
 export default App;
+
+function CalendarComponent(props) {
+
+  const { 
+    startDate,
+    endDate,
+    defaultColor,
+    generalState, 
+    generalStateDispatch
+  } = props;
+
+  const boardsNum = generalState.boardsNum;
+  const style = {
+    "height": `${Math.floor(boardsNum / 3) * 292}px`,
+    "gridTemplateRows": `repeat(${Math.floor(boardsNum / 3)}, 1fr)`,
+  };
+
+  return <div className="date-range-picker-component">
+    <div
+      className="date-range-picker"
+      style={style}
+    >
+      <Mapper
+        startDate={startDate}
+        endDate={endDate}
+        defaultColor={defaultColor}
+        boardsNum={boardsNum}
+        generalState={generalState}
+        generalStateDispatch={generalStateDispatch} />
+    </div>
+  </div>;
+}
