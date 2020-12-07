@@ -1,10 +1,7 @@
 .App {
-  width: 100vw;
-  height: 100vh;
   user-select: none;
-  opacity: 0.9;
   display: flex;
-  margin-top: 10%;
+  margin-bottom: 25%;
   justify-content: center;
   position: relative;
 }

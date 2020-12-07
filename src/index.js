@@ -7,8 +7,10 @@ import DateRangePicker from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-    <><DateRangePicker
-        language="Hebrew"
+    <>
+    <h1 style={{display: "flex", justifyContent: "center"}}>Date Range Picker Component</h1>
+    <DateRangePicker
+        language="English"
         colorsPalette="enabled"
         format="DD-MM-YYYY"
         selectAllButton="disabled"

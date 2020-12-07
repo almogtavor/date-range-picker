@@ -32,10 +32,25 @@ function lowerFooterReducerMapper(state, payload) {
   }
 }
 
-let datesHeaderInitialState = {
-  viewedMonth: {'0': new Date().getMonth(), '1': new Date().getMonth() + 1, },
-  viewedYear: {'0': new Date().getFullYear(), '1': new Date().getFullYear(), },
-}
+const datesHeaderInitialStateCalculation = language => {
+  let stateObj = {
+    viewedMonth: {'0': new Date().getMonth(), '1': new Date().getMonth() + 1, },
+    viewedYear: {'0': new Date().getFullYear(), '1': new Date().getFullYear(), },
+  };
+  if (stateObj.viewedMonth['1'] === 12) {
+    stateObj.viewedMonth['1'] = 0;
+    stateObj.viewedYear['1'] = stateObj.viewedYear['1'] + 1;
+  }
+  if (language === "Hebrew") {
+    const leftBoardMonth = stateObj.viewedMonth['0'];
+    let leftBoardYear = stateObj.viewedYear['0'];
+    stateObj.viewedMonth['0'] = stateObj.viewedMonth['1'];
+    stateObj.viewedYear['0'] = stateObj.viewedYear['1'];
+    stateObj.viewedMonth['1'] = leftBoardMonth;
+    stateObj.viewedYear['1'] = leftBoardYear;
+  }
+  return stateObj;
+} 
 
 function setViewedMonth(state, payload) {
   return updateObject(state, {viewedMonth: payload.viewedMonth});
@@ -98,24 +113,7 @@ export const Mapper = (props) => {
     } = props;
         
     const language = useLanguage();
-
-    useEffect(() => {
-      console.log(datesHeaderInitialState);
-      if (datesHeaderInitialState.viewedMonth['1'] === 12) {
-        datesHeaderInitialState.viewedMonth['1'] = 0;
-        datesHeaderInitialState.viewedYear['1'] = datesHeaderInitialState.viewedYear['1'] + 1;
-      }
-      if (language === "Hebrew") {
-        console.log(language);
-//         let leftBoardMonth = datesHeaderInitialState.viewedMonth['0'];
-//         let leftBoardYear = datesHeaderInitialState.viewedYear['0'];
-// console.log(leftBoardMonth);
-//         datesHeaderInitialState.viewedMonth['0'] = datesHeaderInitialState.viewedMonth['1'];
-//         datesHeaderInitialState.viewedYear['0'] = datesHeaderInitialState.viewedYear['1'];
-//         datesHeaderInitialState.viewedMonth['1'] = leftBoardMonth;
-//         datesHeaderInitialState.viewedYear['1'] = leftBoardYear;
-      }
-    }, [language]);
+    const datesHeaderInitialState = datesHeaderInitialStateCalculation(language);
 
     const [lowerfooterState, lowerfooterStateDispatch] = useReducer(lowerFooterReducerMapper, lowerFooterInitialState);
     const [datesHeaderState, datesHeaderStateDispatch] = useReducer(datesHeaderReducerMapper, datesHeaderInitialState);
