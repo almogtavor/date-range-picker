@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import '../../styles/DayElementsStyles/day.css';
 import { useEndDate, useStartDate, usePickMethod } from "../../context/InitialParametersContext";
 import Tooltip from "./Tooltip";
-import { setHoveredDay } from "../../actions";
 
 function inRangeCheck(date, edgeDate1, edgeDate2) {
     return (date >= edgeDate1 && date <= edgeDate2) || 
@@ -13,14 +12,13 @@ export const HoverableDayElement = (props) => {
     const {
         date,
         dayOfWeek,
-        dayElementsState,
-        dayElementsStateDispatch,
+        selectedDays,
+        hoveredDay,
+        setHoveredDay,
         lowerfooterState
     } = props;
 
     const selectedColor = lowerfooterState.selectedColor;
-    const selectedDays = dayElementsState.selectedDays;
-    const hoveredDay = dayElementsState.hoveredDay;
     const dateRef = useRef();
     const startDate = useStartDate();
     const endDate = useEndDate();
@@ -36,14 +34,14 @@ export const HoverableDayElement = (props) => {
     const handleEnterHover = () => {
         setIsCurrentlyHovered(true);
         if (!isDisabled && pickMethod !== "date") {
-            dayElementsStateDispatch(setHoveredDay(date));
+            setHoveredDay(date);
         }
     };
 
     const handleLeaveHover = () => {
         setIsCurrentlyHovered(false);
         if (selectedDays.length === 2) {
-            dayElementsStateDispatch(setHoveredDay(null));
+            setHoveredDay(null);
         }
     };
 

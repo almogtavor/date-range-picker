@@ -10,7 +10,7 @@ export const YearSelector = (props) => {
     const {
         lowerfooterState,
         datesHeaderState,
-        dayElementsState,
+        selectedDays,
         calendarModesStateDispatch,
         datesHeaderStateDispatch,
         generalState,
@@ -22,7 +22,6 @@ export const YearSelector = (props) => {
     const selectedColor = lowerfooterState.selectedColor;
     const viewedMonth = datesHeaderState.viewedMonth[id];
     const viewedYear = datesHeaderState.viewedYear[id];
-    const selectedDays = dayElementsState.selectedDays;
     const nearViewedMonths = nearViewedMonthsfunction(id);
     const startDate = useStartDate();
     const endDate = useEndDate();

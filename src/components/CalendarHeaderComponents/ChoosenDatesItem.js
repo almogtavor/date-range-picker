@@ -11,7 +11,7 @@ const xIcon = require('../../images/x-icon.png');
 export default function ChoosenDatesItem(props) {
     const { 
         lowerfooterState,
-        dayElementsStateDispatch,
+        setSelectedDays,
         datesHeaderStateDispatch,
         calendarHeaderState,
         calendarHeaderStateDispatch,
@@ -55,9 +55,9 @@ export default function ChoosenDatesItem(props) {
         let clearedChoosenDatesList = removeItemFromArray(choosenDatesList, choosenDates);
         let clearedStoredDates = removeItemFromArray(storedDates, storedDates[index]);
         if (clearedStoredDates.length < 1) {
-            dayElementsStateDispatch(setSelectedDays([]));
+            setSelectedDays([]);
         } else {
-            dayElementsStateDispatch(setSelectedDays(clearedStoredDates[0]));
+            setSelectedDays(clearedStoredDates[0]);
             updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, clearedStoredDates[0][0], clearedStoredDates[0][1])
         }
         calendarHeaderStateDispatch(setChoosenDatesList([...clearedChoosenDatesList]));
@@ -68,7 +68,7 @@ export default function ChoosenDatesItem(props) {
         let selectedDays = storedDates[index];
         let clearedChoosenDatesList = removeItemFromArray(choosenDatesList, choosenDates);
         let clearedStoredDates = removeItemFromArray(storedDates, selectedDays);
-        dayElementsStateDispatch(setSelectedDays(selectedDays));
+        setSelectedDays(selectedDays);
         calendarHeaderStateDispatch(setStoredDates([selectedDays, ...clearedStoredDates]));
         calendarHeaderStateDispatch(setChoosenDatesList([choosenDates, ...clearedChoosenDatesList]));
         updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, selectedDays[0], selectedDays[1])

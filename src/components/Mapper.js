@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import "../App.css";
 import { CalendarInstance } from './CalendarInstance';
 import { useLanguage } from "../context/InitialParametersContext";
@@ -27,45 +27,6 @@ function lowerFooterReducerMapper(state, payload) {
   } else if (payload.type === "SET_SHOW_COLOR_PICKER") {
     payload.showColorPicker = getUpdatedObject(payload.boardsNum, payload.id, payload.showColorPicker, state.showColorPicker);
     return setShowColorPicker(state, payload);
-  } else {
-    return state;
-  }
-}
-
-const dayElementsInitialState = {
-  selectedDays: [],
-  hoveredDay: null,
-};
-
-function setHoveredDay(state, payload) {
-  return updateObject(state, {hoveredDay: payload.hoveredDay});
-}
-
-function setSelectedDays(state, payload) {
-  return updateObject(state, {selectedDays: payload.selectedDays});
-}
-
-function dayElementsReducerMapper(state, payload) {
-  if (payload.type === "SET_SELECTED_DAYS") {
-    return setSelectedDays(state, payload);
-  } else if (payload.type === "SET_HOVERED_DAY") {
-    return setHoveredDay(state, payload);
-  } else {
-    return state;
-  }
-}
-
-const daysAmountInitialState = {
-  showDaysAmountTab: false,
-};
-
-function setShowDaysAmountTab(state, payload) {
-  return updateObject(state, {showDaysAmountTab: payload.showDaysAmountTab});
-}
-
-function daysAmountReducerMapper(state, payload) {
-  if (payload.type === "SET_SHOW_DAYS_AMOUNT_TAB") {
-    return setShowDaysAmountTab(state, payload);
   } else {
     return state;
   }
@@ -154,14 +115,13 @@ export const Mapper = (props) => {
 //         datesHeaderInitialState.viewedMonth['1'] = leftBoardMonth;
 //         datesHeaderInitialState.viewedYear['1'] = leftBoardYear;
       }
-      console.log(datesHeaderInitialState);
     }, [language]);
 
     const [lowerfooterState, lowerfooterStateDispatch] = useReducer(lowerFooterReducerMapper, lowerFooterInitialState);
-    const [dayElementsState, dayElementsStateDispatch] = useReducer(dayElementsReducerMapper, dayElementsInitialState);
-    const [daysAmountState, daysAmountStateDispatch] = useReducer(daysAmountReducerMapper, daysAmountInitialState);
     const [datesHeaderState, datesHeaderStateDispatch] = useReducer(datesHeaderReducerMapper, datesHeaderInitialState);
     const [calendarHeaderState, calendarHeaderStateDispatch] = useReducer(calendarHeaderReducerMapper, calendarHeaderInitialState);
+    const [selectedDays, setSelectedDays] = useState([]);
+    const [hoveredDay, setHoveredDay] = useState(null);
 
     const showCalendar = generalState.showCalendar;
 
@@ -206,8 +166,9 @@ export const Mapper = (props) => {
         >
           <CalendarHeader
             lowerfooterState={lowerfooterState}
-            dayElementsState={dayElementsState}
-            dayElementsStateDispatch={dayElementsStateDispatch}
+            setSelectedDays={setSelectedDays}
+            selectedDays={selectedDays}
+            hoveredDay={hoveredDay}
             datesHeaderStateDispatch={datesHeaderStateDispatch}
             calendarHeaderState={calendarHeaderState}
             calendarHeaderStateDispatch={calendarHeaderStateDispatch}
@@ -218,10 +179,10 @@ export const Mapper = (props) => {
               <CalendarInstance
                   lowerfooterState={lowerfooterState}
                   lowerfooterStateDispatch={lowerfooterStateDispatch}
-                  dayElementsState={dayElementsState}
-                  dayElementsStateDispatch={dayElementsStateDispatch}
-                  daysAmountState={daysAmountState}
-                  daysAmountStateDispatch={daysAmountStateDispatch}
+                  setSelectedDays={setSelectedDays}
+                  selectedDays={selectedDays}
+                  setHoveredDay={setHoveredDay}
+                  hoveredDay={hoveredDay}
                   datesHeaderState={datesHeaderState}
                   datesHeaderStateDispatch={datesHeaderStateDispatch}
                   calendarHeaderState={calendarHeaderState}
@@ -233,10 +194,8 @@ export const Mapper = (props) => {
             })}
           <DaysAmountTabButton
             lowerfooterState={lowerfooterState}
-            dayElementsStateDispatch={dayElementsStateDispatch}
-            daysAmountState={daysAmountState}
-            daysAmountStateDispatch={daysAmountStateDispatch}
             datesHeaderStateDispatch={datesHeaderStateDispatch}
+            setSelectedDays={setSelectedDays}
             generalState={generalState}
           />
         </div>

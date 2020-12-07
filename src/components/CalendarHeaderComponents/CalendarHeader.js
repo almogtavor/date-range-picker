@@ -9,16 +9,15 @@ import DatesDisplay from "./DatesDisplay";
 export const CalendarHeader = (props) => {
     const {
         lowerfooterState,
-        dayElementsState,
-        dayElementsStateDispatch,
+        hoveredDay,
+        selectedDays,
+        setSelectedDays,
         datesHeaderStateDispatch,
         calendarHeaderState,
         calendarHeaderStateDispatch,
         generalState
     } = props;
 
-    const selectedDays = dayElementsState.selectedDays;
-    const hoveredDay = dayElementsState.hoveredDay;
     const selectedColor = lowerfooterState.selectedColor;
     const storedDates = calendarHeaderState.storedDates;
     const choosenDatesList = calendarHeaderState.choosenDatesList;
@@ -48,13 +47,13 @@ export const CalendarHeader = (props) => {
             calendarHeaderStateDispatch(setChoosenDatesList([...clearedChoosenDatesList]));
             calendarHeaderStateDispatch(setStoredDates([...clearedStoredDates]));
             if (storedDates.length < 1) {
-                dayElementsStateDispatch(setSelectedDays([]));
+                setSelectedDays([]);
             } else {
-                dayElementsStateDispatch(setSelectedDays(storedDates[0]));
+                setSelectedDays(storedDates[0]);
                 updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, storedDates[0][0], storedDates[0][1])
             }
         } else {
-            dayElementsStateDispatch(setSelectedDays([]));
+            setSelectedDays([]);
         }
     }
     
@@ -73,8 +72,8 @@ export const CalendarHeader = (props) => {
                 >
                     <DatesDisplay
                         lowerfooterState={lowerfooterState}
-                        dayElementsState={dayElementsState}
-                        dayElementsStateDispatch={dayElementsStateDispatch}
+                        selectedDays={selectedDays}
+                        setSelectedDays={setSelectedDays}
                         datesHeaderStateDispatch={datesHeaderStateDispatch}
                         calendarHeaderState={calendarHeaderState}
                         calendarHeaderStateDispatch={calendarHeaderStateDispatch}

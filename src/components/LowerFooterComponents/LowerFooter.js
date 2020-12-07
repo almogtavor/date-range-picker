@@ -11,18 +11,18 @@ export const LowerFooter = (props) => {
     const {
         lowerfooterState,
         lowerfooterStateDispatch,
-        dayElementsState,
+        selectedDays,
+        setSelectedDays,
+        setHoveredDay,
         calendarModesState,
         calendarHeaderState,
         datesHeaderState,
         nearViewedMonths,
-        dayElementsStateDispatch,
         generalState,
         id,
         generalStateDispatch,
     } = props;
 
-    const selectedDays = dayElementsState.selectedDays;
     const selectedColor = lowerfooterState.selectedColor;
     const storedDates = calendarHeaderState.storedDates;
     const boardsNum = generalState.boardsNum;
@@ -85,11 +85,12 @@ export const LowerFooter = (props) => {
         />
 
         <SelectAllButton
-            dayElementsState={dayElementsState}
+            selectedDays={selectedDays}
+            setHoveredDay={setHoveredDay}
+            setSelectedDays={setSelectedDays}
             calendarModesState={calendarModesState}
             datesHeaderState={datesHeaderState}
             nearViewedMonthsFunction={nearViewedMonths}
-            dayElementsStateDispatch={dayElementsStateDispatch}
             id={id}
             language={language}
         />

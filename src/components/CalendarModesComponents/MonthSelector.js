@@ -10,7 +10,7 @@ import { getUpdatedObject } from "../../utils/actionsUtils";
 export const MonthSelector = (props) => {
     const {
         lowerfooterState,
-        dayElementsState,
+        selectedDays,
         calendarModesStateDispatch,
         datesHeaderState,
         datesHeaderStateDispatch,
@@ -23,7 +23,6 @@ export const MonthSelector = (props) => {
     const selectedColor = lowerfooterState.selectedColor;
     const viewedMonth = datesHeaderState.viewedMonth[id];
     const viewedYear = datesHeaderState.viewedYear[id];
-    const selectedDays = dayElementsState.selectedDays;
     const nearViewedMonths = nearViewedMonthsfunction(id);
     const language = useLanguage();
     const startDate = useStartDate();

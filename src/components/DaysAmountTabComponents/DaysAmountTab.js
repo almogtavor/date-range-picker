@@ -4,14 +4,12 @@ import { getDefaultRanges } from '../../utils/daysAmountTabUtils';
 import { useEndDate, useStartDate, useLanguage } from '../../context/InitialParametersContext';
 import { getOpacityColorStyle, updateViewedMonths } from '../../utils/generalUtils';
 import { DefaultRange } from './DefaultRange';
-import { setSelectedDays } from '../../actions';
 
 
 export function DaysAmountTab(props) {
-
     const { 
         lowerfooterState,
-        dayElementsStateDispatch,
+        setSelectedDays,
         generalState,
         datesHeaderStateDispatch
     } = props;
@@ -42,9 +40,9 @@ export function DaysAmountTab(props) {
         let currentDate = new Date();
         let daysAmountBackwards = new Date();
         daysAmountBackwards.setDate(daysAmountBackwards.getDate() - decresement);
-        dayElementsStateDispatch(setSelectedDays([daysAmountBackwards, currentDate]));
+        setSelectedDays([daysAmountBackwards, currentDate]);
         updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, daysAmountBackwards, currentDate)
-    }, [boardsNum, language, dayElementsStateDispatch, setSelectedDays, datesHeaderStateDispatch])
+    }, [boardsNum, language, setSelectedDays, datesHeaderStateDispatch])
 
     const handleChange = (e) => {
         let value = e.target.value;
@@ -59,7 +57,7 @@ export function DaysAmountTab(props) {
         daysAmountBackwards.setDate(daysAmountBackwards.getDate() - parseInt(value));
         value = valueValidation(value, daysAmountBackwards);
         if (value === "") {
-            dayElementsStateDispatch(setSelectedDays([]));
+            setSelectedDays([]);
         }
         updateOnChange(value);
     }
@@ -105,7 +103,7 @@ export function DaysAmountTab(props) {
                         index={i}
                         generalState={generalState}
                         datesHeaderStateDispatch={datesHeaderStateDispatch}
-                        dayElementsStateDispatch={dayElementsStateDispatch}
+                        setSelectedDays={setSelectedDays}
                     />);
                 })}
                 <div className="days-amount-field"  lang={language}>

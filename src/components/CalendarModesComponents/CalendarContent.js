@@ -10,8 +10,10 @@ import { YearSelector } from "./YearSelector";
 export const CalendarContent = (props) => {
     const {
       lowerfooterState,
-      dayElementsState,
-      dayElementsStateDispatch,
+      selectedDays,
+      hoveredDay,
+      setSelectedDays,
+      setHoveredDay,
       calendarModesState,
       calendarModesStateDispatch,
       datesHeaderStateDispatch,
@@ -28,8 +30,10 @@ export const CalendarContent = (props) => {
         <WeekDaysNames/>
         <DaysGrid 
           lowerfooterState={lowerfooterState}
-          dayElementsState={dayElementsState}
-          dayElementsStateDispatch={dayElementsStateDispatch}
+          selectedDays={selectedDays}
+          hoveredDay={hoveredDay}
+          setSelectedDays={setSelectedDays}
+          setHoveredDay={setHoveredDay}
           datesHeaderState={datesHeaderState}
           datesHeaderStateDispatch={datesHeaderStateDispatch}
           nearViewedMonths={nearViewedMonths}
@@ -39,7 +43,7 @@ export const CalendarContent = (props) => {
         {mode === "Months" ? (
           <MonthSelector
             lowerfooterState={lowerfooterState}
-            dayElementsState={dayElementsState}
+            selectedDays={selectedDays}
             calendarModesStateDispatch={calendarModesStateDispatch}
             datesHeaderState={datesHeaderState}
             datesHeaderStateDispatch={datesHeaderStateDispatch}
@@ -50,7 +54,7 @@ export const CalendarContent = (props) => {
         ) : mode === "Years" && 
           <YearSelector
             lowerfooterState={lowerfooterState}
-            dayElementsState={dayElementsState}
+            selectedDays={selectedDays}
             calendarModesStateDispatch={calendarModesStateDispatch}
             datesHeaderState={datesHeaderState}
             datesHeaderStateDispatch={datesHeaderStateDispatch}

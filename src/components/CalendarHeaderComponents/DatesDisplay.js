@@ -8,8 +8,8 @@ import ChoosenDatesItem from "./ChoosenDatesItem";
 export default function DatesDisplay(props) {
     const {
         lowerfooterState,
-        dayElementsState,
-        dayElementsStateDispatch,
+        selectedDays,
+        setSelectedDays,
         datesHeaderStateDispatch,
         calendarHeaderState,
         calendarHeaderStateDispatch,
@@ -18,7 +18,6 @@ export default function DatesDisplay(props) {
         selectedDaysStyle,
     } = props;
 
-    const selectedDays = dayElementsState.selectedDays;
     const storedDates = calendarHeaderState.storedDates;
     const choosenDatesList = calendarHeaderState.choosenDatesList;
     const [isCurrentlyHovered, setIsCurrentlyHovered] = useState(false);
@@ -69,7 +68,7 @@ export default function DatesDisplay(props) {
                     (choosenDatesList.length === 0 ? 
                         <ChoosenDatesItem 
                             lowerfooterState={lowerfooterState}
-                            dayElementsStateDispatch={dayElementsStateDispatch}
+                            setSelectedDays={setSelectedDays}
                             datesHeaderStateDispatch={datesHeaderStateDispatch}
                             calendarHeaderState={calendarHeaderState}
                             calendarHeaderStateDispatch={calendarHeaderStateDispatch}
@@ -80,7 +79,7 @@ export default function DatesDisplay(props) {
                         /> : 
                         <ChoosenDatesItem
                             lowerfooterState={lowerfooterState}
-                            dayElementsStateDispatch={dayElementsStateDispatch}
+                            setSelectedDays={setSelectedDays}
                             datesHeaderStateDispatch={datesHeaderStateDispatch}
                             calendarHeaderState={calendarHeaderState}
                             calendarHeaderStateDispatch={calendarHeaderStateDispatch}
@@ -97,17 +96,17 @@ export default function DatesDisplay(props) {
                 >
                     {choosenDatesList.map((listItem, i) => {
                         return <ChoosenDatesItem
-                                lowerfooterState={lowerfooterState}
-                                dayElementsStateDispatch={dayElementsStateDispatch}
-                                datesHeaderStateDispatch={datesHeaderStateDispatch}
-                                calendarHeaderState={calendarHeaderState}
-                                calendarHeaderStateDispatch={calendarHeaderStateDispatch}
-                                generalState={generalState}
-                                key={listItem + i}
-                                choosenDates={listItem}
-                                index={i}
-                                isDatesDisplayHovered={isCurrentlyHovered}
-                        />
+                                    lowerfooterState={lowerfooterState}
+                                    setSelectedDays={setSelectedDays}
+                                    datesHeaderStateDispatch={datesHeaderStateDispatch}
+                                    calendarHeaderState={calendarHeaderState}
+                                    calendarHeaderStateDispatch={calendarHeaderStateDispatch}
+                                    generalState={generalState}
+                                    key={listItem + i}
+                                    choosenDates={listItem}
+                                    index={i}
+                                    isDatesDisplayHovered={isCurrentlyHovered}
+                                />
                     })}
                 </div>
             }

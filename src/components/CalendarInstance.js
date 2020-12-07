@@ -49,10 +49,10 @@ export const CalendarInstance = (props) => {
     const {
       lowerfooterState,
       lowerfooterStateDispatch,
-      dayElementsState,
-      dayElementsStateDispatch,
-      daysAmountState,
-      daysAmountStateDispatch,
+      setSelectedDays,
+      selectedDays,
+      setHoveredDay,
+      hoveredDay,
       datesHeaderState,
       datesHeaderStateDispatch,
       calendarHeaderState,
@@ -88,12 +88,13 @@ export const CalendarInstance = (props) => {
         />
         <CalendarContent
           lowerfooterState={lowerfooterState}
-          dayElementsState={dayElementsState}
-          dayElementsStateDispatch={dayElementsStateDispatch}
+          setSelectedDays={setSelectedDays}
           calendarModesState={calendarModesState}
           calendarModesStateDispatch={calendarModesStateDispatch}
-          daysAmountState={daysAmountState}
-          daysAmountStateDispatch={daysAmountStateDispatch}
+          selectedDays={selectedDays}
+          hoveredDay={hoveredDay}
+          setSelectedDays={setSelectedDays}
+          setHoveredDay={setHoveredDay}
           datesHeaderState={datesHeaderState}
           datesHeaderStateDispatch={datesHeaderStateDispatch}
           nearViewedMonths={nearViewedMonths}
@@ -103,12 +104,13 @@ export const CalendarInstance = (props) => {
         <LowerFooter
           lowerfooterState={lowerfooterState}
           lowerfooterStateDispatch={lowerfooterStateDispatch}
-          dayElementsState={dayElementsState}
           calendarModesState={calendarModesState}
           calendarHeaderState={calendarHeaderState}
           datesHeaderState={datesHeaderState}
           nearViewedMonths={nearViewedMonths}
-          dayElementsStateDispatch={dayElementsStateDispatch}
+          setSelectedDays={setSelectedDays}
+          selectedDays={selectedDays}
+          setHoveredDay={setHoveredDay}
           generalState={generalState}
           id={i}
           generalStateDispatch={generalStateDispatch}

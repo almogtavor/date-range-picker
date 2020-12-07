@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../styles/DaysAmountTabStyles/days-amount-tab-button.css';
 import { useDaysAmountTab, useLanguage } from '../../context/InitialParametersContext';
 import { getOpacityColorStyle } from '../../utils/generalUtils';
@@ -9,16 +9,14 @@ const chooseDaysAmount = require("../../images/choose-days-amount.png");
 
 export function DaysAmountTabButton(props) {
     const { 
-        dayElementsStateDispatch,
+        setSelectedDays,
         generalState,
         datesHeaderStateDispatch,
         lowerfooterState, 
-        daysAmountState, 
-        daysAmountStateDispatch,
     } = props;
 
     const selectedColor = lowerfooterState.selectedColor;
-    const showDaysAmountTab = daysAmountState.showDaysAmountTab;
+    const [showDaysAmountTab, setShowDaysAmountTab] = useState(false);
     const language = useLanguage();
     const enableDaysAmountTab = useDaysAmountTab();
     const style = getOpacityColorStyle(selectedColor, 60);
@@ -28,7 +26,7 @@ export function DaysAmountTabButton(props) {
     }
 
     const handleClick = () => {
-        daysAmountStateDispatch(setShowDaysAmountTab(!showDaysAmountTab));
+        setShowDaysAmountTab(!showDaysAmountTab);
     }
 
     return (
@@ -56,7 +54,7 @@ export function DaysAmountTabButton(props) {
             { showDaysAmountTab &&
                 <DaysAmountTab
                     lowerfooterState={lowerfooterState}
-                    dayElementsStateDispatch={dayElementsStateDispatch}
+                    setSelectedDays={setSelectedDays}
                     generalState={generalState}
                     datesHeaderStateDispatch={datesHeaderStateDispatch}
                 />

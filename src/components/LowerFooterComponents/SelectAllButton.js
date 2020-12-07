@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import '../../styles/LowerFooterStyles/select-all-button.css';
 import { useLanguage, useEndDate, useStartDate, useSelectAllButton } from "../../context/InitialParametersContext";
-import { setHoveredDay, setSelectedDays } from "../../actions";
 
 const checkbox= require('../../images/checkbox.png');
 const hoverCheckbox = require('../../images/hover-checkbox.png');
@@ -46,15 +45,15 @@ function limitDate(mode, nearViewedMonths, checkedCalendarSide, dateOfCurrentMon
 export const SelectAllButton = (props) => {
 
     const {
-        dayElementsState,
+        selectedDays,
+        setSelectedDays,
+        setHoveredDay,
         calendarModesState,
         datesHeaderState,
         nearViewedMonthsFunction,
         id,
-        dayElementsStateDispatch,
     } = props;
 
-    const selectedDays = dayElementsState.selectedDays;
     const mode = calendarModesState.mode[id];
     const viewedMonth = datesHeaderState.viewedMonth[id];
     const viewedYear = datesHeaderState.viewedYear[id];
@@ -112,13 +111,13 @@ export const SelectAllButton = (props) => {
     const handleSelectAllClick = () => {
         if (checkboxSrc !== clickedCheckbox) {
             setCheckboxSrc(clickedCheckbox);
-            dayElementsStateDispatch(setHoveredDay(null));
+            setHoveredDay(null);
             checkeboxChanged.current = true;
             const [startSelectDate, endSelectDate] = getLimits();
-            dayElementsStateDispatch(setSelectedDays([startSelectDate, endSelectDate]));
+            setSelectedDays([startSelectDate, endSelectDate]);
         } else {
             setCheckboxSrc(hoverCheckbox);
-            dayElementsStateDispatch(setSelectedDays([]));
+            setSelectedDays([]);
         }
         
     }

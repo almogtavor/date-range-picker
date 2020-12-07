@@ -2,7 +2,7 @@ import React from "react";
 import '../../styles/DayElementsStyles/day.css';
 import '../../styles/DayElementsStyles/selected-day.css';
 import { useLanguage, useEndDate, useStartDate, usePickMethod } from "../../context/InitialParametersContext";
-import { setSelectedDays, setViewedMonth, setViewedYear } from "../../actions";
+import { setViewedMonth, setViewedYear } from "../../actions";
 import { HoverableDayElement } from "./HoverableDayElement";
 
 function customSetters(datesHeaderStateDispatch, language, id, boardsNum) {
@@ -34,8 +34,10 @@ function customSetters(datesHeaderStateDispatch, language, id, boardsNum) {
 export const SelectableDayElement = (props) => {
     const {
         lowerfooterState,
-        dayElementsState,
-        dayElementsStateDispatch,
+        selectedDays,
+        hoveredDay,
+        setSelectedDays,
+        setHoveredDay,
         datesHeaderStateDispatch,
         nearViewedMonths,
         generalState,
@@ -57,7 +59,6 @@ export const SelectableDayElement = (props) => {
 
     const boardsNum = generalState.boardsNum;
     const selectedColor = lowerfooterState.selectedColor;
-    const selectedDays = dayElementsState.selectedDays;
     const month = date.getMonth();
     const year = date.getFullYear();
     const pickMethod = usePickMethod();
@@ -148,17 +149,17 @@ export const SelectableDayElement = (props) => {
             nonCurrentDateClick();
             if (pickMethod !== "date") {
                 if (selectedDays.length === 2 || selectedDays.length === 0) {
-                    dayElementsStateDispatch(setSelectedDays([date]));
+                    setSelectedDays([date]);
                 } else {
                     if (selectedDays[0] > date) {
-                        dayElementsStateDispatch(setSelectedDays([date, selectedDays[0]]));
+                        setSelectedDays([date, selectedDays[0]]);
                     } else {
-                        dayElementsStateDispatch(setSelectedDays([selectedDays[0], date]));
+                        setSelectedDays([selectedDays[0], date]);
                     }
                 }
                 rangeSelectionHandling();
             } else {
-                dayElementsStateDispatch(setSelectedDays([date]));
+                setSelectedDays([date]);
             }
         }
     };
@@ -189,8 +190,9 @@ export const SelectableDayElement = (props) => {
             onClick={handleClick}
         >
             <HoverableDayElement
-                dayElementsState={dayElementsState}
-                dayElementsStateDispatch={dayElementsStateDispatch}
+                selectedDays={selectedDays}
+                hoveredDay={hoveredDay}
+                setHoveredDay={setHoveredDay}
                 lowerfooterState={lowerfooterState}
                 date={date}
                 dayOfWeek={dayOfWeek}

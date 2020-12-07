@@ -76,16 +76,6 @@ export function setInitialBoard(boardsNum, language, startDate, endDate) {
     };
   }
 
-export const setSelectedDays = selectedDays => ({
-    type: 'SET_SELECTED_DAYS',
-    selectedDays
-})
-
-export const setHoveredDay = hoveredDay => ({
-    type: 'SET_HOVERED_DAY',
-    hoveredDay
-})
-
 export const setChoosenDates = choosenDates => ({
     type: 'SET_CHOOSEN_DATES',
     choosenDates

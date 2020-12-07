@@ -9,7 +9,7 @@ export function DefaultRange(props) {
         range, 
         generalState, 
         index, 
-        dayElementsStateDispatch, 
+        setSelectedDays, 
         datesHeaderStateDispatch, 
     } = props;
 
@@ -18,7 +18,7 @@ export function DefaultRange(props) {
     const language = useLanguage();
 
     const handleClick = (dates) => () => {
-        dayElementsStateDispatch(setSelectedDays(dates));
+        setSelectedDays(dates);
         updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, dates[0], dates[1])
     }
 
