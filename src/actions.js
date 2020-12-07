@@ -1,4 +1,4 @@
-import { getUpdatedObject, getInitialObject } from './utils/actionsUtils'; 
+import { getInitialObject } from './utils/actionsUtils'; 
 
 export const setShowColorPicker = (boardsNum, id, showColorPicker) => ({
     type: 'SET_SHOW_COLOR_PICKER',
@@ -6,27 +6,6 @@ export const setShowColorPicker = (boardsNum, id, showColorPicker) => ({
     id: id,
     boardsNum: boardsNum
 })
-
-// export function setShowColorPicker(id, showColorPicker) {
-//     return (dispatch, getState) => {
-//         const stateShowColorPicker = getState().lowerFooter.showColorPicker;
-//         const stateObj = getUpdatedObject(getState, id, showColorPicker, stateShowColorPicker);
-//         dispatch(setShowColorPickerObject(stateObj));
-//     };
-// }
-
-// export const setViewedMonthObject = (viewedMonth) => ({
-//     type: 'SET_VIEWED_MONTH',
-//     viewedMonth
-// })
-
-// export function setViewedMonth(id, viewedMonth) {
-//     return (dispatch, getState) => {
-//         const stateViewedMonth = getState().datesHeader.viewedMonth;
-//         const stateObj = getUpdatedObject(getState, id, viewedMonth, stateViewedMonth);
-//         dispatch(setViewedMonthObject(stateObj));
-//     };
-// }
 
 export const setViewedMonth = (boardsNum, id, viewedMonth) => ({
     type: 'SET_VIEWED_MONTH',
@@ -42,38 +21,12 @@ export const setViewedYear = (boardsNum, id, viewedYear) => ({
     boardsNum: boardsNum
 })
 
-// export const setViewedYearObject = (viewedYear) => ({
-//     type: 'SET_VIEWED_YEAR',
-//     viewedYear
-// })
-
-// export function setViewedYear(id, viewedYear) {
-//     return (dispatch, getState) => {
-//         const stateViewedYear = getState().datesHeader.viewedYear;
-//         const stateObj = getUpdatedObject(getState, id, viewedYear, stateViewedYear);
-//         dispatch(setViewedYearObject(stateObj));
-//     };
-// }
-
-// export const setModeObject = (mode) => ({
-//     type: 'SET_MODE',
-//     mode
-// })
-
 export const setMode = (boardsNum, id, mode) => ({
     type: 'SET_MODE',
     mode: mode,
     id: id,
     boardsNum: boardsNum
 })
-
-// export function setMode(id, mode) {
-//     return (dispatch, getState) => {
-//         const stateMode = getState().calendarModes.mode;
-//         const stateObj = getUpdatedObject(getState, id, mode, stateMode);
-//         dispatch(setModeObject(stateObj));
-//     };
-// }
 
 export const setSelectedColor = selectedColor => ({
     type: 'SET_SELECTED_COLOR',
