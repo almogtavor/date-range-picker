@@ -53,11 +53,6 @@ export const setFirstDayOfWeekIndex = firstDayOfWeekIndex => ({
     firstDayOfWeekIndex
 })
 
-export const setBoardsNum = (boardsNum) => ({
-    type: 'SET_BOARDS_NUM',
-    boardsNum: boardsNum
-})
-
 export function setInitialBoard(boardsNum, language, startDate, endDate) {
     return (dispatch) => {
         let { 
@@ -79,16 +74,6 @@ export function setInitialBoard(boardsNum, language, startDate, endDate) {
 export const setChoosenDates = choosenDates => ({
     type: 'SET_CHOOSEN_DATES',
     choosenDates
-})
-
-export const setButtonDatesText = buttonDatesText => ({
-    type: 'SET_BUTTON_DATES_TEXT',
-    buttonDatesText
-})
-
-export const setShowCalendar = showCalendar => ({
-    type: 'SET_SHOW_CALENDAR',
-    showCalendar
 })
 
 export const setShowDaysAmountTab = showDaysAmountTab => ({

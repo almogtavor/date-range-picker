@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import "./App.css";
 import "./styles/button.css";
 import "./styles/date-range-picker-component.css"
@@ -9,48 +9,25 @@ import { updateObject } from "./utils/reducerUtils";
 import { setBoardsNum } from "./actions";
 
 const initialState = {
-  boardsNum: 2,
-  showCalendar: false,
-  buttonDatesText: null,
+
 };
-
-function setBoardsNumFunc(state, payload) {
-  return updateObject(state, {boardsNum: payload.boardsNum});
-}
-
-function setShowCalendar(state, payload) {
-  return updateObject(state, {showCalendar: payload.showCalendar});
-}
-
-function setButtonDatesText(state, payload) {
-  return updateObject(state, {buttonDatesText: payload.buttonDatesText});
-}
-
-function generalReducerMapper(state, payload) {
-  if (payload.type === "SET_BOARDS_NUM") {
-    return setBoardsNumFunc(state, payload);
-  } else if (payload.type === "SET_SHOW_CALENDAR") {
-    return setShowCalendar(state, payload);
-  } else if (payload.type === "SET_BUTTON_DATES_TEXT") {
-    return setButtonDatesText(state, payload);
-  } else {
-    return state;
-  }
-}
 
 export function App(props) {
   const {
-    boardsNum,
+    propsBoardsNum,
     startDate,
     endDate,
     defaultColor
   } = props;
 
-  const [generalState, generalStateDispatch] = useReducer(generalReducerMapper, initialState);
+  // const [generalState, generalStateDispatch] = useReducer(generalReducerMapper, initialState);
+  const [boardsNum, setBoardsNum] = useState(2);
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [buttonDatesText, setButtonDatesText] = useState(null);
 
   useEffect(() => {
-    if (boardsNum) {
-      generalStateDispatch(setBoardsNum(props.boardsNum));
+    if (propsBoardsNum) {
+      setBoardsNum(propsBoardsNum);
     }
   }, [])
 
