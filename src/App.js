@@ -19,8 +19,7 @@ export function App(props) {
     endDate,
     defaultColor
   } = props;
-
-  // const [generalState, generalStateDispatch] = useReducer(generalReducerMapper, initialState);
+  
   const [boardsNum, setBoardsNum] = useState(2);
   const [showCalendar, setShowCalendar] = useState(false);
   const [buttonDatesText, setButtonDatesText] = useState(null);
@@ -35,15 +34,17 @@ export function App(props) {
     <div className="App">
       <InitialParametersProvider props={props}>
         <Button
-          generalState={generalState}
-          generalStateDispatch={generalStateDispatch}
+          showCalendar={showCalendar}
+          setShowCalendar={setShowCalendar}
+          buttonDatesText={buttonDatesText}
         />
-        <CalendarComponent 
+        <CalendarComponent
+          boardsNum={boardsNum}
+          setShowCalendar={setShowCalendar}
+          buttonDatesText={buttonDatesText}
           startDate={startDate}
           endDate={endDate}
           defaultColor={defaultColor}
-          generalState={generalState} 
-          generalStateDispatch={generalStateDispatch}
         />
       </InitialParametersProvider>
     </div>
@@ -58,11 +59,11 @@ function CalendarComponent(props) {
     startDate,
     endDate,
     defaultColor,
-    generalState, 
-    generalStateDispatch
+    boardsNum, 
+    buttonDatesText,
+    setShowCalendar
   } = props;
 
-  const boardsNum = generalState.boardsNum;
   const style = {
     "height": `${Math.floor(boardsNum / 3) * 292}px`,
     "gridTemplateRows": `repeat(${Math.floor(boardsNum / 3)}, 1fr)`,
@@ -78,8 +79,9 @@ function CalendarComponent(props) {
         endDate={endDate}
         defaultColor={defaultColor}
         boardsNum={boardsNum}
-        generalState={generalState}
-        generalStateDispatch={generalStateDispatch} />
+        setShowCalendar={setShowCalendar}
+        buttonDatesText={buttonDatesText}
+      />
     </div>
   </div>;
 }
