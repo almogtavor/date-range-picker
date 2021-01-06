@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {calendarConfig} from '../../configuration/config';
 import '../../styles/LowerFooterStyles/color-picker-palette.css';
 import { useLanguage, useColorsPalette, useInitialSelectedColor } from "../../context/InitialParametersContext";
@@ -7,15 +7,13 @@ import { getOpacityColorStyle } from "../../utils/generalUtils";
 const pointerHandIcon = require('../../images/pointer-hand.png');
 
 export const ColorPickerPalette = (props) => {
-
     const {
         selectedColor,
         setSelectedColor,
-        showColorPicker, 
-        setShowColorPicker,
-        showPaletteAllowed,
+        showPaletteAllowed
     } = props;
 
+    const [showColorPicker, setShowColorPicker] = useState(false);
     const language = useLanguage();
     const colorsPaletteEnabling = useColorsPalette();
     const initialSelectedColor = useInitialSelectedColor();

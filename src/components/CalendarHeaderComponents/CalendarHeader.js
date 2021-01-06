@@ -3,29 +3,29 @@ import '../../styles/CalendarHeaderStyles/calendar-header.css';
 import { choosenDatesCalculation, calculateDaysCount, removeItemFromArray, getOpacityColorStyle } from "../../utils/generalUtils";
 import { useFormat, useLanguage, usePickMethod } from "../../context/InitialParametersContext";
 import { updateViewedMonths } from '../../utils/generalUtils';
-import DatesDisplayContainer from "../../containers/CalendarHeaderContainers/DatesDisplayContainer";
+import DatesDisplay from "./DatesDisplay";
 
 export const CalendarHeader = (props) => {
     const {
-        setSelectedDays,
-        selectedDays, 
-        hoveredDay, 
         selectedColor,
-        boardsNum,
+        hoveredDay,
+        selectedDays,
+        setSelectedDays,
+        datesHeaderStateDispatch,
         storedDates,
+        setStoredDates,
         choosenDatesList,
         setChoosenDatesList,
-        setStoredDates,
-        setViewedMonth,
-        setViewedYear,
+        boardsNum
     } = props;
+
 
     const language = useLanguage();
     const format = useFormat();
     const pickMethod = usePickMethod();
     const clearButtonClassName = "clear";
     const clearStyle = {"color": selectedColor};
-    const widthPercentage = ((boardsNum * 100) > 300 ? 300 : (boardsNum * 100));
+    const widthPercentage = (boardsNum * 100) > 300 ? 300 : (boardsNum * 100);
     
     let clearButtonText = "Clear";
     if (language === "Hebrew") {
@@ -48,7 +48,7 @@ export const CalendarHeader = (props) => {
                 setSelectedDays([]);
             } else {
                 setSelectedDays(storedDates[0]);
-                updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, storedDates[0][0], storedDates[0][1])
+                updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, storedDates[0][0], storedDates[0][1])
             }
         } else {
             setSelectedDays([]);
@@ -68,7 +68,16 @@ export const CalendarHeader = (props) => {
                     className="calendar-header-elements-wrap"
                     lang={language}
                 >
-                    <DatesDisplayContainer
+                    <DatesDisplay
+                        selectedColor={selectedColor}
+                        selectedDays={selectedDays}
+                        setSelectedDays={setSelectedDays}
+                        datesHeaderStateDispatch={datesHeaderStateDispatch}
+                        storedDates={storedDates}
+                        setStoredDates={setStoredDates}
+                        choosenDatesList={choosenDatesList}
+                        setChoosenDatesList={setChoosenDatesList}
+                        boardsNum={boardsNum}
                         choosenDates={choosenDates}
                         selectedDaysStyle={selectedDaysStyle}
                     />
@@ -98,8 +107,7 @@ function addDatesCount(pickMethod, selectedDays, choosenDates, language, hovered
 }
 
 function areEqual(prevProps, nextProps) {
-    return nextProps.selectedDays.length === 0 &&
-        prevProps.selectedDays === nextProps.selectedProps &&
+    return prevProps.selectedDays === nextProps.selectedProps &&
         prevProps.selectedColor === nextProps.selectedColor;
 }
 

@@ -2,22 +2,28 @@ import React from "react";
 import '../../styles/CalendarModesStyles/year-selector.css';
 import { useStartDate, useEndDate } from "../../context/InitialParametersContext";
 import { selectorsModeStyle } from "../../utils/generalUtils";
+import { setMode, setViewedYear } from "../../actions";
+import { getUpdatedObject } from "../../utils/actionsUtils";
 
 
 export const YearSelector = (props) => {
     const {
-        selectedColor, 
-        setViewedYear, 
-        viewedYear,
-        viewedMonth,
-        setMode,
-        nearViewedMonths,
+        selectedColor,
+        datesHeaderState,
         selectedDays,
+        calendarModesStateDispatch,
+        datesHeaderStateDispatch,
+        boardsNum,
+        nearViewedMonthsfunction,
+        id
     } = props;
 
+    const viewedMonth = datesHeaderState.viewedMonth[id];
+    const viewedYear = datesHeaderState.viewedYear[id];
+    const nearViewedMonths = nearViewedMonthsfunction(id);
     const startDate = useStartDate();
     const endDate = useEndDate();
-    
+
     let yearsArray = [];
     for (let i = endDate.getFullYear(); i > startDate.getFullYear() - 1; i--) {
         yearsArray.push(i);
@@ -25,8 +31,8 @@ export const YearSelector = (props) => {
 
     const selectYearHandler = (year, validYear) => () => {
         if (validYear) {
-            setMode("Days");
-            setViewedYear(year);
+            calendarModesStateDispatch(setMode(boardsNum, id, "Days"));
+            datesHeaderStateDispatch(setViewedYear(boardsNum, id, year));
         }
     };
 

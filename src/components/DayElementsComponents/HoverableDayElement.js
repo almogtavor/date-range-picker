@@ -11,11 +11,11 @@ function inRangeCheck(date, edgeDate1, edgeDate2) {
 export const HoverableDayElement = (props) => {
     const {
         date,
+        dayOfWeek,
         selectedDays,
-        selectedColor,
         hoveredDay,
         setHoveredDay,
-        dayOfWeek,
+        selectedColor
     } = props;
 
     const dateRef = useRef();

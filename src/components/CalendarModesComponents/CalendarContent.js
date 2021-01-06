@@ -1,36 +1,66 @@
 import React from "react";
 import '../..//styles/calendar-component.css';
-
-import MonthDayElementsContainer from "../../containers/DayElementsContainers/DaysGridContainer";
-import YearSelectorContainer from "../../containers/CalendarModesContainers/YearSelectorContainer";
-import MonthSelectorContainer from "../../containers/CalendarModesContainers/MonthSelectorContainer";
 import { WeekDaysNames } from "./WeekDaysNames";
 import { useLanguage } from "../../context/InitialParametersContext";
+import { DaysGrid } from "../DayElementsComponents/DaysGrid";
+import { MonthSelector } from "./MonthSelector";
+import { YearSelector } from "./YearSelector";
 
 
 export const CalendarContent = (props) => {
     const {
-      mode, 
+      selectedColor,
+      selectedDays,
+      hoveredDay,
+      setSelectedDays,
+      setHoveredDay,
+      calendarModesState,
+      calendarModesStateDispatch,
+      datesHeaderStateDispatch,
+      boardsNum,
+      datesHeaderState,
+      nearViewedMonths, 
       id,
     } = props;
 
-    const language = useLanguage();
-    
+    const mode = calendarModesState.mode[id];
+
     return (
     <div className="month-grid">
         <WeekDaysNames/>
-        <MonthDayElementsContainer 
+        <DaysGrid 
+          selectedColor={selectedColor}
+          selectedDays={selectedDays}
+          hoveredDay={hoveredDay}
+          setSelectedDays={setSelectedDays}
+          setHoveredDay={setHoveredDay}
+          datesHeaderState={datesHeaderState}
+          datesHeaderStateDispatch={datesHeaderStateDispatch}
+          nearViewedMonths={nearViewedMonths}
+          boardsNum={boardsNum}
           id={id}
         />
         {mode === "Months" ? (
-          <MonthSelectorContainer
+          <MonthSelector
+            selectedColor={selectedColor}
+            selectedDays={selectedDays}
+            calendarModesStateDispatch={calendarModesStateDispatch}
+            datesHeaderState={datesHeaderState}
+            datesHeaderStateDispatch={datesHeaderStateDispatch}
+            nearViewedMonthsfunction={nearViewedMonths}
+            boardsNum={boardsNum}
             id={id}
-            language={language}
           />
         ) : mode === "Years" && 
-          <YearSelectorContainer
+          <YearSelector
+            selectedColor={selectedColor}
+            selectedDays={selectedDays}
+            calendarModesStateDispatch={calendarModesStateDispatch}
+            datesHeaderState={datesHeaderState}
+            datesHeaderStateDispatch={datesHeaderStateDispatch}
+            boardsNum={boardsNum}
+            nearViewedMonthsfunction={nearViewedMonths}
             id={id}
-            language={language}
           />
         }
     </div>)

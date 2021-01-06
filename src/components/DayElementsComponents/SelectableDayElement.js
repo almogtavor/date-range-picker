@@ -2,38 +2,74 @@ import React from "react";
 import '../../styles/DayElementsStyles/day.css';
 import '../../styles/DayElementsStyles/selected-day.css';
 import { useLanguage, useEndDate, useStartDate, usePickMethod } from "../../context/InitialParametersContext";
-import HoverableDayElementContainer from "../../containers/DayElementsContainers/HoverableDayElementContainer";
+import { setViewedMonth, setViewedYear } from "../../actions";
+import { HoverableDayElement } from "./HoverableDayElement";
+
+function customSetters(datesHeaderStateDispatch, language, id, boardsNum) {
+    const rightId = language === "Hebrew" ? id - 1 : id + 1;
+    const leftId = language === "Hebrew" ? id + 1 : id - 1;
+    
+    const setMonthById = (viewedMonth, id, viewedYear) => {
+        let yearIncreasement = 0;
+        let newMonth = viewedMonth;
+        if (viewedMonth > 11) {
+            yearIncreasement = 1;
+            newMonth = 0;
+        } else if (viewedMonth < 0) {
+            yearIncreasement = -1;
+            newMonth = 11;
+        }
+        datesHeaderStateDispatch(setViewedMonth(boardsNum, id, newMonth));
+        datesHeaderStateDispatch(setViewedYear(boardsNum, id, viewedYear + yearIncreasement));
+    }
+    
+    return ({ 
+        setRightViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, rightId, viewedYear),
+        setLeftViewedMonth: (viewedMonth, viewedYear) => setMonthById(viewedMonth, leftId, viewedYear),
+        setViewedMonthCustom: (viewedMonth, viewedYear) => setMonthById(viewedMonth, id, viewedYear),
+    })
+}
+
 
 export const SelectableDayElement = (props) => {
     const {
+        selectedColor,
+        selectedDays,
+        hoveredDay,
+        setSelectedDays,
+        setHoveredDay,
+        datesHeaderStateDispatch,
+        nearViewedMonths,
+        boardsNum,
         date,
         id,
-        selectedDays,
-        rightViewedMonth,
-        rightViewedYear,
-        leftViewedMonth,
-        leftViewedYear,
-        selectedColor,
         isOfCurrentViewedMonth,
         dayOfWeek,
         genericStyle,
-        boardsNum,
-        setSelectedDays,
-        setRightViewedMonth,
-        setLeftViewedMonth,
-        setViewedMonth,
     } = props;
-
 
     const startDate = useStartDate();
     const endDate = useEndDate();
     const language = useLanguage();
+    
+    const rightViewedMonth = nearViewedMonths(id).right.month;
+    const rightViewedYear = nearViewedMonths(id).right.year;
+    const leftViewedMonth = nearViewedMonths(id).left.month;
+    const leftViewedYear = nearViewedMonths(id).left.year;
+
     const month = date.getMonth();
     const year = date.getFullYear();
     const pickMethod = usePickMethod();
     const isToday = date.toLocaleDateString() === new Date().toLocaleDateString() ?  true : false;
     const isDisabled = date < startDate || date > endDate;
     let isSelected = false;
+    
+    const {
+        setViewedMonthCustom, 
+        setRightViewedMonth, 
+        setLeftViewedMonth 
+    } = customSetters(datesHeaderStateDispatch, language, id, boardsNum);
+
 
     selectedDays.forEach(element => {
         if (date.toLocaleDateString() === element.toLocaleDateString() &&
@@ -48,7 +84,7 @@ export const SelectableDayElement = (props) => {
             isNonCurrentCase = true;
         }
         if (!isOfCurrentViewedMonth && isNonCurrentCase) {
-            setViewedMonth(date.getMonth(), date.getFullYear());
+            setViewedMonthCustom(date.getMonth(), date.getFullYear());
             if (rightViewedYear === year && rightViewedMonth === month) {
                 setRightViewedMonth(rightViewedMonth + 1, rightViewedYear);
             }
@@ -60,11 +96,11 @@ export const SelectableDayElement = (props) => {
 
     const setMonthsOnLeftClick = (rightMonth, rightYear, leftMonth, leftYear) => {
         setRightViewedMonth(rightMonth, rightYear);
-        setViewedMonth(leftMonth, leftYear);
+        setViewedMonthCustom(leftMonth, leftYear);
     }
     
     const setMonthsOnRightClick = (rightMonth, rightYear, leftMonth, leftYear) => {
-        setViewedMonth(rightMonth, rightYear);
+        setViewedMonthCustom(rightMonth, rightYear);
         setLeftViewedMonth(leftMonth, leftYear);
     }
 
@@ -141,6 +177,9 @@ export const SelectableDayElement = (props) => {
         style = {...genericStyle, "background": selectedColor, "borderColor": selectedColor};
         className += " selected-day";
     }
+    if (isSelected && isOfCurrentViewedMonth) {
+        className += " enabled";
+    }
 
     return (
         <div
@@ -148,7 +187,11 @@ export const SelectableDayElement = (props) => {
             style={style}
             onClick={handleClick}
         >
-            <HoverableDayElementContainer
+            <HoverableDayElement
+                selectedDays={selectedDays}
+                hoveredDay={hoveredDay}
+                setHoveredDay={setHoveredDay}
+                selectedColor={selectedColor}
                 date={date}
                 dayOfWeek={dayOfWeek}
             />

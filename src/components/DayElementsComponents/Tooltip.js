@@ -5,8 +5,11 @@ import { placeDateInFormat } from "../../utils/generalUtils";
 import "../../styles/DayElementsStyles/tooltip.css";
 
 export default function Tooltip(props) {
-
-    const { hoveredDay, dateRef } = props;
+    const { 
+        hoveredDay, 
+        dateRef 
+    } = props;
+    
     const format = useFormat();
     const ref = useRef();
     const date = placeDateInFormat(hoveredDay, format);

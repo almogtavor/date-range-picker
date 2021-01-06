@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from "react";
-import SelectableDayElementContainer from "../../containers/DayElementsContainers/SelectableDayElementContainer";
 import { useLanguage } from "../../context/InitialParametersContext";
+import { SelectableDayElement } from "./SelectableDayElement";
 
 export const DaysGrid = (props) => { 
     const {
-        viewedYear, 
-        viewedMonth, 
+        selectedColor,
+        selectedDays,
+        hoveredDay,
+        setSelectedDays,
+        setHoveredDay,
+        datesHeaderStateDispatch,
+        datesHeaderState,
+        boardsNum,
+        nearViewedMonths,
         id,
     } = props;
 
+    const viewedMonth = datesHeaderState.viewedMonth[id];
+    const viewedYear = datesHeaderState.viewedYear[id];
     const language = useLanguage();
     const numOfDaysInMonth = new Date(viewedYear, viewedMonth + 1, 0).getDate();
     const dayToBeginTheMonthFrom = new Date(viewedYear, viewedMonth, 1).getDay();
@@ -42,16 +51,22 @@ export const DaysGrid = (props) => {
         }
 
         return (
-            <SelectableDayElementContainer
+            <SelectableDayElement
+                selectedColor={selectedColor}
+                selectedDays={selectedDays}
+                hoveredDay={hoveredDay}
+                setSelectedDays={setSelectedDays}
+                setHoveredDay={setHoveredDay}
+                datesHeaderStateDispatch={datesHeaderStateDispatch}
+                nearViewedMonths={nearViewedMonths}
+                boardsNum={boardsNum}
                 key={key}
                 id={id}
                 date={date}
                 isOfCurrentViewedMonth={isOfCurrentViewedMonth}
                 dayOfWeek={dayOfWeek}
                 genericStyle={genericStyle}
-                language={language}
             />
         );
-        
     });
 };

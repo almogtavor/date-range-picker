@@ -9,15 +9,15 @@ export function DefaultRange(props) {
         boardsNum, 
         index, 
         setSelectedDays, 
-        setViewedMonth, 
-        setViewedYear 
+        datesHeaderStateDispatch, 
     } = props;
+
     const className = "pickable-days-amount";
     const language = useLanguage();
 
     const handleClick = (dates) => () => {
         setSelectedDays(dates);
-        updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, dates[0], dates[1])
+        updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, dates[0], dates[1])
     }
 
     return (

@@ -4,31 +4,36 @@ import {calendarConfig} from '../../configuration/config';
 import '../../styles/CalendarModesStyles/month-selector.css';
 import { useLanguage, useStartDate, useEndDate } from "../../context/InitialParametersContext";
 import { selectorsModeStyle } from "../../utils/generalUtils";
+import { setMode, setViewedMonth } from "../../actions";
+import { getUpdatedObject } from "../../utils/actionsUtils";
 
 export const MonthSelector = (props) => {
     const {
-        selectedColor, 
-        viewedMonth, 
-        setViewedMonth, 
-        viewedYear, 
-        setMode,
-        nearViewedMonths,
+        selectedColor,
         selectedDays,
+        calendarModesStateDispatch,
+        datesHeaderState,
+        datesHeaderStateDispatch,
+        boardsNum,
+        nearViewedMonthsfunction,
+        id,
     } = props;
 
+    const viewedMonth = datesHeaderState.viewedMonth[id];
+    const viewedYear = datesHeaderState.viewedYear[id];
+    const nearViewedMonths = nearViewedMonthsfunction(id);
     const language = useLanguage();
     const startDate = useStartDate();
     const endDate = useEndDate();
-    
+
     const selectMonthHandler = (month, validMonth) => () => {
         if (validMonth) {
-            setMode("Days");
-            setViewedMonth(month);
+            calendarModesStateDispatch(setMode(boardsNum, id, "Days"));
+            datesHeaderStateDispatch(setViewedMonth(boardsNum, id, month));
         }
     };
 
     return (
-
         <div className={`month-selector`} lang={language}>
             {calendarConfig.months[language].map((month, i) => {
                 let validMonth = getValidMonth(nearViewedMonths, viewedYear, i, endDate, startDate);

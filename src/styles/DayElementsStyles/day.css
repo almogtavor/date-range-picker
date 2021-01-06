@@ -1,7 +1,7 @@
 @keyframes slide-in-left {
     0% {
-      -webkit-transform: translateX(-15px);
-              transform: translateX(-15px);
+      -webkit-transform: translateX(-25px);
+              transform: translateX(-25px);
       opacity: 0;
     }
     100% {
@@ -22,7 +22,7 @@
 .hoverable-div {
     height: 100%;
     border-radius: 7px;
-    animation: slide-in-left 0.25s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    /* animation: slide-in-left 0.25s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; */
 }
 
 .currently-hovered {
@@ -55,11 +55,11 @@
 } */
 
 /* .last-day-of-week {
-    background-color: rgb(236, 217, 218);
+    background-color: rgb(255, 233, 228);
 }
 
 .first-day-of-week {
-    background-color: rgb(236, 229, 229);
+    background-color: rgb(255, 238, 240);
 } */
 
 .today {

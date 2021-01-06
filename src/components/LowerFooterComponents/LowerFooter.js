@@ -2,17 +2,23 @@ import React from "react";
 import '../../styles/LowerFooterStyles/lower-footer.css';
 import { useLanguage, useFormat, usePickMethod, useSelectAllButton, useColorsPalette } from "../../context/InitialParametersContext";
 import { choosenDatesCalculation } from '../../utils/generalUtils';
-import SelectAllButtonContainer from "../../containers/LowerFooterContainers/SelectAllButtonContainer";
-import ColorPickerPaletteContainer from "../../containers/LowerFooterContainers/ColorPickerPaletteContainer";
+import { ColorPickerPalette } from "./ColorPickerPalette";
+import { SelectAllButton } from "./SelectAllButton";
 
 export const LowerFooter = (props) => {
 
     const {
-        id,
-        selectedColor,      
+        selectedColor,
+        setSelectedColor,
         selectedDays,
-        boardsNum,
+        setSelectedDays,
+        setHoveredDay,
+        calendarModesState,
         storedDates,
+        datesHeaderState,
+        nearViewedMonths,
+        boardsNum,
+        id,
         setShowCalendar,
         setButtonDatesText,
     } = props;
@@ -58,7 +64,12 @@ export const LowerFooter = (props) => {
                 pickMethod, 
                 language));
         } else {
-            setButtonDatesText(choosenDatesCalculation(selectedDays, null, format, pickMethod, language));
+            setButtonDatesText(choosenDatesCalculation(
+                selectedDays, 
+                null, 
+                format, 
+                pickMethod, 
+                language));
         }
     }
 
@@ -67,12 +78,21 @@ export const LowerFooter = (props) => {
         className="lower-footer" 
         style={lowerFooterStyle}
     >
-        <ColorPickerPaletteContainer 
-            id={id}
+        <ColorPickerPalette
+            selectedColor={selectedColor}
+            setSelectedColor={setSelectedColor}
             showPaletteAllowed={showPaletteAllowed}
+            id={id}
+            boardsNum={boardsNum}
         />
 
-        <SelectAllButtonContainer
+        <SelectAllButton
+            selectedDays={selectedDays}
+            setHoveredDay={setHoveredDay}
+            setSelectedDays={setSelectedDays}
+            calendarModesState={calendarModesState}
+            datesHeaderState={datesHeaderState}
+            nearViewedMonthsFunction={nearViewedMonths}
             id={id}
             language={language}
         />

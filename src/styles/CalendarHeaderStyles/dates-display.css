@@ -15,6 +15,7 @@
   
   .dates-display-list {
     margin-top: 0.15em;
+    /* margin-top: -3.5em; */
     background-color: rgb(244, 246, 248);
     display: inline-flex;
     font-size: 0.9em;
@@ -22,7 +23,6 @@
     width: 50%;
     height: 450%;
     border-radius: 12px;
-    z-index: 999;
   }
      
   .dates-display-list:lang(Hebrew) {

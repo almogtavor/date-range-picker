@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import '../../styles/DatesHeaderStyles/arrow.css';
 import { useEndDate, useStartDate, useLanguage } from "../../context/InitialParametersContext";
 import { getOpacityColorStyle } from "../../utils/generalUtils";
+import { setViewedMonth, setViewedYear } from "../../actions";
+import { getUpdatedObject } from "../../utils/actionsUtils";
 
 const arrowImages = {
     "leftArrow": require('../../images/arrow-left.png'),
@@ -10,16 +12,19 @@ const arrowImages = {
 
 export const Arrow = (props) => {
     const {
-        nearViewedMonths,
-        viewedMonth,
-        viewedYear,
-        setViewedMonth,
-        setViewedYear,
-        selectedColor, 
+        datesHeaderState,
+        datesHeaderStateDispatch,
+        selectedColor,
+        nearViewedMonthsfunction,
+        boardsNum,
         arrowSide,
+        id
     } = props;
 
+    const viewedMonth = datesHeaderState.viewedMonth[id];
+    const viewedYear = datesHeaderState.viewedYear[id];
     const arrowSideImg = arrowImages[arrowSide];
+    const nearViewedMonths = nearViewedMonthsfunction(id);
     const language = useLanguage();
     const startDate = useStartDate();
     const endDate = useEndDate();
@@ -47,18 +52,18 @@ export const Arrow = (props) => {
     const decreaseMonth = () => {
         if (canDecrease()) {
             if (viewedMonth === 0) {
-                setViewedYear((viewedYear - 1));   
+                datesHeaderStateDispatch(setViewedYear(boardsNum, id, viewedYear - 1));
             }
-            setViewedMonth(Math.abs((viewedMonth + 12 - 1) % 12));
+            datesHeaderStateDispatch(setViewedMonth(boardsNum, id, Math.abs((viewedMonth + 12 - 1) % 12)));
         }
     };
     
     const increaseMonth = () => {
         if (canIncrease()) {
             if (viewedMonth === 11) {
-                setViewedYear((viewedYear + 1));
+                datesHeaderStateDispatch(setViewedYear(boardsNum, id, viewedYear + 1));
             }
-            setViewedMonth(Math.abs((viewedMonth + 1) % 12));
+            datesHeaderStateDispatch(setViewedMonth(boardsNum, id, Math.abs((viewedMonth + 1) % 12)));
         }
     };
 

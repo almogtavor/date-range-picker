@@ -55,6 +55,12 @@ function valueParse(parmaeter, defaultValue) {
     }
 }
 
+function checkValidInput(parmaeter) {
+    if (parmaeter !== "enabled" && parmaeter !== "disabled") {
+        throw Object.assign(new Error('A paramter from the type of "enabled/disabled" has a different value.'), { code: 403 });
+    }
+}
+
 export function InitialParametersProvider({children, props}) {
     const {
         language,
@@ -121,6 +127,8 @@ export function InitialParametersProvider({children, props}) {
     //     throw Object.assign(new Error('"pickMethod" valued "date" prevents enabled days amount tab.'), { code: 403 });
     // }
 
+    console.log(valueState);
+
     checkValidInput(valueState.colorsPalette);
     checkValidInput(valueState.selectAllButton);
     checkValidInput(valueState.daysAmountTab);
@@ -132,10 +140,4 @@ export function InitialParametersProvider({children, props}) {
             {children}
         </InitialParametersContext.Provider>
     )
-
-    function checkValidInput(parmaeter) {
-        if (parmaeter !== "enabled" && parmaeter !== "disabled") {
-            throw Object.assign(new Error('A paramter from the type of "enabled/disabled" has a different value.'), { code: 403 });
-        }
-    }
 }

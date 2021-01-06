@@ -3,18 +3,17 @@ import '../../styles/DaysAmountTabStyles/days-amount-tab.css';
 import { getDefaultRanges } from '../../utils/daysAmountTabUtils';
 import { useEndDate, useStartDate, useLanguage } from '../../context/InitialParametersContext';
 import { getOpacityColorStyle, updateViewedMonths } from '../../utils/generalUtils';
-import DefaultRangeContainer from '../../containers/DaysAmountTabContainer/DefaultRangeContainer';
+import { DefaultRange } from './DefaultRange';
 
 
 export function DaysAmountTab(props) {
-
     const { 
         selectedColor,
         setSelectedDays,
         boardsNum,
-        setViewedMonth,
-        setViewedYear
+        datesHeaderStateDispatch
     } = props;
+
     const style = getOpacityColorStyle(selectedColor, 60);
     const errorClassName = " error-input";
     const defaultClassName = "days-amount-input";
@@ -40,8 +39,8 @@ export function DaysAmountTab(props) {
         let daysAmountBackwards = new Date();
         daysAmountBackwards.setDate(daysAmountBackwards.getDate() - decresement);
         setSelectedDays([daysAmountBackwards, currentDate]);
-        updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, daysAmountBackwards, currentDate)
-    }, [boardsNum, language, setSelectedDays, setViewedMonth, setViewedYear])
+        updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, daysAmountBackwards, currentDate)
+    }, [boardsNum, language, setSelectedDays, datesHeaderStateDispatch])
 
     const handleChange = (e) => {
         let value = e.target.value;
@@ -96,11 +95,13 @@ export function DaysAmountTab(props) {
                 style={style}
             >
                 {defaultRanges.map((range, i) => {
-                    return (<DefaultRangeContainer
+                    return (<DefaultRange
                         key={i}
                         range={range}
                         index={i}
                         boardsNum={boardsNum}
+                        datesHeaderStateDispatch={datesHeaderStateDispatch}
+                        setSelectedDays={setSelectedDays}
                     />);
                 })}
                 <div className="days-amount-field"  lang={language}>

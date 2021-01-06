@@ -7,9 +7,9 @@ const calendarIcon = require('../images/calendar-icon6.png');
 
 export const Button = (props) => {
     const {
-        showCalendar,
         setShowCalendar,
-        buttonDatesText,
+        showCalendar,
+        buttonDatesText
     } = props;
 
     const language = useLanguage();
@@ -22,7 +22,7 @@ export const Button = (props) => {
     };
     
     const handleClick = () => {
-        setShowCalendar(!showCalendar)
+        setShowCalendar(!showCalendar);
     }
 
     return (

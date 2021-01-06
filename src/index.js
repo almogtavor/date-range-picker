@@ -5,32 +5,38 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import DateRangePicker from './App';
 import * as serviceWorker from './serviceWorker';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from './reducers/index';
-
-const store = createStore(
-    rootReducer,
-    applyMiddleware(thunk)
-);
 
 ReactDOM.render(
-    <Provider store={store}>
-        <DateRangePicker
-            language="English"
-            colorsPalette="enabled"
-            format="YY-MM-DD"
-            selectAllButton="enabled"
-            startDate={new Date(2000, 8, 21)} 
-            endDate={new Date(2024, 9, 21)}
-            firstDayOfWeekIndex={0}
-            pickMethod="range"
-            defaultColor="#178905"
-            daysAmountTab="enabled"
-            boardsNum={2}
-        />
-    </Provider>,
+    <>
+    <h1 className="title">Date Range Picker Component</h1>
+    <DateRangePicker
+        language="English"
+        colorsPalette="enabled"
+        format="DD-MM-YYYY"
+        selectAllButton="disabled"
+        startDate={new Date(2000, 8, 21)} 
+        endDate={new Date(2024, 9, 21)}
+        firstDayOfWeekIndex={0}
+        pickMethod="date"
+        defaultColor="#178905"
+        daysAmountTab="disabled"
+        boardsNum={1}
+    />
+    <DateRangePicker />
+    <DateRangePicker
+        language="Hebrew"
+        colorsPalette="enabled"
+        format="DD-MM-YYYY"
+        selectAllButton="enabled"
+        startDate={new Date(2000, 8, 21)} 
+        endDate={new Date(2024, 9, 21)}
+        firstDayOfWeekIndex={0}
+        pickMethod="ranges"
+        defaultColor="#178905"
+        daysAmountTab="enabled"
+        boardsNum={2}
+    />
+    </>,
     document.getElementById('root')
 );
 

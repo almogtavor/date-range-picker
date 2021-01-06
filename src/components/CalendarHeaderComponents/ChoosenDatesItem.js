@@ -9,18 +9,17 @@ const xIcon = require('../../images/x-icon.png');
 
 export default function ChoosenDatesItem(props) {
     const { 
+        selectedColor,
+        setSelectedDays,
+        datesHeaderStateDispatch,
+        storedDates,
+        setStoredDates,
+        choosenDatesList,
+        setChoosenDatesList,
+        boardsNum,
         choosenDates,
         index,
         isDatesDisplayHovered,
-        choosenDatesList,
-        selectedColor,
-        boardsNum,
-        storedDates,
-        setStoredDates,
-        setChoosenDatesList,
-        setSelectedDays,
-        setViewedMonth,
-        setViewedYear,
     } = props;
 
     const language = useLanguage();
@@ -56,7 +55,7 @@ export default function ChoosenDatesItem(props) {
             setSelectedDays([]);
         } else {
             setSelectedDays(clearedStoredDates[0]);
-            updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, clearedStoredDates[0][0], clearedStoredDates[0][1])
+            updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, clearedStoredDates[0][0], clearedStoredDates[0][1])
         }
         setChoosenDatesList([...clearedChoosenDatesList]);
         setStoredDates([...clearedStoredDates]);
@@ -69,7 +68,7 @@ export default function ChoosenDatesItem(props) {
         setSelectedDays(selectedDays);
         setStoredDates([selectedDays, ...clearedStoredDates]);
         setChoosenDatesList([choosenDates, ...clearedChoosenDatesList]);
-        updateViewedMonths(boardsNum, language, setViewedMonth, setViewedYear, selectedDays[0], selectedDays[1])
+        updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, selectedDays[0], selectedDays[1])
     }
 
     return <div 

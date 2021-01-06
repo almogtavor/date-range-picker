@@ -1,29 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../styles/DaysAmountTabStyles/days-amount-tab-button.css';
-import DaysAmountTabContainer from '../../containers/DaysAmountTabContainer/DaysAmountTabContainer';
 import { useDaysAmountTab, useLanguage } from '../../context/InitialParametersContext';
 import { getOpacityColorStyle } from '../../utils/generalUtils';
+import { DaysAmountTab } from './DaysAmountTab';
 
 const chooseDaysAmount = require("../../images/choose-days-amount.png");
 
 export function DaysAmountTabButton(props) {
-
     const { 
+        setSelectedDays,
+        boardsNum,
+        datesHeaderStateDispatch,
         selectedColor, 
-        showDaysAmountTab, 
-        setShowDaysAmountTab
     } = props;
+
+    const [showDaysAmountTab, setShowDaysAmountTab] = useState(false);
     const language = useLanguage();
     const enableDaysAmountTab = useDaysAmountTab();
+    console.log(enableDaysAmountTab);
+    console.log(showDaysAmountTab);
     const style = getOpacityColorStyle(selectedColor, 60);
     let templateClassName = "days-amount-tab-button-template";
     if (showDaysAmountTab) {
         templateClassName += " show-tab"
     }
-
+    
     const handleClick = () => {
         setShowDaysAmountTab(!showDaysAmountTab);
     }
+    console.log(enableDaysAmountTab === "enabled");
 
     return (
         <>
@@ -48,7 +53,12 @@ export function DaysAmountTabButton(props) {
                 </div>
             }
             { showDaysAmountTab &&
-                <DaysAmountTabContainer/>
+                <DaysAmountTab
+                    selectedColor={selectedColor}
+                    setSelectedDays={setSelectedDays}
+                    boardsNum={boardsNum}
+                    datesHeaderStateDispatch={datesHeaderStateDispatch}
+                />
             }
         </>
     )
