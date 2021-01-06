@@ -4,7 +4,7 @@
   border-top-right-radius: 12px;
   height: 22px;
   margin-top: -22px; 
-  z-index: 2;
+  z-index: 1;
 }
 
 .calendar-header-background {
@@ -14,7 +14,7 @@
   justify-content: space-around;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-  box-shadow: 3px 1px 5px 0px #ddd;
+  /* box-shadow: 3px 1px 5px 0px #ddd; */
 }
 
 .calendar-header-elements-wrap {

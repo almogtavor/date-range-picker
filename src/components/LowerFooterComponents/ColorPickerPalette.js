@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import {calendarConfig} from '../../configuration/config';
 import '../../styles/LowerFooterStyles/color-picker-palette.css';
 import { useLanguage, useColorsPalette, useInitialSelectedColor } from "../../context/InitialParametersContext";
 import { getOpacityColorStyle } from "../../utils/generalUtils";
-import { setSelectedColor, setShowColorPicker } from "../../actions";
 
 const pointerHandIcon = require('../../images/pointer-hand.png');
 
@@ -11,15 +10,10 @@ export const ColorPickerPalette = (props) => {
     const {
         selectedColor,
         setSelectedColor,
-        showColorPicker: showColorPickerObj,
-        setShowColorPicker,
-        boardsNum,
-        showPaletteAllowed,
-        id
+        showPaletteAllowed
     } = props;
 
-    const showColorPicker = showColorPickerObj[id];
-
+    const [showColorPicker, setShowColorPicker] = useState(false);
     const language = useLanguage();
     const colorsPaletteEnabling = useColorsPalette();
     const initialSelectedColor = useInitialSelectedColor();
@@ -30,12 +24,11 @@ export const ColorPickerPalette = (props) => {
 
     const changeColor = (color) => () => {
         setSelectedColor(color);
-        setShowColorPicker(boardsNum, id, false);
+        setShowColorPicker(false);
     }
 
     const toggleColorPicker = () => {
-        console.log({ ...showColorPickerObj, [id]: !showColorPicker});
-        setShowColorPicker({ ...showColorPickerObj, [id]: !showColorPicker});
+        setShowColorPicker(!showColorPicker);
     }
 
     return (

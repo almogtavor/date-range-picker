@@ -3,7 +3,6 @@ import '../../styles/CalendarHeaderStyles/calendar-header.css';
 import { choosenDatesCalculation, calculateDaysCount, removeItemFromArray, getOpacityColorStyle } from "../../utils/generalUtils";
 import { useFormat, useLanguage, usePickMethod } from "../../context/InitialParametersContext";
 import { updateViewedMonths } from '../../utils/generalUtils';
-import { setChoosenDatesList, setSelectedDays, setStoredDates } from "../../actions";
 import DatesDisplay from "./DatesDisplay";
 
 export const CalendarHeader = (props) => {
@@ -13,13 +12,14 @@ export const CalendarHeader = (props) => {
         selectedDays,
         setSelectedDays,
         datesHeaderStateDispatch,
-        calendarHeaderState,
-        calendarHeaderStateDispatch,
+        storedDates,
+        setStoredDates,
+        choosenDatesList,
+        setChoosenDatesList,
         boardsNum
     } = props;
 
-    const storedDates = calendarHeaderState.storedDates;
-    const choosenDatesList = calendarHeaderState.choosenDatesList;
+
     const language = useLanguage();
     const format = useFormat();
     const pickMethod = usePickMethod();
@@ -42,8 +42,8 @@ export const CalendarHeader = (props) => {
         if (pickMethod === "ranges") {
             let clearedChoosenDatesList = removeItemFromArray(choosenDatesList, choosenDates);
             let clearedStoredDates = removeItemFromArray(storedDates, selectedDays);
-            calendarHeaderStateDispatch(setChoosenDatesList([...clearedChoosenDatesList]));
-            calendarHeaderStateDispatch(setStoredDates([...clearedStoredDates]));
+            setChoosenDatesList([...clearedChoosenDatesList]);
+            setStoredDates([...clearedStoredDates]);
             if (storedDates.length < 1) {
                 setSelectedDays([]);
             } else {
@@ -73,9 +73,10 @@ export const CalendarHeader = (props) => {
                         selectedDays={selectedDays}
                         setSelectedDays={setSelectedDays}
                         datesHeaderStateDispatch={datesHeaderStateDispatch}
-                        calendarHeaderState={calendarHeaderState}
-                        calendarHeaderStateDispatch={calendarHeaderStateDispatch}
-                        boardsNum={boardsNum}
+                        storedDates={storedDates}
+                        setStoredDates={setStoredDates}
+                        choosenDatesList={choosenDatesList}
+                        setChoosenDatesList={setChoosenDatesList}
                         boardsNum={boardsNum}
                         choosenDates={choosenDates}
                         selectedDaysStyle={selectedDaysStyle}

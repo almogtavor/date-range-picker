@@ -10,13 +10,11 @@ export const LowerFooter = (props) => {
     const {
         selectedColor,
         setSelectedColor,
-        showColorPicker,
-        setShowColorPicker,
         selectedDays,
         setSelectedDays,
         setHoveredDay,
         calendarModesState,
-        calendarHeaderState,
+        storedDates,
         datesHeaderState,
         nearViewedMonths,
         boardsNum,
@@ -25,7 +23,6 @@ export const LowerFooter = (props) => {
         setButtonDatesText,
     } = props;
 
-    const storedDates = calendarHeaderState.storedDates;
     const language = useLanguage();
     const format = useFormat();
     const pickMethod = usePickMethod();
@@ -84,8 +81,6 @@ export const LowerFooter = (props) => {
         <ColorPickerPalette
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
-            showColorPicker={showColorPicker}
-            setShowColorPicker={setShowColorPicker}
             showPaletteAllowed={showPaletteAllowed}
             id={id}
             boardsNum={boardsNum}

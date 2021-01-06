@@ -56,36 +56,6 @@ function datesHeaderReducerMapper(state, payload) {
   }
 }
 
-const calendarHeaderInitialState = {
-  choosenDates: null,
-  choosenDatesList: [],
-  storedDates: [],
-}
-
-function setChoosenDates(state, payload) {
-  return updateObject(state, {choosenDates: payload.choosenDates});
-}
-
-function setChoosenDatesList(state, payload) {
-  return updateObject(state, {choosenDatesList: payload.choosenDatesList});
-}
-
-function setStoredDates(state, payload) {
-  return updateObject(state, {storedDates: payload.storedDates});
-}
-
-function calendarHeaderReducerMapper(state, payload) {
-  if (payload.type === "SET_CHOOSEN_DATES") {
-    return setChoosenDates(state, payload);
-  } else if (payload.type === "SET_CHOOSEN_DATES_LIST") {
-    return setChoosenDatesList(state, payload);
-  } else if (payload.type === "SET_STORED_DATES") {
-    return setStoredDates(state, payload);
-  } else {
-    return state;
-  }
-}
-
 export const Mapper = (props) => {
     const {
       boardsNum,
@@ -102,15 +72,14 @@ export const Mapper = (props) => {
       language, 
       boardsNum
     );
+    const [datesHeaderState, datesHeaderStateDispatch] = useReducer(
+      datesHeaderReducerMapper, 
+      datesHeaderInitialState
+    );
 
+    const [choosenDatesList, setChoosenDatesList] = useState([]);
+    const [storedDates, setStoredDates] = useState([]);
     const [selectedColor, setSelectedColor] = useState("#2196f3");
-    const [showColorPicker, setShowColorPicker] = useState({
-      "0": false,
-      "1": false
-    });
-
-    const [datesHeaderState, datesHeaderStateDispatch] = useReducer(datesHeaderReducerMapper, datesHeaderInitialState);
-    const [calendarHeaderState, calendarHeaderStateDispatch] = useReducer(calendarHeaderReducerMapper, calendarHeaderInitialState);
     const [selectedDays, setSelectedDays] = useState([]);
     const [hoveredDay, setHoveredDay] = useState(null);
 
@@ -119,7 +88,6 @@ export const Mapper = (props) => {
         let { 
           monthsObj, 
           yearsObj, 
-          showColorPickerObj,
         } = getInitialObject(boardsNum, language, startDate, endDate);
         for (let id = 0; id < boardsNum; id++) {
             datesHeaderStateDispatch(
@@ -128,7 +96,6 @@ export const Mapper = (props) => {
             datesHeaderStateDispatch(
               setViewedYear(boardsNum, id, yearsObj)
             );
-            setShowColorPicker(showColorPickerObj);
         }
       } else {
           throw Object.assign(new Error('"language" prop is undefined'), { code: 403 });
@@ -138,7 +105,7 @@ export const Mapper = (props) => {
         setSelectedColor(defaultColor);
       }
   
-    }, [])
+    }, [boardsNum, defaultColor, endDate, language, startDate])
 
     // const handleBlur = () => {
     //   setShowCalendar(false);
@@ -167,8 +134,10 @@ export const Mapper = (props) => {
             selectedDays={selectedDays}
             hoveredDay={hoveredDay}
             datesHeaderStateDispatch={datesHeaderStateDispatch}
-            calendarHeaderState={calendarHeaderState}
-            calendarHeaderStateDispatch={calendarHeaderStateDispatch}
+            storedDates={storedDates}
+            setStoredDates={setStoredDates}
+            choosenDatesList={choosenDatesList}
+            setChoosenDatesList={setChoosenDatesList}
             boardsNum={boardsNum}
           />
           {calendarsIndexes.map((i) => {
@@ -176,15 +145,16 @@ export const Mapper = (props) => {
               <CalendarInstance
                   selectedColor={selectedColor}
                   setSelectedColor={setSelectedColor}
-                  showColorPicker={showColorPicker}
-                  setShowColorPicker={setShowColorPicker}
                   setSelectedDays={setSelectedDays}
                   selectedDays={selectedDays}
                   setHoveredDay={setHoveredDay}
                   hoveredDay={hoveredDay}
                   datesHeaderState={datesHeaderState}
                   datesHeaderStateDispatch={datesHeaderStateDispatch}
-                  calendarHeaderState={calendarHeaderState}
+                  storedDates={storedDates}
+                  setStoredDates={setStoredDates}
+                  choosenDatesList={choosenDatesList}
+                  setChoosenDatesList={setChoosenDatesList}
                   setButtonDatesText={setButtonDatesText}
                   setShowCalendar={setShowCalendar}
                   boardsNum={boardsNum}

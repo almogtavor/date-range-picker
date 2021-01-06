@@ -3,7 +3,6 @@ import '../../styles/CalendarHeaderStyles/choosen-dates.css';
 import { getOpacityColorStyle, removeItemFromArray } from '../../utils/generalUtils';
 import { updateViewedMonths } from '../../utils/generalUtils';
 import { useLanguage } from '../../context/InitialParametersContext';
-import { setChoosenDatesList, setSelectedDays, setStoredDates } from '../../actions';
 
 
 const xIcon = require('../../images/x-icon.png');
@@ -13,16 +12,16 @@ export default function ChoosenDatesItem(props) {
         selectedColor,
         setSelectedDays,
         datesHeaderStateDispatch,
-        calendarHeaderState,
-        calendarHeaderStateDispatch,
+        storedDates,
+        setStoredDates,
+        choosenDatesList,
+        setChoosenDatesList,
         boardsNum,
         choosenDates,
         index,
         isDatesDisplayHovered,
     } = props;
 
-    const storedDates = calendarHeaderState.storedDates;
-    const choosenDatesList = calendarHeaderState.choosenDatesList;
     const language = useLanguage();
     let initialState = isDatesDisplayHovered && index === 0;
     const [isXCurrentlyHovered, setIsXCurrentlyHovered] = useState(initialState);
@@ -58,8 +57,8 @@ export default function ChoosenDatesItem(props) {
             setSelectedDays(clearedStoredDates[0]);
             updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, clearedStoredDates[0][0], clearedStoredDates[0][1])
         }
-        calendarHeaderStateDispatch(setChoosenDatesList([...clearedChoosenDatesList]));
-        calendarHeaderStateDispatch(setStoredDates([...clearedStoredDates]));
+        setChoosenDatesList([...clearedChoosenDatesList]);
+        setStoredDates([...clearedStoredDates]);
     }
 
     const handleDatesClick = () => {
@@ -67,8 +66,8 @@ export default function ChoosenDatesItem(props) {
         let clearedChoosenDatesList = removeItemFromArray(choosenDatesList, choosenDates);
         let clearedStoredDates = removeItemFromArray(storedDates, selectedDays);
         setSelectedDays(selectedDays);
-        calendarHeaderStateDispatch(setStoredDates([selectedDays, ...clearedStoredDates]));
-        calendarHeaderStateDispatch(setChoosenDatesList([choosenDates, ...clearedChoosenDatesList]));
+        setStoredDates([selectedDays, ...clearedStoredDates]);
+        setChoosenDatesList([choosenDates, ...clearedChoosenDatesList]);
         updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, selectedDays[0], selectedDays[1])
     }
 

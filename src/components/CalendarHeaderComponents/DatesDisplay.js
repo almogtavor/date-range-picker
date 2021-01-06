@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { useLanguage, usePickMethod } from "../../context/InitialParametersContext";
 import '../../styles/CalendarHeaderStyles/dates-display.css';
 import { getDates } from "../../utils/generalUtils";
-import { setChoosenDatesList, setStoredDates } from "../../actions";
 import ChoosenDatesItem from "./ChoosenDatesItem";
 
 export default function DatesDisplay(props) {
@@ -11,15 +10,15 @@ export default function DatesDisplay(props) {
         selectedDays,
         setSelectedDays,
         datesHeaderStateDispatch,
-        calendarHeaderState,
-        calendarHeaderStateDispatch,
+        storedDates,
+        setStoredDates,
+        choosenDatesList,
+        setChoosenDatesList,
         choosenDates,
         boardsNum,
         selectedDaysStyle,
     } = props;
 
-    const storedDates = calendarHeaderState.storedDates;
-    const choosenDatesList = calendarHeaderState.choosenDatesList;
     const [isCurrentlyHovered, setIsCurrentlyHovered] = useState(false);
     const prevSelectedDays = useRef([]);
     const language = useLanguage();
@@ -33,7 +32,7 @@ export default function DatesDisplay(props) {
     if (isCurrentlyHovered && pickMethod === "ranges") {
         dateDisplayClassName = "dates-display-list";
     }
-    
+
     useEffect(() => {
         if (selectedDays.length === 2 && selectedDays !== prevSelectedDays.current) {
             prevSelectedDays.current = selectedDays;
@@ -50,10 +49,10 @@ export default function DatesDisplay(props) {
                 }
             });
 
-            calendarHeaderStateDispatch(setStoredDates([selectedDays, ...clearedStoredDates]));
-            calendarHeaderStateDispatch(setChoosenDatesList([choosenDates, ...clearedChoosenDatesList]));
+            setStoredDates([selectedDays, ...clearedStoredDates]);
+            setChoosenDatesList([choosenDates, ...clearedChoosenDatesList]);
         }
-    }, [selectedDays, storedDates, choosenDatesList, choosenDates, setChoosenDatesList, setStoredDates])
+    }, [selectedDays, storedDates, choosenDatesList, choosenDates, setStoredDates, setChoosenDatesList])
     
     return (
         <div 
@@ -70,8 +69,10 @@ export default function DatesDisplay(props) {
                             selectedColor={selectedColor}
                             setSelectedDays={setSelectedDays}
                             datesHeaderStateDispatch={datesHeaderStateDispatch}
-                            calendarHeaderState={calendarHeaderState}
-                            calendarHeaderStateDispatch={calendarHeaderStateDispatch}
+                            storedDates={storedDates}
+                            setStoredDates={setStoredDates}
+                            choosenDatesList={choosenDatesList}
+                            setChoosenDatesList={setChoosenDatesList}
                             boardsNum={boardsNum} 
                             choosenDates={choosenDates}
                             index={-1}
@@ -81,8 +82,10 @@ export default function DatesDisplay(props) {
                             selectedColor={selectedColor}
                             setSelectedDays={setSelectedDays}
                             datesHeaderStateDispatch={datesHeaderStateDispatch}
-                            calendarHeaderState={calendarHeaderState}
-                            calendarHeaderStateDispatch={calendarHeaderStateDispatch}
+                            storedDates={storedDates}
+                            setStoredDates={setStoredDates}
+                            choosenDatesList={choosenDatesList}
+                            setChoosenDatesList={setChoosenDatesList}
                             boardsNum={boardsNum}
                             choosenDates={choosenDatesList[0]}
                             index={choosenDatesList.length - 1}
@@ -96,17 +99,19 @@ export default function DatesDisplay(props) {
                 >
                     {choosenDatesList.map((listItem, i) => {
                         return <ChoosenDatesItem
-                                    selectedColor={selectedColor}
-                                    setSelectedDays={setSelectedDays}
-                                    datesHeaderStateDispatch={datesHeaderStateDispatch}
-                                    calendarHeaderState={calendarHeaderState}
-                                    calendarHeaderStateDispatch={calendarHeaderStateDispatch}
-                                    boardsNum={boardsNum}
-                                    key={listItem + i}
-                                    choosenDates={listItem}
-                                    index={i}
-                                    isDatesDisplayHovered={isCurrentlyHovered}
-                                />
+                            selectedColor={selectedColor}
+                            setSelectedDays={setSelectedDays}
+                            datesHeaderStateDispatch={datesHeaderStateDispatch}
+                            storedDates={storedDates}
+                            setStoredDates={setStoredDates}
+                            choosenDatesList={choosenDatesList}
+                            setChoosenDatesList={setChoosenDatesList}
+                            boardsNum={boardsNum}
+                            key={listItem + i}
+                            choosenDates={listItem}
+                            index={i}
+                            isDatesDisplayHovered={isCurrentlyHovered}
+                        />
                     })}
                 </div>
             }

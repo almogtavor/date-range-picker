@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import "../App.css";
 import { updateObject } from "../utils/reducerUtils";
 import { DatesHeader } from "./DatesHeaderComponents/DatesHeader";
@@ -58,15 +58,13 @@ export const CalendarInstance = (props) => {
     const {
       selectedColor,
       setSelectedColor,
-      showColorPicker,
-      setShowColorPicker,
       setSelectedDays,
       selectedDays,
       setHoveredDay,
       hoveredDay,
       datesHeaderState,
       datesHeaderStateDispatch,
-      calendarHeaderState,
+      storedDates,
       setShowCalendar,
       setButtonDatesText,
       boardsNum,
@@ -74,8 +72,15 @@ export const CalendarInstance = (props) => {
     } = props;
 
     const language = useLanguage();
-    const [calendarModesState, calendarModesStateDispatch] = useReducer(calendarModesReducerMapper, calendarModesInitialState);
-    const nearViewedMonths = (id) => getNearViewedMonths(datesHeaderState, language, id);
+    const [calendarModesState, calendarModesStateDispatch] = useReducer(
+      calendarModesReducerMapper, 
+      calendarModesInitialState
+    );
+    const nearViewedMonths = (id) => getNearViewedMonths(
+      datesHeaderState, 
+      language, 
+      id
+    );
     let calendarComponentStyle = {
       "gridColumn": (i + 1) % 3,
       "gridRow": Math.floor(i / 3) + 1,
@@ -105,7 +110,6 @@ export const CalendarInstance = (props) => {
           calendarModesStateDispatch={calendarModesStateDispatch}
           selectedDays={selectedDays}
           hoveredDay={hoveredDay}
-          setSelectedDays={setSelectedDays}
           setHoveredDay={setHoveredDay}
           datesHeaderState={datesHeaderState}
           datesHeaderStateDispatch={datesHeaderStateDispatch}
@@ -116,10 +120,8 @@ export const CalendarInstance = (props) => {
         <LowerFooter
           selectedColor={selectedColor}
           setSelectedColor={setSelectedColor}
-          showColorPicker={showColorPicker}
-          setShowColorPicker={setShowColorPicker}
           calendarModesState={calendarModesState}
-          calendarHeaderState={calendarHeaderState}
+          storedDates={storedDates}
           datesHeaderState={datesHeaderState}
           nearViewedMonths={nearViewedMonths}
           setSelectedDays={setSelectedDays}
