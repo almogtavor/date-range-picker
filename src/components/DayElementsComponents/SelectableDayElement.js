@@ -40,7 +40,7 @@ export const SelectableDayElement = (props) => {
         setHoveredDay,
         datesHeaderStateDispatch,
         nearViewedMonths,
-        generalState,
+        boardsNum,
         date,
         id,
         isOfCurrentViewedMonth,
@@ -57,7 +57,6 @@ export const SelectableDayElement = (props) => {
     const leftViewedMonth = nearViewedMonths(id).left.month;
     const leftViewedYear = nearViewedMonths(id).left.year;
 
-    const boardsNum = generalState.boardsNum;
     const selectedColor = lowerfooterState.selectedColor;
     const month = date.getMonth();
     const year = date.getFullYear();

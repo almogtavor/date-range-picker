@@ -15,7 +15,7 @@ export default function ChoosenDatesItem(props) {
         datesHeaderStateDispatch,
         calendarHeaderState,
         calendarHeaderStateDispatch,
-        generalState,
+        boardsNum,
         choosenDates,
         index,
         isDatesDisplayHovered,
@@ -24,7 +24,6 @@ export default function ChoosenDatesItem(props) {
     const selectedColor = lowerfooterState.selectedColor;
     const storedDates = calendarHeaderState.storedDates;
     const choosenDatesList = calendarHeaderState.choosenDatesList;
-    const boardsNum = generalState.boardsNum;
     const language = useLanguage();
     let initialState = isDatesDisplayHovered && index === 0;
     const [isXCurrentlyHovered, setIsXCurrentlyHovered] = useState(initialState);

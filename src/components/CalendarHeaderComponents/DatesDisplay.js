@@ -14,7 +14,7 @@ export default function DatesDisplay(props) {
         calendarHeaderState,
         calendarHeaderStateDispatch,
         choosenDates,
-        generalState,
+        boardsNum,
         selectedDaysStyle,
     } = props;
 
@@ -72,7 +72,7 @@ export default function DatesDisplay(props) {
                             datesHeaderStateDispatch={datesHeaderStateDispatch}
                             calendarHeaderState={calendarHeaderState}
                             calendarHeaderStateDispatch={calendarHeaderStateDispatch}
-                            generalState={generalState}    
+                            boardsNum={boardsNum} 
                             choosenDates={choosenDates}
                             index={-1}
                             isDatesDisplayHovered={isCurrentlyHovered}
@@ -83,7 +83,7 @@ export default function DatesDisplay(props) {
                             datesHeaderStateDispatch={datesHeaderStateDispatch}
                             calendarHeaderState={calendarHeaderState}
                             calendarHeaderStateDispatch={calendarHeaderStateDispatch}
-                            generalState={generalState}
+                            boardsNum={boardsNum}
                             choosenDates={choosenDatesList[0]}
                             index={choosenDatesList.length - 1}
                             isDatesDisplayHovered={isCurrentlyHovered}
@@ -101,7 +101,7 @@ export default function DatesDisplay(props) {
                                     datesHeaderStateDispatch={datesHeaderStateDispatch}
                                     calendarHeaderState={calendarHeaderState}
                                     calendarHeaderStateDispatch={calendarHeaderStateDispatch}
-                                    generalState={generalState}
+                                    boardsNum={boardsNum}
                                     key={listItem + i}
                                     choosenDates={listItem}
                                     index={i}

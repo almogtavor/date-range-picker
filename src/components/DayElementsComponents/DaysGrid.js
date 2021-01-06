@@ -11,7 +11,7 @@ export const DaysGrid = (props) => {
         setHoveredDay,
         datesHeaderStateDispatch,
         datesHeaderState,
-        generalState,
+        boardsNum,
         nearViewedMonths,
         id,
     } = props;
@@ -59,7 +59,7 @@ export const DaysGrid = (props) => {
                 setHoveredDay={setHoveredDay}
                 datesHeaderStateDispatch={datesHeaderStateDispatch}
                 nearViewedMonths={nearViewedMonths}
-                generalState={generalState}
+                boardsNum={boardsNum}
                 key={key}
                 id={id}
                 date={date}

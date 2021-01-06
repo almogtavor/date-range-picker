@@ -10,12 +10,11 @@ export function DaysAmountTab(props) {
     const { 
         lowerfooterState,
         setSelectedDays,
-        generalState,
+        boardsNum,
         datesHeaderStateDispatch
     } = props;
 
     const selectedColor = lowerfooterState.selectedColor;
-    const boardsNum = generalState.boardsNum;
     const style = getOpacityColorStyle(selectedColor, 60);
     const errorClassName = " error-input";
     const defaultClassName = "days-amount-input";
@@ -101,7 +100,7 @@ export function DaysAmountTab(props) {
                         key={i}
                         range={range}
                         index={i}
-                        generalState={generalState}
+                        boardsNum={boardsNum}
                         datesHeaderStateDispatch={datesHeaderStateDispatch}
                         setSelectedDays={setSelectedDays}
                     />);

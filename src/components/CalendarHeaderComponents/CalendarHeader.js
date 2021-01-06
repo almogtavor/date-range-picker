@@ -15,13 +15,12 @@ export const CalendarHeader = (props) => {
         datesHeaderStateDispatch,
         calendarHeaderState,
         calendarHeaderStateDispatch,
-        generalState
+        boardsNum
     } = props;
 
     const selectedColor = lowerfooterState.selectedColor;
     const storedDates = calendarHeaderState.storedDates;
     const choosenDatesList = calendarHeaderState.choosenDatesList;
-    const boardsNum = generalState.boardsNum;
     const language = useLanguage();
     const format = useFormat();
     const pickMethod = usePickMethod();
@@ -77,7 +76,8 @@ export const CalendarHeader = (props) => {
                         datesHeaderStateDispatch={datesHeaderStateDispatch}
                         calendarHeaderState={calendarHeaderState}
                         calendarHeaderStateDispatch={calendarHeaderStateDispatch}
-                        generalState={generalState}
+                        boardsNum={boardsNum}
+                        boardsNum={boardsNum}
                         choosenDates={choosenDates}
                         selectedDaysStyle={selectedDaysStyle}
                     />

@@ -62,7 +62,7 @@ export function setInitialBoard(boardsNum, language, startDate, endDate) {
           showColorPickerObj,
         } = getInitialObject(boardsNum, language, startDate, endDate);
         for (let id = 0; id < boardsNum; id++) {
-            dispatch(setBoardsNum(boardsNum));
+            // dispatch(setBoardsNum(boardsNum));
             dispatch(setViewedMonth(boardsNum, id, monthsObj));
             dispatch(setViewedYear(boardsNum, id, yearsObj));
             dispatch(setMode(boardsNum, id, modeObj));

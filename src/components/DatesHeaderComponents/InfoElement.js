@@ -10,11 +10,10 @@ export const InfoElement = (props) => {
         element,
         value, 
         changeMode, 
-        generalState,
+        boardsNum,
         id
     } = props;
 
-    const boardsNum = generalState.boardsNum;
     const selectedColor = lowerfooterState.selectedColor;
     const [isHover, setIsHover] = useState(false);
     let style = {};

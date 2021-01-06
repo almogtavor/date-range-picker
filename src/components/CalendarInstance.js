@@ -56,8 +56,9 @@ export const CalendarInstance = (props) => {
       datesHeaderState,
       datesHeaderStateDispatch,
       calendarHeaderState,
-      generalStateDispatch,
-      generalState,
+      setShowCalendar,
+      setButtonDatesText,
+      boardsNum,
       i,
     } = props;
 
@@ -83,7 +84,7 @@ export const CalendarInstance = (props) => {
           calendarModesStateDispatch={calendarModesStateDispatch}
           datesHeaderState={datesHeaderState}
           datesHeaderStateDispatch={datesHeaderStateDispatch}
-          generalState={generalState}
+          boardsNum={boardsNum}
           nearViewedMonths={nearViewedMonths}
         />
         <CalendarContent
@@ -98,7 +99,7 @@ export const CalendarInstance = (props) => {
           datesHeaderState={datesHeaderState}
           datesHeaderStateDispatch={datesHeaderStateDispatch}
           nearViewedMonths={nearViewedMonths}
-          generalState={generalState}
+          boardsNum={boardsNum}
           id={i}
         />
         <LowerFooter
@@ -111,9 +112,10 @@ export const CalendarInstance = (props) => {
           setSelectedDays={setSelectedDays}
           selectedDays={selectedDays}
           setHoveredDay={setHoveredDay}
-          generalState={generalState}
+          boardsNum={boardsNum}
+          setButtonDatesText={setButtonDatesText}
+          setShowCalendar={setShowCalendar}
           id={i}
-          generalStateDispatch={generalStateDispatch}
         />
       </div>
       );

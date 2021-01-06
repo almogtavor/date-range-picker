@@ -16,12 +16,11 @@ export const Arrow = (props) => {
         datesHeaderStateDispatch,
         lowerfooterState,
         nearViewedMonthsfunction,
-        generalState,
+        boardsNum,
         arrowSide,
         id
     } = props;
 
-    const boardsNum = generalState.boardsNum;
     const viewedMonth = datesHeaderState.viewedMonth[id];
     const viewedYear = datesHeaderState.viewedYear[id];
     const selectedColor = lowerfooterState.selectedColor;

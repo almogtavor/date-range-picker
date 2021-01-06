@@ -6,7 +6,7 @@ import { updateObject } from "../utils/reducerUtils";
 import { CalendarHeader } from "./CalendarHeaderComponents/CalendarHeader";
 import { DaysAmountTabButton } from "./DaysAmountTabComponents/DaysAmountTabButton";
 import { setInitialBoard, setSelectedColor } from "../actions";
-import { getUpdatedObject } from "../utils/actionsUtils";
+import { getInitialObject, getUpdatedObject } from "../utils/actionsUtils";
 
 const lowerFooterInitialState = {
   selectedColor: "#2196f3",
@@ -108,8 +108,9 @@ export const Mapper = (props) => {
       startDate,
       endDate,
       defaultColor,
-      generalStateDispatch,
-      generalState,
+      showCalendar,
+      setButtonDatesText,
+      setShowCalendar,
     } = props;
         
     const language = useLanguage();
@@ -121,16 +122,24 @@ export const Mapper = (props) => {
     const [selectedDays, setSelectedDays] = useState([]);
     const [hoveredDay, setHoveredDay] = useState(null);
 
-    const showCalendar = generalState.showCalendar;
-
     useEffect(() => {
       if (language) {
-        generalStateDispatch(setInitialBoard(
-            generalState.boardsNum, 
-            language, 
-            startDate, 
-            endDate
-        ));
+        let { 
+          monthsObj, 
+          yearsObj, 
+          showColorPickerObj,
+        } = getInitialObject(boardsNum, language, startDate, endDate);
+        for (let id = 0; id < boardsNum; id++) {
+            datesHeaderStateDispatch(
+              setViewedMonth(boardsNum, id, monthsObj)
+            );
+            datesHeaderStateDispatch(
+              setViewedYear(boardsNum, id, yearsObj)
+            );
+            lowerfooterStateDispatch(
+              setShowColorPicker(boardsNum, id, showColorPickerObj)
+            );
+        }
       } else {
           throw Object.assign(new Error('"language" prop is undefined'), { code: 403 });
       }
@@ -170,7 +179,7 @@ export const Mapper = (props) => {
             datesHeaderStateDispatch={datesHeaderStateDispatch}
             calendarHeaderState={calendarHeaderState}
             calendarHeaderStateDispatch={calendarHeaderStateDispatch}
-            generalState={generalState}
+            boardsNum={boardsNum}
           />
           {calendarsIndexes.map((i) => {
               return (
@@ -184,8 +193,9 @@ export const Mapper = (props) => {
                   datesHeaderState={datesHeaderState}
                   datesHeaderStateDispatch={datesHeaderStateDispatch}
                   calendarHeaderState={calendarHeaderState}
-                  generalStateDispatch={generalStateDispatch}
-                  generalState={generalState}
+                  setButtonDatesText={setButtonDatesText}
+                  setShowCalendar={setShowCalendar}
+                  boardsNum={boardsNum}
                   key={i}
                   i={i}
               />)
@@ -194,7 +204,7 @@ export const Mapper = (props) => {
             lowerfooterState={lowerfooterState}
             datesHeaderStateDispatch={datesHeaderStateDispatch}
             setSelectedDays={setSelectedDays}
-            generalState={generalState}
+            boardsNum={boardsNum}
           />
         </div>
       }</>

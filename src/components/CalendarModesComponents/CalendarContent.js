@@ -17,7 +17,7 @@ export const CalendarContent = (props) => {
       calendarModesState,
       calendarModesStateDispatch,
       datesHeaderStateDispatch,
-      generalState,
+      boardsNum,
       datesHeaderState,
       nearViewedMonths, 
       id,
@@ -37,7 +37,6 @@ export const CalendarContent = (props) => {
           datesHeaderState={datesHeaderState}
           datesHeaderStateDispatch={datesHeaderStateDispatch}
           nearViewedMonths={nearViewedMonths}
-          generalState={generalState}
           id={id}
         />
         {mode === "Months" ? (
@@ -48,7 +47,7 @@ export const CalendarContent = (props) => {
             datesHeaderState={datesHeaderState}
             datesHeaderStateDispatch={datesHeaderStateDispatch}
             nearViewedMonthsfunction={nearViewedMonths}
-            generalState={generalState}
+            boardsNum={boardsNum}
             id={id}
           />
         ) : mode === "Years" && 
@@ -58,7 +57,7 @@ export const CalendarContent = (props) => {
             calendarModesStateDispatch={calendarModesStateDispatch}
             datesHeaderState={datesHeaderState}
             datesHeaderStateDispatch={datesHeaderStateDispatch}
-            generalState={generalState}
+            boardsNum={boardsNum}
             nearViewedMonthsfunction={nearViewedMonths}
             id={id}
           />

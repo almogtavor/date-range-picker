@@ -7,13 +7,12 @@ import { updateViewedMonths } from '../../utils/generalUtils';
 export function DefaultRange(props) {
     const { 
         range, 
-        generalState, 
+        boardsNum, 
         index, 
         setSelectedDays, 
         datesHeaderStateDispatch, 
     } = props;
 
-    const boardsNum = generalState.boardsNum;
     const className = "pickable-days-amount";
     const language = useLanguage();
 

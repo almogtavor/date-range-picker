@@ -13,12 +13,11 @@ export const YearSelector = (props) => {
         selectedDays,
         calendarModesStateDispatch,
         datesHeaderStateDispatch,
-        generalState,
+        boardsNum,
         nearViewedMonthsfunction,
         id
     } = props;
 
-    const boardsNum = generalState.boardsNum;
     const selectedColor = lowerfooterState.selectedColor;
     const viewedMonth = datesHeaderState.viewedMonth[id];
     const viewedYear = datesHeaderState.viewedYear[id];

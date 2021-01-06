@@ -5,16 +5,11 @@ import "./styles/date-range-picker-component.css"
 import { InitialParametersProvider } from "./context/InitialParametersContext";
 import { Mapper } from './components/Mapper';
 import { Button } from "./components/Button";
-import { updateObject } from "./utils/reducerUtils";
-import { setBoardsNum } from "./actions";
 
-const initialState = {
-
-};
 
 export function App(props) {
   const {
-    propsBoardsNum,
+    boardsNum: propsBoardsNum,
     startDate,
     endDate,
     defaultColor
@@ -25,7 +20,9 @@ export function App(props) {
   const [buttonDatesText, setButtonDatesText] = useState(null);
 
   useEffect(() => {
+    console.log("got " + propsBoardsNum);
     if (propsBoardsNum) {
+      console.log("changed to " + propsBoardsNum);
       setBoardsNum(propsBoardsNum);
     }
   }, [])
@@ -40,8 +37,10 @@ export function App(props) {
         />
         <CalendarComponent
           boardsNum={boardsNum}
+          showCalendar={showCalendar}
           setShowCalendar={setShowCalendar}
           buttonDatesText={buttonDatesText}
+          setButtonDatesText={setButtonDatesText}
           startDate={startDate}
           endDate={endDate}
           defaultColor={defaultColor}
@@ -61,7 +60,9 @@ function CalendarComponent(props) {
     defaultColor,
     boardsNum, 
     buttonDatesText,
-    setShowCalendar
+    showCalendar,
+    setShowCalendar,
+    setButtonDatesText,
   } = props;
 
   const style = {
@@ -79,8 +80,10 @@ function CalendarComponent(props) {
         endDate={endDate}
         defaultColor={defaultColor}
         boardsNum={boardsNum}
+        showCalendar={showCalendar}
         setShowCalendar={setShowCalendar}
         buttonDatesText={buttonDatesText}
+        setButtonDatesText={setButtonDatesText}
       />
     </div>
   </div>;

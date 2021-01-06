@@ -2,7 +2,6 @@ import React from "react";
 import '../../styles/LowerFooterStyles/lower-footer.css';
 import { useLanguage, useFormat, usePickMethod, useSelectAllButton, useColorsPalette } from "../../context/InitialParametersContext";
 import { choosenDatesCalculation } from '../../utils/generalUtils';
-import { setButtonDatesText, setShowCalendar } from "../../actions";
 import { ColorPickerPalette } from "./ColorPickerPalette";
 import { SelectAllButton } from "./SelectAllButton";
 
@@ -18,14 +17,14 @@ export const LowerFooter = (props) => {
         calendarHeaderState,
         datesHeaderState,
         nearViewedMonths,
-        generalState,
+        boardsNum,
         id,
-        generalStateDispatch,
+        setShowCalendar,
+        setButtonDatesText,
     } = props;
 
     const selectedColor = lowerfooterState.selectedColor;
     const storedDates = calendarHeaderState.storedDates;
-    const boardsNum = generalState.boardsNum;
     const language = useLanguage();
     const format = useFormat();
     const pickMethod = usePickMethod();
@@ -47,7 +46,7 @@ export const LowerFooter = (props) => {
     }
 
     const handlePickClick = () => {
-        generalStateDispatch(setShowCalendar(false));
+        setShowCalendar(false);
         
         if (pickMethod === "ranges" && storedDates.length > 0) {
             let minDate = storedDates[0][0], maxDate = storedDates[0][0];
@@ -60,14 +59,19 @@ export const LowerFooter = (props) => {
                     }
                 }
             }
-            generalStateDispatch(setButtonDatesText(choosenDatesCalculation(
+            setButtonDatesText(choosenDatesCalculation(
                 [minDate, maxDate],
                 null, 
                 format, 
                 pickMethod, 
-                language)));
+                language));
         } else {
-            generalStateDispatch(setButtonDatesText(choosenDatesCalculation(selectedDays, null, format, pickMethod, language)));
+            setButtonDatesText(choosenDatesCalculation(
+                selectedDays, 
+                null, 
+                format, 
+                pickMethod, 
+                language));
         }
     }
 
@@ -81,7 +85,7 @@ export const LowerFooter = (props) => {
             lowerfooterStateDispatch={lowerfooterStateDispatch}
             showPaletteAllowed={showPaletteAllowed}
             id={id}
-            generalState={generalState}
+            boardsNum={boardsNum}
         />
 
         <SelectAllButton

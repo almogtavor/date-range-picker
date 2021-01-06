@@ -11,12 +11,11 @@ export const ColorPickerPalette = (props) => {
     const {
         lowerfooterState,
         lowerfooterStateDispatch,
-        generalState,
+        boardsNum,
         showPaletteAllowed,
         id
     } = props;
 
-    const boardsNum = generalState.boardsNum;
     const selectedColor = lowerfooterState.selectedColor;
     const showColorPicker = lowerfooterState.showColorPicker[id];
 
