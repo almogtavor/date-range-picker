@@ -67,6 +67,7 @@ export const CalendarInstance = (props) => {
       storedDates,
       setShowCalendar,
       setButtonDatesText,
+      callback,
       boardsNum,
       i,
     } = props;
@@ -130,6 +131,7 @@ export const CalendarInstance = (props) => {
           boardsNum={boardsNum}
           setButtonDatesText={setButtonDatesText}
           setShowCalendar={setShowCalendar}
+          callback={callback}
           id={i}
         />
       </div>

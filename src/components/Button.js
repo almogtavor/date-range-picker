@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import '../styles/button.css';
 import { useFormat, usePickMethod, useLanguage } from "../context/InitialParametersContext";
 import { choosenDatesCalculation } from "../utils/generalUtils";
@@ -20,7 +20,7 @@ export const Button = (props) => {
     if (!text) {
         text = formatPattern;
     };
-    
+
     const handleClick = () => {
         setShowCalendar(!showCalendar);
     }

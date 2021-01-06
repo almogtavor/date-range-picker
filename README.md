@@ -8,9 +8,19 @@
 
 ### Usage
 ```javascript
+function callbackFunciton(dates) {
+    console.log(`The range of dates that got picked is: ${dates.text}`);
+    console.log(`The min date that got picked is: ${dates.minDate}`);
+    console.log(`The max date that got picked is: ${dates.maxDate}`);
+    console.log(`The number of days that got picked is: ${dates.numberOfDaysPicked}`);
+    console.log(`The number of days that got picked is: ${dates.allDates}`);
+}
+
 function MyComponent() {
     return (
-      <DateRangePicker />
+      <DateRangePicker 
+        callback={callbackFunciton}
+      />
     )
   }
 }

@@ -9,6 +9,7 @@ import { Button } from "./components/Button";
 
 export function App(props) {
   const {
+    callback,
     boardsNum: propsBoardsNum,
     startDate,
     endDate,
@@ -32,6 +33,7 @@ export function App(props) {
           buttonDatesText={buttonDatesText}
         />
         <CalendarComponent
+          callback={callback}
           boardsNum={boardsNum}
           showCalendar={showCalendar}
           setShowCalendar={setShowCalendar}
@@ -59,6 +61,7 @@ function CalendarComponent(props) {
     showCalendar,
     setShowCalendar,
     setButtonDatesText,
+    callback,
   } = props;
 
   const style = {
@@ -80,6 +83,7 @@ function CalendarComponent(props) {
         setShowCalendar={setShowCalendar}
         buttonDatesText={buttonDatesText}
         setButtonDatesText={setButtonDatesText}
+        callback={callback}
       />
     </div>
   </div>;

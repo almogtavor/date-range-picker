@@ -65,6 +65,7 @@ export const Mapper = (props) => {
       showCalendar,
       setButtonDatesText,
       setShowCalendar,
+      callback
     } = props;
         
     const language = useLanguage();
@@ -157,6 +158,7 @@ export const Mapper = (props) => {
                   setChoosenDatesList={setChoosenDatesList}
                   setButtonDatesText={setButtonDatesText}
                   setShowCalendar={setShowCalendar}
+                  callback={callback}
                   boardsNum={boardsNum}
                   key={i}
                   i={i}
