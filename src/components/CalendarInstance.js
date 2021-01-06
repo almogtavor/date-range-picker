@@ -26,13 +26,25 @@ function calendarModesReducerMapper(state, payload) {
 }
 
 const getIDs = (language, id) => {
-  const rightId = language === "Hebrew" ? id - 1 : id + 1;
-  const leftId = language === "Hebrew" ? id + 1 : id - 1;
+  let rightId = language === "Hebrew" ? id - 1 : id + 1;
+  let leftId = language === "Hebrew" ? id + 1 : id - 1;
+  if (rightId < 0) {
+    // when searching -1 on the array 
+    // we get unwanted result instead of undefined
+    rightId = 999; 
+  } else if (leftId < 0) {
+    // when searching -1 on the array 
+    // we get unwanted result instead of undefined
+    leftId = 999; 
+  }
   return { rightId, leftId };
 };
 
 export const getNearViewedMonths = (datesHeaderState, language, id) => {
-    const { rightId, leftId } = getIDs(language, id);
+  const { rightId, leftId } = getIDs(language, id);
+  console.log(datesHeaderState);
+  console.log(datesHeaderState.viewedYear[rightId]);
+  console.log(datesHeaderState.viewedYear[leftId]);
     return {
         "right": {
             "year": datesHeaderState.viewedYear[rightId], 

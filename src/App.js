@@ -15,15 +15,13 @@ export function App(props) {
     defaultColor
   } = props;
   
-  const [boardsNum, setBoardsNum] = useState(2);
+  let boardsNumInitialState = propsBoardsNum;
+  if (!propsBoardsNum) {
+    boardsNumInitialState = 2;
+  }
+  const [boardsNum, setBoardsNum] = useState(boardsNumInitialState);
   const [showCalendar, setShowCalendar] = useState(false);
   const [buttonDatesText, setButtonDatesText] = useState(null);
-
-  useEffect(() => {
-    if (propsBoardsNum) {
-      setBoardsNum(propsBoardsNum);
-    }
-  }, [])
 
   return (
     <div className="App">

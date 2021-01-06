@@ -32,22 +32,34 @@ function lowerFooterReducerMapper(state, payload) {
   }
 }
 
-const datesHeaderInitialStateCalculation = language => {
-  let stateObj = {
-    viewedMonth: {'0': new Date().getMonth(), '1': new Date().getMonth() + 1, },
-    viewedYear: {'0': new Date().getFullYear(), '1': new Date().getFullYear(), },
-  };
-  if (stateObj.viewedMonth['1'] === 12) {
-    stateObj.viewedMonth['1'] = 0;
-    stateObj.viewedYear['1'] = stateObj.viewedYear['1'] + 1;
-  }
-  if (language === "Hebrew") {
-    const leftBoardMonth = stateObj.viewedMonth['0'];
-    let leftBoardYear = stateObj.viewedYear['0'];
-    stateObj.viewedMonth['0'] = stateObj.viewedMonth['1'];
-    stateObj.viewedYear['0'] = stateObj.viewedYear['1'];
-    stateObj.viewedMonth['1'] = leftBoardMonth;
-    stateObj.viewedYear['1'] = leftBoardYear;
+const datesHeaderInitialStateCalculation = (language, boardsNum) => {
+  console.log(boardsNum);
+  let stateObj;
+  if (boardsNum === 1) {
+    console.log("AAAAAA");
+    stateObj = {
+      viewedMonth: {'0': new Date().getMonth(),},
+      viewedYear: {'0': new Date().getFullYear(),},
+    };
+  } else if (boardsNum === 2) {
+    console.log("AAA");
+
+    stateObj = {
+      viewedMonth: {'0': new Date().getMonth(), '1': new Date().getMonth() + 1, },
+      viewedYear: {'0': new Date().getFullYear(), '1': new Date().getFullYear(), },
+    };
+    if (stateObj.viewedMonth['1'] === 12) {
+      stateObj.viewedMonth['1'] = 0;
+      stateObj.viewedYear['1'] = stateObj.viewedYear['1'] + 1;
+    }
+    if (language === "Hebrew") {
+      const leftBoardMonth = stateObj.viewedMonth['0'];
+      let leftBoardYear = stateObj.viewedYear['0'];
+      stateObj.viewedMonth['0'] = stateObj.viewedMonth['1'];
+      stateObj.viewedYear['0'] = stateObj.viewedYear['1'];
+      stateObj.viewedMonth['1'] = leftBoardMonth;
+      stateObj.viewedYear['1'] = leftBoardYear;
+    }
   }
   return stateObj;
 } 
@@ -114,7 +126,10 @@ export const Mapper = (props) => {
     } = props;
         
     const language = useLanguage();
-    const datesHeaderInitialState = datesHeaderInitialStateCalculation(language);
+    const datesHeaderInitialState = datesHeaderInitialStateCalculation(
+      language, 
+      boardsNum
+    );
 
     const [lowerfooterState, lowerfooterStateDispatch] = useReducer(lowerFooterReducerMapper, lowerFooterInitialState);
     const [datesHeaderState, datesHeaderStateDispatch] = useReducer(datesHeaderReducerMapper, datesHeaderInitialState);

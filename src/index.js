@@ -22,7 +22,7 @@ ReactDOM.render(
         daysAmountTab="disabled"
         boardsNum={1}
     />
-    <DateRangePicker />
+    {/* <DateRangePicker />
     <DateRangePicker
         language="Hebrew"
         colorsPalette="enabled"
@@ -35,7 +35,7 @@ ReactDOM.render(
         defaultColor="#178905"
         daysAmountTab="enabled"
         boardsNum={2}
-    />
+    /> */}
     </>,
     document.getElementById('root')
 );
