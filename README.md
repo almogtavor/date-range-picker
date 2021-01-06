@@ -3,7 +3,7 @@
  
  Demo at https://almogtavor.github.io/date-range-picker/
 
-![](public/example-image.png)
+![](public/example-image1.png)
 
 
 ### Usage
