@@ -42,19 +42,16 @@ const getIDs = (language, id) => {
 
 export const getNearViewedMonths = (datesHeaderState, language, id) => {
   const { rightId, leftId } = getIDs(language, id);
-  console.log(datesHeaderState);
-  console.log(datesHeaderState.viewedYear[rightId]);
-  console.log(datesHeaderState.viewedYear[leftId]);
-    return {
-        "right": {
-            "year": datesHeaderState.viewedYear[rightId], 
-            "month": datesHeaderState.viewedMonth[rightId],
-        },
-        "left": {
-            "year": datesHeaderState.viewedYear[leftId],
-            "month": datesHeaderState.viewedMonth[leftId],
-        },
-    }
+  return {
+      "right": {
+          "year": datesHeaderState.viewedYear[rightId], 
+          "month": datesHeaderState.viewedMonth[rightId],
+      },
+      "left": {
+          "year": datesHeaderState.viewedYear[leftId],
+          "month": datesHeaderState.viewedMonth[leftId],
+      },
+  }
 }
 
 export const CalendarInstance = (props) => {

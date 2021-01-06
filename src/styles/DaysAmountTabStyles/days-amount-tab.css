@@ -7,7 +7,7 @@
     width: 46%;
     height: 327.5px;
     box-shadow: 3px 1px 5px 0px #ddd;
-    z-index: -1;
+    /* z-index: 1; */
   }
 
   .days-amount-tab-div {

@@ -26,13 +26,11 @@ export const Arrow = (props) => {
     const selectedColor = lowerfooterState.selectedColor;
     const arrowSideImg = arrowImages[arrowSide];
     const nearViewedMonths = nearViewedMonthsfunction(id);
-    console.log(nearViewedMonths);
     const language = useLanguage();
     const startDate = useStartDate();
     const endDate = useEndDate();
     const [isHover, setIsHover] = useState(false);
     let changeMonth, canChange;
-    console.log(viewedMonth)
 
     const canIncrease = () => {
         const isNearMonthNotBlocks = (nearViewedMonths.right.year) ?            

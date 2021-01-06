@@ -33,17 +33,13 @@ function lowerFooterReducerMapper(state, payload) {
 }
 
 const datesHeaderInitialStateCalculation = (language, boardsNum) => {
-  console.log(boardsNum);
   let stateObj;
   if (boardsNum === 1) {
-    console.log("AAAAAA");
     stateObj = {
       viewedMonth: {'0': new Date().getMonth(),},
       viewedYear: {'0': new Date().getFullYear(),},
     };
   } else if (boardsNum === 2) {
-    console.log("AAA");
-
     stateObj = {
       viewedMonth: {'0': new Date().getMonth(), '1': new Date().getMonth() + 1, },
       viewedYear: {'0': new Date().getFullYear(), '1': new Date().getFullYear(), },
