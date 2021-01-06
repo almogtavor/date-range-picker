@@ -1,7 +1,8 @@
 
   .days-amount-tab-template {
     background-color: rgb(244, 246, 248);
-    border-radius: 15%;
+    border-bottom-left-radius: 12px;
+    border-top-left-radius: 12px;
     margin-left: -240%;
     margin-top: -22px;
     width: 46%;

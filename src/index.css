@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(180deg, #fffed6 0%, #ffd8cc 100%);
+  background: linear-gradient(120deg, #000000 0%, #5aaa99 100%);
   /* background: linear-gradient(25deg, #ecff9a 0%, #fdbe8b 100%); */
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -9,9 +9,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-size: 400% 400%;
 
-  -webkit-animation: AnimationName 15s ease infinite;
-  -moz-animation: AnimationName 15s ease infinite;
-  animation: AnimationName 15s ease infinite;
+  -webkit-animation: AnimationName 45s ease infinite;
+  -moz-animation: AnimationName 45s ease infinite;
+  animation: AnimationName 45s ease infinite;
 }
 
 
