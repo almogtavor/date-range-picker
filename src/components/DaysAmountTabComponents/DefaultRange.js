@@ -1,5 +1,4 @@
 import React from 'react';
-import { setSelectedDays } from '../../actions';
 import { daysAmountTabConfig } from '../../configuration/config';
 import { useLanguage } from '../../context/InitialParametersContext';
 import { updateViewedMonths } from '../../utils/generalUtils';

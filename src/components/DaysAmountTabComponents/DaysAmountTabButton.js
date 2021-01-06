@@ -9,7 +9,7 @@ const chooseDaysAmount = require("../../images/choose-days-amount.png");
 export function DaysAmountTabButton(props) {
     const { 
         setSelectedDays,
-        generalState,
+        boardsNum,
         datesHeaderStateDispatch,
         lowerfooterState, 
     } = props;
@@ -54,7 +54,7 @@ export function DaysAmountTabButton(props) {
                 <DaysAmountTab
                     lowerfooterState={lowerfooterState}
                     setSelectedDays={setSelectedDays}
-                    generalState={generalState}
+                    boardsNum={boardsNum}
                     datesHeaderStateDispatch={datesHeaderStateDispatch}
                 />
             }
