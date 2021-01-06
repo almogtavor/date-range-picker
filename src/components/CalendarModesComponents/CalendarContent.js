@@ -1,7 +1,6 @@
 import React from "react";
 import '../..//styles/calendar-component.css';
 import { WeekDaysNames } from "./WeekDaysNames";
-import { useLanguage } from "../../context/InitialParametersContext";
 import { DaysGrid } from "../DayElementsComponents/DaysGrid";
 import { MonthSelector } from "./MonthSelector";
 import { YearSelector } from "./YearSelector";

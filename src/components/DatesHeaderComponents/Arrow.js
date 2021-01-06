@@ -3,7 +3,6 @@ import '../../styles/DatesHeaderStyles/arrow.css';
 import { useEndDate, useStartDate, useLanguage } from "../../context/InitialParametersContext";
 import { getOpacityColorStyle } from "../../utils/generalUtils";
 import { setViewedMonth, setViewedYear } from "../../actions";
-import { getUpdatedObject } from "../../utils/actionsUtils";
 
 const arrowImages = {
     "leftArrow": require('../../images/arrow-left.png'),
