@@ -127,8 +127,6 @@ export function InitialParametersProvider({children, props}) {
     //     throw Object.assign(new Error('"pickMethod" valued "date" prevents enabled days amount tab.'), { code: 403 });
     // }
 
-    console.log(valueState);
-
     checkValidInput(valueState.colorsPalette);
     checkValidInput(valueState.selectAllButton);
     checkValidInput(valueState.daysAmountTab);

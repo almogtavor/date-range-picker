@@ -6,6 +6,7 @@
     width: 350px;
     font-size: 1.2em;
     border-radius: 16px;
+    border-width: 1px;
     background-color: rgb(244, 246, 248);
     position: absolute;
     outline: none;  

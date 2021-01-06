@@ -17,8 +17,6 @@ export function DaysAmountTabButton(props) {
     const [showDaysAmountTab, setShowDaysAmountTab] = useState(false);
     const language = useLanguage();
     const enableDaysAmountTab = useDaysAmountTab();
-    console.log(enableDaysAmountTab);
-    console.log(showDaysAmountTab);
     const style = getOpacityColorStyle(selectedColor, 60);
     let templateClassName = "days-amount-tab-button-template";
     if (showDaysAmountTab) {
@@ -28,7 +26,6 @@ export function DaysAmountTabButton(props) {
     const handleClick = () => {
         setShowDaysAmountTab(!showDaysAmountTab);
     }
-    console.log(enableDaysAmountTab === "enabled");
 
     return (
         <>

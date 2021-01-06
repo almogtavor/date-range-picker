@@ -6,9 +6,19 @@ import './index.css';
 import DateRangePicker from './App';
 import * as serviceWorker from './serviceWorker';
 
+function callbackFunciton(dates) {
+    console.log(`The range of dates that got picked is: ${dates.text}`);
+    console.log(`The min date that got picked is: ${dates.minDate}`);
+    console.log(`The max date that got picked is: ${dates.maxDate}`);
+    console.log(`The number of days that got picked is: ${dates.numberOfDaysPicked}`);
+    console.log(`The number of days that got picked is: ${dates.allDates}`);
+}
+
 ReactDOM.render(
     <>
     <h1 className="title">Date Range Picker Component</h1>
+    
+    <div className="sub-title">Simple date picker</div>
     <DateRangePicker
         language="English"
         colorsPalette="enabled"
@@ -21,8 +31,23 @@ ReactDOM.render(
         defaultColor="#178905"
         daysAmountTab="disabled"
         boardsNum={1}
+        callback={callbackFunciton}
     />
-    <DateRangePicker />
+    <div className="sub-title">Range picker (default values)</div>
+    <DateRangePicker 
+            callback={callbackFunciton}
+            />
+    <div className="sub-title">Multiple ranges picker</div>
+    <DateRangePicker 
+        pickMethod="ranges"
+        callback={callbackFunciton}
+
+    />
+    <div className="sub-title">
+        Hebrew version (right to left). 
+        All features enabled with
+        ranges pick method
+    </div>
     <DateRangePicker
         language="Hebrew"
         colorsPalette="enabled"
@@ -35,6 +60,8 @@ ReactDOM.render(
         defaultColor="#178905"
         daysAmountTab="enabled"
         boardsNum={2}
+        callback={callbackFunciton}
+
     />
     </>,
     document.getElementById('root')
