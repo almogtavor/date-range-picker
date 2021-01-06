@@ -20,9 +20,7 @@ export function App(props) {
   const [buttonDatesText, setButtonDatesText] = useState(null);
 
   useEffect(() => {
-    console.log("got " + propsBoardsNum);
     if (propsBoardsNum) {
-      console.log("changed to " + propsBoardsNum);
       setBoardsNum(propsBoardsNum);
     }
   }, [])

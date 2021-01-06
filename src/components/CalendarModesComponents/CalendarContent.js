@@ -37,6 +37,7 @@ export const CalendarContent = (props) => {
           datesHeaderState={datesHeaderState}
           datesHeaderStateDispatch={datesHeaderStateDispatch}
           nearViewedMonths={nearViewedMonths}
+          boardsNum={boardsNum}
           id={id}
         />
         {mode === "Months" ? (

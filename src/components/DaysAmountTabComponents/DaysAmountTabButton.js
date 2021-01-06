@@ -3,7 +3,6 @@ import '../../styles/DaysAmountTabStyles/days-amount-tab-button.css';
 import { useDaysAmountTab, useLanguage } from '../../context/InitialParametersContext';
 import { getOpacityColorStyle } from '../../utils/generalUtils';
 import { DaysAmountTab } from './DaysAmountTab';
-import { setShowDaysAmountTab } from '../../actions';
 
 const chooseDaysAmount = require("../../images/choose-days-amount.png");
 
