@@ -8,7 +8,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
     <>
-    <h1 style={{display: "flex", justifyContent: "center"}}>Date Range Picker Component</h1>
+    <h1 className="title">Date Range Picker Component</h1>
     <DateRangePicker
         language="English"
         colorsPalette="enabled"
