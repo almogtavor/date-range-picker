@@ -7,7 +7,7 @@ import ChoosenDatesItem from "./ChoosenDatesItem";
 
 export default function DatesDisplay(props) {
     const {
-        lowerfooterState,
+        selectedColor,
         selectedDays,
         setSelectedDays,
         datesHeaderStateDispatch,
@@ -67,7 +67,7 @@ export default function DatesDisplay(props) {
                 !isCurrentlyHovered && 
                     (choosenDatesList.length === 0 ? 
                         <ChoosenDatesItem 
-                            lowerfooterState={lowerfooterState}
+                            selectedColor={selectedColor}
                             setSelectedDays={setSelectedDays}
                             datesHeaderStateDispatch={datesHeaderStateDispatch}
                             calendarHeaderState={calendarHeaderState}
@@ -78,7 +78,7 @@ export default function DatesDisplay(props) {
                             isDatesDisplayHovered={isCurrentlyHovered}
                         /> : 
                         <ChoosenDatesItem
-                            lowerfooterState={lowerfooterState}
+                            selectedColor={selectedColor}
                             setSelectedDays={setSelectedDays}
                             datesHeaderStateDispatch={datesHeaderStateDispatch}
                             calendarHeaderState={calendarHeaderState}
@@ -96,7 +96,7 @@ export default function DatesDisplay(props) {
                 >
                     {choosenDatesList.map((listItem, i) => {
                         return <ChoosenDatesItem
-                                    lowerfooterState={lowerfooterState}
+                                    selectedColor={selectedColor}
                                     setSelectedDays={setSelectedDays}
                                     datesHeaderStateDispatch={datesHeaderStateDispatch}
                                     calendarHeaderState={calendarHeaderState}

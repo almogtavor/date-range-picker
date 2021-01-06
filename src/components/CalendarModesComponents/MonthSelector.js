@@ -9,7 +9,7 @@ import { getUpdatedObject } from "../../utils/actionsUtils";
 
 export const MonthSelector = (props) => {
     const {
-        lowerfooterState,
+        selectedColor,
         selectedDays,
         calendarModesStateDispatch,
         datesHeaderState,
@@ -19,7 +19,6 @@ export const MonthSelector = (props) => {
         id,
     } = props;
 
-    const selectedColor = lowerfooterState.selectedColor;
     const viewedMonth = datesHeaderState.viewedMonth[id];
     const viewedYear = datesHeaderState.viewedYear[id];
     const nearViewedMonths = nearViewedMonthsfunction(id);

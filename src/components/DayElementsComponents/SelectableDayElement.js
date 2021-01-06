@@ -33,7 +33,7 @@ function customSetters(datesHeaderStateDispatch, language, id, boardsNum) {
 
 export const SelectableDayElement = (props) => {
     const {
-        lowerfooterState,
+        selectedColor,
         selectedDays,
         hoveredDay,
         setSelectedDays,
@@ -57,7 +57,6 @@ export const SelectableDayElement = (props) => {
     const leftViewedMonth = nearViewedMonths(id).left.month;
     const leftViewedYear = nearViewedMonths(id).left.year;
 
-    const selectedColor = lowerfooterState.selectedColor;
     const month = date.getMonth();
     const year = date.getFullYear();
     const pickMethod = usePickMethod();
@@ -192,7 +191,7 @@ export const SelectableDayElement = (props) => {
                 selectedDays={selectedDays}
                 hoveredDay={hoveredDay}
                 setHoveredDay={setHoveredDay}
-                lowerfooterState={lowerfooterState}
+                selectedColor={selectedColor}
                 date={date}
                 dayOfWeek={dayOfWeek}
             />

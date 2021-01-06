@@ -5,32 +5,8 @@ import { useLanguage } from "../context/InitialParametersContext";
 import { updateObject } from "../utils/reducerUtils";
 import { CalendarHeader } from "./CalendarHeaderComponents/CalendarHeader";
 import { DaysAmountTabButton } from "./DaysAmountTabComponents/DaysAmountTabButton";
-import { setInitialBoard, setSelectedColor } from "../actions";
 import { getInitialObject, getUpdatedObject } from "../utils/actionsUtils";
 
-const lowerFooterInitialState = {
-  selectedColor: "#2196f3",
-  showColorPicker: {"0": false,"1": false,},
-};
-
-function setSelectedColorFunction(state, payload) {
-  return updateObject(state, {selectedColor: payload.selectedColor});
-}
-
-function setShowColorPicker(state, payload) {
-  return updateObject(state, {showColorPicker: payload.showColorPicker});
-}
-
-function lowerFooterReducerMapper(state, payload) {
-  if (payload.type === "SET_SELECTED_COLOR") {
-    return setSelectedColorFunction(state, payload);
-  } else if (payload.type === "SET_SHOW_COLOR_PICKER") {
-    payload.showColorPicker = getUpdatedObject(payload.boardsNum, payload.id, payload.showColorPicker, state.showColorPicker);
-    return setShowColorPicker(state, payload);
-  } else {
-    return state;
-  }
-}
 
 const datesHeaderInitialStateCalculation = (language, boardsNum) => {
   let stateObj;
@@ -127,7 +103,12 @@ export const Mapper = (props) => {
       boardsNum
     );
 
-    const [lowerfooterState, lowerfooterStateDispatch] = useReducer(lowerFooterReducerMapper, lowerFooterInitialState);
+    const [selectedColor, setSelectedColor] = useState("#2196f3");
+    const [showColorPicker, setShowColorPicker] = useState({
+      "0": false,
+      "1": false
+    });
+
     const [datesHeaderState, datesHeaderStateDispatch] = useReducer(datesHeaderReducerMapper, datesHeaderInitialState);
     const [calendarHeaderState, calendarHeaderStateDispatch] = useReducer(calendarHeaderReducerMapper, calendarHeaderInitialState);
     const [selectedDays, setSelectedDays] = useState([]);
@@ -147,16 +128,14 @@ export const Mapper = (props) => {
             datesHeaderStateDispatch(
               setViewedYear(boardsNum, id, yearsObj)
             );
-            lowerfooterStateDispatch(
-              setShowColorPicker(boardsNum, id, showColorPickerObj)
-            );
+            setShowColorPicker(showColorPickerObj);
         }
       } else {
           throw Object.assign(new Error('"language" prop is undefined'), { code: 403 });
       }
 
       if (defaultColor) {
-        lowerfooterStateDispatch(setSelectedColor(defaultColor));
+        setSelectedColor(defaultColor);
       }
   
     }, [])
@@ -183,7 +162,7 @@ export const Mapper = (props) => {
           style={marginLeftStyle}
         >
           <CalendarHeader
-            lowerfooterState={lowerfooterState}
+            selectedColor={selectedColor}
             setSelectedDays={setSelectedDays}
             selectedDays={selectedDays}
             hoveredDay={hoveredDay}
@@ -195,8 +174,10 @@ export const Mapper = (props) => {
           {calendarsIndexes.map((i) => {
               return (
               <CalendarInstance
-                  lowerfooterState={lowerfooterState}
-                  lowerfooterStateDispatch={lowerfooterStateDispatch}
+                  selectedColor={selectedColor}
+                  setSelectedColor={setSelectedColor}
+                  showColorPicker={showColorPicker}
+                  setShowColorPicker={setShowColorPicker}
                   setSelectedDays={setSelectedDays}
                   selectedDays={selectedDays}
                   setHoveredDay={setHoveredDay}
@@ -212,7 +193,7 @@ export const Mapper = (props) => {
               />)
             })}
           <DaysAmountTabButton
-            lowerfooterState={lowerfooterState}
+            selectedColor={selectedColor}
             datesHeaderStateDispatch={datesHeaderStateDispatch}
             setSelectedDays={setSelectedDays}
             boardsNum={boardsNum}

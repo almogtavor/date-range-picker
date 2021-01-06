@@ -4,7 +4,7 @@ import { SelectableDayElement } from "./SelectableDayElement";
 
 export const DaysGrid = (props) => { 
     const {
-        lowerfooterState,
+        selectedColor,
         selectedDays,
         hoveredDay,
         setSelectedDays,
@@ -52,7 +52,7 @@ export const DaysGrid = (props) => {
 
         return (
             <SelectableDayElement
-                lowerfooterState={lowerfooterState}
+                selectedColor={selectedColor}
                 selectedDays={selectedDays}
                 hoveredDay={hoveredDay}
                 setSelectedDays={setSelectedDays}

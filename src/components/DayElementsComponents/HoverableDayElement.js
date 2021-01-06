@@ -15,10 +15,9 @@ export const HoverableDayElement = (props) => {
         selectedDays,
         hoveredDay,
         setHoveredDay,
-        lowerfooterState
+        selectedColor
     } = props;
 
-    const selectedColor = lowerfooterState.selectedColor;
     const dateRef = useRef();
     const startDate = useStartDate();
     const endDate = useEndDate();

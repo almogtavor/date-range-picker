@@ -9,15 +9,16 @@ const pointerHandIcon = require('../../images/pointer-hand.png');
 
 export const ColorPickerPalette = (props) => {
     const {
-        lowerfooterState,
-        lowerfooterStateDispatch,
+        selectedColor,
+        setSelectedColor,
+        showColorPicker: showColorPickerObj,
+        setShowColorPicker,
         boardsNum,
         showPaletteAllowed,
         id
     } = props;
 
-    const selectedColor = lowerfooterState.selectedColor;
-    const showColorPicker = lowerfooterState.showColorPicker[id];
+    const showColorPicker = showColorPickerObj[id];
 
     const language = useLanguage();
     const colorsPaletteEnabling = useColorsPalette();
@@ -28,12 +29,13 @@ export const ColorPickerPalette = (props) => {
     }
 
     const changeColor = (color) => () => {
-        lowerfooterStateDispatch(setSelectedColor(color));
-        lowerfooterStateDispatch(setShowColorPicker(boardsNum, id, false));
+        setSelectedColor(color);
+        setShowColorPicker(boardsNum, id, false);
     }
 
     const toggleColorPicker = () => {
-        lowerfooterStateDispatch(setShowColorPicker(boardsNum, id, !showColorPicker));
+        console.log({ ...showColorPickerObj, [id]: !showColorPicker});
+        setShowColorPicker({ ...showColorPickerObj, [id]: !showColorPicker});
     }
 
     return (

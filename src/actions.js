@@ -66,7 +66,6 @@ export function setInitialBoard(boardsNum, language, startDate, endDate) {
             dispatch(setViewedMonth(boardsNum, id, monthsObj));
             dispatch(setViewedYear(boardsNum, id, yearsObj));
             dispatch(setMode(boardsNum, id, modeObj));
-            dispatch(setShowColorPicker(boardsNum, id, showColorPickerObj));
         }
     };
   }

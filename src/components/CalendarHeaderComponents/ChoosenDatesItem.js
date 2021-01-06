@@ -10,7 +10,7 @@ const xIcon = require('../../images/x-icon.png');
 
 export default function ChoosenDatesItem(props) {
     const { 
-        lowerfooterState,
+        selectedColor,
         setSelectedDays,
         datesHeaderStateDispatch,
         calendarHeaderState,
@@ -21,7 +21,6 @@ export default function ChoosenDatesItem(props) {
         isDatesDisplayHovered,
     } = props;
 
-    const selectedColor = lowerfooterState.selectedColor;
     const storedDates = calendarHeaderState.storedDates;
     const choosenDatesList = calendarHeaderState.choosenDatesList;
     const language = useLanguage();

@@ -8,7 +8,7 @@ import DatesDisplay from "./DatesDisplay";
 
 export const CalendarHeader = (props) => {
     const {
-        lowerfooterState,
+        selectedColor,
         hoveredDay,
         selectedDays,
         setSelectedDays,
@@ -18,7 +18,6 @@ export const CalendarHeader = (props) => {
         boardsNum
     } = props;
 
-    const selectedColor = lowerfooterState.selectedColor;
     const storedDates = calendarHeaderState.storedDates;
     const choosenDatesList = calendarHeaderState.choosenDatesList;
     const language = useLanguage();
@@ -70,7 +69,7 @@ export const CalendarHeader = (props) => {
                     lang={language}
                 >
                     <DatesDisplay
-                        lowerfooterState={lowerfooterState}
+                        selectedColor={selectedColor}
                         selectedDays={selectedDays}
                         setSelectedDays={setSelectedDays}
                         datesHeaderStateDispatch={datesHeaderStateDispatch}

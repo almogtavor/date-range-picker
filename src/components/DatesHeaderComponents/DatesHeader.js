@@ -7,7 +7,7 @@ import { Arrow } from "./Arrow";
 
 export const DatesHeader = (props) => {
     const {
-        lowerfooterState,
+        selectedColor,
         calendarModesStateDispatch,
         datesHeaderState,
         datesHeaderStateDispatch,
@@ -28,7 +28,7 @@ export const DatesHeader = (props) => {
                     element={"month"}
                     value={monthsElementValue}
                     changeMode={"Months"}
-                    lowerfooterState={lowerfooterState}
+                    selectedColor={selectedColor}
                     boardsNum={boardsNum}
                     calendarModesStateDispatch={calendarModesStateDispatch}
                     id={id}
@@ -37,7 +37,7 @@ export const DatesHeader = (props) => {
                     element={"year"}
                     value={viewedYear}
                     changeMode={"Years"}
-                    lowerfooterState={lowerfooterState}
+                    selectedColor={selectedColor}
                     boardsNum={boardsNum}
                     calendarModesStateDispatch={calendarModesStateDispatch}
                     id={id}
@@ -48,7 +48,7 @@ export const DatesHeader = (props) => {
                     nearViewedMonthsfunction={nearViewedMonths}
                     datesHeaderState={datesHeaderState}
                     datesHeaderStateDispatch={datesHeaderStateDispatch}
-                    lowerfooterState={lowerfooterState}
+                    selectedColor={selectedColor}
                     boardsNum={boardsNum}
                     id={id}
                     arrowSide={"leftArrow"}
@@ -57,7 +57,7 @@ export const DatesHeader = (props) => {
                     nearViewedMonthsfunction={nearViewedMonths}
                     datesHeaderState={datesHeaderState}
                     datesHeaderStateDispatch={datesHeaderStateDispatch}
-                    lowerfooterState={lowerfooterState}
+                    selectedColor={selectedColor}
                     boardsNum={boardsNum}
                     id={id}
                     arrowSide={"rightArrow"}

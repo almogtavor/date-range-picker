@@ -5,7 +5,7 @@ import { getOpacityColorStyle } from "../../utils/generalUtils";
 
 export const InfoElement = (props) => {
     const {
-        lowerfooterState,
+        selectedColor,
         calendarModesStateDispatch,
         element,
         value, 
@@ -14,7 +14,6 @@ export const InfoElement = (props) => {
         id
     } = props;
 
-    const selectedColor = lowerfooterState.selectedColor;
     const [isHover, setIsHover] = useState(false);
     let style = {};
     if (isHover) {

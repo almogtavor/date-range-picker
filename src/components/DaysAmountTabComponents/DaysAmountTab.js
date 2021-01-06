@@ -8,13 +8,12 @@ import { DefaultRange } from './DefaultRange';
 
 export function DaysAmountTab(props) {
     const { 
-        lowerfooterState,
+        selectedColor,
         setSelectedDays,
         boardsNum,
         datesHeaderStateDispatch
     } = props;
 
-    const selectedColor = lowerfooterState.selectedColor;
     const style = getOpacityColorStyle(selectedColor, 60);
     const errorClassName = " error-input";
     const defaultClassName = "days-amount-input";

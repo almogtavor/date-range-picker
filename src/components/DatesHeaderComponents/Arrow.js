@@ -14,7 +14,7 @@ export const Arrow = (props) => {
     const {
         datesHeaderState,
         datesHeaderStateDispatch,
-        lowerfooterState,
+        selectedColor,
         nearViewedMonthsfunction,
         boardsNum,
         arrowSide,
@@ -23,7 +23,6 @@ export const Arrow = (props) => {
 
     const viewedMonth = datesHeaderState.viewedMonth[id];
     const viewedYear = datesHeaderState.viewedYear[id];
-    const selectedColor = lowerfooterState.selectedColor;
     const arrowSideImg = arrowImages[arrowSide];
     const nearViewedMonths = nearViewedMonthsfunction(id);
     const language = useLanguage();

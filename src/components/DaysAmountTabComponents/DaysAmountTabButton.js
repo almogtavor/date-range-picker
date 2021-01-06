@@ -11,10 +11,9 @@ export function DaysAmountTabButton(props) {
         setSelectedDays,
         boardsNum,
         datesHeaderStateDispatch,
-        lowerfooterState, 
+        selectedColor, 
     } = props;
 
-    const selectedColor = lowerfooterState.selectedColor;
     const [showDaysAmountTab, setShowDaysAmountTab] = useState(false);
     const language = useLanguage();
     const enableDaysAmountTab = useDaysAmountTab();
@@ -55,7 +54,7 @@ export function DaysAmountTabButton(props) {
             }
             { showDaysAmountTab &&
                 <DaysAmountTab
-                    lowerfooterState={lowerfooterState}
+                    selectedColor={selectedColor}
                     setSelectedDays={setSelectedDays}
                     boardsNum={boardsNum}
                     datesHeaderStateDispatch={datesHeaderStateDispatch}

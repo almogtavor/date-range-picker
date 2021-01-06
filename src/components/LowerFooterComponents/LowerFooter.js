@@ -8,8 +8,10 @@ import { SelectAllButton } from "./SelectAllButton";
 export const LowerFooter = (props) => {
 
     const {
-        lowerfooterState,
-        lowerfooterStateDispatch,
+        selectedColor,
+        setSelectedColor,
+        showColorPicker,
+        setShowColorPicker,
         selectedDays,
         setSelectedDays,
         setHoveredDay,
@@ -23,7 +25,6 @@ export const LowerFooter = (props) => {
         setButtonDatesText,
     } = props;
 
-    const selectedColor = lowerfooterState.selectedColor;
     const storedDates = calendarHeaderState.storedDates;
     const language = useLanguage();
     const format = useFormat();
@@ -81,8 +82,10 @@ export const LowerFooter = (props) => {
         style={lowerFooterStyle}
     >
         <ColorPickerPalette
-            lowerfooterState={lowerfooterState}
-            lowerfooterStateDispatch={lowerfooterStateDispatch}
+            selectedColor={selectedColor}
+            setSelectedColor={setSelectedColor}
+            showColorPicker={showColorPicker}
+            setShowColorPicker={setShowColorPicker}
             showPaletteAllowed={showPaletteAllowed}
             id={id}
             boardsNum={boardsNum}

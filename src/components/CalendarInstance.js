@@ -56,8 +56,10 @@ export const getNearViewedMonths = (datesHeaderState, language, id) => {
 
 export const CalendarInstance = (props) => {
     const {
-      lowerfooterState,
-      lowerfooterStateDispatch,
+      selectedColor,
+      setSelectedColor,
+      showColorPicker,
+      setShowColorPicker,
       setSelectedDays,
       selectedDays,
       setHoveredDay,
@@ -89,7 +91,7 @@ export const CalendarInstance = (props) => {
       >
         <DatesHeader
           id={i}
-          lowerfooterState={lowerfooterState}
+          selectedColor={selectedColor}
           calendarModesStateDispatch={calendarModesStateDispatch}
           datesHeaderState={datesHeaderState}
           datesHeaderStateDispatch={datesHeaderStateDispatch}
@@ -97,7 +99,7 @@ export const CalendarInstance = (props) => {
           nearViewedMonths={nearViewedMonths}
         />
         <CalendarContent
-          lowerfooterState={lowerfooterState}
+          selectedColor={selectedColor}
           setSelectedDays={setSelectedDays}
           calendarModesState={calendarModesState}
           calendarModesStateDispatch={calendarModesStateDispatch}
@@ -112,8 +114,10 @@ export const CalendarInstance = (props) => {
           id={i}
         />
         <LowerFooter
-          lowerfooterState={lowerfooterState}
-          lowerfooterStateDispatch={lowerfooterStateDispatch}
+          selectedColor={selectedColor}
+          setSelectedColor={setSelectedColor}
+          showColorPicker={showColorPicker}
+          setShowColorPicker={setShowColorPicker}
           calendarModesState={calendarModesState}
           calendarHeaderState={calendarHeaderState}
           datesHeaderState={datesHeaderState}

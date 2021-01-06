@@ -9,7 +9,7 @@ import { YearSelector } from "./YearSelector";
 
 export const CalendarContent = (props) => {
     const {
-      lowerfooterState,
+      selectedColor,
       selectedDays,
       hoveredDay,
       setSelectedDays,
@@ -29,7 +29,7 @@ export const CalendarContent = (props) => {
     <div className="month-grid">
         <WeekDaysNames/>
         <DaysGrid 
-          lowerfooterState={lowerfooterState}
+          selectedColor={selectedColor}
           selectedDays={selectedDays}
           hoveredDay={hoveredDay}
           setSelectedDays={setSelectedDays}
@@ -42,7 +42,7 @@ export const CalendarContent = (props) => {
         />
         {mode === "Months" ? (
           <MonthSelector
-            lowerfooterState={lowerfooterState}
+            selectedColor={selectedColor}
             selectedDays={selectedDays}
             calendarModesStateDispatch={calendarModesStateDispatch}
             datesHeaderState={datesHeaderState}
@@ -53,7 +53,7 @@ export const CalendarContent = (props) => {
           />
         ) : mode === "Years" && 
           <YearSelector
-            lowerfooterState={lowerfooterState}
+            selectedColor={selectedColor}
             selectedDays={selectedDays}
             calendarModesStateDispatch={calendarModesStateDispatch}
             datesHeaderState={datesHeaderState}
