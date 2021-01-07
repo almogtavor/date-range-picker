@@ -40,4 +40,4 @@ firstDayOfWeekIndex                        | int    | 0 - 6 | 0 (sunday) | first
 pickMethod                        | String    | `date`, `range`, `ranges` | `range` | date means picking one day (on one board). range is to peak dates two dates. ranges is to pick an array of ranges (with view option on hover).
 defaultColor                        | String    | any color format item | `#2196f3` | default component's color. becomes the first option on colors palette.
 daysAmountTab                        | String    | `enabled`, `disabled` | `disabled` | by enabling, there will be a button on the left that you can open and choose prepared range, or days amount up to today.
-boardsNum                        | int  | 1, 2 | 1 | by specifing you can choose the component's boards number.
+boardsNum                        | int  | 1, 2 | 2 | by specifing you can choose the component's boards number.
