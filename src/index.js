@@ -11,7 +11,7 @@ function callbackFunciton(dates) {
     console.log(`The min date that got picked is: ${dates.minDate}`);
     console.log(`The max date that got picked is: ${dates.maxDate}`);
     console.log(`The number of days that got picked is: ${dates.numberOfDaysPicked}`);
-    console.log(`The number of days that got picked is: ${dates.allDates}`);
+    console.log(`All dates: ${dates.allDates}`);
 }
 
 ReactDOM.render(

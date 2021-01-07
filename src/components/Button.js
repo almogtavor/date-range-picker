@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import '../styles/button.css';
 import { useFormat, usePickMethod, useLanguage } from "../context/InitialParametersContext";
 import { choosenDatesCalculation } from "../utils/generalUtils";

@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useState } from "react";
 import "../App.css";
-import { CalendarInstance } from './CalendarInstance';
+import { CalendarInstance as BoardInstance } from './BoardInstance';
 import { useLanguage } from "../context/InitialParametersContext";
 import { updateObject } from "../utils/reducerUtils";
 import { CalendarHeader } from "./CalendarHeaderComponents/CalendarHeader";
@@ -143,7 +143,7 @@ export const Mapper = (props) => {
           />
           {calendarsIndexes.map((i) => {
               return (
-              <CalendarInstance
+              <BoardInstance
                   selectedColor={selectedColor}
                   setSelectedColor={setSelectedColor}
                   setSelectedDays={setSelectedDays}

@@ -5,7 +5,6 @@ import '../../styles/CalendarModesStyles/month-selector.css';
 import { useLanguage, useStartDate, useEndDate } from "../../context/InitialParametersContext";
 import { selectorsModeStyle } from "../../utils/generalUtils";
 import { setMode, setViewedMonth } from "../../actions";
-import { getUpdatedObject } from "../../utils/actionsUtils";
 
 export const MonthSelector = (props) => {
     const {
