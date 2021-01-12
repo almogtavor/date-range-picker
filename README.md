@@ -1,7 +1,15 @@
 # date-range-picker
  A React date picker calendar with ranges.
  
- Demo at https://almogtavor.github.io/date-range-picker/
+#### Main Features:
+  * Pick method - an option of configuring the component to be date picker, range picker or ranges picker.
+  * Days amount tab - an option of selecting number of days backwards from current date immediately by choosing number.
+  * Colors pallete - an option of determining the component's color (can be disabled removed).
+  * Language - English and Hebrew support.
+  * Select all button - an option of selecting all of current board's dates. Weather viewing dates, months or years.
+  * Boards number - an option of configuring component to be in one board or two boards.
+ 
+#### Demo at https://almogtavor.github.io/date-range-picker/
 
 ![](public/example-image1.png)
 
