@@ -15,10 +15,6 @@ function callbackFunciton(dates) {
 }
 
 ReactDOM.render(
-    <>
-    <h1 className="title">Date Range Picker Component</h1>
-    
-    <div className="sub-title">Simple date picker</div>
     <DateRangePicker
         language="English"
         colorsPalette="enabled"
@@ -27,43 +23,12 @@ ReactDOM.render(
         startDate={new Date(2000, 8, 21)} 
         endDate={new Date(2024, 9, 21)}
         firstDayOfWeekIndex={0}
-        pickMethod="date"
+        pickMethod="range"
         defaultColor="#178905"
         daysAmountTab="disabled"
-        boardsNum={1}
-        callback={callbackFunciton}
-    />
-    <div className="sub-title">Range picker (default values)</div>
-    <DateRangePicker 
-            callback={callbackFunciton}
-            />
-    <div className="sub-title">Multiple ranges picker</div>
-    <DateRangePicker 
-        pickMethod="ranges"
-        callback={callbackFunciton}
-
-    />
-    <div className="sub-title">
-        Hebrew version (right to left). 
-        All features enabled with
-        ranges pick method
-    </div>
-    <DateRangePicker
-        language="Hebrew"
-        colorsPalette="enabled"
-        format="DD-MM-YYYY"
-        selectAllButton="enabled"
-        startDate={new Date(2000, 8, 21)} 
-        endDate={new Date(2024, 9, 21)}
-        firstDayOfWeekIndex={0}
-        pickMethod="ranges"
-        defaultColor="#178905"
-        daysAmountTab="enabled"
         boardsNum={2}
         callback={callbackFunciton}
-
-    />
-    </>,
+    />,
     document.getElementById('root')
 );
 

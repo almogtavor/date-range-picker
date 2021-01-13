@@ -1,14 +1,13 @@
 body {
-  background: linear-gradient(120deg, #000000, #5aaa99 , #ffffff, #000000, #000000);
+  /* background: linear-gradient(120deg, #000000, #5aaa99 , #ffffff, #000000, #000000); */
   /* background: linear-gradient(25deg, #ecff9a 0%, #fdbe8b 100%); */
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-    /* background: linear-gradient(45deg,#F17C58, #E94584, #24AADB , #27DBB1,#FFDC18, #FF3706); */
-    background-size: 600% 100%;
+    /* background-size: 600% 100%;
     animation: gradient 45s linear infinite;
-    animation-direction: alternate;
+    animation-direction: alternate; */
 }
 @keyframes gradient {
     0% {background-position: 0%}
