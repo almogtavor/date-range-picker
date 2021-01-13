@@ -6,6 +6,11 @@
   position: relative;
 }
 
+.github-button {
+  display: inline;
+  color: black;
+}
+
 .title {
   position: relative;
   background: white;

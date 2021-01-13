@@ -16,6 +16,12 @@ function callbackFunciton(dates) {
 
 ReactDOM.render(
     <>
+    {/* <div
+        className="sub-title"
+        href="https://github.com/almogtavor/date-range-picker" 
+    >
+            Star
+    </div> */}
     <h1 className="title">Date Range Picker Component</h1>
     
     <div className="sub-title">Simple date picker</div>
