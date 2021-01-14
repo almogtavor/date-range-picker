@@ -49,3 +49,9 @@ pickMethod                        | String    | `date`, `range`, `ranges` | `ran
 defaultColor                        | String    | any color format item | `#2196f3` | default component's color. becomes the first option on colors palette.
 daysAmountTab                        | String    | `enabled`, `disabled` | `disabled` | by enabling, there will be a button on the left that you can open and choose prepared range, or days amount up to today.
 boardsNum                        | int  | 1, 2 | 2 | by specifing you can choose the component's boards number.
+
+### Future Plans:
+  * Add simple and intuitive time picker option (by list\ or visual clock\ both).
+  * Tooltips for buttons explanation (for example on select all button).
+  * On non-component-screen click, close component.
+  * Go back button on non-dates mode (or on all modes for previous). When the user is in month's or year's mode, add an option to return to dates mode without choosing any value.
