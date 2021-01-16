@@ -1,5 +1,3 @@
-// import './wdyr';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -25,7 +23,7 @@ ReactDOM.render(
         firstDayOfWeekIndex={0}
         pickMethod="range"
         defaultColor="#178905"
-        daysAmountTab="disabled"
+        daysAmountTab="enabled"
         boardsNum={2}
         callback={callbackFunciton}
     />,
