@@ -55,3 +55,6 @@ boardsNum                        | int  | 1, 2 | 2 | by specifing you can choose
   * Tooltips for buttons explanation (for example on select all button).
   * On non-component-screen click, close component.
   * Go back button on non-dates mode (or on all modes for previous). When the user is in month's or year's mode, add an option to return to dates mode without choosing any value.
+  * Component & button sizes parameters
+  * Border radius parameter
+  * An option to cancel picked range from the input label

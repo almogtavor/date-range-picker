@@ -23,7 +23,7 @@ ReactDOM.render(
         firstDayOfWeekIndex={0}
         pickMethod="range"
         defaultColor="#178905"
-        daysAmountTab="disabled"
+        daysAmountTab="enabled"
         boardsNum={2}
         callback={callbackFunciton}
     />,

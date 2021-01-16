@@ -29,3 +29,4 @@ src/reducers/dist/index.dev.js
 src/utils/dist/utils.dev.js
 src/utils/dist/utils.dev.js
 .eslintcache
+./package-lock.json
