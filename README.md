@@ -1,7 +1,12 @@
-<a href="https://www.npmjs.com/package/dates-picker"><img alt="NPM" src="https://img.shields.io/badge/v1.0.3-npm-orange"></a>
+<h1 align='center'>React Date Range Picker</h1>
 
-# date-range-picker
-⚛️📆 Flexible React date range picker calendar with no dependencies.
+<p align='center'>Flexible React date range picker calendar with no dependencies</p>
+
+<p align='center'>
+  <a href="https://www.npmjs.com/package/dates-picker"><img alt="NPM" src="https://img.shields.io/badge/v1.0.3-npm-orange"></a>
+</p>
+
+![](public/example-image1.png)
 
 ### Main Features:
   * Pick method - an option of configuring the component to be date picker, range picker, or ranges picker.
