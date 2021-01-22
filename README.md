@@ -1,12 +1,14 @@
 <h1 align='center'>React Date Range Picker</h1>
 
-<p align='center'>Flexible React date range picker calendar with no dependencies</p>
+<p align='center'>⚛️📆 Flexible React date range picker calendar with no dependencies</p>
 
 <p align='center'>
   <a href="https://www.npmjs.com/package/dates-picker"><img alt="NPM" src="https://img.shields.io/badge/v1.0.3-npm-orange"></a>
 </p>
-
 ![](public/example-image1.png)
+
+### Demo
+Demo page at https://almogtavor.github.io/date-range-picker/
 
 ### Main Features:
   * Pick method - an option of configuring the component to be date picker, range picker, or ranges picker.
@@ -15,11 +17,6 @@
   * Language - English and Hebrew support.
   * Select all button - an option of selecting all of the current board's dates. Whether viewing dates, months, or years.
   * Boards number - an option of configuring components to be in one board or two boards.
- 
-### Demo
-Demo page at https://almogtavor.github.io/date-range-picker/
-
-![](public/example-image1.png)
 
 ## Installation
 
