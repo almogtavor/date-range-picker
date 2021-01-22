@@ -8,10 +8,10 @@
 
 ![](public/example-image1.png)
 
-### Demo
+## Demo
 Demo page at https://almogtavor.github.io/date-range-picker/
 
-### Main Features:
+## Main Features:
   * Pick method - an option of configuring the component to be date picker, range picker, or ranges picker.
   * Days amount tab - an option of selecting a number of days backward from the current date immediately by choosing a number.
   * Colors palette - an option of determining the component's color (can be disabled removed).
