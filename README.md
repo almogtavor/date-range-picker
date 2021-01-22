@@ -1,6 +1,6 @@
 # date-range-picker
- A React date picker calendar with ranges.
- 
+⚛️📆 Flexible React date range picker calendar with no dependencies.
+
 #### Main Features:
   * Pick method - an option of configuring the component to be date picker, range picker, or ranges picker.
   * Days amount tab - an option of selecting a number of days backward from the current date immediately by choosing a number.
@@ -13,6 +13,11 @@
 
 ![](public/example-image1.png)
 
+## Installation
+
+```sh
+$ npm i dates-picker
+```
 
 ### Usage
 ```javascript
