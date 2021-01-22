@@ -1,17 +1,23 @@
-# date-range-picker
-⚛️📆 Flexible React date range picker calendar with no dependencies.
+<h1 align='center'>React Date Range Picker</h1>
 
-#### Main Features:
+<p align='center'>⚛️📆 Flexible React date range picker calendar with no dependencies</p>
+
+<p align='center'>
+  <a href="https://www.npmjs.com/package/dates-picker"><img alt="NPM" src="https://img.shields.io/badge/v1.0.3-npm-orange"></a>
+</p>
+
+![](public/example-image1.png)
+
+## Demo
+Demo page at https://almogtavor.github.io/date-range-picker/
+
+## Main Features:
   * Pick method - an option of configuring the component to be date picker, range picker, or ranges picker.
   * Days amount tab - an option of selecting a number of days backward from the current date immediately by choosing a number.
   * Colors palette - an option of determining the component's color (can be disabled removed).
   * Language - English and Hebrew support.
   * Select all button - an option of selecting all of the current board's dates. Whether viewing dates, months, or years.
   * Boards number - an option of configuring components to be in one board or two boards.
- 
-#### Demo at https://almogtavor.github.io/date-range-picker/
-
-![](public/example-image1.png)
 
 ## Installation
 
@@ -19,7 +25,7 @@
 $ npm i dates-picker
 ```
 
-### Usage
+## Usage
 ```javascript
 function callbackFunciton(dates) {
     console.log(`The range of dates that got picked is: ${dates.text}`);
@@ -39,7 +45,7 @@ function MyComponent() {
 }
 ```
 
-### Options
+## Options
 
 Property                             | Type      | Allowed Values   | Default Value        | Description
 -------------------------------------|-----------|------------------|----------------------|-----------------------------------------------
@@ -55,7 +61,7 @@ defaultColor                        | String    | any color format item | `#2196
 daysAmountTab                        | String    | `enabled`, `disabled` | `disabled` | by enabling, there will be a button on the left that you can open and choose prepared range, or days amount up to today.
 boardsNum                        | int  | 1, 2 | 2 | by specifing you can choose the component's boards number.
 
-### Future Plans:
+## Future Plans:
   * Add simple and intuitive time picker option (by list\ or visual clock\ both).
   * Tooltips for buttons explanation (for example on select all button).
   * On non-component-screen click, close component.
