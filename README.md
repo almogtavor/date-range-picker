@@ -1,4 +1,4 @@
-<a href="https://img.shields.io/badge/v1.0.3-npm-orange"><img alt="NPM" src="https://www.npmjs.com/package/dates-picker"></a>
+<a href="https://www.npmjs.com/package/dates-picker"><img alt="NPM" src="https://img.shields.io/badge/v1.0.3-npm-orange"></a>
 
 # date-range-picker
 ⚛️📆 Flexible React date range picker calendar with no dependencies.
