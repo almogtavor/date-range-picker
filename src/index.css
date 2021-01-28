@@ -4,15 +4,19 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-  sans-serif;
+    sans-serif;
   /* background-size: 600% 100%;
   animation: gradient 45s linear infinite;
   animation-direction: alternate; */
 }
 
 @keyframes gradient {
-    0% {background-position: 0%}
-    100% {background-position: 100%}
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
 }
 
 code {

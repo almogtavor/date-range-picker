@@ -1,68 +1,67 @@
-  
-  .month-selector {
-    width: 100%;
-    height: 85%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: rgb(244, 246, 248);
-    border-radius: 10px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
+.month-selector {
+  width: 100%;
+  height: 85%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgb(244, 246, 248);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
 
-  .month-selector:lang(Hebrew) {
-    direction: rtl;
-  }
+.month-selector:lang(Hebrew) {
+  direction: rtl;
+}
 
-  .month-selector:lang(English) div:nth-child(1) {
-    border-top-left-radius: 12px;
-  }
-  
-  .month-selector:lang(English) div:nth-child(3) {
-    border-top-right-radius: 12px;
-  }
-  
-  .month-selector:lang(English) div:nth-last-child(3) {
-    border-bottom-left-radius: 12px;
-  }
-  
-  .month-selector:lang(English) div:nth-last-child(1) {
-    border-bottom-right-radius: 12px;
-  }
+.month-selector:lang(English) div:nth-child(1) {
+  border-top-left-radius: 12px;
+}
 
-  .month-selector:lang(Hebrew) div:nth-child(3) {
-    border-top-left-radius: 12px;
-  }
-  
-  .month-selector:lang(Hebrew) div:nth-child(1) {
-    border-top-right-radius: 12px;
-  }
-  
-  .month-selector:lang(Hebrew) div:nth-last-child(1) {
-    border-bottom-left-radius: 12px;
-  }
-  
-  .month-selector:lang(Hebrew) div:nth-last-child(3) {
-    border-bottom-right-radius: 12px;
-  }
-  
-  .selectable-month {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    padding: 2px;
-    background-clip: content-box;
-  }
+.month-selector:lang(English) div:nth-child(3) {
+  border-top-right-radius: 12px;
+}
 
-  .selectable-month.invalid {
-    opacity: 0.5;
-    cursor: not-allowed;
-    text-decoration: line-through;
-  }
-  
-  .selectable-month:hover {
-    background: rgb(198, 203, 211);
-    background-clip: content-box;
-  }
+.month-selector:lang(English) div:nth-last-child(3) {
+  border-bottom-left-radius: 12px;
+}
+
+.month-selector:lang(English) div:nth-last-child(1) {
+  border-bottom-right-radius: 12px;
+}
+
+.month-selector:lang(Hebrew) div:nth-child(3) {
+  border-top-left-radius: 12px;
+}
+
+.month-selector:lang(Hebrew) div:nth-child(1) {
+  border-top-right-radius: 12px;
+}
+
+.month-selector:lang(Hebrew) div:nth-last-child(1) {
+  border-bottom-left-radius: 12px;
+}
+
+.month-selector:lang(Hebrew) div:nth-last-child(3) {
+  border-bottom-right-radius: 12px;
+}
+
+.selectable-month {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 2px;
+  background-clip: content-box;
+}
+
+.selectable-month.invalid {
+  opacity: 0.5;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.selectable-month:hover {
+  background: rgb(198, 203, 211);
+  background-clip: content-box;
+}

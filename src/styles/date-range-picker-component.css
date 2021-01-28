@@ -1,17 +1,17 @@
 .date-range-picker-component {
-    display: flex;
-    justify-content: center;
-    margin-top: 65px;
-  }
-  
+  display: flex;
+  justify-content: center;
+  margin-top: 65px;
+}
+
 .date-range-picker {
-    position: absolute;
-    /* margin-left: 1.5%;
+  position: absolute;
+  /* margin-left: 1.5%;
     margin-top: -1.3%; */
-    font-size: 0.95em;
-    /* align-items: center; */
-    width: 795px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    outline: none;
-  }
+  font-size: 0.95em;
+  /* align-items: center; */
+  width: 795px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  outline: none;
+}

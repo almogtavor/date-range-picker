@@ -1,58 +1,56 @@
-
 .dates-display {
-    display: flex;
-    position: relative;
-    margin-top: 0.15em;
-    font-size: 0.9em;
-    font-weight: 500;
-    /* width: 210px; */
-    width: 80%;
-  }
-  
-  .dates-display:lang(Hebrew) {
-    direction: rtl;
-  }
-  
-  .dates-display-list {
-    margin-top: 0.15em;
-    /* margin-top: -3.5em; */
-    background-color: rgb(244, 246, 248);
-    display: inline-flex;
-    font-size: 0.9em;
-    font-weight: 500;
-    width: 50%;
-    height: 450%;
-    border-radius: 12px;
-  }
-     
-  .dates-display-list:lang(Hebrew) {
-    direction: rtl;
-  }
+  display: flex;
+  position: relative;
+  margin-top: 0.15em;
+  font-size: 0.9em;
+  font-weight: 500;
+  /* width: 210px; */
+  width: 80%;
+}
 
-  .hoverable-choosen-dates {
-    height: 100%;
-    overflow-y: auto;
-    width: 100%;
-    direction: ltr;
-    border-radius: 12px;
-  }
-  
-  .hoverable-choosen-dates::-webkit-scrollbar {
-    width: 7px;
-    border-radius: 4px;
-    background-color: rgb(228, 228, 228);
-  }
-  
-  .hoverable-choosen-dates::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(175, 175, 175);
-  }
-  
-  .hoverable-choosen-dates::-webkit-scrollbar-thumb:active {
-    background-color: rgb(134, 131, 131);
-  }
-   
-  .hoverable-choosen-dates::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgb(190, 187, 187);
-  }
- 
+.dates-display:lang(Hebrew) {
+  direction: rtl;
+}
+
+.dates-display-list {
+  margin-top: 0.15em;
+  /* margin-top: -3.5em; */
+  background-color: rgb(244, 246, 248);
+  display: inline-flex;
+  font-size: 0.9em;
+  font-weight: 500;
+  width: 50%;
+  height: 450%;
+  border-radius: 12px;
+}
+
+.dates-display-list:lang(Hebrew) {
+  direction: rtl;
+}
+
+.hoverable-choosen-dates {
+  height: 100%;
+  overflow-y: auto;
+  width: 100%;
+  direction: ltr;
+  border-radius: 12px;
+}
+
+.hoverable-choosen-dates::-webkit-scrollbar {
+  width: 7px;
+  border-radius: 4px;
+  background-color: rgb(228, 228, 228);
+}
+
+.hoverable-choosen-dates::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(175, 175, 175);
+}
+
+.hoverable-choosen-dates::-webkit-scrollbar-thumb:active {
+  background-color: rgb(134, 131, 131);
+}
+
+.hoverable-choosen-dates::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgb(190, 187, 187);
+}
