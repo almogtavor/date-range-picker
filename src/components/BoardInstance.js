@@ -1,6 +1,6 @@
 import React, { useReducer } from "react"
 import "../App.css"
-import { updateObject } from "../utils/reducerUtils"
+import { getNearViewedMonths, updateObject } from "../utils/generalUtils"
 import { DatesHeader } from "./DatesHeaderComponents/DatesHeader"
 import { CalendarContent } from "./CalendarModesComponents/CalendarContent"
 import { LowerFooter } from "./LowerFooterComponents/LowerFooter"
@@ -26,35 +26,6 @@ function calendarModesReducerMapper(state, payload) {
     return setMode(state, payload)
   } else {
     return state
-  }
-}
-
-const getIDs = (language, id) => {
-  let rightId = language === "Hebrew" ? id - 1 : id + 1
-  let leftId = language === "Hebrew" ? id + 1 : id - 1
-  if (rightId < 0) {
-    // when searching -1 on the array
-    // we get unwanted result instead of undefined
-    rightId = 999
-  } else if (leftId < 0) {
-    // when searching -1 on the array
-    // we get unwanted result instead of undefined
-    leftId = 999
-  }
-  return { rightId, leftId }
-}
-
-export const getNearViewedMonths = (datesHeaderState, language, id) => {
-  const { rightId, leftId } = getIDs(language, id)
-  return {
-    right: {
-      year: datesHeaderState.viewedYear[rightId],
-      month: datesHeaderState.viewedMonth[rightId],
-    },
-    left: {
-      year: datesHeaderState.viewedYear[leftId],
-      month: datesHeaderState.viewedMonth[leftId],
-    },
   }
 }
 

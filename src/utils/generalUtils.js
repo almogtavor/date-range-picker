@@ -102,6 +102,39 @@ export function getDates(range) {
     }
 }
 
+export function updateObject(oldObject, newValues) {
+    return Object.assign({}, oldObject, newValues)
+}
+
+function getIDs(language, id) {
+  let rightId = language === "Hebrew" ? id - 1 : id + 1
+  let leftId = language === "Hebrew" ? id + 1 : id - 1
+  if (rightId < 0) {
+    // when searching -1 on the array
+    // we get unwanted result instead of undefined
+    rightId = 999
+  } else if (leftId < 0) {
+    // when searching -1 on the array
+    // we get unwanted result instead of undefined
+    leftId = 999
+  }
+  return { rightId, leftId }
+}
+
+export const getNearViewedMonths = (datesHeaderState, language, id) => {
+    const { rightId, leftId } = getIDs(language, id)
+    return {
+      right: {
+        year: datesHeaderState.viewedYear[rightId],
+        month: datesHeaderState.viewedMonth[rightId],
+      },
+      left: {
+        year: datesHeaderState.viewedYear[leftId],
+        month: datesHeaderState.viewedMonth[leftId],
+      },
+    }
+  }
+
 export function updateViewedMonths(boardsNum, language, datesHeaderStateDispatch, date1, date2) {
     let boardIndexes = [0, 1];
     if (language === "Hebrew") {

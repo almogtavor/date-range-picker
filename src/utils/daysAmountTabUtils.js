@@ -5,7 +5,7 @@ export function getDefaultRanges(year, month, date) {
     let past3Months = new Date(year, month - 3, date);
     let past6Months = new Date(year, month - 6, date);
     let pastYear = new Date(year, month, date - 364);
-    const defaultRanges = [
+    return [
         [currentDate, currentDate],
         [pastWeek, currentDate],
         [pastMonth, currentDate],
@@ -13,5 +13,4 @@ export function getDefaultRanges(year, month, date) {
         [past6Months, currentDate],
         [pastYear, currentDate],
     ];
-    return defaultRanges;
 }

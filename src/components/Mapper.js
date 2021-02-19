@@ -2,7 +2,7 @@ import React, { useEffect, useReducer, useState } from "react"
 import "../App.css"
 import { CalendarInstance as BoardInstance } from "./BoardInstance"
 import { useLanguage } from "../context/InitialParametersContext"
-import { updateObject } from "../utils/reducerUtils"
+import { updateObject } from "../utils/generalUtils"
 import { CalendarHeader } from "./CalendarHeaderComponents/CalendarHeader"
 import { DaysAmountTabButton } from "./DaysAmountTabComponents/DaysAmountTabButton"
 import { getInitialObject, getUpdatedObject } from "../utils/actionsUtils"
@@ -58,11 +58,20 @@ function datesHeaderReducerMapper(state, payload) {
       payload.id,
       payload.viewedYear,
       state.viewedYear
-    )
-    return setViewedYear(state, payload)
-  } else {
-    return state
+      )
+      return setViewedYear(state, payload)
+    } else {
+      return state
+    }
   }
+  
+function getMarginLeft(boardsNum) {
+  if (boardsNum === 1) {
+    return { marginLeft: "255px" }
+  } else if (boardsNum === 2) {
+    return { marginLeft: 255 / 2 + "px" }
+  }
+  return {};
 }
 
 export const Mapper = (props) => {
@@ -86,10 +95,12 @@ export const Mapper = (props) => {
     datesHeaderReducerMapper,
     datesHeaderInitialState
   )
+  const calendarsIndexes = [...Array(boardsNum).keys()]
+  const marginLeftStyle = getMarginLeft(boardsNum)
 
   const [choosenDatesList, setChoosenDatesList] = useState([])
   const [storedDates, setStoredDates] = useState([])
-  const [selectedColor, setSelectedColor] = useState("#2196f3")
+  const [selectedColor, setSelectedColor] = useState("#219643")
   const [selectedDays, setSelectedDays] = useState([])
   const [hoveredDay, setHoveredDay] = useState(null)
 
@@ -115,20 +126,6 @@ export const Mapper = (props) => {
       setSelectedColor(defaultColor)
     }
   }, [boardsNum, defaultColor, endDate, language, startDate])
-
-  // const handleBlur = () => {
-  //   setShowCalendar(false);
-  // }
-  // tabIndex="1" onBlur={handleBlur}
-
-  const calendarsIndexes = [...Array(boardsNum).keys()]
-  let marginLeftStyle = {}
-
-  if (boardsNum === 1) {
-    marginLeftStyle = { marginLeft: "255px" }
-  } else if (boardsNum === 2) {
-    marginLeftStyle = { marginLeft: 255 / 2 + "px" }
-  }
 
   return (
     <>
@@ -181,3 +178,4 @@ export const Mapper = (props) => {
     </>
   )
 }
+
