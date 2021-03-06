@@ -1,3 +1,5 @@
+@import "variables-declaration.css";
+
 .date-range-picker-component {
   display: flex;
   justify-content: center;

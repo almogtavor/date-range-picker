@@ -4,7 +4,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  background: rgb(244, 246, 248);
+  background: var(--calendar-bgc);
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -62,6 +62,6 @@
 }
 
 .selectable-month:hover {
-  background: rgb(198, 203, 211);
+  background: var(--dark-hover);
   background-clip: content-box;
 }

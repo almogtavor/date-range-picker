@@ -7,13 +7,13 @@
   font-size: 1.2em;
   border-radius: 16px;
   border-width: 1px;
-  background-color: rgb(244, 246, 248);
+  background-color: var(--calendar-bgc);
   position: absolute;
   outline: none;
 }
 
 .button:hover {
-  background-color: rgb(226, 225, 225);
+  background-color: var(--calendar-hover);
   cursor: pointer;
 }
 

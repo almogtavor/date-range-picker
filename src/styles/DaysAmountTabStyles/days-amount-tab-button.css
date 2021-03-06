@@ -1,5 +1,5 @@
 .days-amount-tab-button-template {
-  background-color: rgb(244, 246, 248);
+  background-color: var(--calendar-bgc);
   border-radius: 15%;
   margin-left: -112%;
   width: 18%;
