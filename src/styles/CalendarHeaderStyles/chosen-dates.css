@@ -1,4 +1,4 @@
-.choosen-dates-count {
+.chosen-dates-count {
   display: flex;
   justify-content: space-around;
   /* align-items: center; */
@@ -12,7 +12,7 @@
   margin-right: 3px;
 }
 
-.choosen-dates-item {
+.chosen-dates-item {
   /* background-color: palevioletred; */
   display: flex;
   justify-content: space-between;
@@ -21,7 +21,7 @@
   margin-bottom: 2%;
 }
 
-.choosen-dates-wrap {
+.chosen-dates-wrap {
   border-radius: 12px;
 
   display: flex;
@@ -29,16 +29,16 @@
   justify-items: flex-start;
 }
 
-.choosen-dates-wrap:hover {
+.chosen-dates-wrap:hover {
   padding-left: 1%;
   padding-right: 1%;
 }
 
-.choosen-dates-item:lang(Hebrew) {
+.chosen-dates-item:lang(Hebrew) {
   direction: rtl;
 }
 
-.choosen-dates {
+.chosen-dates {
   max-height: 18px;
   text-overflow: clip;
   overflow: hidden;

@@ -28,7 +28,7 @@
   direction: rtl;
 }
 
-.hoverable-choosen-dates {
+.hoverable-chosen-dates {
   height: 100%;
   overflow-y: auto;
   width: 100%;
@@ -36,21 +36,21 @@
   border-radius: 12px;
 }
 
-.hoverable-choosen-dates::-webkit-scrollbar {
+.hoverable-chosen-dates::-webkit-scrollbar {
   width: 7px;
   border-radius: 4px;
   background-color: rgb(228, 228, 228);
 }
 
-.hoverable-choosen-dates::-webkit-scrollbar-thumb:hover {
+.hoverable-chosen-dates::-webkit-scrollbar-thumb:hover {
   background-color: rgb(175, 175, 175);
 }
 
-.hoverable-choosen-dates::-webkit-scrollbar-thumb:active {
+.hoverable-chosen-dates::-webkit-scrollbar-thumb:active {
   background-color: rgb(134, 131, 131);
 }
 
-.hoverable-choosen-dates::-webkit-scrollbar-thumb {
+.hoverable-chosen-dates::-webkit-scrollbar-thumb {
   border-radius: 4px;
   background-color: rgb(190, 187, 187);
 }

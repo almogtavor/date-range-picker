@@ -1,6 +1,6 @@
 import { setViewedMonth, setViewedYear } from "../actions";
 
-export function choosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod, language) {
+export function chosenDatesCalculation(selectedDays, hoveredDay, format, pickMethod, language) {
     if (selectedDays.length) {
         if (selectedDays.length === 2) {
             if (selectedDays[0] > selectedDays[1]) {

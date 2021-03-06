@@ -5,7 +5,7 @@ import {
 } from "../../context/InitialParametersContext"
 import "../../styles/CalendarHeaderStyles/dates-display.css"
 import { getDates } from "../../utils/generalUtils"
-import ChoosenDatesItem from "./ChoosenDatesItem"
+import ChosenDatesItem from "./ChosenDatesItem"
 
 export default function DatesDisplay(props) {
   const {
@@ -15,9 +15,9 @@ export default function DatesDisplay(props) {
     datesHeaderStateDispatch,
     storedDates,
     setStoredDates,
-    choosenDatesList,
-    setChoosenDatesList,
-    choosenDates,
+    chosenDatesList,
+    setChosenDatesList,
+    chosenDates,
     boardsNum,
     selectedDaysStyle,
   } = props
@@ -43,7 +43,7 @@ export default function DatesDisplay(props) {
     ) {
       prevSelectedDays.current = selectedDays
       const [biggerSelectedDate, smallerSelectedDate] = getDates(selectedDays)
-      let clearedChoosenDatesList = []
+      let clearedChosenDatesList = []
       let clearedStoredDates = []
       storedDates.forEach((storedRange, i) => {
         if (storedRange) {
@@ -52,22 +52,22 @@ export default function DatesDisplay(props) {
             biggerSelectedDate < smallerStoredDate ||
             smallerSelectedDate > biggerStoredDate
           ) {
-            clearedChoosenDatesList.push(choosenDatesList[i])
+            clearedChosenDatesList.push(chosenDatesList[i])
             clearedStoredDates.push(storedRange)
           }
         }
       })
 
       setStoredDates([selectedDays, ...clearedStoredDates])
-      setChoosenDatesList([choosenDates, ...clearedChoosenDatesList])
+      setChosenDatesList([chosenDates, ...clearedChosenDatesList])
     }
   }, [
     selectedDays,
     storedDates,
-    choosenDatesList,
-    choosenDates,
+    chosenDatesList,
+    chosenDates,
     setStoredDates,
-    setChoosenDatesList,
+    setChosenDatesList,
   ])
 
   return (
@@ -77,53 +77,53 @@ export default function DatesDisplay(props) {
       onMouseLeave={toggleHover}
       lang={language}
     >
-      {pickMethod !== "ranges" && choosenDates}
+      {pickMethod !== "ranges" && chosenDates}
       {pickMethod === "ranges" &&
         !isCurrentlyHovered &&
-        (choosenDatesList.length === 0 ? (
-          <ChoosenDatesItem
+        (chosenDatesList.length === 0 ? (
+          <ChosenDatesItem
             selectedColor={selectedColor}
             setSelectedDays={setSelectedDays}
             datesHeaderStateDispatch={datesHeaderStateDispatch}
             storedDates={storedDates}
             setStoredDates={setStoredDates}
-            choosenDatesList={choosenDatesList}
-            setChoosenDatesList={setChoosenDatesList}
+            chosenDatesList={chosenDatesList}
+            setChosenDatesList={setChosenDatesList}
             boardsNum={boardsNum}
-            choosenDates={choosenDates}
+            chosenDates={chosenDates}
             index={-1}
             isDatesDisplayHovered={isCurrentlyHovered}
           />
         ) : (
-          <ChoosenDatesItem
+          <ChosenDatesItem
             selectedColor={selectedColor}
             setSelectedDays={setSelectedDays}
             datesHeaderStateDispatch={datesHeaderStateDispatch}
             storedDates={storedDates}
             setStoredDates={setStoredDates}
-            choosenDatesList={choosenDatesList}
-            setChoosenDatesList={setChoosenDatesList}
+            chosenDatesList={chosenDatesList}
+            setChosenDatesList={setChosenDatesList}
             boardsNum={boardsNum}
-            choosenDates={choosenDatesList[0]}
-            index={choosenDatesList.length - 1}
+            chosenDates={chosenDatesList[0]}
+            index={chosenDatesList.length - 1}
             isDatesDisplayHovered={isCurrentlyHovered}
           />
         ))}
       {pickMethod === "ranges" && isCurrentlyHovered && (
-        <div className="hoverable-choosen-dates" style={selectedDaysStyle}>
-          {choosenDatesList.map((listItem, i) => {
+        <div className="hoverable-chosen-dates" style={selectedDaysStyle}>
+          {chosenDatesList.map((listItem, i) => {
             return (
-              <ChoosenDatesItem
+              <ChosenDatesItem
                 selectedColor={selectedColor}
                 setSelectedDays={setSelectedDays}
                 datesHeaderStateDispatch={datesHeaderStateDispatch}
                 storedDates={storedDates}
                 setStoredDates={setStoredDates}
-                choosenDatesList={choosenDatesList}
-                setChoosenDatesList={setChoosenDatesList}
+                chosenDatesList={chosenDatesList}
+                setChosenDatesList={setChosenDatesList}
                 boardsNum={boardsNum}
                 key={listItem + i}
-                choosenDates={listItem}
+                chosenDates={listItem}
                 index={i}
                 isDatesDisplayHovered={isCurrentlyHovered}
               />

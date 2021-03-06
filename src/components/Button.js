@@ -5,7 +5,7 @@ import {
   usePickMethod,
   useLanguage,
 } from "../context/InitialParametersContext"
-import { choosenDatesCalculation } from "../utils/generalUtils"
+import { chosenDatesCalculation } from "../utils/generalUtils"
 
 const calendarIcon = require("../images/calendar-icon6.png")
 
@@ -15,7 +15,7 @@ export const Button = (props) => {
   const language = useLanguage()
   const format = useFormat()
   const pickMethod = usePickMethod()
-  const formatPattern = choosenDatesCalculation(
+  const formatPattern = chosenDatesCalculation(
     [],
     null,
     format,

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import "../../styles/CalendarHeaderStyles/choosen-dates.css"
+import "../../styles/CalendarHeaderStyles/chosen-dates.css"
 import {
   getOpacityColorStyle,
   removeItemFromArray,
@@ -9,17 +9,17 @@ import { useLanguage } from "../../context/InitialParametersContext"
 
 const xIcon = require("../../images/x-icon.png")
 
-export default function ChoosenDatesItem(props) {
+export default function ChosenDatesItem(props) {
   const {
     selectedColor,
     setSelectedDays,
     datesHeaderStateDispatch,
     storedDates,
     setStoredDates,
-    choosenDatesList,
-    setChoosenDatesList,
+    chosenDatesList,
+    setChosenDatesList,
     boardsNum,
-    choosenDates,
+    chosenDates,
     index,
     isDatesDisplayHovered,
   } = props
@@ -52,9 +52,9 @@ export default function ChoosenDatesItem(props) {
   }
 
   const handleXClick = () => {
-    let clearedChoosenDatesList = removeItemFromArray(
-      choosenDatesList,
-      choosenDates
+    let clearedChosenDatesList = removeItemFromArray(
+      chosenDatesList,
+      chosenDates
     )
     let clearedStoredDates = removeItemFromArray(
       storedDates,
@@ -72,20 +72,20 @@ export default function ChoosenDatesItem(props) {
         clearedStoredDates[0][1]
       )
     }
-    setChoosenDatesList([...clearedChoosenDatesList])
+    setChosenDatesList([...clearedChosenDatesList])
     setStoredDates([...clearedStoredDates])
   }
 
   const handleDatesClick = () => {
     let selectedDays = storedDates[index]
-    let clearedChoosenDatesList = removeItemFromArray(
-      choosenDatesList,
-      choosenDates
+    let clearedChosenDatesList = removeItemFromArray(
+      chosenDatesList,
+      chosenDates
     )
     let clearedStoredDates = removeItemFromArray(storedDates, selectedDays)
     setSelectedDays(selectedDays)
     setStoredDates([selectedDays, ...clearedStoredDates])
-    setChoosenDatesList([choosenDates, ...clearedChoosenDatesList])
+    setChosenDatesList([chosenDates, ...clearedChosenDatesList])
     updateViewedMonths(
       boardsNum,
       language,
@@ -97,20 +97,20 @@ export default function ChoosenDatesItem(props) {
 
   return (
     <div
-      className="choosen-dates-item"
+      className="chosen-dates-item"
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
     >
       <div
-        className="choosen-dates-wrap"
+        className="chosen-dates-wrap"
         onClick={handleDatesClick}
         onMouseEnter={handleWrapEnter}
         onMouseLeave={handleWrapLeave}
         style={wrapStyle}
       >
-        <div className="choosen-dates-count">{index + 1}</div>
-        <div key={choosenDates + index} className="choosen-dates">
-          {choosenDates}
+        <div className="chosen-dates-count">{index + 1}</div>
+        <div key={chosenDates + index} className="chosen-dates">
+          {chosenDates}
         </div>
       </div>
       {isXCurrentlyHovered && (

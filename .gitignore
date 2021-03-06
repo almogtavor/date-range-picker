@@ -31,3 +31,4 @@ src/utils/dist/utils.dev.js
 .eslintcache
 ./package-lock.json
 .vscode/settings.json
+.history/

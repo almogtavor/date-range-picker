@@ -7,7 +7,7 @@ import {
   useSelectAllButton,
   useColorsPalette,
 } from "../../context/InitialParametersContext"
-import { choosenDatesCalculation } from "../../utils/generalUtils"
+import { chosenDatesCalculation } from "../../utils/generalUtils"
 import { ColorPickerPalette } from "./ColorPickerPalette"
 import { SelectAllButton } from "./SelectAllButton"
 import { callbackResponse } from "../../utils/callbackUtils"
@@ -68,7 +68,7 @@ export const LowerFooter = (props) => {
           }
         }
       }
-      const dates = choosenDatesCalculation(
+      const dates = chosenDatesCalculation(
         [minDate, maxDate],
         null,
         format,
@@ -81,7 +81,7 @@ export const LowerFooter = (props) => {
         callback(callbackResponse(pickMethod, dates, storedDates))
       }
     } else {
-      const dates = choosenDatesCalculation(
+      const dates = chosenDatesCalculation(
         selectedDays,
         null,
         format,

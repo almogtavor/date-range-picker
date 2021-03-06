@@ -1,7 +1,7 @@
 import React from "react"
 import "../../styles/CalendarHeaderStyles/calendar-header.css"
 import {
-  choosenDatesCalculation,
+  chosenDatesCalculation,
   calculateDaysCount,
   removeItemFromArray,
   getOpacityColorStyle,
@@ -23,8 +23,8 @@ export const CalendarHeader = (props) => {
     datesHeaderStateDispatch,
     storedDates,
     setStoredDates,
-    choosenDatesList,
-    setChoosenDatesList,
+    chosenDatesList,
+    setChosenDatesList,
     boardsNum,
   } = props
 
@@ -43,28 +43,28 @@ export const CalendarHeader = (props) => {
   const selectedDaysStyle = getOpacityColorStyle(selectedColor, 60)
 
   // language not included in funciton call because of the css ltr property of hebrew case
-  let choosenDates = choosenDatesCalculation(
+  let chosenDates = chosenDatesCalculation(
     selectedDays,
     hoveredDay,
     format,
     pickMethod
   )
-  choosenDates = addDatesCount(
+  chosenDates = addDatesCount(
     pickMethod,
     selectedDays,
-    choosenDates,
+    chosenDates,
     language,
     hoveredDay
   )
 
   const handleClearClick = () => {
     if (pickMethod === "ranges") {
-      let clearedChoosenDatesList = removeItemFromArray(
-        choosenDatesList,
-        choosenDates
+      let clearedChosenDatesList = removeItemFromArray(
+        chosenDatesList,
+        chosenDates
       )
       let clearedStoredDates = removeItemFromArray(storedDates, selectedDays)
-      setChoosenDatesList([...clearedChoosenDatesList])
+      setChosenDatesList([...clearedChosenDatesList])
       setStoredDates([...clearedStoredDates])
       if (storedDates.length < 1) {
         setSelectedDays([])
@@ -94,10 +94,10 @@ export const CalendarHeader = (props) => {
             datesHeaderStateDispatch={datesHeaderStateDispatch}
             storedDates={storedDates}
             setStoredDates={setStoredDates}
-            choosenDatesList={choosenDatesList}
-            setChoosenDatesList={setChoosenDatesList}
+            chosenDatesList={chosenDatesList}
+            setChosenDatesList={setChosenDatesList}
             boardsNum={boardsNum}
-            choosenDates={choosenDates}
+            chosenDates={chosenDates}
             selectedDaysStyle={selectedDaysStyle}
           />
           <button
@@ -117,22 +117,22 @@ export const CalendarHeader = (props) => {
 function addDatesCount(
   pickMethod,
   selectedDays,
-  choosenDates,
+  chosenDates,
   language,
   hoveredDay
 ) {
   if (pickMethod !== "date") {
     if (selectedDays.length === 2) {
-      choosenDates += calculateDaysCount(
+      chosenDates += calculateDaysCount(
         selectedDays[0],
         selectedDays[1],
         language
       )
     } else if (hoveredDay !== null && selectedDays.length === 1) {
-      choosenDates += calculateDaysCount(selectedDays[0], hoveredDay, language)
+      chosenDates += calculateDaysCount(selectedDays[0], hoveredDay, language)
     }
   }
-  return choosenDates
+  return chosenDates
 }
 
 function areEqual(prevProps, nextProps) {

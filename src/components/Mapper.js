@@ -98,7 +98,7 @@ export const Mapper = (props) => {
   const calendarsIndexes = [...Array(boardsNum).keys()]
   const marginLeftStyle = getMarginLeft(boardsNum)
 
-  const [choosenDatesList, setChoosenDatesList] = useState([])
+  const [chosenDatesList, setChosenDatesList] = useState([])
   const [storedDates, setStoredDates] = useState([])
   const [selectedColor, setSelectedColor] = useState("#219643")
   const [selectedDays, setSelectedDays] = useState([])
@@ -139,8 +139,8 @@ export const Mapper = (props) => {
             datesHeaderStateDispatch={datesHeaderStateDispatch}
             storedDates={storedDates}
             setStoredDates={setStoredDates}
-            choosenDatesList={choosenDatesList}
-            setChoosenDatesList={setChoosenDatesList}
+            chosenDatesList={chosenDatesList}
+            setChosenDatesList={setChosenDatesList}
             boardsNum={boardsNum}
           />
           {calendarsIndexes.map((i) => {
@@ -156,8 +156,8 @@ export const Mapper = (props) => {
                 datesHeaderStateDispatch={datesHeaderStateDispatch}
                 storedDates={storedDates}
                 setStoredDates={setStoredDates}
-                choosenDatesList={choosenDatesList}
-                setChoosenDatesList={setChoosenDatesList}
+                chosenDatesList={chosenDatesList}
+                setChosenDatesList={setChosenDatesList}
                 setButtonDatesText={setButtonDatesText}
                 setShowCalendar={setShowCalendar}
                 callback={callback}
