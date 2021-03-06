@@ -1,5 +1,5 @@
 .not-in-range:hover {
-  background-color: rgb(226, 225, 225);
+  background-color: var(--calendar-hover)
 }
 
 .in-range:hover {

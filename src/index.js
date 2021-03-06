@@ -23,7 +23,7 @@ ReactDOM.render(
     startDate={new Date(2000, 8, 21)}
     endDate={new Date(2024, 9, 21)}
     firstDayOfWeekIndex={0}
-    pickMethod="range"
+    pickMethod="ranges"
     defaultColor="#178905"
     daysAmountTab="enabled"
     boardsNum={2}

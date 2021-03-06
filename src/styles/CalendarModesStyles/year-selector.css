@@ -4,30 +4,34 @@
   position: absolute;
   left: 0;
   top: 0;
-  background: rgb(244, 246, 248);
+  background: var(--calendar-bgc);
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   overflow-y: auto;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 .year-selector::-webkit-scrollbar {
   width: 7px;
   border-radius: 4px;
-  background-color: rgb(228, 228, 228);
-}
-
-.year-selector::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(175, 175, 175);
-}
-
-.year-selector::-webkit-scrollbar-thumb:active {
-  background-color: rgb(134, 131, 131);
+  background-color: var(--calendar-hover);
 }
 
 .year-selector::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background-color: rgb(190, 187, 187);
+  background-color: var(--moderate-hover);
+}
+
+.year-selector::-webkit-scrollbar-thumb:hover {
+  background-color: var(--dark-hover);
+}
+
+.year-selector::-webkit-scrollbar-thumb:active {
+  background-color: var(--super-dark-hover);
 }
 
 .selectable-year {
@@ -40,7 +44,7 @@
 }
 
 .selectable-year:hover {
-  background: rgb(198, 203, 211);
+  background: var(--dark-hover);
   background-clip: content-box;
 }
 
