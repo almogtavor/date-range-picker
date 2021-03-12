@@ -6,7 +6,7 @@ import './index.css';
 import DateRangePicker from './App';
 import * as serviceWorker from './serviceWorker';
 
-function callbackFunciton(dates) {
+function callbackFunction(dates) {
     console.log(`The range of dates that got picked is: ${dates.text}`);
     console.log(`The min date that got picked is: ${dates.minDate}`);
     console.log(`The max date that got picked is: ${dates.maxDate}`);
@@ -37,16 +37,16 @@ ReactDOM.render(
         defaultColor="#178905"
         daysAmountTab="disabled"
         boardsNum={1}
-        callback={callbackFunciton}
+        callback={callbackFunction}
     />
     <div className="sub-title">Range picker (default values)</div>
     <DateRangePicker 
-            callback={callbackFunciton}
+            callback={callbackFunction}
             />
     <div className="sub-title">Multiple ranges picker</div>
     <DateRangePicker 
         pickMethod="ranges"
-        callback={callbackFunciton}
+        callback={callbackFunction}
 
     />
     <div className="sub-title">
@@ -66,7 +66,7 @@ ReactDOM.render(
         defaultColor="#178905"
         daysAmountTab="enabled"
         boardsNum={2}
-        callback={callbackFunciton}
+        callback={callbackFunction}
 
     />
     </>,

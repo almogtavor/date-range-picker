@@ -28,3 +28,7 @@ src/dist/actions.dev.js
 src/reducers/dist/index.dev.js
 src/utils/dist/utils.dev.js
 src/utils/dist/utils.dev.js
+.history/.gitignore_20210306171013
+.history/.gitignore_20210306171036
+.history/src/actions_20210306170656.js
+.history/
