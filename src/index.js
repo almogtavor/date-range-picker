@@ -4,7 +4,7 @@ import "./index.css"
 import DateRangePicker from "./App"
 import * as serviceWorker from "./serviceWorker"
 
-function callbackFunciton(dates) {
+function callbackFunction(dates) {
   console.log(`The range of dates that got picked is: ${dates.text}`)
   console.log(`The min date that got picked is: ${dates.minDate}`)
   console.log(`The max date that got picked is: ${dates.maxDate}`)
@@ -23,11 +23,11 @@ ReactDOM.render(
     startDate={new Date(2000, 8, 21)}
     endDate={new Date(2024, 9, 21)}
     firstDayOfWeekIndex={0}
-    pickMethod="ranges"
+    pickMethod="range"
     defaultColor="#178905"
     daysAmountTab="enabled"
     boardsNum={2}
-    callback={callbackFunciton}
+    callback={callbackFunction}
   />,
   document.getElementById("root")
 )
