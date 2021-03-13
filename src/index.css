@@ -9,7 +9,7 @@ body {
   background-size: 600% 100%;
   animation: gradient 45s linear infinite;
   animation-direction: alternate;
-  margin: 110%; 
+  min-width: 800px; 
 }
 
 @keyframes gradient {
