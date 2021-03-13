@@ -7,10 +7,13 @@ import {
 } from "../../context/InitialParametersContext"
 import { getOpacityColorStyle } from "../../utils/generalUtils"
 import { setViewedMonth, setViewedYear } from "../../actions"
+import leftArrow from '../../images/arrow-left.png';
+import rightArrow from '../../images/arrow-right.png';
+
 
 const arrowImages = {
-  leftArrow: require("../../images/arrow-left.png"),
-  rightArrow: require("../../images/arrow-right.png"),
+  leftArrow,
+  rightArrow,
 }
 
 export const Arrow = (props) => {

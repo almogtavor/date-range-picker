@@ -6,8 +6,8 @@ import {
   useLanguage,
 } from "../context/InitialParametersContext"
 import { chosenDatesCalculation } from "../utils/generalUtils"
+import calendarIcon from '../images/calendar-icon6.png';
 
-const calendarIcon = require("../images/calendar-icon6.png")
 
 export const Button = (props) => {
   const { setShowCalendar, showCalendar, buttonDatesText } = props

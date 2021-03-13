@@ -6,8 +6,8 @@ import {
 } from "../../context/InitialParametersContext"
 import { getOpacityColorStyle } from "../../utils/generalUtils"
 import { DaysAmountTab } from "./DaysAmountTab"
+import chooseDaysAmount from '../../images/choose-days-amount.png';
 
-const chooseDaysAmount = require("../../images/choose-days-amount.png")
 
 export function DaysAmountTabButton(props) {
   const {

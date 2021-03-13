@@ -49,16 +49,16 @@ export function useInitialSelectedColor() {
   return useContext(InitialParametersContext).initialSelectedColor
 }
 
-function valueParse(parmaeter, defaultValue) {
-  if (parmaeter) {
-    return parmaeter
+function valueParse(parameter, defaultValue) {
+  if (parameter) {
+    return parameter
   } else {
     return defaultValue
   }
 }
 
-function checkValidInput(parmaeter) {
-  if (parmaeter !== "enabled" && parmaeter !== "disabled") {
+function checkValidInput(parameter) {
+  if (parameter !== "enabled" && parameter !== "disabled") {
     throw Object.assign(
       new Error(
         'A paramter from the type of "enabled/disabled" has a different value.'
