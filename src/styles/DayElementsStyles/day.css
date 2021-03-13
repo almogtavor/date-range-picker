@@ -1,47 +1,47 @@
 @keyframes slide-in-left {
-    0% {
-      -webkit-transform: translateX(-25px);
-              transform: translateX(-25px);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: translateX(0);
-              transform: translateX(0);
-      opacity: 1;
-    }
+  0% {
+    -webkit-transform: translateX(-25px);
+    transform: translateX(-25px);
+    opacity: 0;
   }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
 .day-element {
-    height: 80%;
-    width: 90%;
-    background-clip: content-box;
-    border-radius: 7px;
-    cursor: pointer;
+  height: 80%;
+  width: 90%;
+  background-clip: content-box;
+  border-radius: 7px;
+  cursor: pointer;
 }
 
 .hoverable-div {
-    height: 100%;
-    border-radius: 7px;
-    /* animation: slide-in-left 0.25s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; */
+  height: 100%;
+  border-radius: 7px;
+  /* animation: slide-in-left 0.25s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; */
 }
 
 .currently-hovered {
-    margin-top: -0.15em;
-    margin-bottom: -0.15em;
-    border-width: 0.15em;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    color: white;
+  margin-top: -0.15em;
+  margin-bottom: -0.15em;
+  border-width: 0.15em;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  color: white;
 }
 
 .non-current {
-    opacity: 0.4;
+  opacity: 0.4;
 }
 
 .disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    text-decoration: line-through;
+  opacity: 0.5;
+  cursor: not-allowed;
+  text-decoration: line-through;
 }
 
 /* .first-selected {
@@ -63,5 +63,5 @@
 } */
 
 .today {
-    font-weight: bold;
+  font-weight: bold;
 }

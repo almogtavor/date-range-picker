@@ -1,57 +1,54 @@
+.days-amount-tab-template {
+  background-color: rgb(244, 246, 248);
+  border-bottom-left-radius: 12px;
+  border-top-left-radius: 12px;
+  margin-left: -240%;
+  margin-top: -22px;
+  width: 46%;
+  height: 327.5px;
+}
 
-  .days-amount-tab-template {
-    background-color: rgb(244, 246, 248);
-    border-bottom-left-radius: 12px;
-    border-top-left-radius: 12px;
-    margin-left: -240%;
-    margin-top: -22px;
-    width: 46%;
-    height: 327.5px;
-  }
+.days-amount-tab-div {
+  border-bottom-left-radius: 12px;
+  border-top-left-radius: 12px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+}
 
-  .days-amount-tab-div {
-    border-bottom-left-radius: 12px;
-    border-top-left-radius: 12px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-around;
-    text-align: center;
-  }
+.pickable-days-amount {
+  margin-left: -10%;
+  width: 80%;
+}
 
-  .pickable-days-amount {
-    margin-left: -10%;
-    width: 80%;
-  }
+.pickable-days-amount:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 
-  .pickable-days-amount:hover {
-    text-decoration: underline;
-    cursor: pointer;
-  }
+.days-amount-input {
+  width: 30%;
+  border-width: 0px;
+  border-radius: 20%;
+  border-width: 1px;
+  border-color: rgb(244, 246, 248);
+  background-color: rgb(244, 246, 248);
+  outline: 0;
+}
 
-  .days-amount-input {
-    width: 30%;
-    border-width: 0px;
-    border-radius: 20%;
-    border-width: 1px;
-    border-color: rgb(244, 246, 248);
-    background-color: rgb(244, 246, 248);
-    outline: 0;
-  }
+.error-input {
+  border-width: 1px;
+  border-color: red;
+}
 
+.days-amount-field {
+  margin-left: -10%;
+  width: 80%;
+}
 
-  .error-input {
-    border-width: 1px;
-    border-color: red;
-  }
-
-  .days-amount-field {
-    margin-left: -10%;
-    width: 80%;
-  }
-
-  
-  .days-amount-field:lang(Hebrew) {
-    direction: rtl;
-  }
+.days-amount-field:lang(Hebrew) {
+  direction: rtl;
+}

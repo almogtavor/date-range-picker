@@ -1,0 +1,7 @@
+:root {
+  --calendar-bgc: rgb(244, 246, 248);
+  --calendar-hover: rgb(226, 225, 225);
+  --moderate-hover: rgb(204, 204, 204);
+  --dark-hover: rgb(192, 192, 192);
+  --super-dark-hover: rgb(163, 162, 162);
+}

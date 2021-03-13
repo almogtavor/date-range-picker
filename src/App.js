@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import "./App.css";
-import "./styles/button.css";
+import React, { useState } from "react"
+import "./App.css"
+import "./styles/button.css"
 import "./styles/date-range-picker-component.css"
-import { InitialParametersProvider } from "./context/InitialParametersContext";
-import { Button } from "./components/Button";
-import { CalendarComponent } from "./components/CalendarComponent";
+import { InitialParametersProvider } from "./context/InitialParametersContext"
+import { Button } from "./components/Button"
+import { CalendarComponent } from "./components/CalendarComponent"
 
 export function App(props) {
   const {
@@ -12,16 +12,16 @@ export function App(props) {
     boardsNum: propsBoardsNum,
     startDate,
     endDate,
-    defaultColor
-  } = props;
-  
-  let boardsNumInitialState = propsBoardsNum;
+    defaultColor,
+  } = props
+
+  let boardsNumInitialState = propsBoardsNum
   if (!propsBoardsNum) {
-    boardsNumInitialState = 2;
+    boardsNumInitialState = 2
   }
-  const [boardsNum] = useState(boardsNumInitialState);
-  const [showCalendar, setShowCalendar] = useState(false);
-  const [buttonDatesText, setButtonDatesText] = useState(null);
+  const [boardsNum] = useState(boardsNumInitialState)
+  const [showCalendar, setShowCalendar] = useState(false)
+  const [buttonDatesText, setButtonDatesText] = useState(null)
 
   return (
     <div className="App">
@@ -44,7 +44,7 @@ export function App(props) {
         />
       </InitialParametersProvider>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
