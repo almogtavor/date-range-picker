@@ -6,10 +6,10 @@ import {
   useStartDate,
   useSelectAllButton,
 } from "../../context/InitialParametersContext"
+import checkbox from '../../images/checkbox.png';
+import hoverCheckbox from '../../images/hover-checkbox.png';
+import clickedCheckbox from '../../images/clicked-checkbox.png';
 
-const checkbox = require("../../images/checkbox.png")
-const hoverCheckbox = require("../../images/hover-checkbox.png")
-const clickedCheckbox = require("../../images/clicked-checkbox.png")
 
 function limitDate(
   mode,

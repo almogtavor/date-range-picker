@@ -7,8 +7,8 @@ import {
   useInitialSelectedColor,
 } from "../../context/InitialParametersContext"
 import { getOpacityColorStyle } from "../../utils/generalUtils"
+import pointerHandIcon from '../../images/pointer-hand.png';
 
-const pointerHandIcon = require("../../images/pointer-hand.png")
 
 export const ColorPickerPalette = (props) => {
   const { selectedColor, setSelectedColor, showPaletteAllowed } = props
