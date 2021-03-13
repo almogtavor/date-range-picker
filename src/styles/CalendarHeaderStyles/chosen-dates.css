@@ -1,0 +1,60 @@
+.chosen-dates-count {
+  display: flex;
+  justify-content: space-around;
+  /* align-items: center; */
+  color: white;
+  background-color: rgb(185, 131, 131);
+  border-radius: 50%;
+  min-width: 18px;
+  height: 18px;
+  padding-bottom: 1px;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.chosen-dates-item {
+  /* background-color: palevioletred; */
+  display: flex;
+  justify-content: space-between;
+  /* margin-top: 2%; */
+  height: 22px;
+  margin-bottom: 2%;
+}
+
+.chosen-dates-wrap {
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: row;
+  justify-items: flex-start;
+}
+
+.chosen-dates-wrap:hover {
+  padding-left: 1%;
+  padding-right: 1%;
+}
+
+.chosen-dates-item:lang(Hebrew) {
+  direction: rtl;
+}
+
+.chosen-dates {
+  max-height: 18px;
+  text-overflow: clip;
+  overflow: hidden;
+}
+.x-icon {
+  margin-top: 3px;
+  height: 14px;
+  width: 14px;
+  /*margin-right: 10%;
+  */opacity: 0.4;
+  margin-left: 5%;
+  position: static;
+  animation: swing-in-top-fwd 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  -webkit-animation: swing-in-top-fwd 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+.x-icon:hover {
+  opacity: 0.8;
+}

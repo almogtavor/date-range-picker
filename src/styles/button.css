@@ -1,23 +1,23 @@
 .button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    width: 350px;
-    font-size: 1.2em;
-    border-radius: 16px;
-    border-width: 1px;
-    background-color: rgb(244, 246, 248);
-    position: absolute;
-    outline: none;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 350px;
+  font-size: 1.2em;
+  border-radius: 16px;
+  border-width: 1px;
+  background-color: var(--calendar-bgc);
+  position: absolute;
+  outline: none;
 }
 
 .button:hover {
-    background-color:rgb(226, 225, 225);
-    cursor: pointer;
+  background-color: var(--calendar-hover);
+  cursor: pointer;
 }
 
 .calendar-icon {
-    height: 25px;
-    margin-left: 3%;
+  height: 25px;
+  margin-left: 3%;
 }
