@@ -88,7 +88,7 @@ export const SelectAllButton = (props) => {
   const language = useLanguage()
   const selectAllButton = useSelectAllButton()
   const [checkboxSrc, setCheckboxSrc] = useState(checkbox)
-  const checkeboxChanged = useRef(false)
+  const checkboxChanged = useRef(false)
 
   let text = "Select All"
   if (language === "Hebrew") {
@@ -111,7 +111,7 @@ export const SelectAllButton = (props) => {
       1
     )
 
-    const endOfYear = new Date(viewedYear, 12, 0)
+    const endOfYear = new Date(viewedYear, 0, 0)
     const endOfCurrentMonth = new Date(viewedYear, viewedMonth + 1, 0)
     const endOfRightMonth = new Date(
       nearViewedMonths.right.year,
@@ -147,7 +147,7 @@ export const SelectAllButton = (props) => {
     if (checkboxSrc !== clickedCheckbox) {
       setCheckboxSrc(clickedCheckbox)
       setHoveredDay(null)
-      checkeboxChanged.current = true
+      checkboxChanged.current = true
       const [startSelectDate, endSelectDate] = getLimits()
       setSelectedDays([startSelectDate, endSelectDate])
     } else {
@@ -163,10 +163,10 @@ export const SelectAllButton = (props) => {
   }, [mode, selectAllButton])
 
   useEffect(() => {
-    if (checkeboxChanged.current === false) {
+    if (checkboxChanged.current === false) {
       setCheckboxSrc(checkbox)
     } else {
-      checkeboxChanged.current = false
+      checkboxChanged.current = false
     }
   }, [selectedDays])
 
