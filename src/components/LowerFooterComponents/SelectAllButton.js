@@ -111,7 +111,7 @@ export const SelectAllButton = (props) => {
       1
     )
 
-    const endOfYear = new Date(viewedYear, 0, 0)
+    const endOfYear = new Date(viewedYear, 12, 0)
     const endOfCurrentMonth = new Date(viewedYear, viewedMonth + 1, 0)
     const endOfRightMonth = new Date(
       nearViewedMonths.right.year,
