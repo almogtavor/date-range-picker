@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/date-range-picker/static/css/main.c4979942.chunk.css",
-    "main.js": "/date-range-picker/static/js/main.9852bb71.chunk.js",
-    "main.js.map": "/date-range-picker/static/js/main.9852bb71.chunk.js.map",
+    "main.css": "/date-range-picker/static/css/main.20f42581.chunk.css",
+    "main.js": "/date-range-picker/static/js/main.5a26f90d.chunk.js",
+    "main.js.map": "/date-range-picker/static/js/main.5a26f90d.chunk.js.map",
     "runtime-main.js": "/date-range-picker/static/js/runtime-main.8634d04d.js",
     "runtime-main.js.map": "/date-range-picker/static/js/runtime-main.8634d04d.js.map",
     "static/js/2.33fa8821.chunk.js": "/date-range-picker/static/js/2.33fa8821.chunk.js",
     "static/js/2.33fa8821.chunk.js.map": "/date-range-picker/static/js/2.33fa8821.chunk.js.map",
     "index.html": "/date-range-picker/index.html",
-    "static/css/main.c4979942.chunk.css.map": "/date-range-picker/static/css/main.c4979942.chunk.css.map",
+    "static/css/main.20f42581.chunk.css.map": "/date-range-picker/static/css/main.20f42581.chunk.css.map",
     "static/js/2.33fa8821.chunk.js.LICENSE.txt": "/date-range-picker/static/js/2.33fa8821.chunk.js.LICENSE.txt",
     "static/media/calendar-icon6.3707a4ed.png": "/date-range-picker/static/media/calendar-icon6.3707a4ed.png"
   },
   "entrypoints": [
     "static/js/runtime-main.8634d04d.js",
     "static/js/2.33fa8821.chunk.js",
-    "static/css/main.c4979942.chunk.css",
-    "static/js/main.9852bb71.chunk.js"
+    "static/css/main.20f42581.chunk.css",
+    "static/js/main.5a26f90d.chunk.js"
   ]
 }
