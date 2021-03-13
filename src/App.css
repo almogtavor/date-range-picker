@@ -1,7 +1,7 @@
 .App {
   user-select: none;
   display: flex;
-  min-width: 600px;
+  margin-bottom: 350px;
   justify-content: center;
   position: relative;
 }
