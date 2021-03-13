@@ -1,10 +1,10 @@
 .weekday {
-    height: 25px;
-    display: grid;
-    justify-content: center;
-    align-items: center;
+  height: 25px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 
-    background-color: rgb(226, 225, 225);
-    margin: 0px 1.5px 10px;
-    border-radius: 8px;
+  background-color: var(--calendar-hover);
+  margin: 0px 1.5px 10px;
+  border-radius: 8px;
 }
