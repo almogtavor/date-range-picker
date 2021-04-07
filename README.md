@@ -1,10 +1,20 @@
-<h1 align='center'>React Date Range Picker</h1>
+<br />
+<br />
+<h1 align='center'>
+    <br />
+    <br />
+    React Date Range Picker
+    <br />
+</h1>
 
+<sup>
 <p align='center'>⚛️📆 Flexible React date range picker calendar with no dependencies</p>
-
 <p align='center'>
   <a href="https://www.npmjs.com/package/dates-picker"><img alt="NPM" src="https://img.shields.io/badge/v1.0.3-npm-orange"></a>
 </p>
+    <br />
+    <br />
+</sup>
 
 ![Example Image](public/example-image1.png)
 
