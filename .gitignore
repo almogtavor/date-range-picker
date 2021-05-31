@@ -34,3 +34,5 @@ src/utils/dist/utils.dev.js
 .history/
 .vscode/settings.json
 .prettierrc
+
+jsconfig.json

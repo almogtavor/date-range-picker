@@ -1,0 +1,102 @@
+<svg fill="none" viewBox="0 0 800 400" width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+    <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+            <style>
+                .bg {
+                    font-family: "Archivo Black", sans-serif;
+                    background: #2196f3;
+                    display: flex;
+                    flex-direction: column;
+                    height: 100vh;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .words {
+                    color: #2196f3;
+                    font-size: 0;
+                    font-weight: 900;
+                    line-height: 1.2;
+                }
+
+                .words span {
+                    font-size: 5rem;
+                    display: inline-block;
+                    animation: move 3s ease-in-out infinite;
+                }
+
+                @keyframes move {
+                    0% {
+                        transform: translate(-30%, 0);
+                    }
+
+                    50% {
+                        text-shadow: 0 25px 50px rgba(0, 0, 0, 0.75);
+                    }
+
+                    100% {
+                        transform: translate(30%, 0);
+                    }
+                }
+
+                .words span:nth-child(2) {
+                    animation-delay: 0.5s;
+                }
+
+                .words span:nth-child(3) {
+                    animation-delay: 1s;
+                }
+
+                .words span:nth-child(4) {
+                    animation-delay: 1.5s;
+                }
+
+                .words span:nth-child(5) {
+                    animation-delay: 2s;
+                }
+
+                .words span:nth-child(6) {
+                    animation-delay: 2.5s;
+                }
+
+                .words span:nth-child(7) {
+                    animation-delay: 3s;
+                }
+            </style>
+            <div class="bg">
+                <div class="words word-1">
+                    <span>R</span>
+                    <span>E</span>
+                    <span>A</span>
+                    <span>C</span>
+                    <span>T</span>
+                </div>
+
+                <div class="words word-2">
+                    <span>D</span>
+                    <span>A</span>
+                    <span>T</span>
+                    <span>E</span>
+                </div>
+
+                <div class="words word-3">
+                    <span>R</span>
+                    <span>A</span>
+                    <span>N</span>
+                    <span>G</span>
+                    <span>E</span>
+                </div>
+
+                <div class="words word-4">
+                    <span>P</span>
+                    <span>I</span>
+                    <span>C</span>
+                    <span>K</span>
+                    <span>E</span>
+                    <span>R</span>
+                </div>
+            </div>
+
+        </div>
+    </foreignObject>
+</svg>

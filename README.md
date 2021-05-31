@@ -1,11 +1,10 @@
-<br />
-<br />
-<h1 align='center'>
-    <br />
-    <br />
-    React Date Range Picker
-    <br />
-</h1>
+<div align="center">
+	<br>
+	<a href="https://raw.githubusercontent.com/sindresorhus/css-in-readme-like-wat/main/readme.md">
+		<img src="images/../src/images/title.svg" width="800" height="400" alt="Click to see the source">
+	</a>
+	<br>
+</div>
 
 <sup>
 <p align='center'>⚛️📆 Flexible React date range picker calendar with no dependencies</p>
@@ -22,6 +21,9 @@
 
 Demo page at <https://almogtavor.github.io/date-range-picker/>
 
+<details>
+  <summary>Read More</summary>
+  
 ## Main Features
 
 * Pick method - an option of configuring the component to be date picker, range picker, or ranges picker.
@@ -83,3 +85,4 @@ boardsNum                        | int  | 1, 2 | 2 | by specifing you can choose
 * Component & button sizes parameters
 * Border radius parameter
 * An option to cancel picked range from the input label
+</details>
