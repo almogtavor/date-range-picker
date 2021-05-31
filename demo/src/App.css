@@ -1,0 +1,39 @@
+.App {
+  user-select: none;
+  display: flex;
+  min-width: 600px;
+  justify-content: center;
+  position: relative;
+}
+
+.title {
+  position: relative;
+  background: white;
+  z-index: 1;
+  top: 0;
+  /* font-family: 'EB Garamond', serif; */
+  padding: 30px 50px;
+  font-size: 32px;
+  width: 300px;
+  text-align: center;
+  left: 50%;
+  margin-left: -200px;
+  margin-bottom: 200px;
+  /* top: 100px; */
+}
+
+.sub-title {
+  position: relative;
+  background: white;
+  z-index: 1;
+  top: 0;
+  /* font-family: 'EB Garamond', serif; */
+  padding: 10px 10px;
+  font-size: 20px;
+  width: 300px;
+  text-align: center;
+  left: 50%;
+  margin-left: -160px;
+  margin-bottom: 30px;
+  /* top: 100px; */
+}
