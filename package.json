@@ -6,7 +6,7 @@
   "homepage": "https://almogtavor.github.io/date-range-picker/",
   "main": "src/index.js",
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "peerDependencies": {
     "react": "^16.12.0",
