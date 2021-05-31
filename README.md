@@ -7,6 +7,8 @@
 </div>
 
 <sup>
+    <br />
+
 <p align='center'>
   <a href="https://www.npmjs.com/package/dates-picker"><img alt="NPM" src="https://img.shields.io/badge/v1.0.3-npm-orange"></a>
   <p align='center'>⚛️📆 Flexible React date range picker calendar with no dependencies</p>
