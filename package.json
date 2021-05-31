@@ -1,6 +1,6 @@
 {
   "name": "dates-picker",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "⚛️📆 Flexible React date range picker calendar with no dependencies.",
   "private": false,
   "homepage": "https://almogtavor.github.io/date-range-picker/",

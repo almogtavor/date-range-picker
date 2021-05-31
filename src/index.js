@@ -4,6 +4,8 @@ import "./index.css"
 import DateRangePicker from "./App"
 import * as serviceWorker from "./serviceWorker"
 
+export { DateRangePicker }
+
 function callbackFunction(dates) {
   console.log(`The range of dates that got picked is: ${dates.text}`)
   console.log(`The min date that got picked is: ${dates.minDate}`)
