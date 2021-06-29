@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import { setMode } from "../../actions"
-import "../../styles/DatesHeaderStyles/info-element.css"
-import { getOpacityColorStyle } from "../../utils/generalUtils"
+import { setMode } from "actions"
+import "styles/DatesHeaderStyles/info-element.css"
+import { getOpacityColorStyle } from "utils/generalUtils"
 
 export const InfoElement = (props) => {
   const {

@@ -1,13 +1,13 @@
 import React from "react"
-import "../../styles/DayElementsStyles/day.css"
-import "../../styles/DayElementsStyles/selected-day.css"
+import "styles/DayElementsStyles/day.css"
+import "styles/DayElementsStyles/selected-day.css"
 import {
   useLanguage,
   useEndDate,
   useStartDate,
   usePickMethod,
-} from "../../context/InitialParametersContext"
-import { setViewedMonth, setViewedYear } from "../../actions"
+} from "context/InitialParametersContext"
+import { setViewedMonth, setViewedYear } from "actions"
 import { HoverableDayElement } from "./HoverableDayElement"
 
 function customSetters(datesHeaderStateDispatch, language, id, boardsNum) {

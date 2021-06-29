@@ -1,10 +1,10 @@
 import React from "react"
-import "../../styles/CalendarModesStyles/week.css"
-import { calendarConfig } from "../../configuration/config"
+import "styles/CalendarModesStyles/week.css"
+import { calendarConfig } from "configuration/config"
 import {
   useFirstDayOfWeekIndex,
   useLanguage,
-} from "../../context/InitialParametersContext"
+} from "context/InitialParametersContext"
 
 export const WeekDaysNames = () => {
   const firstDayOfWeekIndex = useFirstDayOfWeekIndex()

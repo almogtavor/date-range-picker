@@ -1,10 +1,7 @@
 import React, { useEffect, useState, useRef } from "react"
-import {
-  useLanguage,
-  usePickMethod,
-} from "../../context/InitialParametersContext"
-import "../../styles/CalendarHeaderStyles/dates-display.css"
-import { getDates } from "../../utils/generalUtils"
+import { useLanguage, usePickMethod } from "context/InitialParametersContext"
+import "styles/CalendarHeaderStyles/dates-display.css"
+import { getDates } from "utils/generalUtils"
 import ChosenDatesItem from "./ChosenDatesItem"
 
 export default function DatesDisplay(props) {

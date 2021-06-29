@@ -1,11 +1,11 @@
 import React, { useReducer } from "react"
-import "../App.css"
-import { getNearViewedMonths, updateObject } from "../utils/generalUtils"
+import "App.css"
+import { getNearViewedMonths, updateObject } from "utils/generalUtils"
 import { DatesHeader } from "./DatesHeaderComponents/DatesHeader"
 import { CalendarContent } from "./CalendarModesComponents/CalendarContent"
 import { LowerFooter } from "./LowerFooterComponents/LowerFooter"
-import { getUpdatedObject } from "../utils/actionsUtils"
-import { useLanguage } from "../context/InitialParametersContext"
+import { getUpdatedObject } from "utils/actionsUtils"
+import { useLanguage } from "context/InitialParametersContext"
 
 const calendarModesInitialState = {
   mode: { 0: "Days", 1: "Days" },

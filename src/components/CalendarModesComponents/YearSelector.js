@@ -1,11 +1,8 @@
 import React from "react"
-import "../../styles/CalendarModesStyles/year-selector.css"
-import {
-  useStartDate,
-  useEndDate,
-} from "../../context/InitialParametersContext"
-import { selectorsModeStyle } from "../../utils/generalUtils"
-import { setMode, setViewedYear } from "../../actions"
+import "styles/CalendarModesStyles/year-selector.css"
+import { useStartDate, useEndDate } from "context/InitialParametersContext"
+import { selectorsModeStyle } from "utils/generalUtils"
+import { setMode, setViewedYear } from "actions"
 
 export const YearSelector = (props) => {
   const {

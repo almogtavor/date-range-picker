@@ -1,11 +1,11 @@
 import React, { useEffect, useReducer, useState } from "react"
-import "../App.css"
+import "App.css"
 import { CalendarInstance as BoardInstance } from "./BoardInstance"
-import { useLanguage } from "../context/InitialParametersContext"
-import { updateObject } from "../utils/generalUtils"
+import { useLanguage } from "context/InitialParametersContext"
+import { updateObject } from "utils/generalUtils"
 import { CalendarHeader } from "./CalendarHeaderComponents/CalendarHeader"
 import { DaysAmountTabButton } from "./DaysAmountTabComponents/DaysAmountTabButton"
-import { getInitialObject, getUpdatedObject } from "../utils/actionsUtils"
+import { getInitialObject, getUpdatedObject } from "utils/actionsUtils"
 
 const datesHeaderInitialStateCalculation = (language, boardsNum) => {
   let stateObj
@@ -58,20 +58,20 @@ function datesHeaderReducerMapper(state, payload) {
       payload.id,
       payload.viewedYear,
       state.viewedYear
-      )
-      return setViewedYear(state, payload)
-    } else {
-      return state
-    }
+    )
+    return setViewedYear(state, payload)
+  } else {
+    return state
   }
-  
+}
+
 function getMarginLeft(boardsNum) {
   if (boardsNum === 1) {
     return { marginLeft: "255px" }
   } else if (boardsNum === 2) {
     return { marginLeft: 255 / 2 + "px" }
   }
-  return {};
+  return {}
 }
 
 export const Mapper = (props) => {
@@ -178,4 +178,3 @@ export const Mapper = (props) => {
     </>
   )
 }
-

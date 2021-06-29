@@ -1,7 +1,7 @@
 import React from "react"
-import { daysAmountTabConfig } from "../../configuration/config"
-import { useLanguage } from "../../context/InitialParametersContext"
-import { updateViewedMonths } from "../../utils/generalUtils"
+import { daysAmountTabConfig } from "configuration/config"
+import { useLanguage } from "context/InitialParametersContext"
+import { updateViewedMonths } from "utils/generalUtils"
 
 export function DefaultRange(props) {
   const {

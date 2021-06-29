@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react"
-import "../../styles/DayElementsStyles/day.css"
+import "styles/DayElementsStyles/day.css"
 import {
   useEndDate,
   useStartDate,
   usePickMethod,
-} from "../../context/InitialParametersContext"
+} from "context/InitialParametersContext"
 import Tooltip from "./Tooltip"
 
 function inRangeCheck(date, edgeDate1, edgeDate2) {

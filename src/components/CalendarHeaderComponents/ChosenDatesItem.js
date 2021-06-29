@@ -1,13 +1,9 @@
 import React, { useState } from "react"
-import "../../styles/CalendarHeaderStyles/chosen-dates.css"
-import {
-  getOpacityColorStyle,
-  removeItemFromArray,
-} from "../../utils/generalUtils"
-import { updateViewedMonths } from "../../utils/generalUtils"
-import { useLanguage } from "../../context/InitialParametersContext"
-import xIcon from '../../images/x-icon.png';
-
+import "styles/CalendarHeaderStyles/chosen-dates.css"
+import { getOpacityColorStyle, removeItemFromArray } from "utils/generalUtils"
+import { updateViewedMonths } from "utils/generalUtils"
+import { useLanguage } from "context/InitialParametersContext"
+import xIcon from "images/x-icon.png"
 
 export default function ChosenDatesItem(props) {
   const {
