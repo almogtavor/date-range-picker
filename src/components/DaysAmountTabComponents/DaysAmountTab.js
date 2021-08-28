@@ -1,12 +1,15 @@
 import React, { useCallback, useState } from "react"
-import "styles/DaysAmountTabStyles/days-amount-tab.css"
-import { getDefaultRanges } from "utils/daysAmountTabUtils"
+import "../../styles/DaysAmountTabStyles/days-amount-tab.css"
+import { getDefaultRanges } from "../../utils/daysAmountTabUtils"
 import {
   useEndDate,
   useStartDate,
   useLanguage,
-} from "context/InitialParametersContext"
-import { getOpacityColorStyle, updateViewedMonths } from "utils/generalUtils"
+} from "../../context/InitialParametersContext"
+import {
+  getOpacityColorStyle,
+  updateViewedMonths,
+} from "../../utils/generalUtils"
 import { DefaultRange } from "./DefaultRange"
 
 export function DaysAmountTab(props) {

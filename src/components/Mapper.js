@@ -1,11 +1,10 @@
 import React, { useEffect, useReducer, useState } from "react"
-import "App.css"
 import { CalendarInstance as BoardInstance } from "./BoardInstance"
-import { useLanguage } from "context/InitialParametersContext"
-import { updateObject } from "utils/generalUtils"
+import { useLanguage } from "../context/InitialParametersContext"
+import { updateObject } from "../utils/generalUtils"
 import { CalendarHeader } from "./CalendarHeaderComponents/CalendarHeader"
 import { DaysAmountTabButton } from "./DaysAmountTabComponents/DaysAmountTabButton"
-import { getInitialObject, getUpdatedObject } from "utils/actionsUtils"
+import { getInitialObject, getUpdatedObject } from "../utils/actionsUtils"
 
 const datesHeaderInitialStateCalculation = (language, boardsNum) => {
   let stateObj

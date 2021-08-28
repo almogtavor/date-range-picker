@@ -1,16 +1,16 @@
 import React from "react"
-import "styles/LowerFooterStyles/lower-footer.css"
+import "../../styles/LowerFooterStyles/lower-footer.css"
 import {
   useLanguage,
   useFormat,
   usePickMethod,
   useSelectAllButton,
   useColorsPalette,
-} from "context/InitialParametersContext"
-import { chosenDatesCalculation } from "utils/generalUtils"
+} from "../../context/InitialParametersContext"
+import { chosenDatesCalculation } from "../../utils/generalUtils"
 import { ColorPickerPalette } from "./ColorPickerPalette"
 import { SelectAllButton } from "./SelectAllButton"
-import { callbackResponse } from "utils/callbackUtils"
+import { callbackResponse } from "../../utils/callbackUtils"
 
 export const LowerFooter = (props) => {
   const {
@@ -57,6 +57,7 @@ export const LowerFooter = (props) => {
     setShowCalendar(false)
 
     if (pickMethod === "ranges" && storedDates.length > 0) {
+      // TODO: fix same values
       let minDate = storedDates[0][0],
         maxDate = storedDates[0][0]
       for (let i = 0; i < storedDates.length; i++) {

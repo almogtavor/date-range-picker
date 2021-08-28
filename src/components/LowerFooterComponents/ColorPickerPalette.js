@@ -1,13 +1,13 @@
 import React, { useState } from "react"
-import { calendarConfig } from "configuration/config"
-import "styles/LowerFooterStyles/color-picker-palette.css"
+import { calendarConfig } from "../../configuration/config"
+import "../../styles/LowerFooterStyles/color-picker-palette.css"
 import {
   useLanguage,
   useColorsPalette,
   useInitialSelectedColor,
-} from "context/InitialParametersContext"
-import { getOpacityColorStyle } from "utils/generalUtils"
-import pointerHandIcon from "images/pointer-hand.png"
+} from "../../context/InitialParametersContext"
+import { getOpacityColorStyle } from "../../utils/generalUtils"
+import pointerHandIcon from "../../images/pointer-hand.png"
 
 export const ColorPickerPalette = (props) => {
   const { selectedColor, setSelectedColor, showPaletteAllowed } = props

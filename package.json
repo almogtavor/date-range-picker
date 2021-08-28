@@ -1,12 +1,17 @@
 {
   "name": "dates-picker",
-  "version": "1.0.4",
+  "version": "1.0.17",
   "description": "⚛️📆 Flexible React date range picker calendar with no dependencies.",
   "private": false,
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ]
+  },
   "homepage": "https://almogtavor.github.io/date-range-picker/",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "peerDependencies": {
     "react": "^16.12.0",
@@ -14,6 +19,9 @@
     "react-scripts": "^4.0.3"
   },
   "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/preset-react": "^7.14.5",
+    "css-loader": "^6.2.0",
     "gh-pages": "^3.1.0",
     "prettier": "2.2.1",
     "react": "^16.12.0",
@@ -26,7 +34,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "rm -rf ./dist && npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "publish:npm": "(if exist dist rmdir /s /q dist) && mkdir dist && babel src -d dist --copy-files"
   },
   "eslintConfig": {
     "extends": "react-app"

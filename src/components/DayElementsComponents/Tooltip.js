@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState } from "react"
 import ReactDOM from "react-dom"
-import { useFormat } from "context/InitialParametersContext"
-import { placeDateInFormat } from "utils/generalUtils"
-import "styles/DayElementsStyles/tooltip.css"
+import { useFormat } from "../../context/InitialParametersContext"
+import { placeDateInFormat } from "../../utils/generalUtils"
+import "../../styles/DayElementsStyles/tooltip.css"
 
 export default function Tooltip(props) {
   const { hoveredDay, dateRef } = props

@@ -1,5 +1,5 @@
 import React from "react"
-import "styles/calendar-component.css"
+import "../../styles/calendar-component.css"
 import { WeekDaysNames } from "./WeekDaysNames"
 import { DaysGrid } from "../DayElementsComponents/DaysGrid"
 import { MonthSelector } from "./MonthSelector"

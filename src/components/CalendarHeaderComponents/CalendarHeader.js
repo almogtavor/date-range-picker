@@ -1,17 +1,17 @@
 import React from "react"
-import "styles/CalendarHeaderStyles/calendar-header.css"
+import "../../styles/CalendarHeaderStyles/calendar-header.css"
 import {
   chosenDatesCalculation,
   calculateDaysCount,
   removeItemFromArray,
   getOpacityColorStyle,
-} from "utils/generalUtils"
+} from "../../utils/generalUtils"
 import {
   useFormat,
   useLanguage,
   usePickMethod,
-} from "context/InitialParametersContext"
-import { updateViewedMonths } from "utils/generalUtils"
+} from "../../context/InitialParametersContext"
+import { updateViewedMonths } from "../../utils/generalUtils"
 import DatesDisplay from "./DatesDisplay"
 
 export const CalendarHeader = (props) => {

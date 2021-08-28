@@ -1,7 +1,7 @@
 import React from "react"
-import { calendarConfig } from "configuration/config"
-import "styles/DatesHeaderStyles/dates-header.css"
-import { useLanguage } from "context/InitialParametersContext"
+import { calendarConfig } from "../../configuration/config"
+import "../../styles/DatesHeaderStyles/dates-header.css"
+import { useLanguage } from "../../context/InitialParametersContext"
 import { InfoElement } from "./InfoElement"
 import { Arrow } from "./Arrow"
 

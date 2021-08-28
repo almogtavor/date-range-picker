@@ -35,3 +35,4 @@ src/utils/dist/utils.dev.js
 .vscode/settings.json
 .prettierrc
 
+package-lock.json

@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from "react"
-import "styles/LowerFooterStyles/select-all-button.css"
+import "../../styles/LowerFooterStyles/select-all-button.css"
 import {
   useLanguage,
   useEndDate,
   useStartDate,
   useSelectAllButton,
-} from "context/InitialParametersContext"
-import checkbox from "images/checkbox.png"
-import hoverCheckbox from "images/hover-checkbox.png"
-import clickedCheckbox from "images/clicked-checkbox.png"
+} from "../../context/InitialParametersContext"
+import checkbox from "../../images/checkbox.png"
+import hoverCheckbox from "../../images/hover-checkbox.png"
+import clickedCheckbox from "../../images/clicked-checkbox.png"
 
 function limitDate(
   mode,

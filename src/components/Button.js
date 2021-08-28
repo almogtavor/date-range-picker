@@ -1,12 +1,12 @@
 import React from "react"
-import "styles/button.css"
+import "../styles/button.css"
 import {
   useFormat,
   usePickMethod,
   useLanguage,
-} from "context/InitialParametersContext"
-import { chosenDatesCalculation } from "utils/generalUtils"
-import calendarIcon from "images/calendar-icon6.png"
+} from "../context/InitialParametersContext"
+import { chosenDatesCalculation } from "../utils/generalUtils"
+import calendarIcon from "../images/calendar-icon6.png"
 
 export const Button = (props) => {
   const { setShowCalendar, showCalendar, buttonDatesText } = props

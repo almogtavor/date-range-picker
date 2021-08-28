@@ -1,4 +1,4 @@
-import { setViewedMonth, setViewedYear } from "actions"
+import { setViewedMonth, setViewedYear } from "../actions"
 
 export function chosenDatesCalculation(
   selectedDays,

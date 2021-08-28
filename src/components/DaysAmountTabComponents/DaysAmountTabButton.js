@@ -1,9 +1,12 @@
 import React, { useState } from "react"
-import "styles/DaysAmountTabStyles/days-amount-tab-button.css"
-import { useDaysAmountTab, useLanguage } from "context/InitialParametersContext"
-import { getOpacityColorStyle } from "utils/generalUtils"
+import "../../styles/DaysAmountTabStyles/days-amount-tab-button.css"
+import {
+  useDaysAmountTab,
+  useLanguage,
+} from "../../context/InitialParametersContext"
+import { getOpacityColorStyle } from "../../utils/generalUtils"
 import { DaysAmountTab } from "./DaysAmountTab"
-import chooseDaysAmount from "images/choose-days-amount.png"
+import chooseDaysAmount from "../../images/choose-days-amount.png"
 
 export function DaysAmountTabButton(props) {
   const {

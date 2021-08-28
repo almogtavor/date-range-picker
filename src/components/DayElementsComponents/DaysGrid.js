@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useLanguage } from "context/InitialParametersContext"
+import { useLanguage } from "../../context/InitialParametersContext"
 import { SelectableDayElement } from "./SelectableDayElement"
 
 export const DaysGrid = (props) => {
